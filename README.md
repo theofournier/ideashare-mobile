@@ -1,16 +1,11 @@
-# ideashare
+# IdeaShare
 
-IdeaShare
+## Firebase Setup
+### Android
+- In [android/app/src](./android/app/src) folder, create 2 folders named "dev" and "prod"
+- Add the "google-services.json" files in the corresponding folder
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### iOS
+- Open "Runner.xcodeproj" in Xcode
+- In [Runner](./ios/Runner) folder, create 1 folder named "Firebase" and create 2 folders named "dev" and "prod" in it.
+- Add the "GoogleService-Info.plist" files in the corresponding folder
