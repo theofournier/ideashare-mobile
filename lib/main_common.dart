@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ideashare/resources/app_config.dart';
+import 'package:ideashare/resources/theme.dart' as Theme;
 
 void main_common() {
   // Background init code
@@ -14,9 +15,7 @@ class MyApp extends StatelessWidget {
   Widget _buildApp(String appName){
     return MaterialApp(
       title: appName,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: Theme.themeData,
       home: MyHomePage(),
     );
   }
