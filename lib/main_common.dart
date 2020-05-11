@@ -7,6 +7,7 @@ import 'package:ideashare/screens/landing/landing_screen.dart';
 import 'package:ideashare/screens/landing/landing_wiget_builder.dart';
 import 'package:ideashare/services/auth/auth_service.dart';
 import 'package:ideashare/services/auth/firebase_auth_service.dart';
+import 'package:ideashare/resources/router.dart';
 import 'package:provider/provider.dart';
 
 void main_common() {
@@ -46,7 +47,10 @@ class MyApp extends StatelessWidget {
               GlobalCupertinoLocalizations.delegate,
             ],
             supportedLocales: S.delegate.supportedLocales,
-            home: LandingScreen(userSnapshot: userSnapshot,),
+            onGenerateRoute: Router.onGenerateRoute,
+            home: LandingScreen(
+              userSnapshot: userSnapshot,
+            ),
           );
         },
       ),
