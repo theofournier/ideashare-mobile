@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:ideashare/services/auth/auth_service.dart';
 import 'package:ideashare/constants/error_keys.dart';
 
@@ -70,14 +71,35 @@ class FirebaseAuthService implements AuthService {
   }
 
   @override
-  Future<UserAuth> signInWithGoogle() {
-    // TODO: implement signInWithGoogle
-    throw UnimplementedError();
+  Future<UserAuth> signInWithGoogle() async {
+    final GoogleSignIn googleSignIn = GoogleSignIn();
+    final GoogleSignInAccount googleUser = await googleSignIn.signIn();
+
+    if (googleUser != null) {
+      final GoogleSignInAuthentication googleAuth =
+      await googleUser.authentication;
+      if (googleAuth.accessToken != null && googleAuth.idToken != null) {
+        final AuthResult authResult = await _firebaseAuth
+            .signInWithCredential(GoogleAuthProvider.getCredential(
+          idToken: googleAuth.idToken,
+          accessToken: googleAuth.accessToken,
+        ));
+        return _userAuthFromFirebaseUser(authResult.user);
+      } else {
+        throw PlatformException(
+            code: ErrorKeys.errorMissingGoogleAuthToken,
+            message: 'Missing Google Auth Token');
+      }
+    } else {
+      throw PlatformException(
+          code: ErrorKeys.errorAbortedByUser, message: 'Sign in aborted by user');
+    }
   }
 
   @override
   Future<void> signOut() async {
-    // TODO: signout from Google
+    final GoogleSignIn googleSignIn = GoogleSignIn();
+    await googleSignIn.signOut();
     final FacebookLogin facebookLogin = FacebookLogin();
     await facebookLogin.logOut();
     return _firebaseAuth.signOut();
