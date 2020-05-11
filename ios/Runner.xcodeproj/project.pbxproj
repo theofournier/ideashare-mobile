@@ -366,6 +366,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flutter",
 				);
+				GOOGLE_REVERSED_CLIENT_ID = "com.googleusercontent.apps.230534562835-t416rtr9jsn2j2qh2i9jeulkk43i9emb";
 				INFOPLIST_FILE = Runner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -501,6 +502,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flutter",
 				);
+				GOOGLE_REVERSED_CLIENT_ID = "com.googleusercontent.apps.230534562835-t416rtr9jsn2j2qh2i9jeulkk43i9emb";
 				INFOPLIST_FILE = Runner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -529,6 +531,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flutter",
 				);
+				GOOGLE_REVERSED_CLIENT_ID = "com.googleusercontent.apps.230534562835-t416rtr9jsn2j2qh2i9jeulkk43i9emb";
 				INFOPLIST_FILE = Runner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -612,6 +615,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flutter",
 				);
+				GOOGLE_REVERSED_CLIENT_ID = "com.googleusercontent.apps.91642072674-gankvmdp0dhprp1ej8t3t0edmiebbalb";
 				INFOPLIST_FILE = Runner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -696,6 +700,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flutter",
 				);
+				GOOGLE_REVERSED_CLIENT_ID = "com.googleusercontent.apps.230534562835-t416rtr9jsn2j2qh2i9jeulkk43i9emb";
 				INFOPLIST_FILE = Runner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -776,6 +781,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flutter",
 				);
+				GOOGLE_REVERSED_CLIENT_ID = "com.googleusercontent.apps.91642072674-gankvmdp0dhprp1ej8t3t0edmiebbalb";
 				INFOPLIST_FILE = Runner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -855,6 +861,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flutter",
 				);
+				GOOGLE_REVERSED_CLIENT_ID = "com.googleusercontent.apps.230534562835-t416rtr9jsn2j2qh2i9jeulkk43i9emb";
 				INFOPLIST_FILE = Runner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
