@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:ideashare/generated/l10n.dart';
 import 'package:ideashare/resources/app_config.dart';
 import 'package:ideashare/resources/theme.dart' as Theme;
 import 'package:ideashare/screens/landing/landing_screen.dart';
@@ -37,6 +39,13 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             theme: Theme.themeData,
             debugShowCheckedModeBanner: false,
+            localizationsDelegates: [
+              S.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: S.delegate.supportedLocales,
             home: LandingScreen(userSnapshot: userSnapshot,),
           );
         },
