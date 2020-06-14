@@ -27,7 +27,41 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
+  String get authScreenTitle {
+    return Intl.message(
+      'IdeaShare',
+      name: 'authScreenTitle',
+      desc: '',
+      args: [],
+    );
+  }
 
+  String get authScreenSubtitle {
+    return Intl.message(
+      'Share your ideas with the world or keep them private',
+      name: 'authScreenSubtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get authScreenLogIn {
+    return Intl.message(
+      'Log In',
+      name: 'authScreenLogIn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get authScreenSignUp {
+    return Intl.message(
+      'Sign Up',
+      name: 'authScreenSignUp',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

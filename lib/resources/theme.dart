@@ -7,6 +7,14 @@ final ThemeData themeData = new ThemeData(
   errorColor: const Color(0xFFAF6566),
   backgroundColor: const Color(0xFFF9F9F9),
   fontFamily: 'OpenSans',
+  textTheme: TextTheme(
+    headline1: TextStyle(fontFamily: "Montserrat"),
+    headline2: TextStyle(fontFamily: "Montserrat"),
+    headline3: TextStyle(fontFamily: "Montserrat"),
+    headline4: TextStyle(fontFamily: "Montserrat"),
+    headline5: TextStyle(fontFamily: "Montserrat"),
+    headline6: TextStyle(fontFamily: "Montserrat"),
+  )
 );
 
 class AppColors {
