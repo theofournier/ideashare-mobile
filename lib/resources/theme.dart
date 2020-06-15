@@ -5,7 +5,8 @@ final ThemeData themeData = new ThemeData(
   primaryColor: const Color(0xFF141E30),
   accentColor: const Color(0xFF243B55),
   errorColor: const Color(0xFFAF6566),
-  backgroundColor: const Color(0xFFF9F9F9),
+  backgroundColor: const Color(0xFFFFFFFF),
+  scaffoldBackgroundColor: const Color(0xFFFFFFFF),
   fontFamily: 'OpenSans',
   textTheme: TextTheme(
     headline1: TextStyle(fontFamily: "Montserrat"),
@@ -13,8 +14,11 @@ final ThemeData themeData = new ThemeData(
     headline3: TextStyle(fontFamily: "Montserrat"),
     headline4: TextStyle(fontFamily: "Montserrat"),
     headline5: TextStyle(fontFamily: "Montserrat"),
-    headline6: TextStyle(fontFamily: "Montserrat"),
-  )
+    headline6: TextStyle(
+      fontFamily: "Montserrat",
+      color: const Color(0xFF141E30),
+    ),
+  ),
 );
 
 class AppColors {
@@ -32,6 +36,7 @@ class AppColors {
     900: const Color(0xFF141E30)
   };
 
+  static const Color greyBackground = Color(0xFFF9F9F9);
   static const Color greyLight = const Color(0xFFDCDCDC);
   static const Color greyMedium = const Color(0xFFBBBBBB);
   static const Color greyDark = const Color(0xFF707070);

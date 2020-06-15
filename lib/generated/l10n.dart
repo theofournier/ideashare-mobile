@@ -62,6 +62,15 @@ class S {
       args: [],
     );
   }
+
+  String get signInScreenAppBarTitle {
+    return Intl.message(
+      'Sign In',
+      name: 'signInScreenAppBarTitle',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

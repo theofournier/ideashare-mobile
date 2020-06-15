@@ -24,6 +24,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "authScreenSignIn" : MessageLookupByLibrary.simpleMessage("Log In"),
     "authScreenSignUp" : MessageLookupByLibrary.simpleMessage("Sign Up"),
     "authScreenSubtitle" : MessageLookupByLibrary.simpleMessage("Share your ideas with the world or keep them private"),
-    "authScreenTitle" : MessageLookupByLibrary.simpleMessage("IdeaShare")
+    "authScreenTitle" : MessageLookupByLibrary.simpleMessage("IdeaShare"),
+    "signInScreenAppBarTitle" : MessageLookupByLibrary.simpleMessage("Sign In")
   };
 }
