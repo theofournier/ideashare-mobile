@@ -24,54 +24,50 @@ class AuthScreen extends StatelessWidget {
     return Padding(
       padding: ConstantWidgets.defaultPadding,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(
-            S.of(context).authScreenTitle,
-            style: Theme.of(context).textTheme.headline2.toWhite(),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              S.of(context).authScreenTitle,
+              style: Theme.of(context).textTheme.headline2.toWhite(),
+            ),
           ),
           SizedBox(
             height: 16,
           ),
-          Align(
-            alignment: Alignment.center,
-            child: Image.asset(
-              "assets/images/logo_white.png",
-              height: 100,
-              width: 100,
-              fit: BoxFit.contain,
-            ),
+          Image.asset(
+            "assets/images/logo_white.png",
+            height: 100,
+            width: 100,
+            fit: BoxFit.contain,
           ),
           SizedBox(
             height: 32,
           ),
-          Text(
-            S.of(context).authScreenSubtitle,
-            style: Theme.of(context).textTheme.headline4.toWhite(),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              S.of(context).authScreenSubtitle,
+              style: Theme.of(context).textTheme.headline4.toWhite(),
+            ),
           ),
           SizedBox(
             height: 64,
           ),
-          Align(
-            alignment: Alignment.center,
-            child: CustomOutlineButton(
-              text: S.of(context).authScreenLogIn,
-              textSize: 20,
-              height: 50,
-              width: 200,
-              onPressed: () => SignInScreen.show(context),
-            ),
+          CustomOutlineButton(
+            text: S.of(context).authScreenLogIn,
+            textSize: 20,
+            height: 50,
+            width: 200,
+            onPressed: () => SignInScreen.show(context),
           ),
           SizedBox(
             height: 16,
           ),
-          Align(
-            alignment: Alignment.center,
-            child: CustomFlatButton(
-              onPressed: () => SignUpScreen.show(context),
-              text: S.of(context).authScreenSignUp,
-              textSize: 18,
-            ),
+          CustomFlatButton(
+            onPressed: () => SignUpScreen.show(context),
+            text: S.of(context).authScreenSignUp,
+            textSize: 18,
           )
         ],
       ),
