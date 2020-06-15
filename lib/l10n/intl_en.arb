@@ -1,6 +1,6 @@
 {
   "authScreenTitle": "IdeaShare",
   "authScreenSubtitle": "Share your ideas with the world or keep them private",
-  "authScreenLogIn": "Log In",
+  "authScreenSignIn": "Sign In",
   "authScreenSignUp": "Sign Up"
 }

@@ -45,10 +45,10 @@ class S {
     );
   }
 
-  String get authScreenLogIn {
+  String get authScreenSignIn {
     return Intl.message(
-      'Log In',
-      name: 'authScreenLogIn',
+      'Sign In',
+      name: 'authScreenSignIn',
       desc: '',
       args: [],
     );

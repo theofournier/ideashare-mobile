@@ -55,7 +55,7 @@ class AuthScreen extends StatelessWidget {
             height: 64,
           ),
           CustomOutlineButton(
-            text: S.of(context).authScreenLogIn,
+            text: S.of(context).authScreenSignIn,
             textSize: 20,
             height: 50,
             width: 200,

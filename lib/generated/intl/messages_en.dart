@@ -21,7 +21,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
-    "authScreenLogIn" : MessageLookupByLibrary.simpleMessage("Log In"),
+    "authScreenSignIn" : MessageLookupByLibrary.simpleMessage("Sign In"),
     "authScreenSignUp" : MessageLookupByLibrary.simpleMessage("Sign Up"),
     "authScreenSubtitle" : MessageLookupByLibrary.simpleMessage("Share your ideas with the world or keep them private"),
     "authScreenTitle" : MessageLookupByLibrary.simpleMessage("IdeaShare")
