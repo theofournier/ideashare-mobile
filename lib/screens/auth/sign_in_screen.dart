@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ideashare/common_widgets/constant_widgets.dart';
 import 'package:ideashare/common_widgets/custom_app_bar.dart';
+import 'package:ideashare/common_widgets/custom_raised_button.dart';
 import 'package:ideashare/constants/constants.dart';
 import 'package:ideashare/generated/l10n.dart';
 import 'package:ideashare/resources/router.dart';
@@ -37,7 +38,7 @@ class _SignInScreenState extends State<SignInScreen> {
       children: <Widget>[
         _buildImage(),
         SizedBox(
-          height: 100,
+          height: 70,
         ),
         _buildForm(),
         SizedBox(
@@ -61,17 +62,18 @@ class _SignInScreenState extends State<SignInScreen> {
   }
 
   Widget _buildForm() {
-    return Container(
-      color: Colors.blue,
-      child: Column(
-        children: <Widget>[
-          Text("Form"),
-          SizedBox(
-            height: 50,
-          ),
-          Text("End"),
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: <Widget>[
+        Text("Form"),
+        SizedBox(
+          height: 50,
+        ),
+        CustomRaisedButton(
+          onPressed: () {},
+          text: S.of(context).signInScreenButton,
+        ),
+      ],
     );
   }
 

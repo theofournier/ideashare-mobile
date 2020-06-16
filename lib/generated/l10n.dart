@@ -107,6 +107,15 @@ class S {
       args: [],
     );
   }
+
+  String get signInScreenButton {
+    return Intl.message(
+      'Sign in',
+      name: 'signInScreenButton',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

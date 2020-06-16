@@ -7,5 +7,6 @@
   "socialFooterOr": "Or",
   "socialFooterFacebook": "Facebook",
   "socialFooterGoogle": "Google",
-  "signInScreenForgotPassword": "Forgot password?"
+  "signInScreenForgotPassword": "Forgot password?",
+  "signInScreenButton": "Sign in"
 }
