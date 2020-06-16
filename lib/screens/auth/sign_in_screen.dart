@@ -4,7 +4,9 @@ import 'package:ideashare/common_widgets/custom_app_bar.dart';
 import 'package:ideashare/constants/constants.dart';
 import 'package:ideashare/generated/l10n.dart';
 import 'package:ideashare/resources/router.dart';
+import 'package:ideashare/screens/auth/forgot_password_screen.dart';
 import 'package:ideashare/screens/auth/widgets/social_footer.dart';
+import 'package:ideashare/utils/extensions/text_style.dart';
 
 class SignInScreen extends StatefulWidget {
   static Future<void> show(BuildContext context) async {
@@ -39,6 +41,10 @@ class _SignInScreenState extends State<SignInScreen> {
         ),
         _buildForm(),
         SizedBox(
+          height: 16,
+        ),
+        _buildForgotPassword(),
+        SizedBox(
           height: 30,
         ),
         _buildFooter(),
@@ -65,6 +71,19 @@ class _SignInScreenState extends State<SignInScreen> {
           ),
           Text("End"),
         ],
+      ),
+    );
+  }
+
+  Widget _buildForgotPassword() {
+    return Align(
+      alignment: Alignment.center,
+      child: InkWell(
+        onTap: () => ForgotPasswordScreen.show(context),
+        child: Text(
+          S.of(context).signInScreenForgotPassword,
+          style: Theme.of(context).textTheme.bodyText2.toBold(),
+        ),
       ),
     );
   }

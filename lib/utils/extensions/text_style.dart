@@ -8,4 +8,12 @@ extension TextStyleExtensions on TextStyle {
       ),
     );
   }
+
+  TextStyle toBold() {
+    return this.merge(
+      TextStyle(
+        fontWeight: FontWeight.bold,
+      ),
+    );
+  }
 }

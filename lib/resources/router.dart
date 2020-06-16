@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ideashare/screens/auth/forgot_password_screen.dart';
 import 'package:ideashare/screens/auth/sign_in_screen.dart';
 import 'package:ideashare/screens/auth/sign_up_screen.dart';
 import 'package:ideashare/screens/landing/landing_screen.dart';
@@ -7,6 +8,7 @@ class Routes {
   static const landingScreen = "/";
   static const signInScreen = "/sign-in";
   static const signUpScreen = "/sign-up";
+  static const forgotPasswordScreen = "/forgot-password";
 }
 
 class Router {
@@ -28,6 +30,11 @@ class Router {
       case Routes.signUpScreen:
         return MaterialPageRoute<dynamic>(
           builder: (_) => SignUpScreen(),
+          settings: settings,
+        );
+      case Routes.forgotPasswordScreen:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => ForgotPasswordScreen(),
           settings: settings,
         );
       default:

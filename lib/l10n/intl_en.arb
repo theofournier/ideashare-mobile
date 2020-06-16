@@ -6,5 +6,6 @@
   "signInScreenAppBarTitle": "Sign In",
   "socialFooterOr": "Or",
   "socialFooterFacebook": "Facebook",
-  "socialFooterGoogle": "Google"
+  "socialFooterGoogle": "Google",
+  "signInScreenForgotPassword": "Forgot password?"
 }

@@ -18,6 +18,9 @@ final ThemeData themeData = new ThemeData(
       fontFamily: "Montserrat",
       color: const Color(0xFF141E30),
     ),
+    bodyText2: TextStyle(
+      color: const Color(0xFF141E30),
+    ),
   ),
 );
 

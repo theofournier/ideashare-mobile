@@ -13,5 +13,5 @@ class ConstantWidgets {
         ),
       );
 
-  static EdgeInsetsGeometry defaultPadding = const EdgeInsets.symmetric(vertical: 48, horizontal: 32);
+  static EdgeInsetsGeometry defaultPadding = const EdgeInsets.symmetric(vertical: 48, horizontal: 40);
 }

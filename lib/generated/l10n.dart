@@ -98,6 +98,15 @@ class S {
       args: [],
     );
   }
+
+  String get signInScreenForgotPassword {
+    return Intl.message(
+      'Forgot password?',
+      name: 'signInScreenForgotPassword',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
