@@ -6,10 +6,13 @@ import 'package:ideashare/constants/constants.dart';
 import 'package:ideashare/generated/l10n.dart';
 import 'package:ideashare/resources/router.dart';
 import 'package:ideashare/screens/auth/forgot_password_screen.dart';
+import 'package:ideashare/screens/auth/sign_in/sign_in_view_model.dart';
 import 'package:ideashare/screens/auth/widgets/social_footer.dart';
+import 'package:ideashare/services/auth/auth_service.dart';
 import 'package:ideashare/utils/extensions/text_style.dart';
+import 'package:provider/provider.dart';
 
-class SignInScreen extends StatefulWidget {
+class SignInScreen extends StatelessWidget {
   static Future<void> show(BuildContext context) async {
     final navigator = Navigator.of(context);
     await navigator.pushNamed(
@@ -18,10 +21,34 @@ class SignInScreen extends StatefulWidget {
   }
 
   @override
-  _SignInScreenState createState() => _SignInScreenState();
+  Widget build(BuildContext context) {
+    final AuthService auth =
+        Provider.of<AuthService>(context, listen: false);
+
+    return ChangeNotifierProvider<SignInViewModel>(
+      create: (_) => SignInViewModel(auth: auth),
+      child: Consumer<SignInViewModel>(
+        builder: (_, viewModel, __) => SignInContent(
+          viewModel: viewModel,
+        ),
+      ),
+    );
+  }
 }
 
-class _SignInScreenState extends State<SignInScreen> {
+class SignInContent extends StatefulWidget {
+  const SignInContent({
+    Key key,
+    @required this.viewModel,
+  }) : super(key: key);
+
+  final SignInViewModel viewModel;
+
+  @override
+  _SignInContentState createState() => _SignInContentState();
+}
+
+class _SignInContentState extends State<SignInContent> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
