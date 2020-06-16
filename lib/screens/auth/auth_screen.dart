@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ideashare/common_widgets/constant_widgets.dart';
+import 'package:ideashare/constants/constants.dart';
 import 'package:ideashare/generated/l10n.dart';
 import 'package:ideashare/screens/auth/sign_in_screen.dart';
 import 'package:ideashare/screens/auth/sign_up_screen.dart';
@@ -36,7 +37,7 @@ class AuthScreen extends StatelessWidget {
             height: 16,
           ),
           Image.asset(
-            "assets/images/logo_white.png",
+            ImageName.logoWhite,
             height: 100,
             width: 100,
             fit: BoxFit.contain,

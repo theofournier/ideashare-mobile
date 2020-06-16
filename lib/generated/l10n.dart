@@ -71,6 +71,33 @@ class S {
       args: [],
     );
   }
+
+  String get socialFooterOr {
+    return Intl.message(
+      'Or',
+      name: 'socialFooterOr',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get socialFooterFacebook {
+    return Intl.message(
+      'Facebook',
+      name: 'socialFooterFacebook',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get socialFooterGoogle {
+    return Intl.message(
+      'Google',
+      name: 'socialFooterGoogle',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
