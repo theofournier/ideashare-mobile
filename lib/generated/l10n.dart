@@ -116,6 +116,51 @@ class S {
       args: [],
     );
   }
+
+  String get signInScreenEmailAddress {
+    return Intl.message(
+      'Email address',
+      name: 'signInScreenEmailAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get signInScreenPassword {
+    return Intl.message(
+      'Password',
+      name: 'signInScreenPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get errorRequired {
+    return Intl.message(
+      'Required',
+      name: 'errorRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get errorEmailnvalid {
+    return Intl.message(
+      'Email address invalid',
+      name: 'errorEmailnvalid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get errorPasswordInvalid {
+    return Intl.message(
+      'Invalid: must have at least 6 characters',
+      name: 'errorPasswordInvalid',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

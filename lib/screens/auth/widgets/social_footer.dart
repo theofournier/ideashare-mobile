@@ -3,6 +3,12 @@ import 'package:ideashare/common_widgets/social_buttons.dart';
 import 'package:ideashare/generated/l10n.dart';
 
 class SocialFooter extends StatelessWidget {
+  SocialFooter({
+    this.enabled = true,
+  });
+
+  final bool enabled;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -22,17 +28,19 @@ class SocialFooter extends StatelessWidget {
             line(context),
           ],
         ),
-        SizedBox(height: 20,),
+        SizedBox(
+          height: 20,
+        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             FacebookButton(
               title: S.of(context).socialFooterFacebook,
-              onPressed: () {},
+              onPressed: enabled ? () {} : null,
             ),
             GoogleButton(
               title: S.of(context).socialFooterGoogle,
-              onPressed: () {},
+              onPressed: enabled ? () {} : null,
             ),
           ],
         ),

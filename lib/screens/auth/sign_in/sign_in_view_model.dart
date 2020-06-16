@@ -7,7 +7,6 @@ class SignInViewModel with ChangeNotifier {
     this.email = "",
     this.password = "",
     this.isLoading = false,
-    this.submitted = false,
   });
 
   final AuthService auth;
@@ -15,5 +14,33 @@ class SignInViewModel with ChangeNotifier {
   String email;
   String password;
   bool isLoading;
-  bool submitted;
+
+  final formKey = GlobalKey<FormState>();
+
+  void updateWith({
+    String email,
+    String password,
+    bool isLoading,
+    bool submitted,
+  }) {
+    this.email = email ?? this.email;
+    this.password = password ?? this.password;
+    this.isLoading = isLoading ?? this.isLoading;
+    notifyListeners();
+  }
+
+  void onSaveEmail(String email) => this.updateWith(email: email);
+
+  void onSavePassword(String password) => this.updateWith(password: password);
+
+  Future<bool> submit() async {
+    if (!formKey.currentState.validate()) {
+      return false;
+    }
+    formKey.currentState.save();
+    updateWith(isLoading: true);
+    //TODO: call auth
+    await Future.delayed(const Duration(seconds: 2));
+    updateWith(isLoading: false);
+  }
 }

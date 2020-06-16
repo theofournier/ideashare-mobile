@@ -8,5 +8,10 @@
   "socialFooterFacebook": "Facebook",
   "socialFooterGoogle": "Google",
   "signInScreenForgotPassword": "Forgot password?",
-  "signInScreenButton": "Sign in"
+  "signInScreenButton": "Sign in",
+  "signInScreenEmailAddress": "Email address",
+  "signInScreenPassword": "Password",
+  "errorRequired": "Required",
+  "errorEmailnvalid": "Email address invalid",
+  "errorPasswordInvalid": "Invalid: must have at least 6 characters"
 }

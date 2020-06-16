@@ -45,12 +45,21 @@ class CustomRaisedButton extends StatelessWidget {
         ),
         elevation: elevation,
         color: backgroundColor ?? Theme.of(context).accentColor,
-        child: Text(
+        child: loading ? buildSpinner() : Text(
           text.toUpperCase(),
           style: Theme.of(context).textTheme.button.merge(
                 TextStyle(fontSize: textSize, color: textColor),
               ),
         ),
+      ),
+    );
+  }
+
+  Widget buildSpinner() {
+    return SizedBox(
+      height: height * 0.60,
+      width: height * 0.60,
+      child: CircularProgressIndicator(
       ),
     );
   }

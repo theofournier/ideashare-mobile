@@ -1,7 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ideashare/common_widgets/constant_widgets.dart';
 import 'package:ideashare/common_widgets/custom_app_bar.dart';
 import 'package:ideashare/common_widgets/custom_raised_button.dart';
+import 'package:ideashare/common_widgets/custom_text_form_field.dart';
 import 'package:ideashare/constants/constants.dart';
 import 'package:ideashare/generated/l10n.dart';
 import 'package:ideashare/resources/router.dart';
@@ -10,6 +12,7 @@ import 'package:ideashare/screens/auth/sign_in/sign_in_view_model.dart';
 import 'package:ideashare/screens/auth/widgets/social_footer.dart';
 import 'package:ideashare/services/auth/auth_service.dart';
 import 'package:ideashare/utils/extensions/text_style.dart';
+import 'package:ideashare/utils/validators.dart';
 import 'package:provider/provider.dart';
 
 class SignInScreen extends StatelessWidget {
@@ -22,8 +25,7 @@ class SignInScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final AuthService auth =
-        Provider.of<AuthService>(context, listen: false);
+    final AuthService auth = Provider.of<AuthService>(context, listen: false);
 
     return ChangeNotifierProvider<SignInViewModel>(
       create: (_) => SignInViewModel(auth: auth),
@@ -49,13 +51,51 @@ class SignInContent extends StatefulWidget {
 }
 
 class _SignInContentState extends State<SignInContent> {
+  final FocusScopeNode _node = FocusScopeNode();
+  bool _passwordIsVisible = false;
+  bool autovalidate = false;
+
+  @override
+  void dispose() {
+    _node.dispose();
+    super.dispose();
+  }
+
+  void _togglePasswordVisibility() {
+    setState(() {
+      _passwordIsVisible = !_passwordIsVisible;
+    });
+  }
+
+  Future<void> _submit() async {
+    setState(() {
+      this.autovalidate = true;
+    });
+    try {
+      final bool success = await widget.viewModel.submit();
+      if (success) {
+        //TODO: pop
+      }
+    } catch (e) {
+      //TODO: Show error
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomAppBar(
-        title: S.of(context).signInScreenAppBarTitle,
+    return GestureDetector(
+      onTap: () {
+        FocusScopeNode currentFocus = FocusScope.of(context);
+        if (!currentFocus.hasPrimaryFocus) {
+          currentFocus.unfocus();
+        }
+      },
+      child: Scaffold(
+        appBar: CustomAppBar(
+          title: S.of(context).signInScreenAppBarTitle,
+        ),
+        body: _buildContent(),
       ),
-      body: _buildContent(),
     );
   }
 
@@ -67,15 +107,20 @@ class _SignInContentState extends State<SignInContent> {
         SizedBox(
           height: 70,
         ),
-        _buildForm(),
-        SizedBox(
-          height: 16,
-        ),
-        _buildForgotPassword(),
-        SizedBox(
-          height: 30,
-        ),
-        _buildFooter(),
+        if (widget.viewModel.isLoading) ...[
+          _buildSpinner(),
+        ],
+        if (!widget.viewModel.isLoading) ...[
+          _buildForm(),
+          SizedBox(
+            height: 16,
+          ),
+          _buildForgotPassword(),
+          SizedBox(
+            height: 30,
+          ),
+          _buildFooter(),
+        ],
       ],
     );
   }
@@ -89,18 +134,53 @@ class _SignInContentState extends State<SignInContent> {
   }
 
   Widget _buildForm() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: <Widget>[
-        Text("Form"),
-        SizedBox(
-          height: 50,
+    return Form(
+      key: widget.viewModel.formKey,
+      child: FocusScope(
+        node: _node,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            CustomTextFormField(
+              labelText: S.of(context).signInScreenEmailAddress,
+              keyboardType: TextInputType.emailAddress,
+              textInputAction: TextInputAction.next,
+              autovalidate: autovalidate,
+              initialValue: widget.viewModel.email,
+              enabled: !widget.viewModel.isLoading,
+              onSaved: widget.viewModel.onSaveEmail,
+              validator: (value) => Validators.emailValidator(context, value),
+              onFieldSubmitted: (_) => _node.nextFocus(),
+            ),
+            SizedBox(
+              height: 8,
+            ),
+            CustomTextFormField(
+              labelText: S.of(context).signInScreenPassword,
+              passwordIsVisible: _passwordIsVisible,
+              togglePasswordVisibility: _togglePasswordVisibility,
+              keyboardType:
+                  _passwordIsVisible ? TextInputType.visiblePassword : null,
+              textInputAction: TextInputAction.done,
+              autovalidate: autovalidate,
+              enabled: !widget.viewModel.isLoading,
+              initialValue: widget.viewModel.password,
+              onSaved: widget.viewModel.onSavePassword,
+              validator: (value) =>
+                  Validators.passwordValidator(context, value),
+              onFieldSubmitted: (_) => _submit(),
+            ),
+            SizedBox(
+              height: 24,
+            ),
+            CustomRaisedButton(
+              onPressed: widget.viewModel.isLoading ? null : _submit,
+              loading: widget.viewModel.isLoading,
+              text: S.of(context).signInScreenButton,
+            ),
+          ],
         ),
-        CustomRaisedButton(
-          onPressed: () {},
-          text: S.of(context).signInScreenButton,
-        ),
-      ],
+      ),
     );
   }
 
@@ -108,7 +188,9 @@ class _SignInContentState extends State<SignInContent> {
     return Align(
       alignment: Alignment.center,
       child: InkWell(
-        onTap: () => ForgotPasswordScreen.show(context),
+        onTap: widget.viewModel.isLoading
+            ? null
+            : () => ForgotPasswordScreen.show(context),
         child: Text(
           S.of(context).signInScreenForgotPassword,
           style: Theme.of(context).textTheme.bodyText2.toBold(),
@@ -118,6 +200,18 @@ class _SignInContentState extends State<SignInContent> {
   }
 
   Widget _buildFooter() {
-    return SocialFooter();
+    return SocialFooter(
+      enabled: !widget.viewModel.isLoading,
+    );
+  }
+
+  Widget _buildSpinner() {
+    return Center(
+      child: SizedBox(
+        height: 40,
+        width: 40,
+        child: CircularProgressIndicator(),
+      ),
+    );
   }
 }
