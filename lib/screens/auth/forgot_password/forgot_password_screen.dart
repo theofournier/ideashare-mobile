@@ -1,9 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:ideashare/common_widgets/constant_widgets.dart';
 import 'package:ideashare/common_widgets/custom_app_bar.dart';
 import 'package:ideashare/common_widgets/custom_raised_button.dart';
 import 'package:ideashare/common_widgets/custom_text_form_field.dart';
+import 'package:ideashare/common_widgets/platform_alert_dialog.dart';
+import 'package:ideashare/common_widgets/platform_exception_alert_dialog.dart';
 import 'package:ideashare/constants/constants.dart';
 import 'package:ideashare/generated/l10n.dart';
 import 'package:ideashare/resources/router.dart';
@@ -59,6 +62,22 @@ class _ForgotPasswordContentState extends State<ForgotPasswordContent> {
     super.dispose();
   }
 
+  void _showForgotPasswordError(PlatformException exception) {
+    PlatformExceptionAlertDialog(
+      context: context,
+      title: S.of(context).forgotPasswordScreenFailed,
+      exception: exception,
+    ).show(context);
+  }
+  
+  void _showForgotPasswordSuccess() async {
+    await PlatformAlertDialog(
+      defaultActionText: S.of(context).ok,
+      title: S.of(context).forgotPasswordScreenSuccessTitle,
+      content: S.of(context).forgotPasswordScreenSuccessContent,
+    ).show(context);
+  }
+
   Future<void> _submit() async {
     setState(() {
       this.autovalidate = true;
@@ -66,10 +85,11 @@ class _ForgotPasswordContentState extends State<ForgotPasswordContent> {
     try {
       final bool success = await widget.viewModel.submit();
       if (success) {
-        //TODO: pop
+        await _showForgotPasswordSuccess();
+        Navigator.of(context).pop();
       }
-    } catch (e) {
-      //TODO: Show error
+    } on PlatformException catch (e) {
+      _showForgotPasswordError(e);
     }
   }
 

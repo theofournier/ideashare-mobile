@@ -33,8 +33,13 @@ class ForgotPasswordViewModel with ChangeNotifier {
     }
     formKey.currentState.save();
     updateWith(isLoading: true);
-    //TODO: call auth
-    await Future.delayed(const Duration(seconds: 2));
-    updateWith(isLoading: false);
+    try {
+      await auth.sendPasswordResetEmail(email);
+      updateWith(isLoading: false);
+      return true;
+    } catch (e) {
+      updateWith(isLoading: false);
+      rethrow;
+    }
   }
 }

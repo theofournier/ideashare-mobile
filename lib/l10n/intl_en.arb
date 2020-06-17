@@ -40,5 +40,9 @@
   "errorTooManyRequests": "We have blocked all requests from this device due to unusual activity. Try again later.",
   "errorOperationNotAllowed": "This sign in method is not allowed. Please contact support.",
   "errorDefault": "This operation could not be completed due to a server error.",
-  "ok": "OK"
+  "ok": "OK",
+  "signUpScreenFailed": "Sign Up failed",
+  "forgotPasswordScreenFailed": "Send email failed",
+  "forgotPasswordScreenSuccessTitle": "Email sent successfully",
+  "forgotPasswordScreenSuccessContent": "An email has been sent. Follow the instruction to reset your password."
 }

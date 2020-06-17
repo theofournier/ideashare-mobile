@@ -67,10 +67,10 @@ class _SignUpContentState extends State<SignUpContent> {
     });
   }
 
-  void _showSignInError(PlatformException exception) {
+  void _showSignUpError(PlatformException exception) {
     PlatformExceptionAlertDialog(
       context: context,
-      title: S.of(context).signInScreenFailed,
+      title: S.of(context).signUpScreenFailed,
       exception: exception,
     ).show(context);
   }
@@ -85,7 +85,7 @@ class _SignUpContentState extends State<SignUpContent> {
         Navigator.of(context).pop();
       }
     } on PlatformException catch (e) {
-      _showSignInError(e);
+      _showSignUpError(e);
     }
   }
 

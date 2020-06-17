@@ -452,6 +452,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Sign Up failed`
+  String get signUpScreenFailed {
+    return Intl.message(
+      'Sign Up failed',
+      name: 'signUpScreenFailed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send email failed`
+  String get forgotPasswordScreenFailed {
+    return Intl.message(
+      'Send email failed',
+      name: 'forgotPasswordScreenFailed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email sent successfully`
+  String get forgotPasswordScreenSuccessTitle {
+    return Intl.message(
+      'Email sent successfully',
+      name: 'forgotPasswordScreenSuccessTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `An email has been sent. Follow the instruction to reset your password.`
+  String get forgotPasswordScreenSuccessContent {
+    return Intl.message(
+      'An email has been sent. Follow the instruction to reset your password.',
+      name: 'forgotPasswordScreenSuccessContent',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
