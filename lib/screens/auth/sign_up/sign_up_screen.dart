@@ -7,11 +7,9 @@ import 'package:ideashare/common_widgets/custom_text_form_field.dart';
 import 'package:ideashare/constants/constants.dart';
 import 'package:ideashare/generated/l10n.dart';
 import 'package:ideashare/resources/router.dart';
-import 'package:ideashare/screens/auth/forgot_password_screen.dart';
 import 'package:ideashare/screens/auth/sign_up/sign_up_view_model.dart';
 import 'package:ideashare/screens/auth/widgets/social_footer.dart';
 import 'package:ideashare/services/auth/auth_service.dart';
-import 'package:ideashare/utils/extensions/text_style.dart';
 import 'package:ideashare/utils/validators.dart';
 import 'package:provider/provider.dart';
 

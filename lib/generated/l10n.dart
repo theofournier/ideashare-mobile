@@ -242,6 +242,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Forgot Password`
+  String get forgotPasswordScreenAppBarTitle {
+    return Intl.message(
+      'Forgot Password',
+      name: 'forgotPasswordScreenAppBarTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email address`
+  String get forgotPasswordScreenEmailAddress {
+    return Intl.message(
+      'Email address',
+      name: 'forgotPasswordScreenEmailAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send`
+  String get forgotPasswordScreenButton {
+    return Intl.message(
+      'Send',
+      name: 'forgotPasswordScreenButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We'll send you an email to reset your password.`
+  String get forgotPasswordScreenText {
+    return Intl.message(
+      'We\'ll send you an email to reset your password.',
+      name: 'forgotPasswordScreenText',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

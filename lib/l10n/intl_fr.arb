@@ -19,5 +19,9 @@
   "signUpScreenEmailAddress": "Email address",
   "signUpScreenPassword": "Password",
   "signUpScreenButton": "Sign up",
-  "signUpScreenAppBarTitle": "Sign Up"
+  "signUpScreenAppBarTitle": "Sign Up",
+  "forgotPasswordScreenAppBarTitle": "Forgot Password",
+  "forgotPasswordScreenEmailAddress": "Email address",
+  "forgotPasswordScreenButton": "Send",
+  "forgotPasswordScreenText": "We'll send you an email to reset your password."
 }

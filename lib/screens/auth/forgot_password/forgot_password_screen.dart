@@ -7,19 +7,18 @@ import 'package:ideashare/common_widgets/custom_text_form_field.dart';
 import 'package:ideashare/constants/constants.dart';
 import 'package:ideashare/generated/l10n.dart';
 import 'package:ideashare/resources/router.dart';
-import 'package:ideashare/screens/auth/forgot_password/forgot_password_screen.dart';
-import 'package:ideashare/screens/auth/sign_in/sign_in_view_model.dart';
+import 'package:ideashare/screens/auth/forgot_password/forgot_password_view_model.dart';
 import 'package:ideashare/screens/auth/widgets/social_footer.dart';
 import 'package:ideashare/services/auth/auth_service.dart';
 import 'package:ideashare/utils/extensions/text_style.dart';
 import 'package:ideashare/utils/validators.dart';
 import 'package:provider/provider.dart';
 
-class SignInScreen extends StatelessWidget {
+class ForgotPasswordScreen extends StatelessWidget {
   static Future<void> show(BuildContext context) async {
     final navigator = Navigator.of(context);
     await navigator.pushNamed(
-      Routes.signInScreen,
+      Routes.forgotPasswordScreen,
     );
   }
 
@@ -27,10 +26,10 @@ class SignInScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final AuthService auth = Provider.of<AuthService>(context, listen: false);
 
-    return ChangeNotifierProvider<SignInViewModel>(
-      create: (_) => SignInViewModel(auth: auth),
-      child: Consumer<SignInViewModel>(
-        builder: (_, viewModel, __) => SignInContent(
+    return ChangeNotifierProvider<ForgotPasswordViewModel>(
+      create: (_) => ForgotPasswordViewModel(auth: auth),
+      child: Consumer<ForgotPasswordViewModel>(
+        builder: (_, viewModel, __) => ForgotPasswordContent(
           viewModel: viewModel,
         ),
       ),
@@ -38,33 +37,26 @@ class SignInScreen extends StatelessWidget {
   }
 }
 
-class SignInContent extends StatefulWidget {
-  const SignInContent({
+class ForgotPasswordContent extends StatefulWidget {
+  const ForgotPasswordContent({
     Key key,
     @required this.viewModel,
   }) : super(key: key);
 
-  final SignInViewModel viewModel;
+  final ForgotPasswordViewModel viewModel;
 
   @override
-  _SignInContentState createState() => _SignInContentState();
+  _ForgotPasswordContentState createState() => _ForgotPasswordContentState();
 }
 
-class _SignInContentState extends State<SignInContent> {
+class _ForgotPasswordContentState extends State<ForgotPasswordContent> {
   final FocusScopeNode _node = FocusScopeNode();
-  bool _passwordIsVisible = false;
   bool autovalidate = false;
 
   @override
   void dispose() {
     _node.dispose();
     super.dispose();
-  }
-
-  void _togglePasswordVisibility() {
-    setState(() {
-      _passwordIsVisible = !_passwordIsVisible;
-    });
   }
 
   Future<void> _submit() async {
@@ -87,7 +79,7 @@ class _SignInContentState extends State<SignInContent> {
       context: context,
       child: Scaffold(
         appBar: CustomAppBar(
-          title: S.of(context).signInScreenAppBarTitle,
+          title: S.of(context).forgotPasswordScreenAppBarTitle,
         ),
         body: _buildContent(),
       ),
@@ -106,15 +98,11 @@ class _SignInContentState extends State<SignInContent> {
           _buildSpinner(),
         ],
         if (!widget.viewModel.isLoading) ...[
+          _buildText(),
+          SizedBox(
+            height: 32,
+          ),
           _buildForm(),
-          SizedBox(
-            height: 16,
-          ),
-          _buildForgotPassword(),
-          SizedBox(
-            height: 30,
-          ),
-          _buildFooter(),
         ],
       ],
     );
@@ -123,8 +111,15 @@ class _SignInContentState extends State<SignInContent> {
   Widget _buildImage() {
     return Center(
       child: Image.asset(
-        ImageName.signIn,
+        ImageName.forgotPassword,
       ),
+    );
+  }
+
+  Widget _buildText() {
+    return Text(
+      S.of(context).forgotPasswordScreenText,
+      style: Theme.of(context).textTheme.headline5,
     );
   }
 
@@ -137,32 +132,14 @@ class _SignInContentState extends State<SignInContent> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             CustomTextFormField(
-              labelText: S.of(context).signInScreenEmailAddress,
+              labelText: S.of(context).forgotPasswordScreenEmailAddress,
               keyboardType: TextInputType.emailAddress,
-              textInputAction: TextInputAction.next,
+              textInputAction: TextInputAction.send,
               autovalidate: autovalidate,
               initialValue: widget.viewModel.email,
               enabled: !widget.viewModel.isLoading,
               onSaved: widget.viewModel.onSaveEmail,
               validator: (value) => Validators.emailValidator(context, value),
-              onFieldSubmitted: (_) => _node.nextFocus(),
-            ),
-            SizedBox(
-              height: 8,
-            ),
-            CustomTextFormField(
-              labelText: S.of(context).signInScreenPassword,
-              passwordIsVisible: _passwordIsVisible,
-              togglePasswordVisibility: _togglePasswordVisibility,
-              keyboardType:
-                  _passwordIsVisible ? TextInputType.visiblePassword : null,
-              textInputAction: TextInputAction.done,
-              autovalidate: autovalidate,
-              enabled: !widget.viewModel.isLoading,
-              initialValue: widget.viewModel.password,
-              onSaved: widget.viewModel.onSavePassword,
-              validator: (value) =>
-                  Validators.passwordValidator(context, value),
               onFieldSubmitted: (_) => _submit(),
             ),
             SizedBox(
@@ -171,32 +148,11 @@ class _SignInContentState extends State<SignInContent> {
             CustomRaisedButton(
               onPressed: widget.viewModel.isLoading ? null : _submit,
               loading: widget.viewModel.isLoading,
-              text: S.of(context).signInScreenButton,
+              text: S.of(context).forgotPasswordScreenButton,
             ),
           ],
         ),
       ),
-    );
-  }
-
-  Widget _buildForgotPassword() {
-    return Align(
-      alignment: Alignment.center,
-      child: InkWell(
-        onTap: widget.viewModel.isLoading
-            ? null
-            : () => ForgotPasswordScreen.show(context),
-        child: Text(
-          S.of(context).signInScreenForgotPassword,
-          style: Theme.of(context).textTheme.bodyText2.toBold(),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildFooter() {
-    return SocialFooter(
-      enabled: !widget.viewModel.isLoading,
     );
   }
 
