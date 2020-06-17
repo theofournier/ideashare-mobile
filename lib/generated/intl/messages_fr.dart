@@ -33,6 +33,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "signInScreenEmailAddress" : MessageLookupByLibrary.simpleMessage("Email address"),
     "signInScreenForgotPassword" : MessageLookupByLibrary.simpleMessage("Forgot password?"),
     "signInScreenPassword" : MessageLookupByLibrary.simpleMessage("Password"),
+    "signUpScreenAppBarTitle" : MessageLookupByLibrary.simpleMessage("Sign Up"),
+    "signUpScreenButton" : MessageLookupByLibrary.simpleMessage("Sign up"),
+    "signUpScreenEmailAddress" : MessageLookupByLibrary.simpleMessage("Email address"),
+    "signUpScreenFirstName" : MessageLookupByLibrary.simpleMessage("First name"),
+    "signUpScreenLastName" : MessageLookupByLibrary.simpleMessage("Last name"),
+    "signUpScreenPassword" : MessageLookupByLibrary.simpleMessage("Password"),
     "socialFooterFacebook" : MessageLookupByLibrary.simpleMessage("Facebook"),
     "socialFooterGoogle" : MessageLookupByLibrary.simpleMessage("Google"),
     "socialFooterOr" : MessageLookupByLibrary.simpleMessage("Or")

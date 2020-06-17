@@ -8,18 +8,24 @@ import 'intl/messages_all.dart';
 // Made by Localizely
 // **************************************************************************
 
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars
+
 class S {
   S();
+  
+  static S current;
   
   static const AppLocalizationDelegate delegate =
     AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final String name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
-    final String localeName = Intl.canonicalizedLocale(name);
+    final name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
+    final localeName = Intl.canonicalizedLocale(name); 
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
-      return S();
+      S.current = S();
+      
+      return S.current;
     });
   } 
 
@@ -27,6 +33,7 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
+  /// `IdeaShare`
   String get authScreenTitle {
     return Intl.message(
       'IdeaShare',
@@ -36,6 +43,7 @@ class S {
     );
   }
 
+  /// `Share your ideas with the world or keep them private`
   String get authScreenSubtitle {
     return Intl.message(
       'Share your ideas with the world or keep them private',
@@ -45,6 +53,7 @@ class S {
     );
   }
 
+  /// `Sign In`
   String get authScreenSignIn {
     return Intl.message(
       'Sign In',
@@ -54,6 +63,7 @@ class S {
     );
   }
 
+  /// `Sign Up`
   String get authScreenSignUp {
     return Intl.message(
       'Sign Up',
@@ -63,6 +73,7 @@ class S {
     );
   }
 
+  /// `Sign In`
   String get signInScreenAppBarTitle {
     return Intl.message(
       'Sign In',
@@ -72,6 +83,7 @@ class S {
     );
   }
 
+  /// `Or`
   String get socialFooterOr {
     return Intl.message(
       'Or',
@@ -81,6 +93,7 @@ class S {
     );
   }
 
+  /// `Facebook`
   String get socialFooterFacebook {
     return Intl.message(
       'Facebook',
@@ -90,6 +103,7 @@ class S {
     );
   }
 
+  /// `Google`
   String get socialFooterGoogle {
     return Intl.message(
       'Google',
@@ -99,6 +113,7 @@ class S {
     );
   }
 
+  /// `Forgot password?`
   String get signInScreenForgotPassword {
     return Intl.message(
       'Forgot password?',
@@ -108,6 +123,7 @@ class S {
     );
   }
 
+  /// `Sign in`
   String get signInScreenButton {
     return Intl.message(
       'Sign in',
@@ -117,6 +133,7 @@ class S {
     );
   }
 
+  /// `Email address`
   String get signInScreenEmailAddress {
     return Intl.message(
       'Email address',
@@ -126,6 +143,7 @@ class S {
     );
   }
 
+  /// `Password`
   String get signInScreenPassword {
     return Intl.message(
       'Password',
@@ -135,6 +153,7 @@ class S {
     );
   }
 
+  /// `Required`
   String get errorRequired {
     return Intl.message(
       'Required',
@@ -144,6 +163,7 @@ class S {
     );
   }
 
+  /// `Email address invalid`
   String get errorEmailnvalid {
     return Intl.message(
       'Email address invalid',
@@ -153,10 +173,71 @@ class S {
     );
   }
 
+  /// `Invalid: must have at least 6 characters`
   String get errorPasswordInvalid {
     return Intl.message(
       'Invalid: must have at least 6 characters',
       name: 'errorPasswordInvalid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `First name`
+  String get signUpScreenFirstName {
+    return Intl.message(
+      'First name',
+      name: 'signUpScreenFirstName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last name`
+  String get signUpScreenLastName {
+    return Intl.message(
+      'Last name',
+      name: 'signUpScreenLastName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email address`
+  String get signUpScreenEmailAddress {
+    return Intl.message(
+      'Email address',
+      name: 'signUpScreenEmailAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password`
+  String get signUpScreenPassword {
+    return Intl.message(
+      'Password',
+      name: 'signUpScreenPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign up`
+  String get signUpScreenButton {
+    return Intl.message(
+      'Sign up',
+      name: 'signUpScreenButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign Up`
+  String get signUpScreenAppBarTitle {
+    return Intl.message(
+      'Sign Up',
+      name: 'signUpScreenAppBarTitle',
       desc: '',
       args: [],
     );
@@ -182,7 +263,7 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
 
   bool _isSupported(Locale locale) {
     if (locale != null) {
-      for (Locale supportedLocale in supportedLocales) {
+      for (var supportedLocale in supportedLocales) {
         if (supportedLocale.languageCode == locale.languageCode) {
           return true;
         }

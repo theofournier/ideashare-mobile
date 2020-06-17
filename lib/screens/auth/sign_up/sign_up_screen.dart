@@ -8,18 +8,18 @@ import 'package:ideashare/constants/constants.dart';
 import 'package:ideashare/generated/l10n.dart';
 import 'package:ideashare/resources/router.dart';
 import 'package:ideashare/screens/auth/forgot_password_screen.dart';
-import 'package:ideashare/screens/auth/sign_in/sign_in_view_model.dart';
+import 'package:ideashare/screens/auth/sign_up/sign_up_view_model.dart';
 import 'package:ideashare/screens/auth/widgets/social_footer.dart';
 import 'package:ideashare/services/auth/auth_service.dart';
 import 'package:ideashare/utils/extensions/text_style.dart';
 import 'package:ideashare/utils/validators.dart';
 import 'package:provider/provider.dart';
 
-class SignInScreen extends StatelessWidget {
+class SignUpScreen extends StatelessWidget {
   static Future<void> show(BuildContext context) async {
     final navigator = Navigator.of(context);
     await navigator.pushNamed(
-      Routes.signInScreen,
+      Routes.signUpScreen,
     );
   }
 
@@ -27,10 +27,10 @@ class SignInScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final AuthService auth = Provider.of<AuthService>(context, listen: false);
 
-    return ChangeNotifierProvider<SignInViewModel>(
-      create: (_) => SignInViewModel(auth: auth),
-      child: Consumer<SignInViewModel>(
-        builder: (_, viewModel, __) => SignInContent(
+    return ChangeNotifierProvider<SignUpViewModel>(
+      create: (_) => SignUpViewModel(auth: auth),
+      child: Consumer<SignUpViewModel>(
+        builder: (_, viewModel, __) => SignUpContent(
           viewModel: viewModel,
         ),
       ),
@@ -38,19 +38,19 @@ class SignInScreen extends StatelessWidget {
   }
 }
 
-class SignInContent extends StatefulWidget {
-  const SignInContent({
+class SignUpContent extends StatefulWidget {
+  const SignUpContent({
     Key key,
     @required this.viewModel,
   }) : super(key: key);
 
-  final SignInViewModel viewModel;
+  final SignUpViewModel viewModel;
 
   @override
-  _SignInContentState createState() => _SignInContentState();
+  _SignUpContentState createState() => _SignUpContentState();
 }
 
-class _SignInContentState extends State<SignInContent> {
+class _SignUpContentState extends State<SignUpContent> {
   final FocusScopeNode _node = FocusScopeNode();
   bool _passwordIsVisible = false;
   bool autovalidate = false;
@@ -87,7 +87,7 @@ class _SignInContentState extends State<SignInContent> {
       context: context,
       child: Scaffold(
         appBar: CustomAppBar(
-          title: S.of(context).signInScreenAppBarTitle,
+          title: S.of(context).signUpScreenAppBarTitle,
         ),
         body: _buildContent(),
       ),
@@ -100,17 +100,13 @@ class _SignInContentState extends State<SignInContent> {
       children: <Widget>[
         _buildImage(),
         SizedBox(
-          height: 70,
+          height: 40,
         ),
         if (widget.viewModel.isLoading) ...[
           _buildSpinner(),
         ],
         if (!widget.viewModel.isLoading) ...[
           _buildForm(),
-          SizedBox(
-            height: 16,
-          ),
-          _buildForgotPassword(),
           SizedBox(
             height: 30,
           ),
@@ -123,7 +119,7 @@ class _SignInContentState extends State<SignInContent> {
   Widget _buildImage() {
     return Center(
       child: Image.asset(
-        ImageName.signIn,
+        ImageName.signUp,
       ),
     );
   }
@@ -136,8 +132,41 @@ class _SignInContentState extends State<SignInContent> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Expanded(
+                  child: CustomTextFormField(
+                    labelText: S.of(context).signUpScreenFirstName,
+                    textInputAction: TextInputAction.next,
+                    autovalidate: autovalidate,
+                    initialValue: widget.viewModel.firstName,
+                    enabled: !widget.viewModel.isLoading,
+                    onSaved: widget.viewModel.onSaveFirstName,
+                    validator: (value) => Validators.firstNameValidator(context, value),
+                    onFieldSubmitted: (_) => _node.nextFocus(),
+                  ),
+                ),
+                SizedBox(
+                  width: 24,
+                ),
+                Expanded(
+                  child: CustomTextFormField(
+                    labelText: S.of(context).signUpScreenLastName,
+                    textInputAction: TextInputAction.next,
+                    autovalidate: autovalidate,
+                    enabled: !widget.viewModel.isLoading,
+                    initialValue: widget.viewModel.lastName,
+                    onSaved: widget.viewModel.onSaveLastName,
+                    validator: (value) =>
+                        Validators.lastNameValidator(context, value),
+                    onFieldSubmitted: (_) => _node.nextFocus(),
+                  ),
+                ),
+              ],
+            ),
             CustomTextFormField(
-              labelText: S.of(context).signInScreenEmailAddress,
+              labelText: S.of(context).signUpScreenEmailAddress,
               keyboardType: TextInputType.emailAddress,
               textInputAction: TextInputAction.next,
               autovalidate: autovalidate,
@@ -151,7 +180,7 @@ class _SignInContentState extends State<SignInContent> {
               height: 8,
             ),
             CustomTextFormField(
-              labelText: S.of(context).signInScreenPassword,
+              labelText: S.of(context).signUpScreenPassword,
               passwordIsVisible: _passwordIsVisible,
               togglePasswordVisibility: _togglePasswordVisibility,
               keyboardType:
@@ -171,24 +200,9 @@ class _SignInContentState extends State<SignInContent> {
             CustomRaisedButton(
               onPressed: widget.viewModel.isLoading ? null : _submit,
               loading: widget.viewModel.isLoading,
-              text: S.of(context).signInScreenButton,
+              text: S.of(context).signUpScreenButton,
             ),
           ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildForgotPassword() {
-    return Align(
-      alignment: Alignment.center,
-      child: InkWell(
-        onTap: widget.viewModel.isLoading
-            ? null
-            : () => ForgotPasswordScreen.show(context),
-        child: Text(
-          S.of(context).signInScreenForgotPassword,
-          style: Theme.of(context).textTheme.bodyText2.toBold(),
         ),
       ),
     );

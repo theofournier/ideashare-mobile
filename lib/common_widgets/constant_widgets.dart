@@ -13,5 +13,20 @@ class ConstantWidgets {
         ),
       );
 
-  static EdgeInsetsGeometry defaultPadding = const EdgeInsets.symmetric(vertical: 48, horizontal: 40);
+  static EdgeInsetsGeometry defaultPadding =
+      const EdgeInsets.symmetric(vertical: 48, horizontal: 40);
+
+  static GestureDetector unfocusGestureDetector({
+    BuildContext context,
+    Widget child,
+  }) =>
+      GestureDetector(
+        onTap: () {
+          FocusScopeNode currentFocus = FocusScope.of(context);
+          if (!currentFocus.hasPrimaryFocus) {
+            currentFocus.unfocus();
+          }
+        },
+        child: child,
+      );
 }

@@ -5,6 +5,7 @@ class ImageName {
   static final logoBlue = dir + "logo_blue.png";
   static final logoWhite = dir + "logo_white.png";
   static final signIn = dir + "sign_in_image.png";
+  static final signUp = dir + "sign_up_image.png";
   static final googleLogo = dir + "google_logo.png";
   static final facebookLogo = dir + "facebook_logo.png";
 }

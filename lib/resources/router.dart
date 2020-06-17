@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ideashare/screens/auth/forgot_password_screen.dart';
+import 'package:ideashare/screens/auth/sign_up/sign_up_screen.dart';
 import 'file:///C:/Users/fourn/Documents/Projets/IdeaShare/Projects/ideashare/lib/screens/auth/sign_in/sign_in_screen.dart';
-import 'package:ideashare/screens/auth/sign_up_screen.dart';
 import 'package:ideashare/screens/landing/landing_screen.dart';
 
 class Routes {
