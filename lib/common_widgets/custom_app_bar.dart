@@ -5,11 +5,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     Key key,
     this.title,
     this.backgroundColor = const Color(0xFFFFFFFF),
+    this.actions,
   })  : preferredSize = Size.fromHeight(kToolbarHeight),
         super(key: key);
 
   final String title;
   final Color backgroundColor;
+  final List<Widget> actions;
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +22,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         title,
         style: Theme.of(context).textTheme.headline6,
       ),
-      leading: BackButton(
+      iconTheme: IconThemeData(
         color: Theme.of(context).primaryColor,
       ),
+      actionsIconTheme: IconThemeData(
+        color: Theme.of(context).accentColor,
+      ),
+      actions: actions,
     );
   }
 

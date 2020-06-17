@@ -9,7 +9,7 @@ class CustomOutlineButton extends StatelessWidget {
     this.textColor = Colors.white,
     this.textSize = 14,
     this.borderRadius = 6.0,
-    this.height,
+    this.height = 40,
     this.width,
     this.onPressed,
     this.loading = false,
@@ -39,7 +39,7 @@ class CustomOutlineButton extends StatelessWidget {
         shape: new RoundedRectangleBorder(
           borderRadius: new BorderRadius.circular(borderRadius),
         ),
-        child: Text(
+        child: loading ? buildSpinner() : Text(
           text.toUpperCase(),
           style: Theme.of(context).textTheme.button.merge(
                 TextStyle(
@@ -52,4 +52,14 @@ class CustomOutlineButton extends StatelessWidget {
       ),
     );
   }
+
+  Widget buildSpinner() {
+    return SizedBox(
+      height: height * 0.60,
+      width: height * 0.60,
+      child: CircularProgressIndicator(
+      ),
+    );
+  }
+
 }

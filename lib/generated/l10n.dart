@@ -282,6 +282,66 @@ class S {
       args: [],
     );
   }
+
+  /// `Picture`
+  String get selectPictureScreenAppBarTitle {
+    return Intl.message(
+      'Picture',
+      name: 'selectPictureScreenAppBarTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save`
+  String get selectPictureScreenSaveButton {
+    return Intl.message(
+      'Save',
+      name: 'selectPictureScreenSaveButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Import picture`
+  String get selectPictureScreenImportButton {
+    return Intl.message(
+      'Import picture',
+      name: 'selectPictureScreenImportButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Take picture`
+  String get selectPictureScreenTakeButton {
+    return Intl.message(
+      'Take picture',
+      name: 'selectPictureScreenTakeButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select from default`
+  String get selectPictureScreenFromDefaultButton {
+    return Intl.message(
+      'Select from default',
+      name: 'selectPictureScreenFromDefaultButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Skip`
+  String get selectPictureScreenSkip {
+    return Intl.message(
+      'Skip',
+      name: 'selectPictureScreenSkip',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

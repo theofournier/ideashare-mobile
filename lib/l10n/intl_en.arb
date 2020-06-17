@@ -23,5 +23,11 @@
   "forgotPasswordScreenAppBarTitle": "Forgot Password",
   "forgotPasswordScreenEmailAddress": "Email address",
   "forgotPasswordScreenButton": "Send",
-  "forgotPasswordScreenText": "We'll send you an email to reset your password."
+  "forgotPasswordScreenText": "We'll send you an email to reset your password.",
+  "selectPictureScreenAppBarTitle": "Picture",
+  "selectPictureScreenSaveButton": "Save",
+  "selectPictureScreenImportButton": "Import picture",
+  "selectPictureScreenTakeButton": "Take picture",
+  "selectPictureScreenFromDefaultButton": "Select from default",
+  "selectPictureScreenSkip": "Skip"
 }
