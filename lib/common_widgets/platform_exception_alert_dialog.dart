@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:ideashare/common_widgets/platform_alert_dialog.dart';
 import 'package:flutter/services.dart';
+import 'package:ideashare/constants/error_keys.dart';
 import 'package:ideashare/generated/l10n.dart';
 
 class PlatformExceptionAlertDialog extends PlatformAlertDialog {
@@ -33,21 +34,21 @@ class PlatformExceptionAlertDialog extends PlatformAlertDialog {
   // These are just the most relevant for email & password sign in:
   String errors(String code) {
     switch (code) {
-      case 'ERROR_WEAK_PASSWORD':
+      case ErrorKeys.errorWeakPassword:
         return S.of(context).errorWeakPassword;
-      case 'ERROR_INVALID_CREDENTIAL':
+      case ErrorKeys.errorInvalidCredential:
         return S.of(context).errorInvalidCredential;
-      case 'ERROR_EMAIL_ALREADY_IN_USE':
+      case ErrorKeys.errorEmailAlreadyInUse:
         return S.of(context).errorEmailAlreadyInUse;
-      case 'ERROR_INVALID_EMAIL':
+      case ErrorKeys.errorInvalidEmail:
         return S.of(context).errorInvalidEmail;
-      case 'ERROR_WRONG_PASSWORD':
+      case ErrorKeys.errorWrongPassword:
         return S.of(context).errorWrongPassword;
-      case 'ERROR_USER_NOT_FOUND':
+      case ErrorKeys.errorUserNotFound:
         return S.of(context).errorUserNotFound;
-      case 'ERROR_TOO_MANY_REQUESTS':
+      case ErrorKeys.errorTooManyRequests:
         return S.of(context).errorTooManyRequests;
-      case 'ERROR_OPERATION_NOT_ALLOWED':
+      case ErrorKeys.errorOperationNotAllowed:
         return S.of(context).errorOperationNotAllowed;
       default:
         return null;
