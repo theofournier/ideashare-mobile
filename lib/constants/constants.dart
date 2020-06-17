@@ -11,3 +11,8 @@ class ImageName {
   static final googleLogo = dir + "google_logo.png";
   static final facebookLogo = dir + "facebook_logo.png";
 }
+
+class Keys {
+  static const String alertDefault = 'alertDefault';
+  static const String alertCancel = 'alertCancel';
+}

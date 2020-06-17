@@ -342,6 +342,116 @@ class S {
       args: [],
     );
   }
+
+  /// `Sign in failed`
+  String get signInScreenFailed {
+    return Intl.message(
+      'Sign in failed',
+      name: 'signInScreenFailed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The password must be 6 characters long or more.`
+  String get errorWeakPassword {
+    return Intl.message(
+      'The password must be 6 characters long or more.',
+      name: 'errorWeakPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The credentials are invalid.`
+  String get errorInvalidCredential {
+    return Intl.message(
+      'The credentials are invalid.',
+      name: 'errorInvalidCredential',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The email address is already registered.`
+  String get errorEmailAlreadyInUse {
+    return Intl.message(
+      'The email address is already registered.',
+      name: 'errorEmailAlreadyInUse',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The email address is invalid.`
+  String get errorInvalidEmail {
+    return Intl.message(
+      'The email address is invalid.',
+      name: 'errorInvalidEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The password is incorrect.`
+  String get errorWrongPassword {
+    return Intl.message(
+      'The password is incorrect.',
+      name: 'errorWrongPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The email address is not registered.`
+  String get errorUserNotFound {
+    return Intl.message(
+      'The email address is not registered.',
+      name: 'errorUserNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We have blocked all requests from this device due to unusual activity. Try again later.`
+  String get errorTooManyRequests {
+    return Intl.message(
+      'We have blocked all requests from this device due to unusual activity. Try again later.',
+      name: 'errorTooManyRequests',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This sign in method is not allowed. Please contact support.`
+  String get errorOperationNotAllowed {
+    return Intl.message(
+      'This sign in method is not allowed. Please contact support.',
+      name: 'errorOperationNotAllowed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This operation could not be completed due to a server error.`
+  String get errorDefault {
+    return Intl.message(
+      'This operation could not be completed due to a server error.',
+      name: 'errorDefault',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `OK`
+  String get ok {
+    return Intl.message(
+      'OK',
+      name: 'ok',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
