@@ -29,7 +29,7 @@ class SignInViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  void onSaveEmail(String email) => this.updateWith(email: email);
+  void onSaveEmail(String email) => this.updateWith(email: email.trim());
 
   void onSavePassword(String password) => this.updateWith(password: password);
 

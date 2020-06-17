@@ -37,11 +37,11 @@ class SignUpViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  void onSaveFirstName(String firstName) => this.updateWith(firstName: firstName);
+  void onSaveFirstName(String firstName) => this.updateWith(firstName: firstName.trim());
 
-  void onSaveLastName(String lastName) => this.updateWith(lastName: lastName);
+  void onSaveLastName(String lastName) => this.updateWith(lastName: lastName.trim());
 
-  void onSaveEmail(String email) => this.updateWith(email: email);
+  void onSaveEmail(String email) => this.updateWith(email: email.trim());
 
   void onSavePassword(String password) => this.updateWith(password: password);
 
