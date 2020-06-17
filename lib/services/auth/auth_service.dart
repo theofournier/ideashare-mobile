@@ -19,6 +19,7 @@ abstract class AuthService {
   Future<UserAuth> currentUser();
   Future<UserAuth> signInWithEmailAndPassword(String email, String password);
   Future<UserAuth> createUserWithEmailAndPassword(String email, String password);
+  Future<UserAuth> createUserWithEmailAndPasswordAndDisplayName(String email, String password, String displayName);
   Future<void> sendPasswordResetEmail(String email);
   Future<UserAuth> signInWithGoogle();
   Future<UserAuth> signInWithFacebook();
