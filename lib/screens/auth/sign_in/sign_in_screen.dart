@@ -7,6 +7,7 @@ import 'package:ideashare/common_widgets/custom_raised_button.dart';
 import 'package:ideashare/common_widgets/custom_text_form_field.dart';
 import 'package:ideashare/common_widgets/platform_exception_alert_dialog.dart';
 import 'package:ideashare/constants/constants.dart';
+import 'package:ideashare/constants/error_keys.dart';
 import 'package:ideashare/generated/l10n.dart';
 import 'package:ideashare/resources/router.dart';
 import 'package:ideashare/screens/auth/forgot_password/forgot_password_screen.dart';
@@ -88,6 +89,32 @@ class _SignInContentState extends State<SignInContent> {
       }
     } on PlatformException catch (e) {
       _showSignInError(e);
+    }
+  }
+
+  Future<void> _signInWithGoogle() async {
+    try {
+      final bool success = await widget.viewModel.signInWithGoogle();
+      if (success) {
+        Navigator.of(context).pop();
+      }
+    } on PlatformException catch (e) {
+      if (e.code != ErrorKeys.errorAbortedByUser) {
+        _showSignInError(e);
+      }
+    }
+  }
+
+  Future<void> _signInWithFacebook() async {
+    try {
+      final bool success = await widget.viewModel.signInWithFacebook();
+      if (success) {
+        Navigator.of(context).pop();
+      }
+    } on PlatformException catch (e) {
+      if (e.code != ErrorKeys.errorAbortedByUser) {
+        _showSignInError(e);
+      }
     }
   }
 
@@ -207,6 +234,8 @@ class _SignInContentState extends State<SignInContent> {
   Widget _buildFooter() {
     return SocialFooter(
       enabled: !widget.viewModel.isLoading,
+      signInWithGoogle: _signInWithGoogle,
+      signInWithFacebook: _signInWithFacebook,
     );
   }
 

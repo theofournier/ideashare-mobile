@@ -41,7 +41,28 @@ class SignInViewModel with ChangeNotifier {
     updateWith(isLoading: true);
     try {
       await auth.signInWithEmailAndPassword(email, password);
+      return true;
+    } catch (e) {
       updateWith(isLoading: false);
+      rethrow;
+    }
+  }
+
+  Future<bool> signInWithGoogle() async {
+    updateWith(isLoading: true);
+    try {
+      await auth.signInWithGoogle();
+      return true;
+    } catch (e) {
+      updateWith(isLoading: false);
+      rethrow;
+    }
+  }
+
+  Future<bool> signInWithFacebook() async {
+    updateWith(isLoading: true);
+    try {
+      await auth.signInWithFacebook();
       return true;
     } catch (e) {
       updateWith(isLoading: false);

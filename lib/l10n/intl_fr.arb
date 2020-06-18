@@ -43,5 +43,7 @@
   "signUpScreenFailed": "Sign Up failed",
   "forgotPasswordScreenFailed": "Send email failed",
   "forgotPasswordScreenSuccessTitle": "Email sent successfully",
-  "forgotPasswordScreenSuccessContent": "An email has been sent. Follow the instruction to reset your password."
+  "forgotPasswordScreenSuccessContent": "An email has been sent. Follow the instruction to reset your password.",
+  "errorMissingGoogleAuthToken": "Missing Google Auth Token",
+  "errorAbortedByUser": "Sign in aborted by user"
 }

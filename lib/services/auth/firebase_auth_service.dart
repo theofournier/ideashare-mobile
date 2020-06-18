@@ -26,7 +26,8 @@ class FirebaseAuthService implements AuthService {
   }
 
   @override
-  Future<UserAuth> signInWithEmailAndPassword(String email, String password) async {
+  Future<UserAuth> signInWithEmailAndPassword(
+      String email, String password) async {
     final AuthResult authResult = await _firebaseAuth
         .signInWithCredential(EmailAuthProvider.getCredential(
       email: email,
@@ -36,14 +37,16 @@ class FirebaseAuthService implements AuthService {
   }
 
   @override
-  Future<UserAuth> createUserWithEmailAndPassword(String email, String password) async {
+  Future<UserAuth> createUserWithEmailAndPassword(
+      String email, String password) async {
     final AuthResult authResult = await _firebaseAuth
         .createUserWithEmailAndPassword(email: email, password: password);
     return _userAuthFromFirebaseUser(authResult.user);
   }
 
   @override
-  Future<UserAuth> createUserWithEmailAndPasswordAndDisplayName(String email, String password, String displayName) async {
+  Future<UserAuth> createUserWithEmailAndPasswordAndDisplayName(
+      String email, String password, String displayName) async {
     final AuthResult authResult = await _firebaseAuth
         .createUserWithEmailAndPassword(email: email, password: password);
 
@@ -78,7 +81,8 @@ class FirebaseAuthService implements AuthService {
       return _userAuthFromFirebaseUser(authResult.user);
     } else {
       throw PlatformException(
-          code: ErrorKeys.errorAbortedByUser, message: 'Sign in aborted by user');
+          code: ErrorKeys.errorAbortedByUser,
+          message: 'Sign in aborted by user');
     }
   }
 
@@ -89,7 +93,7 @@ class FirebaseAuthService implements AuthService {
 
     if (googleUser != null) {
       final GoogleSignInAuthentication googleAuth =
-      await googleUser.authentication;
+          await googleUser.authentication;
       if (googleAuth.accessToken != null && googleAuth.idToken != null) {
         final AuthResult authResult = await _firebaseAuth
             .signInWithCredential(GoogleAuthProvider.getCredential(
@@ -104,7 +108,8 @@ class FirebaseAuthService implements AuthService {
       }
     } else {
       throw PlatformException(
-          code: ErrorKeys.errorAbortedByUser, message: 'Sign in aborted by user');
+          code: ErrorKeys.errorAbortedByUser,
+          message: 'Sign in aborted by user');
     }
   }
 

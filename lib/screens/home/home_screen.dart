@@ -10,6 +10,7 @@ class HomeScreen extends StatelessWidget {
     print(user.displayName);
     print(user.email);
     print(user.uid);
+    print(user.photoUrl);
     return Scaffold(
       body: Center(
         child: FlatButton(

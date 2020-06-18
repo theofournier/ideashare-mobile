@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:ideashare/common_widgets/social_buttons.dart';
 import 'package:ideashare/generated/l10n.dart';
@@ -5,9 +7,13 @@ import 'package:ideashare/generated/l10n.dart';
 class SocialFooter extends StatelessWidget {
   SocialFooter({
     this.enabled = true,
+    this.signInWithGoogle,
+    this.signInWithFacebook,
   });
 
   final bool enabled;
+  final VoidCallback signInWithGoogle;
+  final VoidCallback signInWithFacebook;
 
   @override
   Widget build(BuildContext context) {
@@ -36,11 +42,11 @@ class SocialFooter extends StatelessWidget {
           children: <Widget>[
             FacebookButton(
               title: S.of(context).socialFooterFacebook,
-              onPressed: enabled ? () {} : null,
+              onPressed: enabled ? signInWithFacebook : null,
             ),
             GoogleButton(
               title: S.of(context).socialFooterGoogle,
-              onPressed: enabled ? () {} : null,
+              onPressed: enabled ? signInWithGoogle : null,
             ),
           ],
         ),

@@ -492,6 +492,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Missing Google Auth Token`
+  String get errorMissingGoogleAuthToken {
+    return Intl.message(
+      'Missing Google Auth Token',
+      name: 'errorMissingGoogleAuthToken',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign in aborted by user`
+  String get errorAbortedByUser {
+    return Intl.message(
+      'Sign in aborted by user',
+      name: 'errorAbortedByUser',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

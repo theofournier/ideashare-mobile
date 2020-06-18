@@ -50,6 +50,10 @@ class PlatformExceptionAlertDialog extends PlatformAlertDialog {
         return S.of(context).errorTooManyRequests;
       case ErrorKeys.errorOperationNotAllowed:
         return S.of(context).errorOperationNotAllowed;
+      case ErrorKeys.errorMissingGoogleAuthToken:
+        return S.of(context).errorMissingGoogleAuthToken;
+      case ErrorKeys.errorAbortedByUser:
+        return S.of(context).errorAbortedByUser;
       default:
         return null;
     }
