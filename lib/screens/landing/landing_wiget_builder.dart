@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ideashare/services/auth/auth_service.dart';
+import 'package:ideashare/services/database/firestore_database.dart';
 import 'package:provider/provider.dart';
 
 class LandingWidgetBuilder extends StatelessWidget {
@@ -18,7 +19,9 @@ class LandingWidgetBuilder extends StatelessWidget {
           return MultiProvider(
             providers: [
               Provider<UserAuth>.value(value: user),
-              // NOTE: Any other user-bound providers here can be added here
+              Provider<FirestoreDatabase>(
+                create: (_) => FirestoreDatabase(uid: user.uid),
+              ),
             ],
             child: builder(context, snapshot),
           );
