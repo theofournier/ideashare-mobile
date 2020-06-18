@@ -9,4 +9,5 @@ class ErrorKeys {
   static const String errorUserNotFound = 'ERROR_USER_NOT_FOUND';
   static const String errorTooManyRequests = 'ERROR_TOO_MANY_REQUESTS';
   static const String errorOperationNotAllowed = 'ERROR_OPERATION_NOT_ALLOWED';
+  static const String errorAccountExistsWithDifferentCredential = 'ERROR_ACCOUNT_EXISTS_WITH_DIFFERENT_CREDENTIAL';
 }

@@ -54,6 +54,8 @@ class PlatformExceptionAlertDialog extends PlatformAlertDialog {
         return S.of(context).errorMissingGoogleAuthToken;
       case ErrorKeys.errorAbortedByUser:
         return S.of(context).errorAbortedByUser;
+      case ErrorKeys.errorAccountExistsWithDifferentCredential:
+        return S.of(context).errorAccountExistsWithDifferentCredential;
       default:
         return null;
     }

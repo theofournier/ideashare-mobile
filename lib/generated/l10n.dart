@@ -512,6 +512,16 @@ class S {
       args: [],
     );
   }
+
+  /// `An account already exists with the same email address but different sign-in credentials. Sign in using a provider associated with this email address.`
+  String get errorAccountExistsWithDifferentCredential {
+    return Intl.message(
+      'An account already exists with the same email address but different sign-in credentials. Sign in using a provider associated with this email address.',
+      name: 'errorAccountExistsWithDifferentCredential',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

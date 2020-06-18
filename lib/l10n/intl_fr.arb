@@ -45,5 +45,6 @@
   "forgotPasswordScreenSuccessTitle": "Email sent successfully",
   "forgotPasswordScreenSuccessContent": "An email has been sent. Follow the instruction to reset your password.",
   "errorMissingGoogleAuthToken": "Missing Google Auth Token",
-  "errorAbortedByUser": "Sign in aborted by user"
+  "errorAbortedByUser": "Sign in aborted by user",
+  "errorAccountExistsWithDifferentCredential": "An account already exists with the same email address but different sign-in credentials. Sign in using a provider associated with this email address."
 }

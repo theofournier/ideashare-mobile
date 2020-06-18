@@ -26,6 +26,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "authScreenSubtitle" : MessageLookupByLibrary.simpleMessage("Share your ideas with the world or keep them private"),
     "authScreenTitle" : MessageLookupByLibrary.simpleMessage("IdeaShare"),
     "errorAbortedByUser" : MessageLookupByLibrary.simpleMessage("Sign in aborted by user"),
+    "errorAccountExistsWithDifferentCredential" : MessageLookupByLibrary.simpleMessage("An account already exists with the same email address but different sign-in credentials. Sign in using a provider associated with this email address."),
     "errorDefault" : MessageLookupByLibrary.simpleMessage("This operation could not be completed due to a server error."),
     "errorEmailAlreadyInUse" : MessageLookupByLibrary.simpleMessage("The email address is already registered."),
     "errorEmailnvalid" : MessageLookupByLibrary.simpleMessage("Email address invalid"),
