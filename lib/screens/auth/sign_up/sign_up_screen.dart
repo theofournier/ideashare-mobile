@@ -81,10 +81,7 @@ class _SignUpContentState extends State<SignUpContent> {
       this.autovalidate = true;
     });
     try {
-      final bool success = await widget.viewModel.submit();
-      if (success) {
-        Navigator.of(context).pop();
-      }
+      await widget.viewModel.submit();
     } on PlatformException catch (e) {
       _showSignUpError(e);
     }
@@ -92,10 +89,7 @@ class _SignUpContentState extends State<SignUpContent> {
 
   Future<void> _signInWithGoogle() async {
     try {
-      final bool success = await widget.viewModel.signInWithGoogle();
-      if (success) {
-        Navigator.of(context).pop();
-      }
+      await widget.viewModel.signInWithGoogle();
     } on PlatformException catch (e) {
       if (e.code != ErrorKeys.errorAbortedByUser) {
         _showSignUpError(e);
@@ -105,10 +99,7 @@ class _SignUpContentState extends State<SignUpContent> {
 
   Future<void> _signInWithFacebook() async {
     try {
-      final bool success = await widget.viewModel.signInWithFacebook();
-      if (success) {
-        Navigator.of(context).pop();
-      }
+      await widget.viewModel.signInWithFacebook();
     } on PlatformException catch (e) {
       if (e.code != ErrorKeys.errorAbortedByUser) {
         _showSignUpError(e);
