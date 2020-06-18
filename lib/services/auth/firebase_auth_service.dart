@@ -45,16 +45,20 @@ class FirebaseAuthService implements AuthService {
   }
 
   @override
-  Future<UserAuth> createUserWithEmailAndPasswordAndDisplayName(
-      String email, String password, String displayName) async {
-    final AuthResult authResult = await _firebaseAuth
-        .createUserWithEmailAndPassword(email: email, password: password);
+  Future<UserAuth> updateInfo({
+    String displayName,
+    String photoUrl,
+  }) async {
+    FirebaseUser user = await _firebaseAuth.currentUser();
 
     UserUpdateInfo updateInfo = UserUpdateInfo();
-    updateInfo.displayName = displayName;
-    await authResult.user.updateProfile(updateInfo);
+    updateInfo.displayName = displayName ?? user.displayName;
+    updateInfo.photoUrl = photoUrl ?? user.photoUrl;
 
-    return _userAuthFromFirebaseUser(await _firebaseAuth.currentUser());
+    await user.updateProfile(updateInfo);
+    await user.reload();
+
+    return _userAuthFromFirebaseUser(user);
   }
 
   @override

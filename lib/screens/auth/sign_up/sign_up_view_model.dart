@@ -52,7 +52,8 @@ class SignUpViewModel with ChangeNotifier {
     formKey.currentState.save();
     updateWith(isLoading: true);
     try {
-      await auth.createUserWithEmailAndPasswordAndDisplayName(email, password, firstName + " " + lastName);
+      await auth.createUserWithEmailAndPassword(email, password);
+      await auth.updateInfo(displayName: firstName + " " + lastName);
       return true;
     } catch (e) {
       updateWith(isLoading: false);
