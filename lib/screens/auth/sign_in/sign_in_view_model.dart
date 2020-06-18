@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:ideashare/services/auth/auth_service.dart';
+import 'package:ideashare/services/database/firestore_database.dart';
 
 class SignInViewModel with ChangeNotifier {
   SignInViewModel({
     @required this.auth,
+    @required this.database,
     this.email = "",
     this.password = "",
     this.isLoading = false,
   });
 
   final AuthService auth;
+  final FirestoreDatabase database;
 
   String email;
   String password;

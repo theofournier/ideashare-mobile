@@ -14,6 +14,7 @@ import 'package:ideashare/screens/auth/forgot_password/forgot_password_screen.da
 import 'package:ideashare/screens/auth/sign_in/sign_in_view_model.dart';
 import 'package:ideashare/screens/auth/widgets/social_footer.dart';
 import 'package:ideashare/services/auth/auth_service.dart';
+import 'package:ideashare/services/database/firestore_database.dart';
 import 'package:ideashare/utils/extensions/text_style.dart';
 import 'package:ideashare/utils/validators.dart';
 import 'package:provider/provider.dart';
@@ -29,9 +30,10 @@ class SignInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final AuthService auth = Provider.of<AuthService>(context, listen: false);
+    final FirestoreDatabase database = Provider.of<FirestoreDatabase>(context, listen: false);
 
     return ChangeNotifierProvider<SignInViewModel>(
-      create: (_) => SignInViewModel(auth: auth),
+      create: (_) => SignInViewModel(auth: auth, database: database),
       child: Consumer<SignInViewModel>(
         builder: (_, viewModel, __) => SignInContent(
           viewModel: viewModel,
