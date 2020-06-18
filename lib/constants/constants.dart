@@ -16,3 +16,68 @@ class Keys {
   static const String alertDefault = 'alertDefault';
   static const String alertCancel = 'alertCancel';
 }
+
+enum PostType {
+  idea,
+  issue,
+}
+
+enum UserRole {
+  user,
+  admin,
+}
+
+enum Privacy {
+  public,
+  private,
+}
+
+enum Visibility {
+  everyone,
+  follow,
+  approval,
+}
+
+enum NotificationMethod {
+  push,
+  email,
+}
+
+enum NotificationType {
+  postNew,
+  postLike,
+  postFollow,
+  postWork,
+  postWorkApproval,
+  postWorkApproved,
+  postWorkDisapproved,
+  commentNew,
+  commentLike,
+  helpNew,
+  helpLike,
+  helpCommentNew,
+  helpCommentLike,
+  helpApproval,
+  helpApproved,
+  helpDisapproved,
+  newsNew,
+  newsLike,
+  newsCommentNew,
+  linkedPostNew,
+  linkedPostApproval,
+  linkedPostApproved,
+  linkedPostDisapproved,
+  userFollow,
+}
+
+enum ApprovalType {
+  work,
+  help,
+  linkedPost,
+}
+
+enum PostStatus {
+  open,
+  ongoing,
+  completed,
+}
