@@ -17,12 +17,15 @@ dependencies:
   google_sign_in: ^4.5.1
   flutter_facebook_login: ^3.0.0
   cloud_firestore: ^0.13.6
+  json_annotation: ^3.0.1
 
   cupertino_icons: ^0.1.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  build_runner:
+  json_serializable: ^3.3.0
 
 
 # The following section is specific to Flutter.
