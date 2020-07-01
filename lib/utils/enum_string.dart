@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 
 class EnumString {
-  static String toString<T>(T enumItem) {
+  static String string<T>(T enumItem) {
     if (enumItem == null) return null;
     return describeEnum(enumItem);
   }
@@ -11,7 +11,7 @@ class EnumString {
 
     return enumValues.singleWhere(
         (enumItem) =>
-            EnumString.toString(enumItem)?.toLowerCase() ==
+            EnumString.string(enumItem)?.toLowerCase() ==
             value?.toLowerCase(),
         orElse: () => null);
   }
