@@ -13,7 +13,6 @@ import 'package:ideashare/resources/router.dart';
 import 'package:ideashare/screens/auth/sign_up/sign_up_view_model.dart';
 import 'package:ideashare/screens/auth/widgets/social_footer.dart';
 import 'package:ideashare/services/auth/auth_service.dart';
-import 'package:ideashare/services/database/firestore_database.dart';
 import 'package:ideashare/utils/validators.dart';
 import 'package:provider/provider.dart';
 
@@ -28,10 +27,9 @@ class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final AuthService auth = Provider.of<AuthService>(context, listen: false);
-    final FirestoreDatabase database = Provider.of<FirestoreDatabase>(context, listen: false);
 
     return ChangeNotifierProvider<SignUpViewModel>(
-      create: (_) => SignUpViewModel(auth: auth, database: database),
+      create: (_) => SignUpViewModel(auth: auth),
       child: Consumer<SignUpViewModel>(
         builder: (_, viewModel, __) => SignUpContent(
           viewModel: viewModel,
