@@ -4,7 +4,7 @@ import 'package:ideashare/generated/l10n.dart';
 import 'package:ideashare/resources/app_config.dart';
 import 'package:ideashare/resources/theme.dart' as Theme;
 import 'package:ideashare/screens/landing/landing_screen.dart';
-import 'package:ideashare/screens/landing/landing_wiget_builder.dart';
+import 'package:ideashare/screens/landing/landing_widget_builder.dart';
 import 'package:ideashare/services/auth/auth_service.dart';
 import 'package:ideashare/services/auth/firebase_auth_service.dart';
 import 'package:ideashare/resources/router.dart';
