@@ -14,8 +14,8 @@ exports.userOnCreate = functions.auth.user().onCreate((firebaseUser) => {
   const name = Helpers.getNameFromDisplayName(firebaseUser.displayName);
 
   const user = {
-    firstname: name.firstname,
-    lastname: name.lastname,
+    firstName: name.firstName,
+    lastName: name.lastName,
     photoUrl: firebaseUser.photoURL,
     email: firebaseUser.email,
     privacy: Constants.Privacy.public,
@@ -29,7 +29,7 @@ exports.userOnCreate = functions.auth.user().onCreate((firebaseUser) => {
     labels: {},
     followersCount: 0,
     premium: false,
-    followed: Constants.UserRole.user,
+    userRole: Constants.UserRole.user,
     deleted: false,
     createdAt: admin.firestore.FieldValue.serverTimestamp(),
     updatedAt: admin.firestore.FieldValue.serverTimestamp(),
