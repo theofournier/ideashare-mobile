@@ -4,7 +4,7 @@ import 'package:ideashare/services/database/firestore_path.dart';
 import 'package:ideashare/services/database/firestore_service.dart';
 import 'package:ideashare/services/models/user/user.dart';
 
-class UserAuthFirestoreDatabase {
+class UserAuthDatabase {
   final _service = FirestoreService.instance;
 
   Future<void> createUser(

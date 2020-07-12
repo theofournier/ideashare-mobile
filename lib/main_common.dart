@@ -8,7 +8,7 @@ import 'package:ideashare/screens/landing/landing_widget_builder.dart';
 import 'package:ideashare/services/auth/auth_service.dart';
 import 'package:ideashare/services/auth/firebase_auth_service.dart';
 import 'package:ideashare/resources/router.dart';
-import 'package:ideashare/services/database/user_auth_firestore_database.dart';
+import 'package:ideashare/services/database/user_auth_database.dart';
 import 'package:ideashare/services/models/user/user.dart';
 import 'package:provider/provider.dart';
 
@@ -36,8 +36,8 @@ class MyApp extends StatelessWidget {
         Provider<AuthService>(
           create: authServiceBuilder,
         ),
-        Provider<UserAuthFirestoreDatabase>(
-          create: (_) => UserAuthFirestoreDatabase(),
+        Provider<UserAuthDatabase>(
+          create: (_) => UserAuthDatabase(),
         )
       ],
       child: LandingWidgetBuilder(

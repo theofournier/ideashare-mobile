@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ideashare/services/auth/auth_service.dart';
 import 'package:ideashare/services/database/firestore_database.dart';
-import 'package:ideashare/services/database/user_auth_firestore_database.dart';
+import 'package:ideashare/services/database/user_auth_database.dart';
 
 class SignUpViewModel with ChangeNotifier {
   SignUpViewModel({
@@ -15,7 +15,7 @@ class SignUpViewModel with ChangeNotifier {
   });
 
   final AuthService auth;
-  final UserAuthFirestoreDatabase userFirestoreDatabase;
+  final UserAuthDatabase userFirestoreDatabase;
 
   String firstName;
   String lastName;

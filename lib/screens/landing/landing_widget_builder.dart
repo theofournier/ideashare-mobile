@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ideashare/services/auth/auth_service.dart';
 import 'package:ideashare/services/database/firestore_database.dart';
 import 'package:ideashare/services/database/profile_database.dart';
-import 'package:ideashare/services/database/user_auth_firestore_database.dart';
+import 'package:ideashare/services/database/user_auth_database.dart';
 import 'package:ideashare/services/models/user/user.dart';
 import 'package:provider/provider.dart';
 
