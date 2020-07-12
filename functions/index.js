@@ -7,7 +7,7 @@ const Constants = require("./constants");
 admin.initializeApp();
 
 // AUTH TRIGGERS
-
+/*
 exports.userOnCreate = functions.auth.user().onCreate((firebaseUser) => {
   console.log("Create User Document");
 
@@ -39,3 +39,4 @@ exports.userOnCreate = functions.auth.user().onCreate((firebaseUser) => {
 
   return admin.firestore().collection("users").doc(firebaseUser.uid).set(user);
 });
+*/
