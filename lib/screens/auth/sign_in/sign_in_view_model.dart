@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:ideashare/services/auth/auth_service.dart';
+import 'package:ideashare/services/database/user_firestore_database.dart';
 
 class SignInViewModel with ChangeNotifier {
   SignInViewModel({
     @required this.auth,
+    @required this.userFirestoreDatabase,
     this.email = "",
     this.password = "",
     this.isLoading = false,
   });
 
   final AuthService auth;
+  final UserFirestoreDatabase userFirestoreDatabase;
 
   String email;
   String password;
@@ -51,7 +54,9 @@ class SignInViewModel with ChangeNotifier {
   Future<bool> signInWithGoogle() async {
     updateWith(isLoading: true);
     try {
-      await auth.signInWithGoogle();
+      UserAuth userAuth = await auth.signInWithGoogle();
+      List<String> names = userAuth.getNames();
+      await userFirestoreDatabase.createUser(userAuth.uid, names[0], names[1], userAuth.photoUrl, userAuth.email);
       return true;
     } catch (e) {
       updateWith(isLoading: false);
@@ -62,7 +67,9 @@ class SignInViewModel with ChangeNotifier {
   Future<bool> signInWithFacebook() async {
     updateWith(isLoading: true);
     try {
-      await auth.signInWithFacebook();
+      UserAuth userAuth = await auth.signInWithFacebook();
+      List<String> names = userAuth.getNames();
+      await userFirestoreDatabase.createUser(userAuth.uid, names[0], names[1], userAuth.photoUrl, userAuth.email);
       return true;
     } catch (e) {
       updateWith(isLoading: false);

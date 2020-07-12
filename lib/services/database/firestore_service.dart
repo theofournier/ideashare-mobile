@@ -3,7 +3,23 @@ import 'package:flutter/material.dart';
 
 class FirestoreService {
   FirestoreService._();
+
   static final instance = FirestoreService._();
+
+  Future<bool> isDataExists({
+    @required String path,
+  }) async {
+    final doc = await Firestore.instance.document(path).get();
+    return (doc != null && doc.exists);
+  }
+
+  Future<T> getData<T>({
+    @required String path,
+    @required T Function(Map<String, dynamic> data, String documentID) builder,
+  }) async {
+    final doc = await Firestore.instance.document(path).get();
+    return builder(doc.data, doc.documentID);
+  }
 
   Future<void> setData({
     @required String path,

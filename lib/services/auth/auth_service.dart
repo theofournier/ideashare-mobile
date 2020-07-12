@@ -13,6 +13,19 @@ class UserAuth {
   final String email;
   final String photoUrl;
   final String displayName;
+
+  List<String> getNames() {
+    String firstName = "";
+    String lastName = "";
+    if(displayName != null) {
+      final names = displayName.split(" ");
+      firstName = names[0];
+      if(names.length >= 2){
+        lastName = names.sublist(1).join(" ");
+      }
+    }
+    return [firstName, lastName];
+  }
 }
 
 abstract class AuthService {

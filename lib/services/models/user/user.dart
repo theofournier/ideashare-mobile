@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ideashare/constants/constants.dart';
 import 'package:ideashare/services/models/user/user_label.dart';
 import 'package:ideashare/utils/enum_string.dart';
@@ -50,7 +51,8 @@ class User {
   final DateTime deletedAt;
 
   factory User.fromMap(String id, Map<String, dynamic> value) {
-    return User(
+    return value == null ? null : User(
+      id: id,
       firstName: value['firstName'] as String,
       lastName: value['lastName'] as String,
       photoUrl: value['photoUrl'] as String,
@@ -63,24 +65,24 @@ class User {
       postLikesCount: value['postLikesCount'] as int,
       postFollowersCount: value['postFollowersCount'] as int,
       postWorkersCount: value['postWorkersCount'] as int,
-      labels: (value['labels'] as Map<String, dynamic>)?.entries?.map(
+      labels: (value['labels'] as Map<String, dynamic>) == null || (value['labels'] as Map<String, dynamic>).length == 0 ? [] : (value['labels'] as Map<String, dynamic>)?.entries?.map(
             (e) => e.value == null
                 ? null
                 : UserLabel.fromMap(e.key, e.value as Map<String, dynamic>),
           ),
-      followersCount: value['followersCount'],
+      followersCount: value['followersCount'] as int,
       premium: value['premium'] as bool,
       userRole: EnumString.fromString(UserRole.values, value['userRole']),
       deleted: value['deleted'] as bool,
       createdAt: value['createdAt'] == null
           ? null
-          : DateTime.parse(value['createdAt'] as String),
+          : (value['createdAt'] as Timestamp).toDate(),
       updatedAt: value['updatedAt'] == null
           ? null
-          : DateTime.parse(value['updatedAt'] as String),
+          : (value['updatedAt'] as Timestamp).toDate(),
       deletedAt: value['deletedAt'] == null
           ? null
-          : DateTime.parse(value['deletedAt'] as String),
+          : (value['deletedAt'] as Timestamp).toDate(),
     );
   }
 
@@ -102,8 +104,8 @@ class User {
         'premium': this.premium,
         'userRole': EnumString.string(this.userRole),
         'deleted': this.deleted,
-        'createdAt': this.createdAt?.toIso8601String(),
-        'updatedAt': this.updatedAt?.toIso8601String(),
-        'deletedAt': this.deletedAt?.toIso8601String(),
+        'createdAt': this.createdAt != null ? Timestamp.fromDate(this.createdAt) : null,
+        'updatedAt': this.updatedAt != null ? Timestamp.fromDate(this.updatedAt) : null,
+        'deletedAt': this.deletedAt != null ? Timestamp.fromDate(this.deletedAt) : null,
       };
 }

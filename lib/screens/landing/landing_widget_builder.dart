@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:ideashare/services/auth/auth_service.dart';
 import 'package:ideashare/services/database/firestore_database.dart';
+import 'package:ideashare/services/database/user_firestore_database.dart';
+import 'package:ideashare/services/models/user/user.dart';
 import 'package:provider/provider.dart';
 
 class LandingWidgetBuilder extends StatelessWidget {
-  const LandingWidgetBuilder({Key key, @required this.builder}) : super(key: key);
+  const LandingWidgetBuilder({Key key, @required this.builder})
+      : super(key: key);
 
   final Widget Function(BuildContext, AsyncSnapshot<UserAuth>) builder;
 
@@ -19,6 +22,11 @@ class LandingWidgetBuilder extends StatelessWidget {
           return MultiProvider(
             providers: [
               Provider<UserAuth>.value(value: user),
+              StreamProvider<User>(
+                create: (context) =>
+                    Provider.of<UserFirestoreDatabase>(context, listen: false)
+                        .userStream(uid: user.uid),
+              ),
               Provider<FirestoreDatabase>(
                 create: (_) => FirestoreDatabase(uid: user.uid),
               ),
@@ -31,4 +39,3 @@ class LandingWidgetBuilder extends StatelessWidget {
     );
   }
 }
-
