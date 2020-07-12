@@ -1,13 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:ideashare/constants/constants.dart' as Constants;
-import 'package:ideashare/constants/error_keys.dart';
 import 'package:ideashare/services/database/firestore_path.dart';
 import 'package:ideashare/services/database/firestore_service.dart';
 import 'package:ideashare/services/models/user/user.dart';
 
-class UserFirestoreDatabase {
+class UserAuthFirestoreDatabase {
   final _service = FirestoreService.instance;
 
   Future<void> createUser(
@@ -60,10 +57,5 @@ class UserFirestoreDatabase {
   Future<void> setUser(User user) => _service.setData(
         path: FirestorePath.user(user.id),
         data: user.toMap(),
-      );
-
-  Stream<User> userStream({@required String uid}) => _service.documentStream(
-        path: FirestorePath.user(uid),
-        builder: (data, documentId) => User.fromMap(documentId, data),
       );
 }
