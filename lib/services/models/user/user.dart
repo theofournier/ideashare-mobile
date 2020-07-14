@@ -36,7 +36,7 @@ class User {
   final String photoFileName;
   final String email;
   final Privacy privacy;
-  final Visibility followed;
+  final Visibleness followed;
   final int ideasCount;
   final int issuesCount;
   final int postViewsCount;
@@ -64,7 +64,7 @@ class User {
             email: value['email'] as String,
             privacy: EnumString.fromString(Privacy.values, value['privacy']),
             followed:
-                EnumString.fromString(Visibility.values, value['followed']),
+                EnumString.fromString(Visibleness.values, value['followed']),
             ideasCount: value['ideasCount'] as int,
             issuesCount: value['issuesCount'] as int,
             postViewsCount: value['postViewsCount'] as int,
@@ -138,7 +138,7 @@ class User {
       photoFileName: null,
       email: email,
       privacy: Privacy.public,
-      followed: Visibility.everyone,
+      followed: Visibleness.everyone,
       ideasCount: 0,
       issuesCount: 0,
       postViewsCount: 0,

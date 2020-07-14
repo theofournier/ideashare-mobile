@@ -37,7 +37,7 @@ enum Privacy {
   private,
 }
 
-enum Visibility {
+enum Visibleness {
   everyone,
   follow,
   approval,
