@@ -12,6 +12,8 @@ import 'package:ideashare/screens/select_picture/select_picture_view_model.dart'
 import 'package:ideashare/services/auth/auth_service.dart';
 import 'package:ideashare/services/database/profile_database.dart';
 import 'package:ideashare/services/models/default_picture.dart';
+import 'package:ideashare/services/storage/firebase_storage_service.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 class SelectPictureScreen extends StatelessWidget {
@@ -27,11 +29,14 @@ class SelectPictureScreen extends StatelessWidget {
     final AuthService auth = Provider.of<AuthService>(context, listen: false);
     final ProfileDatabase profileDatabase =
         Provider.of<ProfileDatabase>(context, listen: false);
+    final FirebaseStorageService firebaseStorageService =
+        Provider.of<FirebaseStorageService>(context, listen: false);
 
     return ChangeNotifierProvider<SelectPictureViewModel>(
       create: (_) => SelectPictureViewModel(
         auth: auth,
         profileDatabase: profileDatabase,
+        firebaseStorageService: firebaseStorageService,
       ),
       child: Consumer<SelectPictureViewModel>(
         builder: (_, viewModel, __) => SelectPictureContent(
@@ -68,13 +73,7 @@ class _SelectPictureContentState extends State<SelectPictureContent> {
   void _showDefaultPictureScreen() async {
     DefaultPicture defaultPicture = await DefaultPictureScreen.show(context,
         initialDefaultPicture: viewModel.defaultPicture);
-    if (defaultPicture != null) {
-      viewModel.updateWith(
-        pictureUrl: defaultPicture.imageUrl,
-        pictureFileName: defaultPicture.name,
-        defaultPicture: defaultPicture,
-      );
-    }
+    viewModel.setDefaultPicture(defaultPicture);
   }
 
   @override
@@ -112,18 +111,31 @@ class _SelectPictureContentState extends State<SelectPictureContent> {
   }
 
   Widget _buildImage() {
-    return Center(
-      child: CustomCachedNetworkImage(
-        imageUrl: viewModel.pictureUrl,
-        imageBuilder: (context, imageProvider) => ClipOval(
+    Widget imageBuilder(BuildContext context, ImageProvider imageProvider) =>
+        ClipOval(
           child: Image(
             height: 130,
             width: 130,
             fit: BoxFit.fill,
             image: imageProvider,
           ),
-        ),
-      ),
+        );
+
+    Widget imageWidget;
+
+    if (viewModel.pickedPicture != null) {
+      imageWidget = imageBuilder(
+        context,
+        Image.file(viewModel.pickedPicture).image,
+      );
+    } else {
+      imageWidget = CustomCachedNetworkImage(
+        imageUrl: viewModel.pictureUrl,
+        imageBuilder: imageBuilder,
+      );
+    }
+    return Center(
+      child: imageWidget,
     );
   }
 
@@ -135,14 +147,14 @@ class _SelectPictureContentState extends State<SelectPictureContent> {
         children: <Widget>[
           _button(
             text: S.of(context).selectPictureScreenImportButton,
-            onPressed: () {},
+            onPressed: () => viewModel.pickPicture(ImageSource.gallery),
           ),
           SizedBox(
             height: 16,
           ),
           _button(
             text: S.of(context).selectPictureScreenTakeButton,
-            onPressed: () {},
+            onPressed: () => viewModel.pickPicture(ImageSource.camera),
           ),
           SizedBox(
             height: 16,

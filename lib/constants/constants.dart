@@ -14,6 +14,7 @@ class ImageName {
 
 class StorageKeys {
   static final defaultPictures = "default-pictures";
+  static final userPictures = "user-pictures";
 }
 
 class Keys {

@@ -10,6 +10,7 @@ import 'package:ideashare/services/auth/firebase_auth_service.dart';
 import 'package:ideashare/resources/router.dart';
 import 'package:ideashare/services/database/user_auth_database.dart';
 import 'package:ideashare/services/models/user/user.dart';
+import 'package:ideashare/services/storage/firebase_storage_service.dart';
 import 'package:provider/provider.dart';
 
 void main_common() {
@@ -38,7 +39,10 @@ class MyApp extends StatelessWidget {
         ),
         Provider<UserAuthDatabase>(
           create: (_) => UserAuthDatabase(),
-        )
+        ),
+        Provider<FirebaseStorageService>(
+          create: (_) => FirebaseStorageService(),
+        ),
       ],
       child: LandingWidgetBuilder(
         builder: (BuildContext context, AsyncSnapshot<UserAuth> userSnapshot) {

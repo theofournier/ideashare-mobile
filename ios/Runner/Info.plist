@@ -69,5 +69,9 @@
 		<string>fbauth2</string>
 		<string>fbshareextension</string>
 	</array>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>IdeaShare need access to your Gallery to post photos or for your profile picture.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>IdeaShare need access to your Camera to post photos or for your profile picture.</string>
 </dict>
 </plist>
