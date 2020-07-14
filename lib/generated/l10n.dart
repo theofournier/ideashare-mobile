@@ -522,6 +522,56 @@ class S {
       args: [],
     );
   }
+
+  /// `Default Picture`
+  String get defaultPictureScreenAppBarTitle {
+    return Intl.message(
+      'Default Picture',
+      name: 'defaultPictureScreenAppBarTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `OK`
+  String get defaultPictureScreenSave {
+    return Intl.message(
+      'OK',
+      name: 'defaultPictureScreenSave',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No image`
+  String get defaultPictureScreenNoImage {
+    return Intl.message(
+      'No image',
+      name: 'defaultPictureScreenNoImage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select a default picture`
+  String get defaultPictureScreenErrorTitle {
+    return Intl.message(
+      'Select a default picture',
+      name: 'defaultPictureScreenErrorTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No image`
+  String get noImage {
+    return Intl.message(
+      'No image',
+      name: 'noImage',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

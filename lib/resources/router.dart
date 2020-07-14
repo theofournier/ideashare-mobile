@@ -3,7 +3,9 @@ import 'package:ideashare/screens/auth/forgot_password/forgot_password_screen.da
 import 'package:ideashare/screens/auth/sign_in/sign_in_screen.dart';
 import 'package:ideashare/screens/auth/sign_up/sign_up_screen.dart';
 import 'package:ideashare/screens/landing/landing_screen.dart';
-import 'package:ideashare/screens/auth/select_picture/select_picture_screen.dart';
+import 'package:ideashare/screens/select_picture/default_picture/default_picture_screen.dart';
+import 'package:ideashare/screens/select_picture/select_picture_screen.dart';
+import 'package:ideashare/services/models/default_picture.dart';
 
 class Routes {
   static const landingScreen = "/";
@@ -11,6 +13,7 @@ class Routes {
   static const signUpScreen = "/sign-up";
   static const forgotPasswordScreen = "/forgot-password";
   static const selectPictureScreen = "/select-picture";
+  static const defaultPictureScreen = "/default-picture";
 }
 
 class Router {
@@ -42,6 +45,13 @@ class Router {
       case Routes.selectPictureScreen:
         return MaterialPageRoute<dynamic>(
           builder: (_) => SelectPictureScreen(),
+          settings: settings,
+        );
+      case Routes.defaultPictureScreen:
+        return MaterialPageRoute<DefaultPicture>(
+          builder: (_) => DefaultPictureScreen(
+            initialDefaultPicture: args,
+          ),
           settings: settings,
         );
       default:

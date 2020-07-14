@@ -12,6 +12,10 @@ class ImageName {
   static final facebookLogo = dir + "facebook_logo.png";
 }
 
+class StorageKeys {
+  static final defaultPictures = "default-pictures";
+}
+
 class Keys {
   static const String alertDefault = 'alertDefault';
   static const String alertCancel = 'alertCancel';

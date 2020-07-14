@@ -9,6 +9,7 @@ class User {
     this.firstName,
     this.lastName,
     this.photoUrl,
+    this.photoFileName,
     this.email,
     this.privacy,
     this.followed,
@@ -32,6 +33,7 @@ class User {
   final String firstName;
   final String lastName;
   final String photoUrl;
+  final String photoFileName;
   final String email;
   final Privacy privacy;
   final Visibility followed;
@@ -56,6 +58,7 @@ class User {
       firstName: value['firstName'] as String,
       lastName: value['lastName'] as String,
       photoUrl: value['photoUrl'] as String,
+      photoFileName: value['photoFileName'] as String,
       email: value['email'] as String,
       privacy: EnumString.fromString(Privacy.values, value['privacy']),
       followed: EnumString.fromString(Visibility.values, value['followed']),
@@ -90,6 +93,7 @@ class User {
         'firstName': this.firstName,
         'lastName': this.lastName,
         'photoUrl': this.photoUrl,
+        'photoFileName': this.photoFileName,
         'email': this.email,
         'privacy': EnumString.string(this.privacy),
         'followed': EnumString.string(this.followed),

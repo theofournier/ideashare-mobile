@@ -35,7 +35,7 @@ class PlatformAlertDialog extends PlatformWidget {
   Widget buildCupertinoWidget(BuildContext context) {
     return CupertinoAlertDialog(
       title: Text(title),
-      content: Text(content),
+      content: content != null ? Text(content) : null,
       actions: _buildActions(context),
     );
   }
@@ -44,7 +44,7 @@ class PlatformAlertDialog extends PlatformWidget {
   Widget buildMaterialWidget(BuildContext context) {
     return AlertDialog(
       title: Text(title),
-      content: Text(content),
+      content: content != null ? Text(content) : null,
       actions: _buildActions(context),
     );
   }

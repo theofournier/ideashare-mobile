@@ -19,6 +19,7 @@ class UserAuthDatabase {
       firstName: firstName,
       lastName: lastName,
       photoUrl: photoUrl,
+      photoFileName: null,
       email: email,
       privacy: Constants.Privacy.public,
       followed: Constants.Visibility.everyone,

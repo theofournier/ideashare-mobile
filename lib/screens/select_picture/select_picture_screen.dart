@@ -2,14 +2,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ideashare/common_widgets/constant_widgets.dart';
 import 'package:ideashare/common_widgets/custom_app_bar.dart';
-import 'package:ideashare/common_widgets/custom_outline_button.dart';
+import 'package:ideashare/common_widgets/custom_cached_network_image.dart';
 import 'package:ideashare/common_widgets/custom_raised_button.dart';
 import 'package:ideashare/common_widgets/custom_app_bar_button.dart';
-import 'package:ideashare/constants/constants.dart';
 import 'package:ideashare/generated/l10n.dart';
 import 'package:ideashare/resources/router.dart';
-import 'package:ideashare/screens/auth/select_picture/select_picture_view_model.dart';
+import 'package:ideashare/screens/select_picture/default_picture/default_picture_screen.dart';
+import 'package:ideashare/screens/select_picture/select_picture_view_model.dart';
 import 'package:ideashare/services/auth/auth_service.dart';
+import 'package:ideashare/services/database/profile_database.dart';
+import 'package:ideashare/services/models/default_picture.dart';
 import 'package:provider/provider.dart';
 
 class SelectPictureScreen extends StatelessWidget {
@@ -23,9 +25,14 @@ class SelectPictureScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final AuthService auth = Provider.of<AuthService>(context, listen: false);
+    final ProfileDatabase profileDatabase =
+        Provider.of<ProfileDatabase>(context, listen: false);
 
     return ChangeNotifierProvider<SelectPictureViewModel>(
-      create: (_) => SelectPictureViewModel(auth: auth),
+      create: (_) => SelectPictureViewModel(
+        auth: auth,
+        profileDatabase: profileDatabase,
+      ),
       child: Consumer<SelectPictureViewModel>(
         builder: (_, viewModel, __) => SelectPictureContent(
           viewModel: viewModel,
@@ -48,14 +55,25 @@ class SelectPictureContent extends StatefulWidget {
 }
 
 class _SelectPictureContentState extends State<SelectPictureContent> {
-  Future<void> _submit() async {
+  SelectPictureViewModel get viewModel => this.widget.viewModel;
+
+  Future<void> _save() async {
     try {
-      final bool success = await widget.viewModel.submit();
-      if (success) {
-        //TODO: pop
-      }
+      final bool success = await viewModel.save();
     } catch (e) {
-      //TODO: Show error
+      viewModel.updateWith(isLoading: false);
+    }
+  }
+
+  void _showDefaultPictureScreen() async {
+    DefaultPicture defaultPicture = await DefaultPictureScreen.show(context,
+        initialDefaultPicture: viewModel.defaultPicture);
+    if (defaultPicture != null) {
+      viewModel.updateWith(
+        pictureUrl: defaultPicture.imageUrl,
+        pictureFileName: defaultPicture.name,
+        defaultPicture: defaultPicture,
+      );
     }
   }
 
@@ -66,8 +84,8 @@ class _SelectPictureContentState extends State<SelectPictureContent> {
         title: S.of(context).selectPictureScreenAppBarTitle,
         actions: <Widget>[
           CustomAppBarButton(
-            text: S.of(context).selectPictureScreenSkip,
-            onPressed: widget.viewModel.isLoading ? null : () {},
+            text: S.of(context).selectPictureScreenSaveButton,
+            onPressed: viewModel.isLoading ? null : _save,
           ),
         ],
       ),
@@ -83,15 +101,11 @@ class _SelectPictureContentState extends State<SelectPictureContent> {
         SizedBox(
           height: 40,
         ),
-        if (widget.viewModel.isLoading) ...[
+        if (viewModel.isLoading) ...[
           _buildSpinner(),
         ],
-        if (!widget.viewModel.isLoading) ...[
+        if (!viewModel.isLoading) ...[
           _buildButtons(),
-          SizedBox(
-            height: 100,
-          ),
-          _buildSaveButton(),
         ],
       ],
     );
@@ -99,11 +113,16 @@ class _SelectPictureContentState extends State<SelectPictureContent> {
 
   Widget _buildImage() {
     return Center(
-      child: CircleAvatar(
-        radius: 80,
-        backgroundImage: AssetImage(ImageName.selectPicture),
-        backgroundColor: Colors.blue,
-        child: Text("TF"),
+      child: CustomCachedNetworkImage(
+        imageUrl: viewModel.pictureUrl,
+        imageBuilder: (context, imageProvider) => ClipOval(
+          child: Image(
+            height: 130,
+            width: 130,
+            fit: BoxFit.fill,
+            image: imageProvider,
+          ),
+        ),
       ),
     );
   }
@@ -130,18 +149,10 @@ class _SelectPictureContentState extends State<SelectPictureContent> {
           ),
           _button(
             text: S.of(context).selectPictureScreenFromDefaultButton,
-            onPressed: () {},
+            onPressed: _showDefaultPictureScreen,
           ),
         ],
       ),
-    );
-  }
-
-  Widget _buildSaveButton() {
-    return CustomRaisedButton(
-      onPressed: widget.viewModel.isLoading ? null : _submit,
-      loading: widget.viewModel.isLoading,
-      text: S.of(context).selectPictureScreenSaveButton,
     );
   }
 
@@ -156,12 +167,13 @@ class _SelectPictureContentState extends State<SelectPictureContent> {
   }
 
   Widget _button({VoidCallback onPressed, String text}) {
-    return CustomOutlineButton(
+    return CustomRaisedButton(
       text: text,
       textColor: Theme.of(context).accentColor,
       borderColor: Theme.of(context).accentColor,
-      loading: widget.viewModel.isLoading,
-      onPressed: widget.viewModel.isLoading ? null : onPressed,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      loading: viewModel.isLoading,
+      onPressed: viewModel.isLoading ? null : onPressed,
     );
   }
 }
