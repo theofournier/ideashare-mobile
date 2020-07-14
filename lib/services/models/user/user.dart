@@ -53,40 +53,47 @@ class User {
   final DateTime deletedAt;
 
   factory User.fromMap(String id, Map<String, dynamic> value) {
-    return value == null ? null : User(
-      id: id,
-      firstName: value['firstName'] as String,
-      lastName: value['lastName'] as String,
-      photoUrl: value['photoUrl'] as String,
-      photoFileName: value['photoFileName'] as String,
-      email: value['email'] as String,
-      privacy: EnumString.fromString(Privacy.values, value['privacy']),
-      followed: EnumString.fromString(Visibility.values, value['followed']),
-      ideasCount: value['ideasCount'] as int,
-      issuesCount: value['issuesCount'] as int,
-      postViewsCount: value['postViewsCount'] as int,
-      postLikesCount: value['postLikesCount'] as int,
-      postFollowersCount: value['postFollowersCount'] as int,
-      postWorkersCount: value['postWorkersCount'] as int,
-      labels: (value['labels'] as Map<String, dynamic>) == null || (value['labels'] as Map<String, dynamic>).length == 0 ? [] : (value['labels'] as Map<String, dynamic>)?.entries?.map(
-            (e) => e.value == null
+    return value == null
+        ? null
+        : User(
+            id: id,
+            firstName: value['firstName'] as String,
+            lastName: value['lastName'] as String,
+            photoUrl: value['photoUrl'] as String,
+            photoFileName: value['photoFileName'] as String,
+            email: value['email'] as String,
+            privacy: EnumString.fromString(Privacy.values, value['privacy']),
+            followed:
+                EnumString.fromString(Visibility.values, value['followed']),
+            ideasCount: value['ideasCount'] as int,
+            issuesCount: value['issuesCount'] as int,
+            postViewsCount: value['postViewsCount'] as int,
+            postLikesCount: value['postLikesCount'] as int,
+            postFollowersCount: value['postFollowersCount'] as int,
+            postWorkersCount: value['postWorkersCount'] as int,
+            labels: (value['labels'] as Map<String, dynamic>) == null ||
+                    (value['labels'] as Map<String, dynamic>).length == 0
+                ? []
+                : (value['labels'] as Map<String, dynamic>)?.entries?.map(
+                      (e) => e.value == null
+                          ? null
+                          : UserLabel.fromMap(
+                              e.key, e.value as Map<String, dynamic>),
+                    ),
+            followersCount: value['followersCount'] as int,
+            premium: value['premium'] as bool,
+            userRole: EnumString.fromString(UserRole.values, value['userRole']),
+            deleted: value['deleted'] as bool,
+            createdAt: value['createdAt'] == null
                 ? null
-                : UserLabel.fromMap(e.key, e.value as Map<String, dynamic>),
-          ),
-      followersCount: value['followersCount'] as int,
-      premium: value['premium'] as bool,
-      userRole: EnumString.fromString(UserRole.values, value['userRole']),
-      deleted: value['deleted'] as bool,
-      createdAt: value['createdAt'] == null
-          ? null
-          : (value['createdAt'] as Timestamp).toDate(),
-      updatedAt: value['updatedAt'] == null
-          ? null
-          : (value['updatedAt'] as Timestamp).toDate(),
-      deletedAt: value['deletedAt'] == null
-          ? null
-          : (value['deletedAt'] as Timestamp).toDate(),
-    );
+                : (value['createdAt'] as Timestamp).toDate(),
+            updatedAt: value['updatedAt'] == null
+                ? null
+                : (value['updatedAt'] as Timestamp).toDate(),
+            deletedAt: value['deletedAt'] == null
+                ? null
+                : (value['deletedAt'] as Timestamp).toDate(),
+          );
   }
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -108,8 +115,44 @@ class User {
         'premium': this.premium,
         'userRole': EnumString.string(this.userRole),
         'deleted': this.deleted,
-        'createdAt': this.createdAt != null ? Timestamp.fromDate(this.createdAt) : null,
-        'updatedAt': this.updatedAt != null ? Timestamp.fromDate(this.updatedAt) : null,
-        'deletedAt': this.deletedAt != null ? Timestamp.fromDate(this.deletedAt) : null,
+        'createdAt':
+            this.createdAt != null ? Timestamp.fromDate(this.createdAt) : null,
+        'updatedAt':
+            this.updatedAt != null ? Timestamp.fromDate(this.updatedAt) : null,
+        'deletedAt':
+            this.deletedAt != null ? Timestamp.fromDate(this.deletedAt) : null,
       };
+
+  factory User.initUser({
+    String uid,
+    String firstName,
+    String lastName,
+    String photoUrl,
+    String email,
+  }) {
+    return User(
+      id: uid,
+      firstName: firstName,
+      lastName: lastName,
+      photoUrl: photoUrl,
+      photoFileName: null,
+      email: email,
+      privacy: Privacy.public,
+      followed: Visibility.everyone,
+      ideasCount: 0,
+      issuesCount: 0,
+      postViewsCount: 0,
+      postLikesCount: 0,
+      postFollowersCount: 0,
+      postWorkersCount: 0,
+      labels: [],
+      followersCount: 0,
+      premium: false,
+      userRole: UserRole.user,
+      deleted: false,
+      createdAt: Timestamp.now().toDate(),
+      updatedAt: Timestamp.now().toDate(),
+      deletedAt: null,
+    );
+  }
 }

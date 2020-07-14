@@ -1,5 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ideashare/constants/constants.dart' as Constants;
 import 'package:ideashare/services/database/firestore_path.dart';
 import 'package:ideashare/services/database/firestore_service.dart';
 import 'package:ideashare/services/models/user/user.dart';
@@ -14,29 +12,12 @@ class UserAuthDatabase {
     String photoUrl,
     String email,
   ) async {
-    User user = User(
-      id: uid,
+    User user = User.initUser(
+      uid: uid,
       firstName: firstName,
       lastName: lastName,
       photoUrl: photoUrl,
-      photoFileName: null,
       email: email,
-      privacy: Constants.Privacy.public,
-      followed: Constants.Visibility.everyone,
-      ideasCount: 0,
-      issuesCount: 0,
-      postViewsCount: 0,
-      postLikesCount: 0,
-      postFollowersCount: 0,
-      postWorkersCount: 0,
-      labels: [],
-      followersCount: 0,
-      premium: false,
-      userRole: Constants.UserRole.user,
-      deleted: false,
-      createdAt: Timestamp.now().toDate(),
-      updatedAt: Timestamp.now().toDate(),
-      deletedAt: null,
     );
 
     final userExists = await _service.isDataExists(
