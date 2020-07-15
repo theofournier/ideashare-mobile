@@ -41,6 +41,7 @@ enum Visibleness {
   everyone,
   follow,
   approval,
+  work,
 }
 
 enum NotificationMethod {
