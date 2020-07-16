@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ideashare/services/database/firestore_path.dart';
 import 'package:ideashare/services/database/firestore_service.dart';
-import 'package:ideashare/services/models/default_picture.dart';
+import 'package:ideashare/services/models/common/default_picture.dart';
 import 'package:ideashare/services/models/user/user.dart';
 
 class ProfileDatabase {

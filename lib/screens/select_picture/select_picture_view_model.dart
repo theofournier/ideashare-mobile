@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:ideashare/constants/constants.dart';
 import 'package:ideashare/services/auth/auth_service.dart';
 import 'package:ideashare/services/database/profile_database.dart';
-import 'package:ideashare/services/models/default_picture.dart';
+import 'package:ideashare/services/models/common/default_picture.dart';
 import 'package:ideashare/services/storage/firebase_storage_result.dart';
 import 'package:ideashare/services/storage/firebase_storage_service.dart';
 import 'package:image_cropper/image_cropper.dart';

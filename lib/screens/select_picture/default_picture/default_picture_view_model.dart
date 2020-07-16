@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ideashare/services/database/profile_database.dart';
-import 'package:ideashare/services/models/default_picture.dart';
+import 'package:ideashare/services/models/common/default_picture.dart';
 
 class DefaultPictureViewModel with ChangeNotifier {
   DefaultPictureViewModel({

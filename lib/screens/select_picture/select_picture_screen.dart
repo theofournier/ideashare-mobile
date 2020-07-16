@@ -10,7 +10,7 @@ import 'package:ideashare/screens/select_picture/default_picture/default_picture
 import 'package:ideashare/screens/select_picture/select_picture_view_model.dart';
 import 'package:ideashare/services/auth/auth_service.dart';
 import 'package:ideashare/services/database/profile_database.dart';
-import 'package:ideashare/services/models/default_picture.dart';
+import 'package:ideashare/services/models/common/default_picture.dart';
 import 'package:ideashare/services/storage/firebase_storage_service.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';

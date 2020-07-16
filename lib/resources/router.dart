@@ -10,7 +10,7 @@ import 'package:ideashare/screens/profile/profile_screen.dart';
 import 'package:ideashare/screens/search/search_screen.dart';
 import 'package:ideashare/screens/select_picture/default_picture/default_picture_screen.dart';
 import 'package:ideashare/screens/select_picture/select_picture_screen.dart';
-import 'package:ideashare/services/models/default_picture.dart';
+import 'package:ideashare/services/models/common/default_picture.dart';
 
 class Routes {
   static const landingScreen = "/";

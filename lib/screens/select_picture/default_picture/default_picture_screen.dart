@@ -8,7 +8,7 @@ import 'package:ideashare/resources/router.dart';
 import 'package:ideashare/screens/select_picture/default_picture/default_picture_item.dart';
 import 'package:ideashare/screens/select_picture/default_picture/default_picture_view_model.dart';
 import 'package:ideashare/services/database/profile_database.dart';
-import 'package:ideashare/services/models/default_picture.dart';
+import 'package:ideashare/services/models/common/default_picture.dart';
 import 'package:provider/provider.dart';
 
 class DefaultPictureScreen extends StatelessWidget {
