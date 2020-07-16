@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:ideashare/constants/constants.dart';
 import 'package:ideashare/resources/router.dart';
 import 'package:ideashare/screens/home/home_view_model.dart';
-import 'package:ideashare/screens/main/main_view_model.dart';
+import 'package:ideashare/services/auth/auth_service.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -49,8 +48,8 @@ class HomeContent extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: RaisedButton(
-          onPressed: () => Provider.of<MainViewModel>(context, listen: false).selectTab(TabItem.addPost),
-          child: Text("ADD"),
+          onPressed: () => Provider.of<AuthService>(context, listen: false).signOut(),
+          child: Text("SIGN OUT"),
         ),
       ),
     );

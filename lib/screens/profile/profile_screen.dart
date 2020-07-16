@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:ideashare/resources/router.dart';
-import 'package:ideashare/screens/home/home_view_model.dart';
 import 'package:ideashare/screens/profile/profile_view_model.dart';
 import 'package:provider/provider.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   static Future<void> show(BuildContext context) async {
     final navigator = Navigator.of(context);
     await navigator.pushNamed(
@@ -13,7 +12,16 @@ class ProfileScreen extends StatelessWidget {
   }
 
   @override
+  _ProfileScreenState createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
     return ChangeNotifierProvider<ProfileViewModel>(
       create: (_) => ProfileViewModel(),
       child: Consumer<ProfileViewModel>(
@@ -25,20 +33,13 @@ class ProfileScreen extends StatelessWidget {
   }
 }
 
-class ProfileContent extends StatefulWidget {
+class ProfileContent extends StatelessWidget {
   const ProfileContent({
     Key key,
     @required this.viewModel,
   }) : super(key: key);
 
   final ProfileViewModel viewModel;
-
-  @override
-  _ProfileContentState createState() => _ProfileContentState();
-}
-
-class _ProfileContentState extends State<ProfileContent> {
-  ProfileViewModel get viewModel => this.widget.viewModel;
 
   @override
   Widget build(BuildContext context) {

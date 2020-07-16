@@ -1,8 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ideashare/constants/constants.dart';
-import 'package:ideashare/services/models/user/user_label.dart';
-import 'package:ideashare/utils/enum_string.dart';
-
 class DefaultPicture {
   DefaultPicture({
     this.id,

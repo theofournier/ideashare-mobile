@@ -9,7 +9,6 @@ import 'package:ideashare/services/auth/auth_service.dart';
 import 'package:ideashare/services/auth/firebase_auth_service.dart';
 import 'package:ideashare/resources/router.dart';
 import 'package:ideashare/services/database/user_auth_database.dart';
-import 'package:ideashare/services/models/user/user.dart';
 import 'package:ideashare/services/storage/firebase_storage_service.dart';
 import 'package:provider/provider.dart';
 

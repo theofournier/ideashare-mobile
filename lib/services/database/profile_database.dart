@@ -1,12 +1,9 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:ideashare/constants/constants.dart';
+import 'package:ideashare/services/database/firestore_path.dart';
 import 'package:ideashare/services/database/firestore_service.dart';
 import 'package:ideashare/services/models/default_picture.dart';
 import 'package:ideashare/services/models/user/user.dart';
 
-import 'firestore_path.dart';
 
 class ProfileDatabase {
   ProfileDatabase({@required this.uid})
@@ -18,7 +15,11 @@ class ProfileDatabase {
 
   Stream<User> profileStream() => _service.documentStream(
         path: FirestorePath.user(uid),
-        builder: (data, documentId) => User.fromMap(documentId, data),
+        builder: (data, documentId) {
+          print("USER");
+          print(data);
+          return User.fromMap(documentId, data);
+        },
       );
 
   Future<void> setProfilePhotoUrl({String photoUrl, String photoFileName}) =>

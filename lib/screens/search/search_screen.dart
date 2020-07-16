@@ -3,7 +3,7 @@ import 'package:ideashare/resources/router.dart';
 import 'package:ideashare/screens/search/search_view_model.dart';
 import 'package:provider/provider.dart';
 
-class SearchScreen extends StatelessWidget {
+class SearchScreen extends StatefulWidget {
   static Future<void> show(BuildContext context) async {
     final navigator = Navigator.of(context);
     await navigator.pushNamed(
@@ -12,7 +12,16 @@ class SearchScreen extends StatelessWidget {
   }
 
   @override
+  _SearchScreenState createState() => _SearchScreenState();
+}
+
+class _SearchScreenState extends State<SearchScreen> with AutomaticKeepAliveClientMixin{
+  @override
+  bool get wantKeepAlive => true;
+
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
     return ChangeNotifierProvider<SearchViewModel>(
       create: (_) => SearchViewModel(),
       child: Consumer<SearchViewModel>(
@@ -24,20 +33,13 @@ class SearchScreen extends StatelessWidget {
   }
 }
 
-class SearchContent extends StatefulWidget {
+class SearchContent extends StatelessWidget {
   const SearchContent({
     Key key,
     @required this.viewModel,
   }) : super(key: key);
 
   final SearchViewModel viewModel;
-
-  @override
-  _SearchContentState createState() => _SearchContentState();
-}
-
-class _SearchContentState extends State<SearchContent> {
-  SearchViewModel get viewModel => this.widget.viewModel;
 
   @override
   Widget build(BuildContext context) {

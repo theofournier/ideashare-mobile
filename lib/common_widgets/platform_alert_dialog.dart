@@ -56,7 +56,7 @@ class PlatformAlertDialog extends PlatformWidget {
         PlatformAlertDialogAction(
           child: Text(
             cancelActionText.toUpperCase(),
-            key: Key(Keys.alertCancel),
+            key: Key(AlertKeys.alertCancel),
             style: TextStyle(
               color: Theme.of(context).errorColor,
               fontSize: 16,
@@ -70,7 +70,7 @@ class PlatformAlertDialog extends PlatformWidget {
       PlatformAlertDialogAction(
         child: Text(
           defaultActionText.toUpperCase(),
-          key: Key(Keys.alertDefault),
+          key: Key(AlertKeys.alertDefault),
           style: TextStyle(
             color: Theme.of(context).accentColor,
             fontSize: 16,

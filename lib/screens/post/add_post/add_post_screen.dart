@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:ideashare/resources/router.dart';
-import 'package:ideashare/screens/home/home_view_model.dart';
 import 'package:ideashare/screens/post/add_post/add_post_view_model.dart';
 import 'package:provider/provider.dart';
 
-class AddPostScreen extends StatelessWidget {
+class AddPostScreen extends StatefulWidget {
   static Future<void> show(BuildContext context) async {
     final navigator = Navigator.of(context);
     await navigator.pushNamed(
@@ -13,7 +12,16 @@ class AddPostScreen extends StatelessWidget {
   }
 
   @override
+  _AddPostScreenState createState() => _AddPostScreenState();
+}
+
+class _AddPostScreenState extends State<AddPostScreen> with AutomaticKeepAliveClientMixin{
+  @override
+  bool get wantKeepAlive => true;
+
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
     return ChangeNotifierProvider<AddPostViewModel>(
       create: (_) => AddPostViewModel(),
       child: Consumer<AddPostViewModel>(
@@ -25,20 +33,13 @@ class AddPostScreen extends StatelessWidget {
   }
 }
 
-class AddPostContent extends StatefulWidget {
+class AddPostContent extends StatelessWidget {
   const AddPostContent({
     Key key,
     @required this.viewModel,
   }) : super(key: key);
 
   final AddPostViewModel viewModel;
-
-  @override
-  _AddPostContentState createState() => _AddPostContentState();
-}
-
-class _AddPostContentState extends State<AddPostContent> {
-  AddPostViewModel get viewModel => this.widget.viewModel;
 
   @override
   Widget build(BuildContext context) {

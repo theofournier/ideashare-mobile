@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ideashare/constants/constants.dart';
 import 'package:ideashare/generated/l10n.dart';
 import 'package:ideashare/screens/home/home_screen.dart';
 import 'package:ideashare/screens/main/tab_item_data.dart';
@@ -7,6 +6,14 @@ import 'package:ideashare/screens/notifications/notifications_screen.dart';
 import 'package:ideashare/screens/post/add_post/add_post_screen.dart';
 import 'package:ideashare/screens/profile/profile_screen.dart';
 import 'package:ideashare/screens/search/search_screen.dart';
+
+enum TabItem {
+  home,
+  search,
+  addPost,
+  notifications,
+  profile,
+}
 
 class MainViewModel with ChangeNotifier {
   MainViewModel({@required this.pageController});

@@ -55,6 +55,8 @@ class SignInContent extends StatefulWidget {
 }
 
 class _SignInContentState extends State<SignInContent> {
+  SignInViewModel get viewModel => this.widget.viewModel;
+
   final FocusScopeNode _node = FocusScopeNode();
   bool _passwordIsVisible = false;
   bool autovalidate = false;
@@ -84,7 +86,7 @@ class _SignInContentState extends State<SignInContent> {
       this.autovalidate = true;
     });
     try {
-      await widget.viewModel.submit();
+      await viewModel.submit();
     } on PlatformException catch (e) {
       _showSignInError(e);
     }
@@ -92,7 +94,7 @@ class _SignInContentState extends State<SignInContent> {
 
   Future<void> _signInWithGoogle() async {
     try {
-      await widget.viewModel.signInWithGoogle();
+      await viewModel.signInWithGoogle();
     } on PlatformException catch (e) {
       if (e.code != ErrorKeys.errorAbortedByUser) {
         _showSignInError(e);
@@ -102,7 +104,7 @@ class _SignInContentState extends State<SignInContent> {
 
   Future<void> _signInWithFacebook() async {
     try {
-      await widget.viewModel.signInWithFacebook();
+      await viewModel.signInWithFacebook();
     } on PlatformException catch (e) {
       if (e.code != ErrorKeys.errorAbortedByUser) {
         _showSignInError(e);
@@ -131,10 +133,10 @@ class _SignInContentState extends State<SignInContent> {
         SizedBox(
           height: 70,
         ),
-        if (widget.viewModel.isLoading) ...[
+        if (viewModel.isLoading) ...[
           _buildSpinner(),
         ],
-        if (!widget.viewModel.isLoading) ...[
+        if (!viewModel.isLoading) ...[
           _buildForm(),
           SizedBox(
             height: 16,
@@ -159,7 +161,7 @@ class _SignInContentState extends State<SignInContent> {
 
   Widget _buildForm() {
     return Form(
-      key: widget.viewModel.formKey,
+      key: viewModel.formKey,
       child: FocusScope(
         node: _node,
         child: Column(
@@ -170,9 +172,9 @@ class _SignInContentState extends State<SignInContent> {
               keyboardType: TextInputType.emailAddress,
               textInputAction: TextInputAction.next,
               autovalidate: autovalidate,
-              initialValue: widget.viewModel.email,
-              enabled: !widget.viewModel.isLoading,
-              onSaved: widget.viewModel.onSaveEmail,
+              initialValue: viewModel.email,
+              enabled: !viewModel.isLoading,
+              onSaved: viewModel.onSaveEmail,
               validator: (value) => Validators.emailValidator(context, value),
               onFieldSubmitted: (_) => _node.nextFocus(),
             ),
@@ -187,9 +189,9 @@ class _SignInContentState extends State<SignInContent> {
                   _passwordIsVisible ? TextInputType.visiblePassword : null,
               textInputAction: TextInputAction.done,
               autovalidate: autovalidate,
-              enabled: !widget.viewModel.isLoading,
-              initialValue: widget.viewModel.password,
-              onSaved: widget.viewModel.onSavePassword,
+              enabled: !viewModel.isLoading,
+              initialValue: viewModel.password,
+              onSaved: viewModel.onSavePassword,
               validator: (value) =>
                   Validators.passwordValidator(context, value),
               onFieldSubmitted: (_) => _submit(),
@@ -198,8 +200,8 @@ class _SignInContentState extends State<SignInContent> {
               height: 24,
             ),
             CustomRaisedButton(
-              onPressed: widget.viewModel.isLoading ? null : _submit,
-              loading: widget.viewModel.isLoading,
+              onPressed: viewModel.isLoading ? null : _submit,
+              loading: viewModel.isLoading,
               text: S.of(context).signInScreenButton,
             ),
           ],
@@ -212,7 +214,7 @@ class _SignInContentState extends State<SignInContent> {
     return Align(
       alignment: Alignment.center,
       child: InkWell(
-        onTap: widget.viewModel.isLoading
+        onTap: viewModel.isLoading
             ? null
             : () => ForgotPasswordScreen.show(context),
         child: Text(
@@ -225,7 +227,7 @@ class _SignInContentState extends State<SignInContent> {
 
   Widget _buildFooter() {
     return SocialFooter(
-      enabled: !widget.viewModel.isLoading,
+      enabled: !viewModel.isLoading,
       signInWithGoogle: _signInWithGoogle,
       signInWithFacebook: _signInWithFacebook,
     );

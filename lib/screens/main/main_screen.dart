@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ideashare/constants/constants.dart';
 import 'package:ideashare/screens/main/custom_bottom_navigation_bar.dart';
 import 'package:ideashare/screens/main/main_view_model.dart';
 import 'package:provider/provider.dart';

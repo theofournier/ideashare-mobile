@@ -10,9 +10,7 @@ import 'package:ideashare/constants/constants.dart';
 import 'package:ideashare/generated/l10n.dart';
 import 'package:ideashare/resources/router.dart';
 import 'package:ideashare/screens/auth/forgot_password/forgot_password_view_model.dart';
-import 'package:ideashare/screens/auth/widgets/social_footer.dart';
 import 'package:ideashare/services/auth/auth_service.dart';
-import 'package:ideashare/utils/extensions/text_style.dart';
 import 'package:ideashare/utils/validators.dart';
 import 'package:provider/provider.dart';
 
@@ -52,6 +50,8 @@ class ForgotPasswordContent extends StatefulWidget {
 }
 
 class _ForgotPasswordContentState extends State<ForgotPasswordContent> {
+  ForgotPasswordViewModel get viewModel => this.widget.viewModel;
+
   final FocusScopeNode _node = FocusScopeNode();
   bool autovalidate = false;
 
@@ -82,7 +82,7 @@ class _ForgotPasswordContentState extends State<ForgotPasswordContent> {
       this.autovalidate = true;
     });
     try {
-      final bool success = await widget.viewModel.submit();
+      final bool success = await viewModel.submit();
       if (success) {
         await _showForgotPasswordSuccess();
         Navigator.of(context).pop();
@@ -113,10 +113,10 @@ class _ForgotPasswordContentState extends State<ForgotPasswordContent> {
         SizedBox(
           height: 70,
         ),
-        if (widget.viewModel.isLoading) ...[
+        if (viewModel.isLoading) ...[
           _buildSpinner(),
         ],
-        if (!widget.viewModel.isLoading) ...[
+        if (!viewModel.isLoading) ...[
           _buildText(),
           SizedBox(
             height: 32,
@@ -144,7 +144,7 @@ class _ForgotPasswordContentState extends State<ForgotPasswordContent> {
 
   Widget _buildForm() {
     return Form(
-      key: widget.viewModel.formKey,
+      key: viewModel.formKey,
       child: FocusScope(
         node: _node,
         child: Column(
@@ -155,9 +155,9 @@ class _ForgotPasswordContentState extends State<ForgotPasswordContent> {
               keyboardType: TextInputType.emailAddress,
               textInputAction: TextInputAction.send,
               autovalidate: autovalidate,
-              initialValue: widget.viewModel.email,
-              enabled: !widget.viewModel.isLoading,
-              onSaved: widget.viewModel.onSaveEmail,
+              initialValue: viewModel.email,
+              enabled: !viewModel.isLoading,
+              onSaved: viewModel.onSaveEmail,
               validator: (value) => Validators.emailValidator(context, value),
               onFieldSubmitted: (_) => _submit(),
             ),
@@ -165,8 +165,8 @@ class _ForgotPasswordContentState extends State<ForgotPasswordContent> {
               height: 24,
             ),
             CustomRaisedButton(
-              onPressed: widget.viewModel.isLoading ? null : _submit,
-              loading: widget.viewModel.isLoading,
+              onPressed: viewModel.isLoading ? null : _submit,
+              loading: viewModel.isLoading,
               text: S.of(context).forgotPasswordScreenButton,
             ),
           ],

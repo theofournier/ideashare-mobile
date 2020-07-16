@@ -17,17 +17,9 @@ class StorageKeys {
   static final userPictures = "user-pictures";
 }
 
-class Keys {
+class AlertKeys {
   static const String alertDefault = 'alertDefault';
   static const String alertCancel = 'alertCancel';
-}
-
-enum TabItem {
-  home,
-  search,
-  addPost,
-  notifications,
-  profile,
 }
 
 enum PostType {

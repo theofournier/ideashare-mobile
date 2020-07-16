@@ -53,6 +53,8 @@ class SignUpContent extends StatefulWidget {
 }
 
 class _SignUpContentState extends State<SignUpContent> {
+  SignUpViewModel get viewModel => this.widget.viewModel;
+
   final FocusScopeNode _node = FocusScopeNode();
   bool _passwordIsVisible = false;
   bool autovalidate = false;
@@ -82,7 +84,7 @@ class _SignUpContentState extends State<SignUpContent> {
       this.autovalidate = true;
     });
     try {
-      await widget.viewModel.submit();
+      await viewModel.submit();
     } on PlatformException catch (e) {
       _showSignUpError(e);
     }
@@ -90,7 +92,7 @@ class _SignUpContentState extends State<SignUpContent> {
 
   Future<void> _signInWithGoogle() async {
     try {
-      await widget.viewModel.signInWithGoogle();
+      await viewModel.signInWithGoogle();
     } on PlatformException catch (e) {
       if (e.code != ErrorKeys.errorAbortedByUser) {
         _showSignUpError(e);
@@ -100,7 +102,7 @@ class _SignUpContentState extends State<SignUpContent> {
 
   Future<void> _signInWithFacebook() async {
     try {
-      await widget.viewModel.signInWithFacebook();
+      await viewModel.signInWithFacebook();
     } on PlatformException catch (e) {
       if (e.code != ErrorKeys.errorAbortedByUser) {
         _showSignUpError(e);
@@ -129,10 +131,10 @@ class _SignUpContentState extends State<SignUpContent> {
         SizedBox(
           height: 40,
         ),
-        if (widget.viewModel.isLoading) ...[
+        if (viewModel.isLoading) ...[
           _buildSpinner(),
         ],
-        if (!widget.viewModel.isLoading) ...[
+        if (!viewModel.isLoading) ...[
           _buildForm(),
           SizedBox(
             height: 30,
@@ -153,7 +155,7 @@ class _SignUpContentState extends State<SignUpContent> {
 
   Widget _buildForm() {
     return Form(
-      key: widget.viewModel.formKey,
+      key: viewModel.formKey,
       child: FocusScope(
         node: _node,
         child: Column(
@@ -167,9 +169,9 @@ class _SignUpContentState extends State<SignUpContent> {
                     labelText: S.of(context).signUpScreenFirstName,
                     textInputAction: TextInputAction.next,
                     autovalidate: autovalidate,
-                    initialValue: widget.viewModel.firstName,
-                    enabled: !widget.viewModel.isLoading,
-                    onSaved: widget.viewModel.onSaveFirstName,
+                    initialValue: viewModel.firstName,
+                    enabled: !viewModel.isLoading,
+                    onSaved: viewModel.onSaveFirstName,
                     validator: (value) => Validators.firstNameValidator(context, value),
                     onFieldSubmitted: (_) => _node.nextFocus(),
                   ),
@@ -182,9 +184,9 @@ class _SignUpContentState extends State<SignUpContent> {
                     labelText: S.of(context).signUpScreenLastName,
                     textInputAction: TextInputAction.next,
                     autovalidate: autovalidate,
-                    enabled: !widget.viewModel.isLoading,
-                    initialValue: widget.viewModel.lastName,
-                    onSaved: widget.viewModel.onSaveLastName,
+                    enabled: !viewModel.isLoading,
+                    initialValue: viewModel.lastName,
+                    onSaved: viewModel.onSaveLastName,
                     validator: (value) =>
                         Validators.lastNameValidator(context, value),
                     onFieldSubmitted: (_) => _node.nextFocus(),
@@ -197,9 +199,9 @@ class _SignUpContentState extends State<SignUpContent> {
               keyboardType: TextInputType.emailAddress,
               textInputAction: TextInputAction.next,
               autovalidate: autovalidate,
-              initialValue: widget.viewModel.email,
-              enabled: !widget.viewModel.isLoading,
-              onSaved: widget.viewModel.onSaveEmail,
+              initialValue: viewModel.email,
+              enabled: !viewModel.isLoading,
+              onSaved: viewModel.onSaveEmail,
               validator: (value) => Validators.emailValidator(context, value),
               onFieldSubmitted: (_) => _node.nextFocus(),
             ),
@@ -214,9 +216,9 @@ class _SignUpContentState extends State<SignUpContent> {
                   _passwordIsVisible ? TextInputType.visiblePassword : null,
               textInputAction: TextInputAction.done,
               autovalidate: autovalidate,
-              enabled: !widget.viewModel.isLoading,
-              initialValue: widget.viewModel.password,
-              onSaved: widget.viewModel.onSavePassword,
+              enabled: !viewModel.isLoading,
+              initialValue: viewModel.password,
+              onSaved: viewModel.onSavePassword,
               validator: (value) =>
                   Validators.passwordValidator(context, value),
               onFieldSubmitted: (_) => _submit(),
@@ -225,8 +227,8 @@ class _SignUpContentState extends State<SignUpContent> {
               height: 24,
             ),
             CustomRaisedButton(
-              onPressed: widget.viewModel.isLoading ? null : _submit,
-              loading: widget.viewModel.isLoading,
+              onPressed: viewModel.isLoading ? null : _submit,
+              loading: viewModel.isLoading,
               text: S.of(context).signUpScreenButton,
             ),
           ],
@@ -237,7 +239,7 @@ class _SignUpContentState extends State<SignUpContent> {
 
   Widget _buildFooter() {
     return SocialFooter(
-      enabled: !widget.viewModel.isLoading,
+      enabled: !viewModel.isLoading,
       signInWithGoogle: _signInWithGoogle,
       signInWithFacebook: _signInWithFacebook,
     );

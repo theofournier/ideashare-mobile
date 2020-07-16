@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:ideashare/resources/router.dart';
-import 'package:ideashare/screens/home/home_view_model.dart';
 import 'package:ideashare/screens/notifications/notifications_view_model.dart';
 import 'package:provider/provider.dart';
 
-class NotificationsScreen extends StatelessWidget {
+class NotificationsScreen extends StatefulWidget {
   static Future<void> show(BuildContext context) async {
     final navigator = Navigator.of(context);
     await navigator.pushNamed(
@@ -13,7 +12,16 @@ class NotificationsScreen extends StatelessWidget {
   }
 
   @override
+  _NotificationsScreenState createState() => _NotificationsScreenState();
+}
+
+class _NotificationsScreenState extends State<NotificationsScreen> with AutomaticKeepAliveClientMixin{
+  @override
+  bool get wantKeepAlive => true;
+
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
     return ChangeNotifierProvider<NotificationsViewModel>(
       create: (_) => NotificationsViewModel(),
       child: Consumer<NotificationsViewModel>(
@@ -25,20 +33,13 @@ class NotificationsScreen extends StatelessWidget {
   }
 }
 
-class NotificationsContent extends StatefulWidget {
+class NotificationsContent extends StatelessWidget {
   const NotificationsContent({
     Key key,
     @required this.viewModel,
   }) : super(key: key);
 
   final NotificationsViewModel viewModel;
-
-  @override
-  _NotificationsContentState createState() => _NotificationsContentState();
-}
-
-class _NotificationsContentState extends State<NotificationsContent> {
-  NotificationsViewModel get viewModel => this.widget.viewModel;
 
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ideashare/constants/constants.dart';
+import 'package:ideashare/screens/main/main_view_model.dart';
 
 class TabItemData {
   const TabItemData(
