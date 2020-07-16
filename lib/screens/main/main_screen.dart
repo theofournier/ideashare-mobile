@@ -14,7 +14,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   void initState() {
     super.initState();
-    pageController = PageController(initialPage: TabItem.home.index);
+    pageController = PageController(initialPage: TabItem.addPost.index);
   }
 
   @override

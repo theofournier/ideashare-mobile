@@ -21,6 +21,15 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
+    "addPostStartButton" : MessageLookupByLibrary.simpleMessage("START"),
+    "addPostTitleAddPost" : MessageLookupByLibrary.simpleMessage("Add Post"),
+    "addPostTitleCategory" : MessageLookupByLibrary.simpleMessage("Category"),
+    "addPostTitleInfo" : MessageLookupByLibrary.simpleMessage("Info"),
+    "addPostTitleLabels" : MessageLookupByLibrary.simpleMessage("Labels"),
+    "addPostTitleLinkedIssue" : MessageLookupByLibrary.simpleMessage("Linked Issue"),
+    "addPostTitleOptionalInfo" : MessageLookupByLibrary.simpleMessage("Optional Info"),
+    "addPostTitleResume" : MessageLookupByLibrary.simpleMessage("Resume"),
+    "addPostTitleShareOptions" : MessageLookupByLibrary.simpleMessage("Share Options"),
     "authScreenSignIn" : MessageLookupByLibrary.simpleMessage("Sign In"),
     "authScreenSignUp" : MessageLookupByLibrary.simpleMessage("Sign Up"),
     "authScreenSubtitle" : MessageLookupByLibrary.simpleMessage("Share your ideas with the world or keep them private"),

@@ -622,6 +622,96 @@ class S {
       args: [],
     );
   }
+
+  /// `Category`
+  String get addPostTitleCategory {
+    return Intl.message(
+      'Category',
+      name: 'addPostTitleCategory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Info`
+  String get addPostTitleInfo {
+    return Intl.message(
+      'Info',
+      name: 'addPostTitleInfo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Optional Info`
+  String get addPostTitleOptionalInfo {
+    return Intl.message(
+      'Optional Info',
+      name: 'addPostTitleOptionalInfo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Linked Issue`
+  String get addPostTitleLinkedIssue {
+    return Intl.message(
+      'Linked Issue',
+      name: 'addPostTitleLinkedIssue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Labels`
+  String get addPostTitleLabels {
+    return Intl.message(
+      'Labels',
+      name: 'addPostTitleLabels',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Share Options`
+  String get addPostTitleShareOptions {
+    return Intl.message(
+      'Share Options',
+      name: 'addPostTitleShareOptions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Resume`
+  String get addPostTitleResume {
+    return Intl.message(
+      'Resume',
+      name: 'addPostTitleResume',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Post`
+  String get addPostTitleAddPost {
+    return Intl.message(
+      'Add Post',
+      name: 'addPostTitleAddPost',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `START`
+  String get addPostStartButton {
+    return Intl.message(
+      'START',
+      name: 'addPostStartButton',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

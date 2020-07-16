@@ -54,5 +54,14 @@
   "noImage": "No image",
   "tabTitleHome": "Home",
   "tabTitleNotifications": "Notifications",
-  "tabTitleProfile": "Profile"
+  "tabTitleProfile": "Profile",
+  "addPostTitleCategory": "Category",
+  "addPostTitleInfo": "Info",
+  "addPostTitleOptionalInfo": "Optional Info",
+  "addPostTitleLinkedIssue": "Linked Issue",
+  "addPostTitleLabels": "Labels",
+  "addPostTitleShareOptions": "Share Options",
+  "addPostTitleResume": "Resume",
+  "addPostTitleAddPost": "Add Post",
+  "addPostStartButton": "START"
 }

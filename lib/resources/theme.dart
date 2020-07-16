@@ -8,6 +8,7 @@ final ThemeData themeData = new ThemeData(
   backgroundColor: const Color(0xFFFFFFFF),
   scaffoldBackgroundColor: const Color(0xFFFFFFFF),
   fontFamily: 'OpenSans',
+  typography: Typography.material2018(),
   textTheme: TextTheme(
     headline1: TextStyle(fontFamily: "Montserrat"),
     headline2: TextStyle(fontFamily: "Montserrat"),

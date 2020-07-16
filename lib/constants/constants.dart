@@ -10,6 +10,7 @@ class ImageName {
   static final selectPicture = dir + "select_picture_image.png";
   static final googleLogo = dir + "google_logo.png";
   static final facebookLogo = dir + "facebook_logo.png";
+  static final addPostStart = dir + "add_post_start.png";
 }
 
 class StorageKeys {

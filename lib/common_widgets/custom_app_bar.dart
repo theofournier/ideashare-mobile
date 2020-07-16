@@ -4,12 +4,14 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   CustomAppBar({
     Key key,
     this.title,
+    this.titleSpacing = NavigationToolbar.kMiddleSpacing,
     this.backgroundColor = const Color(0xFFFFFFFF),
     this.actions,
   })  : preferredSize = Size.fromHeight(kToolbarHeight),
         super(key: key);
 
   final String title;
+  final double titleSpacing;
   final Color backgroundColor;
   final List<Widget> actions;
 
@@ -17,6 +19,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     AppBar appBar = AppBar(
       backgroundColor: backgroundColor,
+      titleSpacing: titleSpacing,
       elevation: 0,
       title: Text(
         title,

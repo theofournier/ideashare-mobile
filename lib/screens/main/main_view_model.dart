@@ -19,7 +19,7 @@ class MainViewModel with ChangeNotifier {
   MainViewModel({@required this.pageController});
 
   PageController pageController;
-  TabItem currentTab = TabItem.home;
+  TabItem currentTab = TabItem.addPost;
 
   final List<Widget> pages = [
     HomeScreen(),
