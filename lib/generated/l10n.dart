@@ -572,6 +572,56 @@ class S {
       args: [],
     );
   }
+
+  /// `Home`
+  String get tabTitleHome {
+    return Intl.message(
+      'Home',
+      name: 'tabTitleHome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search`
+  String get tabTitleSearch {
+    return Intl.message(
+      'Search',
+      name: 'tabTitleSearch',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add post`
+  String get tabTitleAddPost {
+    return Intl.message(
+      'Add post',
+      name: 'tabTitleAddPost',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Notifications`
+  String get tabTitleNotifications {
+    return Intl.message(
+      'Notifications',
+      name: 'tabTitleNotifications',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile`
+  String get tabTitleProfile {
+    return Intl.message(
+      'Profile',
+      name: 'tabTitleProfile',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ideashare/common_widgets/constant_widgets.dart';
 import 'package:ideashare/screens/auth/auth_screen.dart';
-import 'package:ideashare/screens/home/home_screen.dart';
+import 'package:ideashare/screens/main/main_screen.dart';
 import 'package:ideashare/services/auth/auth_service.dart';
 
 class LandingScreen extends StatelessWidget {
@@ -12,7 +12,7 @@ class LandingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     if (userSnapshot.connectionState == ConnectionState.active) {
       return userSnapshot.hasData
-          ? HomeScreen()
+          ? MainScreen()
           : AuthScreen();
     }
     return Scaffold(

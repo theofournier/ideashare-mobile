@@ -1,40 +1,56 @@
 import 'package:flutter/material.dart';
-import 'package:ideashare/screens/select_picture/select_picture_screen.dart';
-import 'package:ideashare/services/auth/auth_service.dart';
-import 'package:ideashare/services/models/user/user.dart';
+import 'package:ideashare/constants/constants.dart';
+import 'package:ideashare/resources/router.dart';
+import 'package:ideashare/screens/home/home_view_model.dart';
+import 'package:ideashare/screens/main/main_view_model.dart';
 import 'package:provider/provider.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  static Future<void> show(BuildContext context) async {
+    final navigator = Navigator.of(context);
+    await navigator.pushNamed(
+      Routes.homeScreen,
+    );
+  }
+
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   Widget build(BuildContext context) {
-    final authService = Provider.of<AuthService>(context, listen: false);
-    final user = Provider.of<User>(context);
+    super.build(context);
+    return ChangeNotifierProvider<HomeViewModel>(
+      create: (_) => HomeViewModel(),
+      child: Consumer<HomeViewModel>(
+        builder: (_, viewModel, __) => HomeContent(
+          viewModel: viewModel,
+        ),
+      ),
+    );
+  }
+}
 
-    if(user != null  && (user.photoUrl == null || user.photoUrl.isEmpty)) {
-      return SelectPictureScreen();
-    }
+class HomeContent extends StatelessWidget {
+  const HomeContent({
+    Key key,
+    @required this.viewModel,
+  }) : super(key: key);
 
+  final HomeViewModel viewModel;
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: <Widget>[
-            Center(
-              child: FlatButton(
-                onPressed: () => authService.signOut(),
-                child: Text("sign out"),
-              ),
-            ),
-            if (user != null) ...[
-              Text(user.id ?? ""),
-              Text(user.firstName ?? ""),
-              Text(user.lastName ?? ""),
-              Text(user.photoUrl ?? ""),
-              Text(user.email ?? ""),
-              Text(user.ideasCount.toString() ?? ""),
-              Text(user.createdAt.toString() ?? ""),
-            ],
-          ],
+      body: Center(
+        child: RaisedButton(
+          onPressed: () => Provider.of<MainViewModel>(context, listen: false).selectTab(TabItem.addPost),
+          child: Text("ADD"),
         ),
       ),
     );

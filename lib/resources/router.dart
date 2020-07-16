@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:ideashare/screens/auth/forgot_password/forgot_password_screen.dart';
 import 'package:ideashare/screens/auth/sign_in/sign_in_screen.dart';
 import 'package:ideashare/screens/auth/sign_up/sign_up_screen.dart';
+import 'package:ideashare/screens/home/home_screen.dart';
 import 'package:ideashare/screens/landing/landing_screen.dart';
+import 'package:ideashare/screens/notifications/notifications_screen.dart';
+import 'package:ideashare/screens/post/add_post/add_post_screen.dart';
+import 'package:ideashare/screens/profile/profile_screen.dart';
+import 'package:ideashare/screens/search/search_screen.dart';
 import 'package:ideashare/screens/select_picture/default_picture/default_picture_screen.dart';
 import 'package:ideashare/screens/select_picture/select_picture_screen.dart';
 import 'package:ideashare/services/models/default_picture.dart';
@@ -14,6 +19,11 @@ class Routes {
   static const forgotPasswordScreen = "/forgot-password";
   static const selectPictureScreen = "/select-picture";
   static const defaultPictureScreen = "/default-picture";
+  static const homeScreen = "/home";
+  static const searchScreen = "/search";
+  static const profileScreen = "/profile";
+  static const notificationsScreen = "/notifications";
+  static const addPostScreen = "/add-post";
 }
 
 class Router {
@@ -52,6 +62,31 @@ class Router {
           builder: (_) => DefaultPictureScreen(
             initialDefaultPicture: args,
           ),
+          settings: settings,
+        );
+      case Routes.homeScreen:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => HomeScreen(),
+          settings: settings,
+        );
+      case Routes.searchScreen:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => SearchScreen(),
+          settings: settings,
+        );
+      case Routes.profileScreen:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => ProfileScreen(),
+          settings: settings,
+        );
+      case Routes.notificationsScreen:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => NotificationsScreen(),
+          settings: settings,
+        );
+      case Routes.addPostScreen:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => AddPostScreen(),
           settings: settings,
         );
       default:

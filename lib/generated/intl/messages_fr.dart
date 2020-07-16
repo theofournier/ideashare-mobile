@@ -73,6 +73,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "signUpScreenPassword" : MessageLookupByLibrary.simpleMessage("Password"),
     "socialFooterFacebook" : MessageLookupByLibrary.simpleMessage("Facebook"),
     "socialFooterGoogle" : MessageLookupByLibrary.simpleMessage("Google"),
-    "socialFooterOr" : MessageLookupByLibrary.simpleMessage("Or")
+    "socialFooterOr" : MessageLookupByLibrary.simpleMessage("Or"),
+    "tabTitleHome" : MessageLookupByLibrary.simpleMessage("Home"),
+    "tabTitleNotifications" : MessageLookupByLibrary.simpleMessage("Notifications"),
+    "tabTitleProfile" : MessageLookupByLibrary.simpleMessage("Profile")
   };
 }

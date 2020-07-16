@@ -51,5 +51,8 @@
   "defaultPictureScreenSave": "OK",
   "defaultPictureScreenNoImage": "No image",
   "defaultPictureScreenErrorTitle": "Select a default picture",
-  "noImage": "No image"
+  "noImage": "No image",
+  "tabTitleHome": "Home",
+  "tabTitleNotifications": "Notifications",
+  "tabTitleProfile": "Profile"
 }

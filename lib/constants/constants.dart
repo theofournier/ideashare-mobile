@@ -22,6 +22,14 @@ class Keys {
   static const String alertCancel = 'alertCancel';
 }
 
+enum TabItem {
+  home,
+  search,
+  addPost,
+  notifications,
+  profile,
+}
+
 enum PostType {
   idea,
   issue,
