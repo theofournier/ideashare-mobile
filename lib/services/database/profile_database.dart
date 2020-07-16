@@ -4,7 +4,6 @@ import 'package:ideashare/services/database/firestore_service.dart';
 import 'package:ideashare/services/models/default_picture.dart';
 import 'package:ideashare/services/models/user/user.dart';
 
-
 class ProfileDatabase {
   ProfileDatabase({@required this.uid})
       : assert(uid != null, 'Cannot create FirestoreDatabase with null uid');
@@ -15,11 +14,7 @@ class ProfileDatabase {
 
   Stream<User> profileStream() => _service.documentStream(
         path: FirestorePath.user(uid),
-        builder: (data, documentId) {
-          print("USER");
-          print(data);
-          return User.fromMap(documentId, data);
-        },
+        builder: (data, documentId) => User.fromMap(documentId, data),
       );
 
   Future<void> setProfilePhotoUrl({String photoUrl, String photoFileName}) =>
