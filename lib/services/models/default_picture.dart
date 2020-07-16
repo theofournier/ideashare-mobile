@@ -9,13 +9,13 @@ class DefaultPicture {
   final String name;
   final String imageUrl;
 
-  factory DefaultPicture.fromMap(String id, Map<String, dynamic> value) {
-    return value == null
+  factory DefaultPicture.fromMap(String id, Map<String, dynamic> json) {
+    return json == null
         ? null
         : DefaultPicture(
             id: id,
-            name: value['name'] as String,
-            imageUrl: value['imageUrl'] as String,
+            name: json['name'] as String,
+            imageUrl: json['imageUrl'] as String,
           );
   }
 

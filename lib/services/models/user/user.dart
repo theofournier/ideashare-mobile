@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ideashare/constants/constants.dart';
+import 'package:ideashare/services/models/common/doc_time.dart';
 import 'package:ideashare/services/models/user/user_label.dart';
 import 'package:ideashare/utils/enum_string.dart';
 
@@ -23,10 +24,7 @@ class User {
     this.followersCount,
     this.premium,
     this.userRole,
-    this.deleted,
-    this.createdAt,
-    this.updatedAt,
-    this.deletedAt,
+    this.docTime,
   });
 
   final String id;
@@ -47,52 +45,40 @@ class User {
   final int followersCount;
   final bool premium;
   final UserRole userRole;
-  final bool deleted;
-  final DateTime createdAt;
-  final DateTime updatedAt;
-  final DateTime deletedAt;
+  final DocTime docTime;
 
-  factory User.fromMap(String id, Map<String, dynamic> value) {
-    return value == null
+  factory User.fromMap(String id, Map<String, dynamic> json) {
+    return json == null
         ? null
         : User(
             id: id,
-            firstName: value['firstName'] as String,
-            lastName: value['lastName'] as String,
-            photoUrl: value['photoUrl'] as String,
-            photoFileName: value['photoFileName'] as String,
-            email: value['email'] as String,
-            privacy: EnumString.fromString(Privacy.values, value['privacy']),
+            firstName: json['firstName'] as String,
+            lastName: json['lastName'] as String,
+            photoUrl: json['photoUrl'] as String,
+            photoFileName: json['photoFileName'] as String,
+            email: json['email'] as String,
+            privacy: EnumString.fromString(Privacy.values, json['privacy']),
             followed:
-                EnumString.fromString(Visibleness.values, value['followed']),
-            ideasCount: value['ideasCount'] as int,
-            issuesCount: value['issuesCount'] as int,
-            postViewsCount: value['postViewsCount'] as int,
-            postLikesCount: value['postLikesCount'] as int,
-            postFollowersCount: value['postFollowersCount'] as int,
-            postWorkersCount: value['postWorkersCount'] as int,
-            labels: (value['labels'] as Map<String, dynamic>) == null ||
-                    (value['labels'] as Map<String, dynamic>).length == 0
+                EnumString.fromString(Visibleness.values, json['followed']),
+            ideasCount: json['ideasCount'] as int,
+            issuesCount: json['issuesCount'] as int,
+            postViewsCount: json['postViewsCount'] as int,
+            postLikesCount: json['postLikesCount'] as int,
+            postFollowersCount: json['postFollowersCount'] as int,
+            postWorkersCount: json['postWorkersCount'] as int,
+            labels: (json['labels'] as Map<String, dynamic>) == null ||
+                    (json['labels'] as Map<String, dynamic>).length == 0
                 ? []
-                : (value['labels'] as Map<String, dynamic>)?.entries?.map(
+                : (json['labels'] as Map<String, dynamic>)?.entries?.map(
                       (e) => e.value == null
                           ? null
                           : UserLabel.fromMap(
                               e.key, e.value as Map<String, dynamic>),
                     ),
-            followersCount: value['followersCount'] as int,
-            premium: value['premium'] as bool,
-            userRole: EnumString.fromString(UserRole.values, value['userRole']),
-            deleted: value['deleted'] as bool,
-            createdAt: value['createdAt'] == null
-                ? null
-                : (value['createdAt'] as Timestamp).toDate(),
-            updatedAt: value['updatedAt'] == null
-                ? null
-                : (value['updatedAt'] as Timestamp).toDate(),
-            deletedAt: value['deletedAt'] == null
-                ? null
-                : (value['deletedAt'] as Timestamp).toDate(),
+            followersCount: json['followersCount'] as int,
+            premium: json['premium'] as bool,
+            userRole: EnumString.fromString(UserRole.values, json['userRole']),
+            docTime: DocTime.fromMap(json["docTime"]),
           );
   }
 
@@ -114,13 +100,7 @@ class User {
         'followers': this.followersCount,
         'premium': this.premium,
         'userRole': EnumString.string(this.userRole),
-        'deleted': this.deleted,
-        'createdAt':
-            this.createdAt != null ? Timestamp.fromDate(this.createdAt) : null,
-        'updatedAt':
-            this.updatedAt != null ? Timestamp.fromDate(this.updatedAt) : null,
-        'deletedAt':
-            this.deletedAt != null ? Timestamp.fromDate(this.deletedAt) : null,
+        'deleted': this.docTime.toMap(),
       };
 
   factory User.initUser({
@@ -149,10 +129,12 @@ class User {
       followersCount: 0,
       premium: false,
       userRole: UserRole.user,
-      deleted: false,
-      createdAt: Timestamp.now().toDate(),
-      updatedAt: Timestamp.now().toDate(),
-      deletedAt: null,
+      docTime: DocTime(
+        deleted: false,
+        createdAt: Timestamp.now().toDate(),
+        updatedAt: Timestamp.now().toDate(),
+        deletedAt: null,
+      ),
     );
   }
 }

@@ -9,11 +9,11 @@ class UserLabel {
   final String title;
   final int postCount;
 
-  factory UserLabel.fromMap(String id, Map<String, dynamic> value) {
+  factory UserLabel.fromMap(String id, Map<String, dynamic> json) {
     return UserLabel(
       id: id,
-      title: value['title'] as String,
-      postCount: value['postCount'] as int,
+      title: json['title'] as String,
+      postCount: json['postCount'] as int,
     );
   }
 
