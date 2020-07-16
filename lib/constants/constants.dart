@@ -82,7 +82,7 @@ enum ApprovalType {
   linkedPost,
 }
 
-enum PostStatus {
+enum PostStatusType {
   open,
   ongoing,
   completed,
