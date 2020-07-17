@@ -9,8 +9,8 @@ class Post {
     this.id,
     this.category,
     this.ownerId,
-    this.ownerFirstname,
-    this.ownerLastname,
+    this.ownerFirstName,
+    this.ownerLastName,
     this.ownerPhotoUrl,
     this.title,
     this.imageUrl,
@@ -32,37 +32,39 @@ class Post {
     this.docTime,
   });
 
-  final String id;
-  final PostType category;
-  final String ownerId;
-  final String ownerFirstname;
-  final String ownerLastname;
-  final String ownerPhotoUrl;
-  final String title;
-  final String imageUrl;
-  final String resume;
-  final List<PostLabel> labels;
-  final String language;
-  final PostStatusType status;
-  final PostShareOptions shareOptions;
-  final int viewsCount;
-  final int likesCount;
-  final int followersCount;
-  final int workersCount;
-  final int commentsCount;
-  final int helpsCount;
-  final int newsCount;
-  final int linkedPostsCount;
-  final int notesCount;
-  final bool premium;
-  final DocTime docTime;
+   String id;
+   PostType category;
+   String ownerId;
+   String ownerFirstName;
+   String ownerLastName;
+   String ownerPhotoUrl;
+   String title;
+   String imageUrl;
+   String resume;
+   List<PostLabel> labels;
+   String language;
+   PostStatusType status;
+   PostShareOptions shareOptions;
+   int viewsCount;
+   int likesCount;
+   int followersCount;
+   int workersCount;
+   int commentsCount;
+   int helpsCount;
+   int newsCount;
+   int linkedPostsCount;
+   int notesCount;
+   bool premium;
+   DocTime docTime;
+
+  
 
   factory Post.fromMap(String id, Map<String, dynamic> json) => Post(
         id: id,
         category: EnumString.fromString(PostType.values, json["category"]),
         ownerId: json["ownerId"],
-        ownerFirstname: json["ownerFirstname"],
-        ownerLastname: json["ownerLastname"],
+        ownerFirstName: json["ownerFirstName"],
+        ownerLastName: json["ownerLastName"],
         ownerPhotoUrl: json["ownerPhotoUrl"],
         title: json["title"],
         imageUrl: json["imageUrl"],
@@ -94,8 +96,8 @@ class Post {
   Map<String, dynamic> toMap() => {
         "category": EnumString.string(category),
         "ownerId": ownerId,
-        "ownerFirstname": ownerFirstname,
-        "ownerLastname": ownerLastname,
+        "ownerFirstName": ownerFirstName,
+        "ownerLastName": ownerLastName,
         "ownerPhotoUrl": ownerPhotoUrl,
         "title": title,
         "imageUrl": imageUrl,

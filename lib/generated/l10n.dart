@@ -722,6 +722,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Idea`
+  String get addPostCategoryIdeaTitle {
+    return Intl.message(
+      'Idea',
+      name: 'addPostCategoryIdeaTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Issue`
+  String get addPostCategoryIssueTitle {
+    return Intl.message(
+      'Issue',
+      name: 'addPostCategoryIssueTitle',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

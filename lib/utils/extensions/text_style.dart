@@ -16,4 +16,12 @@ extension TextStyleExtensions on TextStyle {
       ),
     );
   }
+
+  TextStyle toSemiBold() {
+    return this.merge(
+      TextStyle(
+        fontWeight: FontWeight.w600,
+      ),
+    );
+  }
 }

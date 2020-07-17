@@ -67,5 +67,7 @@
   "addPostTitleResume": "Resume",
   "addPostTitleAddPost": "Add Post",
   "addPostStartButton": "START",
-  "addPostBottomProgressOf": "of"
+  "addPostBottomProgressOf": "of",
+  "addPostCategoryIdeaTitle": "Idea",
+  "addPostCategoryIssueTitle": "Issue"
 }

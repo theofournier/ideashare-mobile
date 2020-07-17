@@ -13,7 +13,10 @@ final ThemeData themeData = new ThemeData(
     headline1: TextStyle(fontFamily: "Montserrat"),
     headline2: TextStyle(fontFamily: "Montserrat"),
     headline3: TextStyle(fontFamily: "Montserrat"),
-    headline4: TextStyle(fontFamily: "Montserrat"),
+    headline4: TextStyle(
+      fontFamily: "Montserrat",
+      color: const Color(0xFF141E30),
+    ),
     headline5: TextStyle(
       fontFamily: "Montserrat",
       color: const Color(0xFF141E30),

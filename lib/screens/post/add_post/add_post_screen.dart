@@ -8,6 +8,12 @@ import 'package:ideashare/screens/post/add_post/add_post_bottom_app_bar.dart';
 import 'package:ideashare/screens/post/add_post/add_post_step_data.dart';
 import 'package:ideashare/screens/post/add_post/add_post_view_model.dart';
 import 'package:ideashare/screens/post/add_post/contents/add_post_category_content.dart';
+import 'package:ideashare/screens/post/add_post/contents/add_post_info_content.dart';
+import 'package:ideashare/screens/post/add_post/contents/add_post_labels_content.dart';
+import 'package:ideashare/screens/post/add_post/contents/add_post_linked_issue_content.dart';
+import 'package:ideashare/screens/post/add_post/contents/add_post_optional_info_content.dart';
+import 'package:ideashare/screens/post/add_post/contents/add_post_resume_content.dart';
+import 'package:ideashare/screens/post/add_post/contents/add_post_share_options_content.dart';
 import 'package:ideashare/screens/post/add_post/contents/add_post_start_content.dart';
 import 'package:provider/provider.dart';
 
@@ -62,30 +68,42 @@ class AddPostContent extends StatelessWidget {
           description: "Category description",
         ),
         AddPostStep.info: AddPostStepData(
-          content: Text("INFO"),
+          content: AddPostInfoContent(
+            viewModel: viewModel,
+          ),
           title: S.of(context).addPostTitleInfo,
           description: "Info description",
         ),
         AddPostStep.optionalInfo: AddPostStepData(
-          content: Text("OPTIONAL INFO"),
+          content: AddPostOptionalInfoContent(
+            viewModel: viewModel,
+          ),
           title: S.of(context).addPostTitleOptionalInfo,
           description: "Optional Info description",
         ),
         AddPostStep.linkedIssue: AddPostStepData(
-          content: Text("LINKED ISSUE"),
+          content: AddPostLinkedIssueContent(
+            viewModel: viewModel,
+          ),
           title: S.of(context).addPostTitleLinkedIssue,
         ),
         AddPostStep.labels: AddPostStepData(
-          content: Text("LABELS"),
+          content: AddPostLabelsContent(
+            viewModel: viewModel,
+          ),
           title: S.of(context).addPostTitleLabels,
         ),
         AddPostStep.shareOptions: AddPostStepData(
-          content: Text("SHARE OPTIONS"),
+          content: AddPostShareOptionsContent(
+            viewModel: viewModel,
+          ),
           title: S.of(context).addPostTitleShareOptions,
           description: "Share options description",
         ),
         AddPostStep.resume: AddPostStepData(
-          content: Text("RESUME"),
+          content: AddPostResumeContent(
+            viewModel: viewModel,
+          ),
           title: S.of(context).addPostTitleResume,
         ),
       };
@@ -126,6 +144,7 @@ class AddPostContent extends StatelessWidget {
   Widget buildAppBar(BuildContext context) {
     return CustomAppBar(
       title: title(context),
+      titleSpacing: 24,
       actions: viewModel.currentStep == null
           ? []
           : [
@@ -160,7 +179,9 @@ class AddPostContent extends StatelessWidget {
               style: Theme.of(context).textTheme.bodyText2,
             ),
           ],
-          SizedBox(height: 32,),
+          SizedBox(
+            height: 32,
+          ),
           content(context),
         ],
       );

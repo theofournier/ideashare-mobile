@@ -16,7 +16,7 @@ class ConstantWidgets {
   static const EdgeInsetsGeometry defaultPadding =
       const EdgeInsets.symmetric(vertical: 48, horizontal: 40);
   static const EdgeInsetsGeometry addPostPadding =
-      const EdgeInsets.symmetric(vertical: 16, horizontal: 32);
+      const EdgeInsets.symmetric(vertical: 16, horizontal: 24);
 
   static GestureDetector unfocusGestureDetector({
     BuildContext context,
