@@ -742,6 +742,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Title`
+  String get addPostInfoInputTitle {
+    return Intl.message(
+      'Title',
+      name: 'addPostInfoInputTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Resume`
+  String get addPostInfoInputResume {
+    return Intl.message(
+      'Resume',
+      name: 'addPostInfoInputResume',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Description`
+  String get addPostInfoInputDescription {
+    return Intl.message(
+      'Description',
+      name: 'addPostInfoInputDescription',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

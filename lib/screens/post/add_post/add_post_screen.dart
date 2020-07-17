@@ -134,10 +134,13 @@ class AddPostContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: buildAppBar(context),
-      bottomNavigationBar: buildBottomAppBar(context),
-      body: buildBody(context),
+    return ConstantWidgets.unfocusGestureDetector(
+      context: context,
+      child: Scaffold(
+        appBar: buildAppBar(context),
+        bottomNavigationBar: buildBottomAppBar(context),
+        body: buildBody(context),
+      ),
     );
   }
 
@@ -181,7 +184,7 @@ class AddPostContent extends StatelessWidget {
             ),
           ],
           SizedBox(
-            height: 32,
+            height: 24,
           ),
           content(context),
         ],

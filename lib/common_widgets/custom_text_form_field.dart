@@ -22,6 +22,9 @@ class CustomTextFormField extends StatelessWidget {
   final TextAlign textAlign;
   final bool autovalidate;
   final bool enabled;
+  final bool filled;
+  final String hintText;
+  final InputBorder border;
 
   CustomTextFormField({
     Key key,
@@ -46,6 +49,9 @@ class CustomTextFormField extends StatelessWidget {
     this.textAlign = TextAlign.start,
     this.autovalidate = false,
     this.enabled = true,
+    this.filled = false,
+    this.hintText,
+    this.border,
   }) : super(key: key);
 
   @override
@@ -66,10 +72,15 @@ class CustomTextFormField extends StatelessWidget {
       maxLines: passwordIsVisible != null && !passwordIsVisible ? 1 : maxLines,
       textAlign: textAlign,
       decoration: InputDecoration(
+        border: border,
+        hintText: hintText,
+        hintStyle: TextStyle(fontSize: textSize),
         labelText: labelText,
         labelStyle: TextStyle(fontSize: textSize),
         enabled: enabled,
         alignLabelWithHint: true,
+        filled: filled,
+        fillColor: filled ? Theme.of(context).accentColor.withOpacity(0.05) : null,
         prefixIcon: prefixIcon != null
             ? Icon(
                 prefixIcon,

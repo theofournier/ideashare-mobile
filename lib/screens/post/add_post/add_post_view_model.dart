@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:ideashare/screens/post/add_post/add_post_step_data.dart';
 import 'package:ideashare/services/models/post/post/post.dart';
+import 'package:ideashare/services/models/post/post_infos/post_info.dart';
 
 class AddPostViewModel with ChangeNotifier {
-  AddPostStep currentStep = AddPostStep.category;
+  AddPostStep currentStep = AddPostStep.info;
   Post post = Post();
+  PostInfo postInfo = PostInfo();
 
   void updateWith({
     AddPostStep currentStep,
     Post post,
+    PostInfo postInfo,
   }) {
     this.currentStep = currentStep ?? this.currentStep;
     this.post = post ?? this.post;
+    this.postInfo = postInfo ?? this.postInfo;
     notifyListeners();
   }
 

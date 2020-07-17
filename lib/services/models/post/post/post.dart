@@ -32,7 +32,7 @@ class Post {
     this.docTime,
   });
 
-   String id;
+   final String id;
    PostType category;
    String ownerId;
    String ownerFirstName;

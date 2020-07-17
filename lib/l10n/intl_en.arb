@@ -69,5 +69,8 @@
   "addPostStartButton": "START",
   "addPostBottomProgressOf": "of",
   "addPostCategoryIdeaTitle": "Idea",
-  "addPostCategoryIssueTitle": "Issue"
+  "addPostCategoryIssueTitle": "Issue",
+  "addPostInfoInputTitle": "Title",
+  "addPostInfoInputResume": "Resume",
+  "addPostInfoInputDescription": "Description"
 }

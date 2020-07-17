@@ -10,10 +10,10 @@ class PostInfo {
   });
 
   final String postId;
-  final String description;
-  final List<PostInfoImage> images;
-  final List<String> urlLinks;
-  final String linkedIssue;
+  String description;
+  List<PostInfoImage> images;
+  List<String> urlLinks;
+  String linkedIssue;
 
   factory PostInfo.fromMap(String postId, Map<String, dynamic> json) => PostInfo(
     postId: postId,
