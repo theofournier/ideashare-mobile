@@ -712,6 +712,16 @@ class S {
       args: [],
     );
   }
+
+  /// `of`
+  String get addPostBottomProgressOf {
+    return Intl.message(
+      'of',
+      name: 'addPostBottomProgressOf',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

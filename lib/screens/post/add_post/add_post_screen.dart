@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:ideashare/common_widgets/constant_widgets.dart';
 import 'package:ideashare/common_widgets/custom_app_bar.dart';
+import 'package:ideashare/common_widgets/custom_app_bar_button.dart';
 import 'package:ideashare/generated/l10n.dart';
 import 'package:ideashare/resources/router.dart';
+import 'package:ideashare/screens/post/add_post/add_post_bottom_app_bar.dart';
 import 'package:ideashare/screens/post/add_post/add_post_step_data.dart';
 import 'package:ideashare/screens/post/add_post/add_post_view_model.dart';
 import 'package:ideashare/screens/post/add_post/contents/add_post_category_content.dart';
@@ -115,12 +117,36 @@ class AddPostContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(
-        title: title(context),
-        titleSpacing: 32,
-      ),
+      appBar: buildAppBar(context),
+      bottomNavigationBar: buildBottomAppBar(context),
       body: buildBody(context),
     );
+  }
+
+  Widget buildAppBar(BuildContext context) {
+    return CustomAppBar(
+      title: title(context),
+      actions: viewModel.currentStep == null
+          ? []
+          : [
+              CustomAppBarButton(
+                icon: Icons.delete,
+                onPressed: viewModel.reset,
+              ),
+            ],
+    );
+  }
+
+  Widget buildBottomAppBar(BuildContext context) {
+    if (viewModel.currentStep != null) {
+      return AddPostBottomAppBar(
+        currentStep: viewModel.currentStep.index,
+        totalStep: AddPostStep.values.length,
+        onNext: viewModel.nextStep,
+        onPrevious: viewModel.previousStep,
+      );
+    }
+    return null;
   }
 
   Widget buildBody(BuildContext context) {
@@ -131,18 +157,11 @@ class AddPostContent extends StatelessWidget {
           if (description(context) != null) ...[
             Text(
               description(context),
-              style: Theme.of(context).textTheme.bodyText1,
+              style: Theme.of(context).textTheme.bodyText2,
             ),
           ],
+          SizedBox(height: 32,),
           content(context),
-          RaisedButton(
-            onPressed: viewModel.nextStep,
-            child: Text("NEXT"),
-          ),
-          RaisedButton(
-            onPressed: viewModel.previousStep,
-            child: Text("PREVIOUS"),
-          ),
         ],
       );
     }

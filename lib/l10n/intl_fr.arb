@@ -63,5 +63,6 @@
   "addPostTitleShareOptions": "Share Options",
   "addPostTitleResume": "Resume",
   "addPostTitleAddPost": "Add Post",
-  "addPostStartButton": "START"
+  "addPostStartButton": "START",
+  "addPostBottomProgressOf": "of"
 }

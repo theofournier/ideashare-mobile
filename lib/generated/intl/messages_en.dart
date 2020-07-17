@@ -21,6 +21,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
+    "addPostBottomProgressOf" : MessageLookupByLibrary.simpleMessage("of"),
     "addPostStartButton" : MessageLookupByLibrary.simpleMessage("START"),
     "addPostTitleAddPost" : MessageLookupByLibrary.simpleMessage("Add Post"),
     "addPostTitleCategory" : MessageLookupByLibrary.simpleMessage("Category"),

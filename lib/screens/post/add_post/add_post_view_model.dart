@@ -19,7 +19,7 @@ class StepData {
 }
 
 class AddPostViewModel with ChangeNotifier {
-  AddPostStep currentStep;
+  AddPostStep currentStep = AddPostStep.category;
 
   void updateWith({
     AddPostStep currentStep,
@@ -42,5 +42,10 @@ class AddPostViewModel with ChangeNotifier {
 
   void goToStep(AddPostStep step) {
     updateWith(currentStep: step);
+  }
+
+  void reset(){
+    currentStep = null;
+    notifyListeners();
   }
 }
