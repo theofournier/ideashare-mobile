@@ -161,8 +161,9 @@ class AddPostContent extends StatelessWidget {
       return AddPostBottomAppBar(
         currentStep: viewModel.currentStep.index,
         totalStep: AddPostStep.values.length,
-        onNext: viewModel.nextStep,
-        onPrevious: viewModel.previousStep,
+        onNext: viewModel.currentStep != AddPostStep.resume ? viewModel.nextStep : viewModel.save,
+        onPrevious: viewModel.currentStep != AddPostStep.category ? viewModel.previousStep : null,
+        saveButton: viewModel.currentStep == AddPostStep.resume,
       );
     }
     return null;

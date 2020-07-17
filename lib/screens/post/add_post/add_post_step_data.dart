@@ -15,12 +15,10 @@ class AddPostStepData {
     this.content,
     this.title,
     this.description,
-    this.onNext,
   });
 
   final Widget content;
   final String title;
   final String description;
-  final Function onNext;
 
 }

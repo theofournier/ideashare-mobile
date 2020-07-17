@@ -8,12 +8,14 @@ class AddPostBottomAppBar extends StatelessWidget {
     this.onNext,
     this.totalStep,
     this.currentStep,
+    this.saveButton = false,
   });
 
   final VoidCallback onPrevious;
   final VoidCallback onNext;
   final int totalStep;
   final int currentStep;
+  final bool saveButton;
 
   double getProgressValue() {
     double progressPercent =
@@ -54,7 +56,9 @@ class AddPostBottomAppBar extends StatelessWidget {
             buildButton(
               context: context,
               onTap: onNext,
-              icon: Icons.arrow_forward_ios,
+              icon: saveButton ? Icons.check : Icons.arrow_forward_ios,
+                  color: saveButton ? Theme.of(context).accentColor : null,
+              iconColor: saveButton ? Colors.white : null,
             ),
           ],
         ),
@@ -66,7 +70,12 @@ class AddPostBottomAppBar extends StatelessWidget {
     BuildContext context,
     VoidCallback onTap,
     IconData icon,
+    Color iconColor,
+    Color color,
   }) {
+    if(onTap == null){
+      return SizedBox(width: 53,);
+    }
     return Material(
         type: MaterialType.transparency,
         child: Ink(
@@ -76,6 +85,7 @@ class AddPostBottomAppBar extends StatelessWidget {
               width: 1.0,
             ),
             shape: BoxShape.circle,
+            color: color,
           ),
           child: InkWell(
             borderRadius: BorderRadius.circular(1000.0),
@@ -85,7 +95,7 @@ class AddPostBottomAppBar extends StatelessWidget {
               child: Icon(
                 icon,
                 size: 35,
-                color: Theme.of(context).accentColor,
+                color: iconColor ?? Theme.of(context).accentColor,
               ),
             ),
           ),

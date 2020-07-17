@@ -78,7 +78,7 @@ class CustomTextFormField extends StatelessWidget {
         suffixIcon: _buildSuffixIcon(context),
       ),
       style: TextStyle(
-        color: Colors.black,
+        color: Theme.of(context).primaryColor,
         fontSize: textSize,
       ),
       textCapitalization: textCapitalization,

@@ -33,4 +33,8 @@ class AddPostViewModel with ChangeNotifier {
     post = Post();
     notifyListeners();
   }
+
+  void save() {
+    print("SAVE");
+  }
 }
