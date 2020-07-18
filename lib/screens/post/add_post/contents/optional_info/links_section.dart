@@ -33,6 +33,8 @@ class LinksSection extends StatelessWidget {
       hintText: S.of(context).addPostOptionalInfoLinksUrl,
       keyboardType: TextInputType.url,
       controller: controller,
+      autoFocus: true,
+      maxLines: 4,
     ).show(context);
   }
 
@@ -58,10 +60,13 @@ class LinksSection extends StatelessWidget {
                 .asMap()
                 .entries
                 .map(
-                  (link) => buildLinkItem(
-                    context,
-                    link.value,
-                    link.key,
+                  (link) => Container(
+                    margin: EdgeInsets.only(bottom: link.key < links.length - 1 ? 8 : 0),
+                    child: buildLinkItem(
+                      context,
+                      link.value,
+                      link.key,
+                    ),
                   ),
                 )
                 .toList(),
@@ -75,11 +80,18 @@ class LinksSection extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        InkWell(
-          onTap: () => Helpers.launchURL(context, link),
-          child: Text(
-            link,
-            style: Theme.of(context).textTheme.bodyText1.underline(),
+        Flexible(
+          child: InkWell(
+            onTap: () {},
+            child: SelectableText.rich(
+              TextSpan(
+                text: link,
+                style: Theme.of(context).textTheme.bodyText1.underline(),
+              ),
+              maxLines: 4,
+              minLines: 1,
+              onTap: () => Helpers.launchURL(context, link),
+            ),
           ),
         ),
         Row(

@@ -10,6 +10,8 @@ class AlertDialogTextField extends StatelessWidget {
     this.hintText,
     this.keyboardType,
     this.controller,
+    this.autoFocus = false,
+    this.maxLines,
   });
 
   final String title;
@@ -17,6 +19,8 @@ class AlertDialogTextField extends StatelessWidget {
   final String hintText;
   final TextInputType keyboardType;
   final TextEditingController controller;
+  final bool autoFocus;
+  final int maxLines;
 
   Future<String> show(BuildContext context) async {
     return await showDialog<String>(
@@ -43,6 +47,8 @@ class AlertDialogTextField extends StatelessWidget {
             controller: controller,
             hintText: hintText,
             keyboardType: keyboardType,
+            autoFocus: autoFocus,
+            maxLines: maxLines,
           ),
         ],
       ),
