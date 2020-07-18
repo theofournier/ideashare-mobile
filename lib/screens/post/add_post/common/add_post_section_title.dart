@@ -41,12 +41,12 @@ class AddPostSectionTitle extends StatelessWidget {
               ),
               if (description != null) ...[
                 SizedBox(
-                  width: 8,
+                  width: 2,
                 ),
                 Icon(
                   Icons.info_outline,
                   color: AppColors.greyMedium,
-                  size: 20,
+                  size: 15,
                 ),
               ],
             ],
@@ -59,8 +59,8 @@ class AddPostSectionTitle extends StatelessWidget {
           IconButton(
             icon: Icon(
               Icons.add_circle,
-              color: Theme.of(context).accentColor,
             ),
+            color: Theme.of(context).accentColor,
             iconSize: 35,
             onPressed: onAdd,
           )

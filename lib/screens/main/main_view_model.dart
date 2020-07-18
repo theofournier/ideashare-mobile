@@ -6,6 +6,7 @@ import 'package:ideashare/screens/notifications/notifications_screen.dart';
 import 'package:ideashare/screens/post/add_post/add_post_screen.dart';
 import 'package:ideashare/screens/profile/profile_screen.dart';
 import 'package:ideashare/screens/search/search_screen.dart';
+import 'package:outline_material_icons/outline_material_icons.dart';
 
 enum TabItem {
   home,
@@ -33,7 +34,7 @@ class MainViewModel with ChangeNotifier {
     TabItemData(
       tabItem: TabItem.home,
       title: S.of(context).tabTitleHome,
-      icon: Icons.home,
+      icon: currentTab == TabItem.home ? Icons.home : OMIcons.home,
     ),
     TabItemData(
       tabItem: TabItem.search,
