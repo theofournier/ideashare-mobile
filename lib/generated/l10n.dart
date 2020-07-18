@@ -792,6 +792,76 @@ class S {
       args: [],
     );
   }
+
+  /// `Link`
+  String get addPostOptionalInfoLinksTitle {
+    return Intl.message(
+      'Link',
+      name: 'addPostOptionalInfoLinksTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Useful website that help describe your post.`
+  String get addPostOptionalInfoLinksDescription {
+    return Intl.message(
+      'Useful website that help describe your post.',
+      name: 'addPostOptionalInfoLinksDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get cancel {
+    return Intl.message(
+      'Cancel',
+      name: 'cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save`
+  String get save {
+    return Intl.message(
+      'Save',
+      name: 'save',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Links`
+  String get addPostOptionalInfoLinksAlertTitle {
+    return Intl.message(
+      'Links',
+      name: 'addPostOptionalInfoLinksAlertTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `URL`
+  String get addPostOptionalInfoLinksUrl {
+    return Intl.message(
+      'URL',
+      name: 'addPostOptionalInfoLinksUrl',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid URL`
+  String get invalidUrl {
+    return Intl.message(
+      'Invalid URL',
+      name: 'invalidUrl',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

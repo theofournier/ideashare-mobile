@@ -7,7 +7,7 @@ import 'package:ideashare/services/models/post/post_note/post_note.dart';
 class AddPostViewModel with ChangeNotifier {
   AddPostStep currentStep = AddPostStep.optionalInfo;
   Post post = Post();
-  PostInfo postInfo = PostInfo();
+  PostInfo postInfo = PostInfo(urlLinks: [], images: [],);
   PostNote postNote = PostNote();
 
   void updateWith({

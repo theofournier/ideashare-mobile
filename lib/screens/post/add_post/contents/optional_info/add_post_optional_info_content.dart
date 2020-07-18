@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:ideashare/common_widgets/custom_text_form_field.dart';
 import 'package:ideashare/generated/l10n.dart';
-import 'package:ideashare/screens/post/add_post/add_post_screen.dart';
 import 'package:ideashare/screens/post/add_post/add_post_view_model.dart';
 import 'package:ideashare/screens/post/add_post/common/add_post_section_title.dart';
+import 'package:ideashare/screens/post/add_post/contents/optional_info/links_section.dart';
 
 class AddPostOptionalInfoContent extends StatefulWidget {
   AddPostOptionalInfoContent({this.viewModel});
@@ -23,6 +23,7 @@ class _AddPostOptionalInfoContentState
   final double _spaceTitle = 8;
 
   final TextEditingController _noteController = TextEditingController();
+  final TextEditingController _linkController = TextEditingController();
 
   void _save() {
     viewModel.postNote.text = _noteController.text;
@@ -38,6 +39,7 @@ class _AddPostOptionalInfoContentState
   void dispose() {
     _save();
 
+    _linkController.dispose();
     _noteController.dispose();
     super.dispose();
   }
@@ -94,15 +96,18 @@ class _AddPostOptionalInfoContentState
   }
 
   Widget _buildLinks() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        AddPostSectionTitle(
-          title: "Link",
-          onAdd: () => print("ADD LINK"),
-        ),
-        Text("LINKS"),
-      ],
+    return LinksSection(
+      links: viewModel.postInfo.urlLinks,
+      spaceTitle: _spaceTitle,
+      controller: _linkController,
+      onAddLink: (String link) => viewModel.updateWith(
+          postInfo: viewModel.postInfo..urlLinks.add(link)),
+      onEditLink: (int index, String link) {
+        viewModel.updateWith(postInfo: viewModel.postInfo..urlLinks[index] = link);
+      },
+      onDeleteLink: (int index) {
+        viewModel.updateWith(postInfo: viewModel.postInfo..urlLinks.removeAt(index));
+      }
     );
   }
 

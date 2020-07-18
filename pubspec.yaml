@@ -24,6 +24,7 @@ dependencies:
   image_picker: ^0.6.7+4
   image_cropper: ^1.2.3
   flushbar: ^1.10.4
+  url_launcher: ^5.5.0
 
   cupertino_icons: ^0.1.2
 

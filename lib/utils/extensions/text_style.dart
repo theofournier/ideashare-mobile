@@ -24,4 +24,12 @@ extension TextStyleExtensions on TextStyle {
       ),
     );
   }
+
+  TextStyle underline() {
+    return this.merge(
+      TextStyle(
+        decoration: TextDecoration.underline,
+      )
+    );
+  }
 }

@@ -71,5 +71,11 @@
   "addPostInfoInputResume": "Resume",
   "addPostInfoInputDescription": "Description",
   "addPostOptionalInfoNoteTitle": "Note",
-  "addPostOptionalInfoNoteDescription": "Only you can read this note."
+  "addPostOptionalInfoNoteDescription": "Only you can read this note.",
+  "addPostOptionalInfoLinksDescription": "Useful website that help describe your post.",
+  "cancel": "Cancel",
+  "save": "Save",
+  "addPostOptionalInfoLinksAlertTitle": "Links",
+  "addPostOptionalInfoLinksUrl": "URL",
+  "invalidUrl": "Invalid URL"
 }
