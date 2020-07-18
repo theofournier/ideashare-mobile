@@ -772,6 +772,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Note`
+  String get addPostOptionalInfoNoteTitle {
+    return Intl.message(
+      'Note',
+      name: 'addPostOptionalInfoNoteTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Only you can read this note.`
+  String get addPostOptionalInfoNoteDescription {
+    return Intl.message(
+      'Only you can read this note.',
+      name: 'addPostOptionalInfoNoteDescription',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

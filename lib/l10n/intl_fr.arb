@@ -69,5 +69,7 @@
   "addPostCategoryIssueTitle": "Issue",
   "addPostInfoInputTitle": "Title",
   "addPostInfoInputResume": "Resume",
-  "addPostInfoInputDescription": "Description"
+  "addPostInfoInputDescription": "Description",
+  "addPostOptionalInfoNoteTitle": "Note",
+  "addPostOptionalInfoNoteDescription": "Only you can read this note."
 }

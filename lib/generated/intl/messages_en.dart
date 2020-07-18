@@ -27,6 +27,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "addPostInfoInputDescription" : MessageLookupByLibrary.simpleMessage("Description"),
     "addPostInfoInputResume" : MessageLookupByLibrary.simpleMessage("Resume"),
     "addPostInfoInputTitle" : MessageLookupByLibrary.simpleMessage("Title"),
+    "addPostOptionalInfoNoteDescription" : MessageLookupByLibrary.simpleMessage("Only you can read this note."),
+    "addPostOptionalInfoNoteTitle" : MessageLookupByLibrary.simpleMessage("Note"),
     "addPostStartButton" : MessageLookupByLibrary.simpleMessage("START"),
     "addPostTitleAddPost" : MessageLookupByLibrary.simpleMessage("Add Post"),
     "addPostTitleCategory" : MessageLookupByLibrary.simpleMessage("Category"),

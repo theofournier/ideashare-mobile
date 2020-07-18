@@ -23,12 +23,9 @@ class _AddPostInfoContentState extends State<AddPostInfoContent> {
   final TextEditingController _descriptionController = TextEditingController();
 
   void _save() {
-    Post post = viewModel.post;
-    PostInfo postInfo = viewModel.postInfo;
-
-    post.title = _titleController.text;
-    post.resume = _resumeController.text;
-    postInfo.description = _descriptionController.text;
+    viewModel.post.title = _titleController.text;
+    viewModel.post.resume = _resumeController.text;
+    viewModel.postInfo.description = _descriptionController.text;
   }
 
   @override
@@ -78,7 +75,7 @@ class _AddPostInfoContentState extends State<AddPostInfoContent> {
             border: InputBorder.none,
           ),
           SizedBox(
-            height: 8,
+            height: 16,
           ),
           CustomTextFormField(
             controller: _descriptionController,
