@@ -10,7 +10,6 @@ class LinksSection extends StatelessWidget {
   LinksSection({
     this.links,
     this.spaceTitle,
-    this.controller,
     this.onAddLink,
     this.onEditLink,
     this.onDeleteLink,
@@ -18,23 +17,19 @@ class LinksSection extends StatelessWidget {
 
   final List<String> links;
   final double spaceTitle;
-  final TextEditingController controller;
   final Function(String link) onAddLink;
   final Function(int index, String link) onEditLink;
   final Function(int index) onDeleteLink;
 
   Future<String> onLink(BuildContext context, [String initialLink]) async {
-    if (initialLink != null && initialLink.isNotEmpty) {
-      controller.text = initialLink;
-    }
     return await AlertDialogTextField(
       title: S.of(context).addPostOptionalInfoLinksAlertTitle,
       message: S.of(context).addPostOptionalInfoLinksDescription,
       hintText: S.of(context).addPostOptionalInfoLinksUrl,
       keyboardType: TextInputType.url,
-      controller: controller,
       autoFocus: true,
       maxLines: 4,
+      initialText: initialLink,
     ).show(context);
   }
 

@@ -3,24 +3,24 @@ import 'package:ideashare/common_widgets/alert_dialog_button.dart';
 import 'package:ideashare/common_widgets/custom_text_form_field.dart';
 import 'package:ideashare/generated/l10n.dart';
 
-class AlertDialogTextField extends StatelessWidget {
+class AlertDialogTextField extends StatefulWidget {
   AlertDialogTextField({
     this.title,
     this.message,
     this.hintText,
     this.keyboardType,
-    this.controller,
     this.autoFocus = false,
     this.maxLines,
+    this.initialText = "",
   });
 
   final String title;
   final String message;
   final String hintText;
   final TextInputType keyboardType;
-  final TextEditingController controller;
   final bool autoFocus;
   final int maxLines;
+  final String initialText;
 
   Future<String> show(BuildContext context) async {
     return await showDialog<String>(
@@ -30,25 +30,44 @@ class AlertDialogTextField extends StatelessWidget {
   }
 
   @override
+  _AlertDialogTextFieldState createState() => _AlertDialogTextFieldState();
+}
+
+class _AlertDialogTextFieldState extends State<AlertDialogTextField> {
+  TextEditingController _controller = TextEditingController();
+
+  @override
+  void initState() {
+    _controller.text = widget.initialText;
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(title),
+      title: Text(widget.title),
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          if (message != null) ...[
-            Text(message),
+          if (widget.message != null) ...[
+            Text(widget.message),
             SizedBox(
               height: 16,
             ),
           ],
           CustomTextFormField(
-            controller: controller,
-            hintText: hintText,
-            keyboardType: keyboardType,
-            autoFocus: autoFocus,
-            maxLines: maxLines,
+            controller: _controller,
+            hintText: widget.hintText,
+            keyboardType: widget.keyboardType,
+            autoFocus: widget.autoFocus,
+            maxLines: widget.maxLines,
           ),
         ],
       ),
@@ -61,9 +80,7 @@ class AlertDialogTextField extends StatelessWidget {
           text: S.of(context).save,
           fontWeight: FontWeight.w600,
           onPressed: () {
-            String text = controller.text;
-            controller.text = "";
-            Navigator.of(context).pop(text);
+            Navigator.of(context).pop(_controller.text);
           },
         ),
       ],

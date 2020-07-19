@@ -23,7 +23,6 @@ class _AddPostOptionalInfoContentState
   final double _spaceTitle = 8;
 
   final TextEditingController _noteController = TextEditingController();
-  final TextEditingController _linkController = TextEditingController();
 
   void _save() {
     viewModel.postNote.text = _noteController.text;
@@ -39,7 +38,6 @@ class _AddPostOptionalInfoContentState
   void dispose() {
     _save();
 
-    _linkController.dispose();
     _noteController.dispose();
     super.dispose();
   }
@@ -97,18 +95,18 @@ class _AddPostOptionalInfoContentState
 
   Widget _buildLinks() {
     return LinksSection(
-      links: viewModel.postInfo.urlLinks,
-      spaceTitle: _spaceTitle,
-      controller: _linkController,
-      onAddLink: (String link) => viewModel.updateWith(
-          postInfo: viewModel.postInfo..urlLinks.add(link)),
-      onEditLink: (int index, String link) {
-        viewModel.updateWith(postInfo: viewModel.postInfo..urlLinks[index] = link);
-      },
-      onDeleteLink: (int index) {
-        viewModel.updateWith(postInfo: viewModel.postInfo..urlLinks.removeAt(index));
-      }
-    );
+        links: viewModel.postInfo.urlLinks,
+        spaceTitle: _spaceTitle,
+        onAddLink: (String link) => viewModel.updateWith(
+            postInfo: viewModel.postInfo..urlLinks.add(link)),
+        onEditLink: (int index, String link) {
+          viewModel.updateWith(
+              postInfo: viewModel.postInfo..urlLinks[index] = link);
+        },
+        onDeleteLink: (int index) {
+          viewModel.updateWith(
+              postInfo: viewModel.postInfo..urlLinks.removeAt(index));
+        });
   }
 
   Widget _buildNote() {
