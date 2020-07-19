@@ -873,10 +873,10 @@ class S {
     );
   }
 
-  /// `The language of your post. By default, based on your phone language.`
+  /// `The language of your post.`
   String get addPostOptionalInfoLanguageDescription {
     return Intl.message(
-      'The language of your post. By default, based on your phone language.',
+      'The language of your post.',
       name: 'addPostOptionalInfoLanguageDescription',
       desc: '',
       args: [],

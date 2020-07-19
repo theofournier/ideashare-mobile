@@ -27,7 +27,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "addPostInfoInputDescription" : MessageLookupByLibrary.simpleMessage("Description"),
     "addPostInfoInputResume" : MessageLookupByLibrary.simpleMessage("Resume"),
     "addPostInfoInputTitle" : MessageLookupByLibrary.simpleMessage("Title"),
-    "addPostOptionalInfoLanguageDescription" : MessageLookupByLibrary.simpleMessage("The language of your post. By default, based on your phone language."),
+    "addPostOptionalInfoLanguageDescription" : MessageLookupByLibrary.simpleMessage("The language of your post."),
     "addPostOptionalInfoLanguageSectionTitleOthers" : MessageLookupByLibrary.simpleMessage("Languages"),
     "addPostOptionalInfoLanguageSectionTitlePopulars" : MessageLookupByLibrary.simpleMessage("Populars"),
     "addPostOptionalInfoLanguageTitle" : MessageLookupByLibrary.simpleMessage("Language"),

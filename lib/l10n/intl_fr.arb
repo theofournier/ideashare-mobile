@@ -83,7 +83,7 @@
   "addPostOptionalInfoLinksUrl": "URL",
   "invalidUrl": "Invalid URL",
   "addPostOptionalInfoLanguageTitle": "Language",
-  "addPostOptionalInfoLanguageDescription": "The language of your post. By default, based on your phone language.",
+  "addPostOptionalInfoLanguageDescription": "The language of your post.",
   "addPostOptionalInfoLanguageSectionTitlePopulars": "Populars",
   "addPostOptionalInfoLanguageSectionTitleOthers": "Languages"
 }
