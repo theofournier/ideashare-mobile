@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 
+enum IconPosition {
+  left,
+  right,
+}
+
 class CustomRaisedButton extends StatelessWidget {
   CustomRaisedButton({
     Key key,
@@ -12,8 +17,14 @@ class CustomRaisedButton extends StatelessWidget {
     this.height = 40,
     this.width,
     this.elevation = 2,
+    this.upperCase = true,
     this.onPressed,
     this.loading = false,
+    this.icon,
+    this.iconSize = 18,
+    this.iconColor,
+    this.iconPosition = IconPosition.left,
+    this.childAlignment = Alignment.center,
   });
 
   final String text;
@@ -25,8 +36,14 @@ class CustomRaisedButton extends StatelessWidget {
   final double height;
   final double width;
   final double elevation;
+  final bool upperCase;
   final VoidCallback onPressed;
   final bool loading;
+  final IconData icon;
+  final double iconSize;
+  final Color iconColor;
+  final IconPosition iconPosition;
+  final Alignment childAlignment;
 
   @override
   Widget build(BuildContext context) {
@@ -45,22 +62,57 @@ class CustomRaisedButton extends StatelessWidget {
         ),
         elevation: elevation,
         color: backgroundColor ?? Theme.of(context).accentColor,
-        child: loading ? buildSpinner() : Text(
-          text.toUpperCase(),
-          style: Theme.of(context).textTheme.button.merge(
-                TextStyle(fontSize: textSize, color: textColor),
-              ),
+        child: Align(
+          alignment: childAlignment,
+          child: buildChild(context),
         ),
       ),
     );
+  }
+
+  Widget buildChild(BuildContext context) {
+    if (loading) {
+      return buildSpinner();
+    }
+    Widget textWidget = Text(
+      upperCase ? text.toUpperCase() : text,
+      style: Theme.of(context).textTheme.button.merge(
+            TextStyle(fontSize: textSize, color: textColor),
+          ),
+    );
+    if (icon != null) {
+      Icon iconWidget = Icon(
+        icon,
+        size: iconSize,
+        color: iconColor ?? Theme.of(context).accentColor,
+      );
+      return Row(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          if (iconPosition == IconPosition.left) ...[
+            iconWidget,
+            SizedBox(
+              width: 8,
+            ),
+          ],
+          Flexible(child: textWidget),
+          if (iconPosition == IconPosition.right) ...[
+            SizedBox(
+              width: 8,
+            ),
+            iconWidget,
+          ],
+        ],
+      );
+    }
+    return textWidget;
   }
 
   Widget buildSpinner() {
     return SizedBox(
       height: height * 0.60,
       width: height * 0.60,
-      child: CircularProgressIndicator(
-      ),
+      child: CircularProgressIndicator(),
     );
   }
 }
