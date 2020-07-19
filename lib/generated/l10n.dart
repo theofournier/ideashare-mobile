@@ -793,10 +793,10 @@ class S {
     );
   }
 
-  /// `Link`
+  /// `Links`
   String get addPostOptionalInfoLinksTitle {
     return Intl.message(
-      'Link',
+      'Links',
       name: 'addPostOptionalInfoLinksTitle',
       desc: '',
       args: [],
@@ -858,6 +858,46 @@ class S {
     return Intl.message(
       'Invalid URL',
       name: 'invalidUrl',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Language`
+  String get addPostOptionalInfoLanguageTitle {
+    return Intl.message(
+      'Language',
+      name: 'addPostOptionalInfoLanguageTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The language of your post. By default, based on your phone language.`
+  String get addPostOptionalInfoLanguageDescription {
+    return Intl.message(
+      'The language of your post. By default, based on your phone language.',
+      name: 'addPostOptionalInfoLanguageDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Populars`
+  String get addPostOptionalInfoLanguageSectionTitlePopulars {
+    return Intl.message(
+      'Populars',
+      name: 'addPostOptionalInfoLanguageSectionTitlePopulars',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Languages`
+  String get addPostOptionalInfoLanguageSectionTitleOthers {
+    return Intl.message(
+      'Languages',
+      name: 'addPostOptionalInfoLanguageSectionTitleOthers',
       desc: '',
       args: [],
     );

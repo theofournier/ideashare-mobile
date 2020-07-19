@@ -27,8 +27,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "addPostInfoInputDescription" : MessageLookupByLibrary.simpleMessage("Description"),
     "addPostInfoInputResume" : MessageLookupByLibrary.simpleMessage("Resume"),
     "addPostInfoInputTitle" : MessageLookupByLibrary.simpleMessage("Title"),
+    "addPostOptionalInfoLanguageDescription" : MessageLookupByLibrary.simpleMessage("The language of your post. By default, based on your phone language."),
+    "addPostOptionalInfoLanguageSectionTitleOthers" : MessageLookupByLibrary.simpleMessage("Languages"),
+    "addPostOptionalInfoLanguageSectionTitlePopulars" : MessageLookupByLibrary.simpleMessage("Populars"),
+    "addPostOptionalInfoLanguageTitle" : MessageLookupByLibrary.simpleMessage("Language"),
     "addPostOptionalInfoLinksAlertTitle" : MessageLookupByLibrary.simpleMessage("Links"),
     "addPostOptionalInfoLinksDescription" : MessageLookupByLibrary.simpleMessage("Useful website that help describe your post."),
+    "addPostOptionalInfoLinksTitle" : MessageLookupByLibrary.simpleMessage("Links"),
     "addPostOptionalInfoLinksUrl" : MessageLookupByLibrary.simpleMessage("URL"),
     "addPostOptionalInfoNoteDescription" : MessageLookupByLibrary.simpleMessage("Only you can read this note."),
     "addPostOptionalInfoNoteTitle" : MessageLookupByLibrary.simpleMessage("Note"),
@@ -41,7 +46,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "addPostTitleOptionalInfo" : MessageLookupByLibrary.simpleMessage("Optional Info"),
     "addPostTitleResume" : MessageLookupByLibrary.simpleMessage("Resume"),
     "addPostTitleShareOptions" : MessageLookupByLibrary.simpleMessage("Share Options"),
-    "authScreenSignIn" : MessageLookupByLibrary.simpleMessage("Log In"),
+    "authScreenSignIn" : MessageLookupByLibrary.simpleMessage("Sign In"),
     "authScreenSignUp" : MessageLookupByLibrary.simpleMessage("Sign Up"),
     "authScreenSubtitle" : MessageLookupByLibrary.simpleMessage("Share your ideas with the world or keep them private"),
     "authScreenTitle" : MessageLookupByLibrary.simpleMessage("IdeaShare"),
@@ -64,6 +69,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "errorTooManyRequests" : MessageLookupByLibrary.simpleMessage("We have blocked all requests from this device due to unusual activity. Try again later."),
     "errorUserNotFound" : MessageLookupByLibrary.simpleMessage("The email address is not registered."),
     "errorWeakPassword" : MessageLookupByLibrary.simpleMessage("The password must be 6 characters long or more."),
+    "errorWrongPassword" : MessageLookupByLibrary.simpleMessage("The password is incorrect."),
     "forgotPasswordScreenAppBarTitle" : MessageLookupByLibrary.simpleMessage("Forgot Password"),
     "forgotPasswordScreenButton" : MessageLookupByLibrary.simpleMessage("Send"),
     "forgotPasswordScreenEmailAddress" : MessageLookupByLibrary.simpleMessage("Email address"),
@@ -97,8 +103,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "socialFooterFacebook" : MessageLookupByLibrary.simpleMessage("Facebook"),
     "socialFooterGoogle" : MessageLookupByLibrary.simpleMessage("Google"),
     "socialFooterOr" : MessageLookupByLibrary.simpleMessage("Or"),
+    "tabTitleAddPost" : MessageLookupByLibrary.simpleMessage("Add post"),
     "tabTitleHome" : MessageLookupByLibrary.simpleMessage("Home"),
     "tabTitleNotifications" : MessageLookupByLibrary.simpleMessage("Notifications"),
-    "tabTitleProfile" : MessageLookupByLibrary.simpleMessage("Profile")
+    "tabTitleProfile" : MessageLookupByLibrary.simpleMessage("Profile"),
+    "tabTitleSearch" : MessageLookupByLibrary.simpleMessage("Search")
   };
 }

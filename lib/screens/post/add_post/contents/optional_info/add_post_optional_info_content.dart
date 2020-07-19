@@ -1,9 +1,13 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localized_locales/flutter_localized_locales.dart';
 import 'package:ideashare/common_widgets/custom_text_form_field.dart';
 import 'package:ideashare/generated/l10n.dart';
 import 'package:ideashare/screens/post/add_post/add_post_view_model.dart';
 import 'package:ideashare/screens/post/add_post/common/add_post_section_title.dart';
+import 'package:ideashare/screens/post/add_post/contents/optional_info/language_section.dart';
 import 'package:ideashare/screens/post/add_post/contents/optional_info/links_section.dart';
+import 'package:ideashare/utils/custom_locales.dart';
 
 class AddPostOptionalInfoContent extends StatefulWidget {
   AddPostOptionalInfoContent({this.viewModel});
@@ -23,6 +27,12 @@ class _AddPostOptionalInfoContentState
   final double _spaceTitle = 8;
 
   final TextEditingController _noteController = TextEditingController();
+
+  void _initLanguage() {
+    if(viewModel.post.language == null){
+      viewModel.post.language = Localizations.localeOf(context).languageCode;
+    }
+  }
 
   void _save() {
     viewModel.postNote.text = _noteController.text;
@@ -44,6 +54,8 @@ class _AddPostOptionalInfoContentState
 
   @override
   Widget build(BuildContext context) {
+    _initLanguage();
+
     List<Widget> sections = [
       _buildLanguage(),
       _buildImages(),
@@ -65,17 +77,13 @@ class _AddPostOptionalInfoContentState
   }
 
   Widget _buildLanguage() {
-    return Row(
-      children: <Widget>[
-        AddPostSectionTitle(
-          title: "Language",
-          description: "Description",
-        ),
-        SizedBox(
-          width: 40,
-        ),
-        Expanded(child: Text("TEST")),
-      ],
+    return LanguageSection(
+      currentLanguageKey: viewModel.post.language,
+      languages: viewModel.languages,
+      popularLanguageCodes: viewModel.popularLanguageCodes,
+      onSave: (languageKey) => viewModel.updateWith(
+        post: viewModel.post..language = languageKey,
+      ),
     );
   }
 

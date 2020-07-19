@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_localized_locales/flutter_localized_locales.dart';
 import 'package:ideashare/generated/l10n.dart';
 import 'package:ideashare/resources/app_config.dart';
 import 'package:ideashare/resources/theme.dart' as Theme;
@@ -53,6 +54,7 @@ class MyApp extends StatelessWidget {
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
               GlobalCupertinoLocalizations.delegate,
+              LocaleNamesLocalizationsDelegate(),
             ],
             supportedLocales: S.delegate.supportedLocales,
             onGenerateRoute: Router.onGenerateRoute,

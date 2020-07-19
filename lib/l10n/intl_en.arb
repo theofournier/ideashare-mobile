@@ -75,11 +75,15 @@
   "addPostInfoInputDescription": "Description",
   "addPostOptionalInfoNoteTitle": "Note",
   "addPostOptionalInfoNoteDescription": "Only you can read this note.",
-  "addPostOptionalInfoLinksTitle": "Link",
+  "addPostOptionalInfoLinksTitle": "Links",
   "addPostOptionalInfoLinksDescription": "Useful website that help describe your post.",
   "cancel": "Cancel",
   "save": "Save",
   "addPostOptionalInfoLinksAlertTitle": "Links",
   "addPostOptionalInfoLinksUrl": "URL",
-  "invalidUrl": "Invalid URL"
+  "invalidUrl": "Invalid URL",
+  "addPostOptionalInfoLanguageTitle": "Language",
+  "addPostOptionalInfoLanguageDescription": "The language of your post. By default, based on your phone language.",
+  "addPostOptionalInfoLanguageSectionTitlePopulars": "Populars",
+  "addPostOptionalInfoLanguageSectionTitleOthers": "Languages"
 }
