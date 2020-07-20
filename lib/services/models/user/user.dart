@@ -4,6 +4,7 @@ import 'package:ideashare/services/models/common/doc_time.dart';
 import 'package:ideashare/services/models/user/user_counts.dart';
 import 'package:ideashare/services/models/user/user_info.dart';
 import 'package:ideashare/services/models/user/user_label.dart';
+import 'package:ideashare/services/models/user/user_premium.dart';
 import 'package:ideashare/utils/enum_string.dart';
 
 class User {
@@ -14,13 +15,14 @@ class User {
     this.followed,
     this.counts,
     this.labels,
-    this.premium = false,
+    this.premium,
     this.userRole = UserRole.user,
     this.docTime,
   }) {
     this.info = this.info ?? UserInfo();
     this.counts = this.counts ?? UserCounts();
     this.labels = this.labels ?? [];
+    this.premium = this.premium ?? UserPremium();
   }
 
   final String id;
@@ -29,7 +31,7 @@ class User {
   final Visibleness followed;
   UserCounts counts;
   List<UserLabel> labels;
-  final bool premium;
+  UserPremium premium;
   final UserRole userRole;
   final DocTime docTime;
 
@@ -52,7 +54,7 @@ class User {
                           : UserLabel.fromMap(
                               e.key, e.value as Map<String, dynamic>),
                     ),
-            premium: json['premium'] as bool,
+            premium: UserPremium.fromMap(json['premium']),
             userRole: EnumString.fromString(UserRole.values, json['userRole']),
             docTime: DocTime.fromMap(json["docTime"]),
           );
@@ -64,7 +66,7 @@ class User {
         'followed': EnumString.string(this.followed),
         "counts": counts.toMap(),
         'labels': {for (UserLabel label in labels) label.id: label.toMap()},
-        'premium': this.premium,
+        'premium': this.premium.toMap(),
         'userRole': EnumString.string(this.userRole),
         'deleted': this.docTime.toMap(),
       };
@@ -96,7 +98,11 @@ class User {
         followers: 0,
       ),
       labels: [],
-      premium: false,
+      premium: UserPremium(
+        premium: false,
+        createdAt: null,
+        expiresAt: null,
+      ),
       userRole: UserRole.user,
       docTime: DocTime(
         deleted: false,
