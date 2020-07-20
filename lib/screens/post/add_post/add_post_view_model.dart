@@ -3,17 +3,13 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:ideashare/screens/post/add_post/add_post_step_data.dart';
 import 'package:ideashare/services/models/post/post/post.dart';
-import 'package:ideashare/services/models/post/post_infos/post_info.dart';
+import 'package:ideashare/services/models/post/post/post_info.dart';
 import 'package:ideashare/services/models/post/post_note/post_note.dart';
 import 'package:ideashare/utils/custom_locales.dart';
 
 class AddPostViewModel with ChangeNotifier {
   AddPostStep currentStep = AddPostStep.linkedIssue;
   Post post = Post();
-  PostInfo postInfo = PostInfo(
-    urlLinks: [],
-    images: [],
-  );
   PostNote postNote = PostNote();
   List<File> images = [];
   Post linkedIssue;
@@ -32,7 +28,7 @@ class AddPostViewModel with ChangeNotifier {
   }) {
     this.currentStep = currentStep ?? this.currentStep;
     this.post = post ?? this.post;
-    this.postInfo = postInfo ?? this.postInfo;
+    this.post.info = postInfo ?? this.post.info;
     this.postNote = postNote ?? this.postNote;
     this.images = images ?? this.images;
     notifyListeners();
@@ -57,10 +53,6 @@ class AddPostViewModel with ChangeNotifier {
   void reset() {
     currentStep = null;
     post = Post();
-    postInfo = PostInfo(
-      urlLinks: [],
-      images: [],
-    );
     postNote = PostNote();
     images = [];
     notifyListeners();

@@ -3,7 +3,6 @@ import 'package:ideashare/utils/enum_string.dart';
 
 class PostShareOptions {
   PostShareOptions({
-    this.postId,
     this.privacy,
     this.anonymous,
     this.like,
@@ -18,7 +17,6 @@ class PostShareOptions {
     this.status,
   });
 
-  final String postId;
   final Privacy privacy;
   final bool anonymous;
   final Visibleness like;
@@ -32,8 +30,7 @@ class PostShareOptions {
   final Visibleness contact;
   final Visibleness status;
 
-  factory PostShareOptions.fromMap(String postId, Map<String, dynamic> json) => PostShareOptions(
-    postId: postId,
+  factory PostShareOptions.fromMap(Map<String, dynamic> json) => PostShareOptions(
     privacy: EnumString.fromString(Privacy.values, json["privacy"]),
     anonymous: json["anonymous"],
     like: EnumString.fromString(Visibleness.values, json["like"]),

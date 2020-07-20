@@ -39,8 +39,7 @@ class AddPostCategoryContent extends StatelessWidget{
       ];
 
   void onTap(PostType category) {
-    Post post = viewModel.post..category = category;
-    viewModel.updateWith(post: post);
+    viewModel.updateWith(post: viewModel.post..category = category);
   }
 
   @override

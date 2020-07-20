@@ -1,74 +1,48 @@
 import 'package:ideashare/constants/constants.dart';
 import 'package:ideashare/services/models/common/doc_time.dart';
+import 'package:ideashare/services/models/common/owner_info.dart';
+import 'package:ideashare/services/models/post/post/post_counts.dart';
+import 'package:ideashare/services/models/post/post/post_info.dart';
 import 'package:ideashare/services/models/post/post/post_labels.dart';
-import 'package:ideashare/services/models/post/post_share_options/post_share_options.dart';
+import 'package:ideashare/services/models/post/post/post_share_options.dart';
 import 'package:ideashare/utils/enum_string.dart';
 
 class Post {
   Post({
     this.id,
     this.category,
-    this.ownerId,
-    this.ownerFirstName,
-    this.ownerLastName,
-    this.ownerPhotoUrl,
-    this.title,
-    this.imageUrl,
-    this.resume,
+    this.ownerInfo,
+    this.info,
     this.labels,
-    this.language,
-    this.status,
+    this.status = PostStatusType.open,
     this.shareOptions,
-    this.viewsCount,
-    this.likesCount,
-    this.followersCount,
-    this.workersCount,
-    this.commentsCount,
-    this.helpsCount,
-    this.newsCount,
-    this.linkedPostsCount,
-    this.notesCount,
-    this.premium,
+    this.counts,
+    this.premium = false,
     this.docTime,
-  });
+  }) {
+    this.ownerInfo = this.ownerInfo ?? OwnerInfo();
+    this.info = this.info ?? PostInfo();
+    this.labels = this.labels ?? [];
+    this.shareOptions = this.shareOptions ?? PostShareOptions();
+    this.counts = this.counts ?? PostCounts();
+  }
 
-   final String id;
-   PostType category;
-   String ownerId;
-   String ownerFirstName;
-   String ownerLastName;
-   String ownerPhotoUrl;
-   String title;
-   String imageUrl;
-   String resume;
-   List<PostLabel> labels;
-   String language;
-   PostStatusType status;
-   PostShareOptions shareOptions;
-   int viewsCount;
-   int likesCount;
-   int followersCount;
-   int workersCount;
-   int commentsCount;
-   int helpsCount;
-   int newsCount;
-   int linkedPostsCount;
-   int notesCount;
-   bool premium;
-   DocTime docTime;
-
-  
+  final String id;
+  PostType category;
+  OwnerInfo ownerInfo;
+  PostInfo info;
+  List<PostLabel> labels;
+  PostStatusType status;
+  PostShareOptions shareOptions;
+  PostCounts counts;
+  bool premium;
+  DocTime docTime;
 
   factory Post.fromMap(String id, Map<String, dynamic> json) => Post(
         id: id,
         category: EnumString.fromString(PostType.values, json["category"]),
-        ownerId: json["ownerId"],
-        ownerFirstName: json["ownerFirstName"],
-        ownerLastName: json["ownerLastName"],
-        ownerPhotoUrl: json["ownerPhotoUrl"],
-        title: json["title"],
-        imageUrl: json["imageUrl"],
-        resume: json["resume"],
+        ownerInfo: OwnerInfo.fromMap(json["ownerInfo"]),
+        info: PostInfo.fromMap(json["info"]),
         labels: (json['labels'] as Map<String, dynamic>) == null ||
                 (json['labels'] as Map<String, dynamic>).length == 0
             ? []
@@ -77,44 +51,21 @@ class Post {
                       ? null
                       : PostLabel(id: e.key, title: e.value),
                 ),
-        language: json["language"],
         status: EnumString.fromString(PostStatusType.values, json["status"]),
-        shareOptions: PostShareOptions.fromMap(id, json["shareOptions"]),
-        viewsCount: json["viewsCount"],
-        likesCount: json["likesCount"],
-        followersCount: json["followersCount"],
-        workersCount: json["workersCount"],
-        commentsCount: json["commentsCount"],
-        helpsCount: json["helpsCount"],
-        newsCount: json["newsCount"],
-        linkedPostsCount: json["linkedPostsCount"],
-        notesCount: json["notesCount"],
+        shareOptions: PostShareOptions.fromMap(json["shareOptions"]),
+        counts: PostCounts.fromMap(json["counts"]),
         premium: json["premium"],
         docTime: DocTime.fromMap(json["docTime"]),
       );
 
   Map<String, dynamic> toMap() => {
         "category": EnumString.string(category),
-        "ownerId": ownerId,
-        "ownerFirstName": ownerFirstName,
-        "ownerLastName": ownerLastName,
-        "ownerPhotoUrl": ownerPhotoUrl,
-        "title": title,
-        "imageUrl": imageUrl,
-        "resume": resume,
+        "ownerInfo": ownerInfo.toMap(),
+        "info": info.toMap(),
         "labels": {for (PostLabel label in labels) label.id: label.title},
-        "language": language,
         "status": EnumString.string(status),
         "shareOptions": shareOptions.toMap(),
-        "viewsCount": viewsCount,
-        "likesCount": likesCount,
-        "followersCount": followersCount,
-        "workersCount": workersCount,
-        "commentsCount": commentsCount,
-        "helpsCount": helpsCount,
-        "newsCount": newsCount,
-        "linkedPostsCount": linkedPostsCount,
-        "notesCount": notesCount,
+        "counts": counts.toMap(),
         "premium": premium,
         'deleted': docTime.toMap(),
       };

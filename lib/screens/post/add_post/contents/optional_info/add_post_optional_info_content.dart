@@ -29,8 +29,8 @@ class _AddPostOptionalInfoContentState
   final TextEditingController _noteController = TextEditingController();
 
   void _initLanguage() {
-    if(viewModel.post.language == null){
-      viewModel.post.language = Localizations.localeOf(context).languageCode;
+    if(viewModel.post.info.language == null){
+      viewModel.post.info.language = Localizations.localeOf(context).languageCode;
     }
   }
 
@@ -78,11 +78,11 @@ class _AddPostOptionalInfoContentState
 
   Widget _buildLanguage() {
     return LanguageSection(
-      currentLanguageKey: viewModel.post.language,
+      currentLanguageKey: viewModel.post.info.language,
       languages: viewModel.languages,
       popularLanguageCodes: viewModel.popularLanguageCodes,
       onSave: (languageKey) => viewModel.updateWith(
-        post: viewModel.post..language = languageKey,
+        postInfo: viewModel.post.info..language = languageKey,
       ),
     );
   }
@@ -98,17 +98,17 @@ class _AddPostOptionalInfoContentState
 
   Widget _buildLinks() {
     return LinksSection(
-        links: viewModel.postInfo.urlLinks,
+        links: viewModel.post.info.urlLinks,
         spaceTitle: _spaceTitle,
         onAddLink: (String link) => viewModel.updateWith(
-            postInfo: viewModel.postInfo..urlLinks.add(link)),
+            postInfo: viewModel.post.info..urlLinks.add(link)),
         onEditLink: (int index, String link) {
           viewModel.updateWith(
-              postInfo: viewModel.postInfo..urlLinks[index] = link);
+              postInfo: viewModel.post.info..urlLinks[index] = link);
         },
         onDeleteLink: (int index) {
           viewModel.updateWith(
-              postInfo: viewModel.postInfo..urlLinks.removeAt(index));
+              postInfo: viewModel.post.info..urlLinks.removeAt(index));
         });
   }
 

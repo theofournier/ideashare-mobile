@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:ideashare/common_widgets/custom_text_form_field.dart';
 import 'package:ideashare/generated/l10n.dart';
 import 'package:ideashare/screens/post/add_post/add_post_view_model.dart';
-import 'package:ideashare/services/models/post/post/post.dart';
-import 'package:ideashare/services/models/post/post_infos/post_info.dart';
 
 class AddPostInfoContent extends StatefulWidget {
   AddPostInfoContent({this.viewModel});
@@ -23,16 +21,16 @@ class _AddPostInfoContentState extends State<AddPostInfoContent> {
   final TextEditingController _descriptionController = TextEditingController();
 
   void _save() {
-    viewModel.post.title = _titleController.text;
-    viewModel.post.resume = _resumeController.text;
-    viewModel.postInfo.description = _descriptionController.text;
+    viewModel.post.info.title = _titleController.text;
+    viewModel.post.info.resume = _resumeController.text;
+    viewModel.post.info.description = _descriptionController.text;
   }
 
   @override
   void initState() {
-    _titleController.text = viewModel.post.title;
-    _resumeController.text = viewModel.post.resume;
-    _descriptionController.text = viewModel.postInfo.description;
+    _titleController.text = viewModel.post.info.title;
+    _resumeController.text = viewModel.post.info.resume;
+    _descriptionController.text = viewModel.post.info.description;
 
     super.initState();
   }
