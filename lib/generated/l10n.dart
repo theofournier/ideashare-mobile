@@ -902,6 +902,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Images`
+  String get addPostOptionalInfoImagesTitle {
+    return Intl.message(
+      'Images',
+      name: 'addPostOptionalInfoImagesTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add images that helps describe your post. Click on an image to make it the first one and display it on the list of posts.`
+  String get addPostOptionalInfoImagesDescription {
+    return Intl.message(
+      'Add images that helps describe your post. Click on an image to make it the first one and display it on the list of posts.',
+      name: 'addPostOptionalInfoImagesDescription',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

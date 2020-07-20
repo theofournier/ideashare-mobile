@@ -30,7 +30,7 @@ class Helpers {
 
   static Future<File> pickPicture({
     @required ImageSource imageSource,
-    bool crop,
+    bool crop = false,
     CropStyle cropStyle,
     CropAspectRatio cropAspectRatio,
   }) async {

@@ -27,6 +27,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "addPostInfoInputDescription" : MessageLookupByLibrary.simpleMessage("Description"),
     "addPostInfoInputResume" : MessageLookupByLibrary.simpleMessage("Resume"),
     "addPostInfoInputTitle" : MessageLookupByLibrary.simpleMessage("Title"),
+    "addPostOptionalInfoImagesDescription" : MessageLookupByLibrary.simpleMessage("Add images that helps describe your post. Click on an image to make it the first one and display it on the list of posts."),
+    "addPostOptionalInfoImagesTitle" : MessageLookupByLibrary.simpleMessage("Images"),
     "addPostOptionalInfoLanguageDescription" : MessageLookupByLibrary.simpleMessage("The language of your post."),
     "addPostOptionalInfoLanguageSectionTitleOthers" : MessageLookupByLibrary.simpleMessage("Languages"),
     "addPostOptionalInfoLanguageSectionTitlePopulars" : MessageLookupByLibrary.simpleMessage("Populars"),

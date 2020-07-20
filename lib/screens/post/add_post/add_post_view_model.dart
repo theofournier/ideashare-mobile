@@ -1,5 +1,6 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:ideashare/generated/l10n.dart';
 import 'package:ideashare/screens/post/add_post/add_post_step_data.dart';
 import 'package:ideashare/services/models/post/post/post.dart';
 import 'package:ideashare/services/models/post/post_infos/post_info.dart';
@@ -14,6 +15,7 @@ class AddPostViewModel with ChangeNotifier {
     images: [],
   );
   PostNote postNote = PostNote();
+  List<File> images = [];
 
   List<MapEntry<String, String>> languages =
       CustomLocales.localeNamesSortedByName(
@@ -25,11 +27,13 @@ class AddPostViewModel with ChangeNotifier {
     Post post,
     PostInfo postInfo,
     PostNote postNote,
+    List<File> images,
   }) {
     this.currentStep = currentStep ?? this.currentStep;
     this.post = post ?? this.post;
     this.postInfo = postInfo ?? this.postInfo;
     this.postNote = postNote ?? this.postNote;
+    this.images = images ?? this.images;
     notifyListeners();
   }
 
@@ -52,6 +56,12 @@ class AddPostViewModel with ChangeNotifier {
   void reset() {
     currentStep = null;
     post = Post();
+    postInfo = PostInfo(
+      urlLinks: [],
+      images: [],
+    );
+    postNote = PostNote();
+    images = [];
     notifyListeners();
   }
 
