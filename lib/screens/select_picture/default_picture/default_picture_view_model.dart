@@ -34,12 +34,13 @@ class DefaultPictureViewModel with ChangeNotifier {
         await profileDatabase.getDefaultPictures();
     updateWith(isLoading: false, defaultPictures: defaultPictures);
 
-    if(initialDefaultPicture != null && defaultPictures.length > 0){
-      DefaultPicture selectedDefaultPicture = defaultPictures.firstWhere((defaultPicture) => defaultPicture.id == initialDefaultPicture.id, orElse: null);
-      if(selectedDefaultPicture != null){
+    if (initialDefaultPicture != null && defaultPictures.length > 0) {
+      DefaultPicture selectedDefaultPicture = defaultPictures.firstWhere(
+          (defaultPicture) => defaultPicture.id == initialDefaultPicture.id,
+          orElse: () => null);
+      if (selectedDefaultPicture != null) {
         updateWith(selectedDefaultPicture: selectedDefaultPicture);
       }
     }
   }
-
 }

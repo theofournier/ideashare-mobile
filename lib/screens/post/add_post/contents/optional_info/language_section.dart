@@ -42,7 +42,9 @@ class LanguageSection extends StatelessWidget {
         ),
         Expanded(
           child: CustomRaisedButton(
-            text: CustomLocales.getLocaleName(currentLanguageKey, CustomLocales.nativeLocaleNames) ?? "",
+            text: CustomLocales.getLocaleName(
+                    currentLanguageKey, CustomLocales.nativeLocaleNames) ??
+                "",
             height: null,
             icon: OMIcons.edit,
             iconColor: Theme.of(context).accentColor,
@@ -70,12 +72,14 @@ class LanguageSection extends StatelessWidget {
   }) {
     List<Widget> languageItems = [];
     if (popularLanguageCodes != null && popularLanguageCodes.isNotEmpty) {
-
-      languageItems.add(buildLanguageSectionTitle(context: context, title: S.of(context).addPostOptionalInfoLanguageSectionTitlePopulars));
+      languageItems.add(buildLanguageSectionTitle(
+          context: context,
+          title:
+              S.of(context).addPostOptionalInfoLanguageSectionTitlePopulars));
       popularLanguageCodes.forEach((popularLanguageCode) {
         MapEntry<String, String> language = languages.firstWhere(
             (language) => language.key == popularLanguageCode,
-            orElse: null);
+            orElse: () => null);
         if (language != null) {
           languageItems.add(
             buildLanguageItem(
@@ -88,8 +92,12 @@ class LanguageSection extends StatelessWidget {
         }
       });
 
-      languageItems.add(SizedBox(height: 16,));
-      languageItems.add(buildLanguageSectionTitle(context: context, title: S.of(context).addPostOptionalInfoLanguageSectionTitleOthers));
+      languageItems.add(SizedBox(
+        height: 16,
+      ));
+      languageItems.add(buildLanguageSectionTitle(
+          context: context,
+          title: S.of(context).addPostOptionalInfoLanguageSectionTitleOthers));
       languages.forEach((language) {
         if (!popularLanguageCodes.contains(language.key)) {
           languageItems.add(
@@ -120,11 +128,14 @@ class LanguageSection extends StatelessWidget {
     );
   }
 
-  Widget buildLanguageSectionTitle({BuildContext context, String title}){
+  Widget buildLanguageSectionTitle({BuildContext context, String title}) {
     return Container(
       color: Theme.of(context).primaryColor.withOpacity(0.1),
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16,),
+        padding: const EdgeInsets.symmetric(
+          vertical: 8,
+          horizontal: 16,
+        ),
         child: Text(
           title,
           style: Theme.of(context).textTheme.headline6.toBold(),
