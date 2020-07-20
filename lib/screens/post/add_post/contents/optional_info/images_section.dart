@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:ideashare/generated/l10n.dart';
+import 'package:ideashare/resources/theme.dart';
 import 'package:ideashare/screens/post/add_post/common/add_post_section_title.dart';
 import 'package:ideashare/utils/helpers.dart';
 import 'package:image_picker/image_picker.dart';
@@ -103,7 +104,7 @@ class ImagesSection extends StatelessWidget {
               alignment: Alignment.topLeft,
               child: Padding(
                 padding: const EdgeInsets.all(4),
-                child: Icon(Icons.check_circle, color: Colors.white,),
+                child: Icon(Icons.check_circle_outline, color: AppColors.premiumFirstColor,),
               ),
             )
           ],

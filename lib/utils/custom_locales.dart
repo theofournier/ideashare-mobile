@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_localized_locales/flutter_localized_locales.dart';
+import 'package:ideashare/generated/l10n.dart';
 import 'package:ideashare/utils/extensions/string.dart';
 
 class CustomLocales {
 
-  static List<String> popularLocaleCodes = ["en", "fr", "es", "de"];
+  static List<String> popularLocaleCodes = S.delegate.supportedLocales.map((e) => e.languageCode).toList();
 
   static Map<String, String> nativeLocaleNames =
       LocaleNamesLocalizationsDelegate.nativeLocaleNames
