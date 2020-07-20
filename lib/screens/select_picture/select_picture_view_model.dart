@@ -7,6 +7,7 @@ import 'package:ideashare/services/database/profile_database.dart';
 import 'package:ideashare/services/models/common/default_picture.dart';
 import 'package:ideashare/services/storage/firebase_storage_result.dart';
 import 'package:ideashare/services/storage/firebase_storage_service.dart';
+import 'package:ideashare/utils/helpers.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -62,20 +63,13 @@ class SelectPictureViewModel with ChangeNotifier {
   }
 
   Future<void> pickPicture(ImageSource imageSource) async {
-    final PickedFile pickedPicture =
-        await ImagePicker().getImage(source: imageSource);
-    if (pickedPicture != null) {
-      final File croppedPicture = await cropPicture(File(pickedPicture.path));
-      setPickedPicture(croppedPicture);
-    }
-  }
-
-  Future<File> cropPicture(File picture) async {
-    return await ImageCropper.cropImage(
-      sourcePath: picture.path,
-      aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
+    final File croppedPicture = await Helpers.pickPicture(
+      imageSource: imageSource,
+      crop: true,
       cropStyle: CropStyle.circle,
+      cropAspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
     );
+    setPickedPicture(croppedPicture);
   }
 
   void setPickedPicture(File picture) {
