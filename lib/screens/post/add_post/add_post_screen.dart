@@ -86,6 +86,7 @@ class AddPostContent extends StatelessWidget {
             viewModel: viewModel,
           ),
           title: S.of(context).addPostTitleLinkedIssue,
+          description: "Linked Issue description",
         ),
         AddPostStep.labels: AddPostStepData(
           content: AddPostLabelsContent(

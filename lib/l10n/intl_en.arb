@@ -87,5 +87,8 @@
   "addPostOptionalInfoLanguageSectionTitlePopulars": "Populars",
   "addPostOptionalInfoLanguageSectionTitleOthers": "Languages",
   "addPostOptionalInfoImagesTitle": "Images",
-  "addPostOptionalInfoImagesDescription": "Add images that helps describe your post. Click on an image to make it the first one and display it on the list of posts."
+  "addPostOptionalInfoImagesDescription": "Add images that helps describe your post. Click on an image to make it the first one and display it on the list of posts.",
+  "addPostLinkedIssueUnavailable": "Only for idea",
+  "addPostLinkedIssueNull": "No linked issue",
+  "addPostLinkedIssueSearch": "Search"
 }

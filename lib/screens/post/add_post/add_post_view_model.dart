@@ -8,7 +8,7 @@ import 'package:ideashare/services/models/post/post_note/post_note.dart';
 import 'package:ideashare/utils/custom_locales.dart';
 
 class AddPostViewModel with ChangeNotifier {
-  AddPostStep currentStep = AddPostStep.optionalInfo;
+  AddPostStep currentStep = AddPostStep.linkedIssue;
   Post post = Post();
   PostInfo postInfo = PostInfo(
     urlLinks: [],
@@ -16,6 +16,7 @@ class AddPostViewModel with ChangeNotifier {
   );
   PostNote postNote = PostNote();
   List<File> images = [];
+  Post linkedIssue;
 
   List<MapEntry<String, String>> languages =
       CustomLocales.localeNamesSortedByName(

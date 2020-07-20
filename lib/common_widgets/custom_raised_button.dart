@@ -22,7 +22,7 @@ class CustomRaisedButton extends StatelessWidget {
     this.loading = false,
     this.icon,
     this.iconSize = 18,
-    this.iconColor,
+    this.iconColor = Colors.white,
     this.iconPosition = IconPosition.left,
     this.childAlignment = Alignment.center,
   });
@@ -84,7 +84,7 @@ class CustomRaisedButton extends StatelessWidget {
       Icon iconWidget = Icon(
         icon,
         size: iconSize,
-        color: iconColor ?? Theme.of(context).accentColor,
+        color: iconColor,
       );
       return Row(
         mainAxisSize: MainAxisSize.min,

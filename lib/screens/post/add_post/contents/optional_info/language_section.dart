@@ -45,6 +45,7 @@ class LanguageSection extends StatelessWidget {
             text: CustomLocales.getLocaleName(currentLanguageKey, CustomLocales.nativeLocaleNames) ?? "",
             height: null,
             icon: OMIcons.edit,
+            iconColor: Theme.of(context).accentColor,
             textSize: 18,
             backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             textColor: Theme.of(context).accentColor,

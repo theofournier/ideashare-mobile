@@ -922,6 +922,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Only for idea`
+  String get addPostLinkedIssueUnavailable {
+    return Intl.message(
+      'Only for idea',
+      name: 'addPostLinkedIssueUnavailable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No linked issue`
+  String get addPostLinkedIssueNull {
+    return Intl.message(
+      'No linked issue',
+      name: 'addPostLinkedIssueNull',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search`
+  String get addPostLinkedIssueSearch {
+    return Intl.message(
+      'Search',
+      name: 'addPostLinkedIssueSearch',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
