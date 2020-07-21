@@ -962,6 +962,196 @@ class S {
       args: [],
     );
   }
+
+  /// `Everyone`
+  String get visiblenessEveryone {
+    return Intl.message(
+      'Everyone',
+      name: 'visiblenessEveryone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Approval`
+  String get visiblenessApproval {
+    return Intl.message(
+      'Approval',
+      name: 'visiblenessApproval',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Follow`
+  String get visiblenessFollow {
+    return Intl.message(
+      'Follow',
+      name: 'visiblenessFollow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Work`
+  String get visiblenessWork {
+    return Intl.message(
+      'Work',
+      name: 'visiblenessWork',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `None`
+  String get visiblenessNone {
+    return Intl.message(
+      'None',
+      name: 'visiblenessNone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Private`
+  String get shareOptionPrivate {
+    return Intl.message(
+      'Private',
+      name: 'shareOptionPrivate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Anonymous`
+  String get shareOptionsAnonymous {
+    return Intl.message(
+      'Anonymous',
+      name: 'shareOptionsAnonymous',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Allow actions`
+  String get shareOptionsAllowActions {
+    return Intl.message(
+      'Allow actions',
+      name: 'shareOptionsAllowActions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Like`
+  String get shareOptionsLike {
+    return Intl.message(
+      'Like',
+      name: 'shareOptionsLike',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Comment`
+  String get shareOptionsComment {
+    return Intl.message(
+      'Comment',
+      name: 'shareOptionsComment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Help`
+  String get shareOptionsHelp {
+    return Intl.message(
+      'Help',
+      name: 'shareOptionsHelp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Follow`
+  String get shareOptionsFollow {
+    return Intl.message(
+      'Follow',
+      name: 'shareOptionsFollow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Work`
+  String get shareOptionsWork {
+    return Intl.message(
+      'Work',
+      name: 'shareOptionsWork',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Contact`
+  String get shareOptionsContact {
+    return Intl.message(
+      'Contact',
+      name: 'shareOptionsContact',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Linked Idea`
+  String get shareOptionsLinkedPost {
+    return Intl.message(
+      'Linked Idea',
+      name: 'shareOptionsLinkedPost',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Who see what?`
+  String get shareOptionsSee {
+    return Intl.message(
+      'Who see what?',
+      name: 'shareOptionsSee',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `News`
+  String get shareOptionsNews {
+    return Intl.message(
+      'News',
+      name: 'shareOptionsNews',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Status`
+  String get shareOptionsStatus {
+    return Intl.message(
+      'Status',
+      name: 'shareOptionsStatus',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reset`
+  String get addPostShareOptionsAppBarButton {
+    return Intl.message(
+      'Reset',
+      name: 'addPostShareOptionsAppBarButton',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

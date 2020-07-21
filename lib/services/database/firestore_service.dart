@@ -13,7 +13,7 @@ class FirestoreService {
     return (doc != null && doc.exists);
   }
 
-  Future<T> getData<T>({
+  Future<T> getDocument<T>({
     @required String path,
     @required T Function(Map<String, dynamic> data, String documentID) builder,
   }) async {

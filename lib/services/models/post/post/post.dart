@@ -23,7 +23,7 @@ class Post {
     this.ownerInfo = this.ownerInfo ?? OwnerInfo();
     this.info = this.info ?? PostInfo();
     this.labels = this.labels ?? [];
-    this.shareOptions = this.shareOptions ?? PostShareOptions();
+    //this.shareOptions = this.shareOptions ?? PostShareOptions();
     this.counts = this.counts ?? PostCounts();
   }
 

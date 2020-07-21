@@ -10,6 +10,7 @@ class CustomFlatButton extends StatelessWidget {
     this.width,
     this.onPressed,
     this.loading = false,
+    this.upperCase = true,
   });
 
   final String text;
@@ -19,6 +20,7 @@ class CustomFlatButton extends StatelessWidget {
   final double width;
   final VoidCallback onPressed;
   final bool loading;
+  final bool upperCase;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +30,7 @@ class CustomFlatButton extends StatelessWidget {
       child: FlatButton(
         onPressed: onPressed,
         child: Text(
-          text.toUpperCase(),
+          upperCase ? text.toUpperCase() : text,
           style: Theme.of(context).textTheme.button.merge(
                 TextStyle(
                   fontSize: textSize,

@@ -24,7 +24,6 @@ class CustomRaisedButton extends StatelessWidget {
     this.iconSize = 18,
     this.iconColor = Colors.white,
     this.iconPosition = IconPosition.left,
-    this.childAlignment = Alignment.center,
   });
 
   final String text;
@@ -43,7 +42,6 @@ class CustomRaisedButton extends StatelessWidget {
   final double iconSize;
   final Color iconColor;
   final IconPosition iconPosition;
-  final Alignment childAlignment;
 
   @override
   Widget build(BuildContext context) {
@@ -62,10 +60,7 @@ class CustomRaisedButton extends StatelessWidget {
         ),
         elevation: elevation,
         color: backgroundColor ?? Theme.of(context).accentColor,
-        child: Align(
-          alignment: childAlignment,
-          child: buildChild(context),
-        ),
+        child: buildChild(context),
       ),
     );
   }

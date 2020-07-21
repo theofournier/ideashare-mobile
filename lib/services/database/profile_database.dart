@@ -3,6 +3,7 @@ import 'package:ideashare/services/database/firestore_path.dart';
 import 'package:ideashare/services/database/firestore_service.dart';
 import 'package:ideashare/services/models/common/default_picture.dart';
 import 'package:ideashare/services/models/user/user.dart';
+import 'package:ideashare/services/models/user_settings/user_settings.dart';
 
 class ProfileDatabase {
   ProfileDatabase({@required this.uid})
@@ -44,4 +45,10 @@ class ProfileDatabase {
         ? defaultPictures.first
         : null;
   }
+
+  Future<UserSettings> getUserSettings() =>
+      _service.getDocument<UserSettings>(
+          path: FirestorePath.userSettings(uid),
+          builder: (data, documentId) =>
+              UserSettings.fromMap(documentId, data));
 }

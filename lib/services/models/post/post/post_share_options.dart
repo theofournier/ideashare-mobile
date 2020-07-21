@@ -15,24 +15,24 @@ class PostShareOptions {
     this.linkedPosts = Visibleness.follow,
     this.work = Visibleness.approval,
     this.contact = Visibleness.work,
-    this.follow = Visibleness.follow,
+    this.follow = Visibleness.everyone,
     this.status = Visibleness.follow,
   });
 
-  final Privacy privacy;
-  final bool anonymous;
-  final Visibleness like;
-  final Visibleness work;
-  final Visibleness follow;
-  final Visibleness comment;
-  final Visibleness createComment;
-  final Visibleness help;
-  final Visibleness createHelp;
-  final Visibleness news;
-  final Visibleness createLinkedPost;
-  final Visibleness linkedPosts;
-  final Visibleness contact;
-  final Visibleness status;
+  Privacy privacy;
+  bool anonymous;
+  Visibleness like;
+  Visibleness work;
+  Visibleness follow;
+  Visibleness comment;
+  Visibleness createComment;
+  Visibleness help;
+  Visibleness createHelp;
+  Visibleness news;
+  Visibleness createLinkedPost;
+  Visibleness linkedPosts;
+  Visibleness contact;
+  Visibleness status;
 
   factory PostShareOptions.fromMap(Map<String, dynamic> json) =>
       PostShareOptions(

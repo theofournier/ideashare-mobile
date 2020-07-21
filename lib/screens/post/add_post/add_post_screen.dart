@@ -16,6 +16,7 @@ import 'package:ideashare/screens/post/add_post/contents/add_post_share_options_
 import 'package:ideashare/screens/post/add_post/contents/add_post_start_content.dart';
 import 'package:ideashare/screens/post/add_post/contents/optional_info/add_post_optional_info_content.dart';
 import 'package:ideashare/services/database/label_database.dart';
+import 'package:ideashare/services/database/profile_database.dart';
 import 'package:provider/provider.dart';
 
 class AddPostScreen extends StatefulWidget {
@@ -41,10 +42,13 @@ class _AddPostScreenState extends State<AddPostScreen>
 
     final LabelDatabase labelDatabase =
         Provider.of<LabelDatabase>(context, listen: false);
+    final ProfileDatabase profileDatabase =
+        Provider.of<ProfileDatabase>(context, listen: false);
 
     return ChangeNotifierProvider<AddPostViewModel>(
       create: (_) => AddPostViewModel(
         labelDatabase: labelDatabase,
+        profileDatabase: profileDatabase,
       ),
       child: Consumer<AddPostViewModel>(
         builder: (_, viewModel, __) => AddPostContent(
@@ -108,6 +112,8 @@ class AddPostContent extends StatelessWidget {
           ),
           title: S.of(context).addPostTitleShareOptions,
           description: "Share options description",
+          appBarButton: S.of(context).addPostShareOptionsAppBarButton,
+          onPressedAppBarButton: viewModel.resetShareOptions,
         ),
         AddPostStep.resume: AddPostStepData(
           content: AddPostResumeContent(
@@ -160,6 +166,12 @@ class AddPostContent extends StatelessWidget {
       actions: viewModel.currentStep == null
           ? []
           : [
+              if (currentStepData(context).appBarButton != null) ...[
+                CustomAppBarButton(
+                  text: currentStepData(context).appBarButton,
+                  onPressed: currentStepData(context).onPressedAppBarButton,
+                ),
+              ],
               CustomAppBarButton(
                 icon: Icons.delete,
                 onPressed: viewModel.reset,
