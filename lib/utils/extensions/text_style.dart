@@ -9,6 +9,14 @@ extension TextStyleExtensions on TextStyle {
     );
   }
 
+  TextStyle toColor(Color color) {
+    return this.merge(
+      TextStyle(
+        color: color,
+      ),
+    );
+  }
+
   TextStyle toBold() {
     return this.merge(
       TextStyle(

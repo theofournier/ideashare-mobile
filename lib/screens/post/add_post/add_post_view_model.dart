@@ -28,7 +28,7 @@ class AddPostViewModel with ChangeNotifier {
   final LabelDatabase labelDatabase;
   final ProfileDatabase profileDatabase;
 
-  AddPostStep currentStep;
+  AddPostStep currentStep = AddPostStep.category;
 
   Post post = Post(category: PostType.idea);
   PostNote postNote = PostNote();

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ideashare/constants/constants.dart';
 import 'package:ideashare/generated/l10n.dart';
+import 'package:ideashare/resources/theme.dart';
 import 'package:ideashare/screens/post/add_post/add_post_view_model.dart';
 import 'package:ideashare/services/models/post/post/post.dart';
 import 'package:ideashare/services/models/post/post/post_share_options.dart';
@@ -12,11 +13,15 @@ class CategoryData {
     this.category,
     this.title,
     this.description,
+    this.color,
+    this.textColor,
   });
 
   final PostType category;
   final String title;
   final String description;
+  final Color color;
+  final Color textColor;
 }
 
 class AddPostCategoryContent extends StatelessWidget {
@@ -31,11 +36,13 @@ class AddPostCategoryContent extends StatelessWidget {
           category: PostType.idea,
           title: S.of(context).addPostCategoryIdeaTitle,
           description: "Description",
+          color: AppColors.ideaColor,
         ),
         CategoryData(
           category: PostType.issue,
           title: S.of(context).addPostCategoryIssueTitle,
           description: "Description",
+          color: AppColors.issueColor,
         ),
       ];
 
@@ -58,6 +65,8 @@ class AddPostCategoryContent extends StatelessWidget {
               (category) => CategoryItem(
                 title: category.title,
                 description: category.description,
+                color: category.color,
+                textColor: category.textColor,
                 isSelected: viewModel.post.category != null &&
                     category.category == viewModel.post.category,
                 onTap: () => onTap(category.category),
@@ -73,12 +82,16 @@ class CategoryItem extends StatelessWidget {
   CategoryItem({
     this.title,
     this.description,
+    this.color,
+    this.textColor,
     this.isSelected,
     this.onTap,
   });
 
   final String title;
   final String description;
+  final Color color;
+  final Color textColor;
   final bool isSelected;
   final Function onTap;
 
@@ -91,7 +104,8 @@ class CategoryItem extends StatelessWidget {
     return Card(
       margin: const EdgeInsets.only(bottom: 24),
       elevation: 6,
-      color: isSelected ? Theme.of(context).accentColor : Colors.white,
+      color:
+          isSelected ? Theme.of(context).accentColor : (color ?? Colors.white),
       child: InkWell(
         onTap: onTap,
         child: Padding(
@@ -104,7 +118,11 @@ class CategoryItem extends StatelessWidget {
                 children: <Widget>[
                   Text(
                     title.toUpperCase(),
-                    style: isSelected ? titleStyle.toWhite() : titleStyle,
+                    style: isSelected
+                        ? titleStyle.toWhite()
+                        : (textColor != null
+                            ? titleStyle.toColor(textColor)
+                            : titleStyle),
                   ),
                   if (isSelected) ...[
                     Icon(
@@ -120,8 +138,11 @@ class CategoryItem extends StatelessWidget {
               ),
               Text(
                 description,
-                style:
-                    isSelected ? descriptionStyle.toWhite() : descriptionStyle,
+                style: isSelected
+                    ? descriptionStyle.toWhite()
+                    : (textColor != null
+                        ? descriptionStyle.toColor(textColor)
+                        : descriptionStyle),
               ),
             ],
           ),
