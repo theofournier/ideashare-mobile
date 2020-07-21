@@ -1,4 +1,4 @@
-import 'package:ideashare/services/models/user_settings/default_share_options/user_settings_default_share_options_post.dart';
+import 'package:ideashare/services/models/post/post/post_share_options.dart';
 
 class UserSettingsDefaultShareOptions {
   UserSettingsDefaultShareOptions({
@@ -6,12 +6,12 @@ class UserSettingsDefaultShareOptions {
     this.issue,
   });
 
-  final UserSettingsDefaultShareOptionsPost idea;
-  final UserSettingsDefaultShareOptionsPost issue;
+  final PostShareOptions idea;
+  final PostShareOptions issue;
 
   factory UserSettingsDefaultShareOptions.fromMap(Map<String, dynamic> json) => UserSettingsDefaultShareOptions(
-    idea: UserSettingsDefaultShareOptionsPost.fromMap(json["idea"]),
-    issue: UserSettingsDefaultShareOptionsPost.fromMap(json["issue"]),
+    idea: PostShareOptions.fromMap(json["idea"]),
+    issue: PostShareOptions.fromMap(json["issue"]),
   );
 
   Map<String, dynamic> toMap() => {

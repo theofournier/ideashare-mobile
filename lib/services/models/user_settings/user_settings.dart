@@ -1,6 +1,6 @@
 import 'package:ideashare/constants/constants.dart';
+import 'package:ideashare/services/models/post/post/post_share_options.dart';
 import 'package:ideashare/services/models/user_settings/default_share_options/user_settings_default_share_options.dart';
-import 'package:ideashare/services/models/user_settings/default_share_options/user_settings_default_share_options_post.dart';
 import 'package:ideashare/services/models/user_settings/notification/user_settings_notification.dart';
 import 'package:ideashare/services/models/user_settings/notification/user_settings_notification_followed_posts.dart';
 import 'package:ideashare/services/models/user_settings/notification/user_settings_notification_posts.dart';
@@ -50,24 +50,28 @@ class UserSettings {
   factory UserSettings.initUserSettings({String uid}) => UserSettings(
         uid: uid,
         defaultShareOptions: UserSettingsDefaultShareOptions(
-          idea: UserSettingsDefaultShareOptionsPost(
+          idea: PostShareOptions(
             privacy: Privacy.public,
             anonymous: false,
             like: Visibleness.everyone,
             comment: Visibleness.everyone,
+            createComment: Visibleness.everyone,
             help: Visibleness.everyone,
+            createHelp: Visibleness.approval,
             news: Visibleness.follow,
             work: Visibleness.approval,
             contact: Visibleness.work,
             follow: Visibleness.everyone,
             status: Visibleness.everyone,
           ),
-          issue: UserSettingsDefaultShareOptionsPost(
+          issue: PostShareOptions(
             privacy: Privacy.public,
             anonymous: false,
             like: Visibleness.everyone,
             comment: Visibleness.everyone,
+            createComment: Visibleness.everyone,
             help: Visibleness.everyone,
+            createHelp: Visibleness.approval,
             news: Visibleness.follow,
             createLinkedPost: Visibleness.everyone,
             linkedPosts: Visibleness.everyone,
