@@ -28,7 +28,7 @@ class AddPostViewModel with ChangeNotifier {
   final LabelDatabase labelDatabase;
   final ProfileDatabase profileDatabase;
 
-  AddPostStep currentStep = AddPostStep.category;
+  AddPostStep currentStep = AddPostStep.shareOptions;
 
   Post post = Post(category: PostType.idea);
   PostNote postNote = PostNote();
@@ -69,7 +69,8 @@ class AddPostViewModel with ChangeNotifier {
     this.labels = labels ?? this.labels;
     this.defaultShareOptions = defaultShareOptions ?? this.defaultShareOptions;
     this.isLoadingLabels = isLoadingLabels ?? this.isLoadingLabels;
-    this.isLoadingShareOptions = isLoadingShareOptions ?? this.isLoadingShareOptions;
+    this.isLoadingShareOptions =
+        isLoadingShareOptions ?? this.isLoadingShareOptions;
     notifyListeners();
   }
 
@@ -119,22 +120,26 @@ class AddPostViewModel with ChangeNotifier {
   Future<void> fetchDefaultShareOptions() async {
     updateWith(isLoadingShareOptions: true);
     UserSettings userSettings = await profileDatabase.getUserSettings();
-    updateWith(isLoadingShareOptions: false, defaultShareOptions: userSettings.defaultShareOptions);
+    updateWith(
+        isLoadingShareOptions: false,
+        defaultShareOptions: userSettings.defaultShareOptions);
+    if (post.shareOptions == null) {
+      resetShareOptions();
+    }
   }
 
   void resetShareOptions() {
-    if(defaultShareOptions != null){
-      PostShareOptions postShareOptions;
-      if(post.category == PostType.idea){
+    if (defaultShareOptions != null) {
+      PostShareOptions postShareOptions = PostShareOptions();
+      if (post.category == PostType.idea) {
         postShareOptions = defaultShareOptions.idea;
       }
-      if(post.category == PostType.issue){
+      if (post.category == PostType.issue) {
         postShareOptions = defaultShareOptions.issue;
       }
-      if(postShareOptions != null){
-        PostShareOptions copyPostShareOptions = PostShareOptions.fromMap(postShareOptions.toMap());
-        updateWith(postShareOptions: copyPostShareOptions);
-      }
+      PostShareOptions copyPostShareOptions =
+          PostShareOptions.fromMap(postShareOptions.toMap());
+      updateWith(postShareOptions: copyPostShareOptions);
     }
   }
 }
