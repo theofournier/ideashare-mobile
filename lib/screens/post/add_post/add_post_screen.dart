@@ -15,6 +15,7 @@ import 'package:ideashare/screens/post/add_post/contents/add_post_resume_content
 import 'package:ideashare/screens/post/add_post/contents/add_post_share_options_content.dart';
 import 'package:ideashare/screens/post/add_post/contents/add_post_start_content.dart';
 import 'package:ideashare/screens/post/add_post/contents/optional_info/add_post_optional_info_content.dart';
+import 'package:ideashare/services/database/label_database.dart';
 import 'package:provider/provider.dart';
 
 class AddPostScreen extends StatefulWidget {
@@ -37,8 +38,14 @@ class _AddPostScreenState extends State<AddPostScreen>
   @override
   Widget build(BuildContext context) {
     super.build(context);
+
+    final LabelDatabase labelDatabase =
+        Provider.of<LabelDatabase>(context, listen: false);
+
     return ChangeNotifierProvider<AddPostViewModel>(
-      create: (_) => AddPostViewModel(),
+      create: (_) => AddPostViewModel(
+        labelDatabase: labelDatabase,
+      ),
       child: Consumer<AddPostViewModel>(
         builder: (_, viewModel, __) => AddPostContent(
           viewModel: viewModel,
@@ -93,6 +100,7 @@ class AddPostContent extends StatelessWidget {
             viewModel: viewModel,
           ),
           title: S.of(context).addPostTitleLabels,
+          description: "Labels description",
         ),
         AddPostStep.shareOptions: AddPostStepData(
           content: AddPostShareOptionsContent(
@@ -165,8 +173,12 @@ class AddPostContent extends StatelessWidget {
       return AddPostBottomAppBar(
         currentStep: viewModel.currentStep.index,
         totalStep: AddPostStep.values.length,
-        onNext: viewModel.currentStep != AddPostStep.resume ? viewModel.nextStep : viewModel.save,
-        onPrevious: viewModel.currentStep != AddPostStep.category ? viewModel.previousStep : null,
+        onNext: viewModel.currentStep != AddPostStep.resume
+            ? viewModel.nextStep
+            : viewModel.save,
+        onPrevious: viewModel.currentStep != AddPostStep.category
+            ? viewModel.previousStep
+            : null,
         saveButton: viewModel.currentStep == AddPostStep.resume,
       );
     }

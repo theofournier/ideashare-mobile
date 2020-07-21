@@ -12,6 +12,7 @@ class ImageName {
   static final facebookLogo = dir + "facebook_logo.png";
   static final addPostStart = dir + "add_post_start.png";
   static final addPostLinkedIssue = dir + "add_post_linked_issue.png";
+  static final addPostLabels = dir + "add_post_labels.png";
 }
 
 class StorageKeys {

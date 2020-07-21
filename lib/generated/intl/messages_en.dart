@@ -27,6 +27,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "addPostInfoInputDescription" : MessageLookupByLibrary.simpleMessage("Description"),
     "addPostInfoInputResume" : MessageLookupByLibrary.simpleMessage("Resume"),
     "addPostInfoInputTitle" : MessageLookupByLibrary.simpleMessage("Title"),
+    "addPostLabelsUnavailable" : MessageLookupByLibrary.simpleMessage("No labels available"),
     "addPostLinkedIssueNull" : MessageLookupByLibrary.simpleMessage("No linked issue"),
     "addPostLinkedIssueSearch" : MessageLookupByLibrary.simpleMessage("Search"),
     "addPostLinkedIssueUnavailable" : MessageLookupByLibrary.simpleMessage("Only for idea"),

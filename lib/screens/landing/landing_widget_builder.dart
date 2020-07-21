@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ideashare/services/auth/auth_service.dart';
 import 'package:ideashare/services/database/firestore_database.dart';
+import 'package:ideashare/services/database/label_database.dart';
 import 'package:ideashare/services/database/profile_database.dart';
 import 'package:ideashare/services/models/user/user.dart';
 import 'package:provider/provider.dart';
@@ -26,6 +27,9 @@ class LandingWidgetBuilder extends StatelessWidget {
               ),
               Provider<ProfileDatabase>(
                 create: (_) => ProfileDatabase(uid: user.uid),
+              ),
+              Provider<LabelDatabase>(
+                create: (_) => LabelDatabase(),
               ),
               Provider<UserAuth>.value(value: user),
               StreamProvider<User>(

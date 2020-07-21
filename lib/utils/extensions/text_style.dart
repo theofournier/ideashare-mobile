@@ -25,11 +25,27 @@ extension TextStyleExtensions on TextStyle {
     );
   }
 
+  TextStyle toMedium() {
+    return this.merge(
+      TextStyle(
+        fontWeight: FontWeight.w500,
+      ),
+    );
+  }
+
   TextStyle underline() {
     return this.merge(
       TextStyle(
         decoration: TextDecoration.underline,
-      )
+      ),
+    );
+  }
+
+  TextStyle toSize(double size) {
+    return this.merge(
+      TextStyle(
+        fontSize: size,
+      ),
     );
   }
 }

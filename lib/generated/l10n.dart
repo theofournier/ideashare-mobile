@@ -952,6 +952,16 @@ class S {
       args: [],
     );
   }
+
+  /// `No labels available`
+  String get addPostLabelsUnavailable {
+    return Intl.message(
+      'No labels available',
+      name: 'addPostLabelsUnavailable',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
