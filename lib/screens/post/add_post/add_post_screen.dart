@@ -183,8 +183,8 @@ class AddPostContent extends StatelessWidget {
   Widget buildBottomAppBar(BuildContext context) {
     if (viewModel.currentStep != null) {
       return AddPostBottomAppBar(
-        currentStep: viewModel.currentStep.index,
-        totalStep: AddPostStep.values.length,
+        currentStep: viewModel.currentStepIndex(),
+        totalStep: viewModel.totalStep(),
         onNext: viewModel.currentStep != AddPostStep.resume
             ? viewModel.nextStep
             : viewModel.save,
@@ -207,10 +207,10 @@ class AddPostContent extends StatelessWidget {
               description(context),
               style: Theme.of(context).textTheme.bodyText2,
             ),
+            SizedBox(
+              height: 24,
+            ),
           ],
-          SizedBox(
-            height: 24,
-          ),
           content(context),
         ],
       );

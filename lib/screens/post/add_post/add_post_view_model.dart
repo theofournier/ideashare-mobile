@@ -74,15 +74,37 @@ class AddPostViewModel with ChangeNotifier {
     notifyListeners();
   }
 
+  int totalStep() {
+    if(post.category == null || post.category == PostType.issue){
+      return AddPostStep.values.length - 1;
+    }
+    return AddPostStep.values.length;
+  }
+
+  int currentStepIndex() {
+    if(post.category == null || (post.category == PostType.issue && currentStep.index >= AddPostStep.linkedIssue.index)){
+      return currentStep.index - 1;
+    }
+    return currentStep.index;
+  }
+
   void nextStep() {
     if (this.currentStep.index < AddPostStep.values.length - 1) {
-      goToStep(AddPostStep.values[this.currentStep.index + 1]);
+      int nextIndex = this.currentStep.index + 1;
+      if(post.category == null || (post.category == PostType.issue && currentStep.index == (AddPostStep.linkedIssue.index - 1))){
+        nextIndex += 1;
+      }
+      goToStep(AddPostStep.values[nextIndex]);
     }
   }
 
   void previousStep() {
     if (this.currentStep.index > 0) {
-      goToStep(AddPostStep.values[this.currentStep.index - 1]);
+      int previousIndex = this.currentStep.index - 1;
+      if(post.category == null || (post.category == PostType.issue && currentStep.index == (AddPostStep.linkedIssue.index + 1))){
+        previousIndex -= 1;
+      }
+      goToStep(AddPostStep.values[previousIndex]);
     }
   }
 
