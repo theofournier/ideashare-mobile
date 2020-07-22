@@ -113,4 +113,7 @@
   "addPostShareOptionsAppBarButton": "Reset",
   "imagesSectionTitle": "Images",
   "languageSectionTitle": "Language"
+  "linksSectionAlertTitle": "Link",
+  "linksSectionUrl": "URL",
+  "linksSectionTitle": "Links"
 }

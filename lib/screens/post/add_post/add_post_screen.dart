@@ -11,10 +11,10 @@ import 'package:ideashare/screens/post/add_post/contents/add_post_category_conte
 import 'package:ideashare/screens/post/add_post/contents/add_post_info_content.dart';
 import 'package:ideashare/screens/post/add_post/contents/add_post_labels_content.dart';
 import 'package:ideashare/screens/post/add_post/contents/add_post_linked_issue_content.dart';
+import 'package:ideashare/screens/post/add_post/contents/add_post_optional_info_content.dart';
 import 'package:ideashare/screens/post/add_post/contents/add_post_resume_content.dart';
 import 'package:ideashare/screens/post/add_post/contents/add_post_share_options_content.dart';
 import 'package:ideashare/screens/post/add_post/contents/add_post_start_content.dart';
-import 'package:ideashare/screens/post/add_post/contents/optional_info/add_post_optional_info_content.dart';
 import 'package:ideashare/services/database/label_database.dart';
 import 'package:ideashare/services/database/profile_database.dart';
 import 'package:provider/provider.dart';

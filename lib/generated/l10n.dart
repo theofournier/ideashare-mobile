@@ -1172,6 +1172,36 @@ class S {
       args: [],
     );
   }
+      desc: '',
+  /// `Link`
+  String get linksSectionAlertTitle {
+    return Intl.message(
+      'Link',
+      name: 'linksSectionAlertTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `URL`
+  String get linksSectionUrl {
+    return Intl.message(
+      'URL',
+      name: 'linksSectionUrl',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Links`
+  String get linksSectionTitle {
+    return Intl.message(
+      'Links',
+      name: 'linksSectionTitle',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

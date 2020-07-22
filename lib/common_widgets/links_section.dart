@@ -8,6 +8,11 @@ import 'package:outline_material_icons/outline_material_icons.dart';
 
 class LinksSection extends StatelessWidget {
   LinksSection({
+    this.isSectionTitle = false,
+    this.sectionTitle,
+    this.sectionDescription,
+    this.sectionAlertTitle,
+    this.sectionAlertDescription,
     this.links,
     this.spaceTitle,
     this.onAddLink,
@@ -15,6 +20,11 @@ class LinksSection extends StatelessWidget {
     this.onDeleteLink,
   });
 
+  final bool isSectionTitle;
+  final String sectionTitle;
+  final String sectionDescription;
+  final String sectionAlertTitle;
+  final String sectionAlertDescription;
   final List<String> links;
   final double spaceTitle;
   final Function(String link) onAddLink;
@@ -23,9 +33,9 @@ class LinksSection extends StatelessWidget {
 
   Future<String> onLink(BuildContext context, [String initialLink]) async {
     return await AlertDialogTextField(
-      title: S.of(context).addPostOptionalInfoLinksAlertTitle,
-      message: S.of(context).addPostOptionalInfoLinksDescription,
-      hintText: S.of(context).addPostOptionalInfoLinksUrl,
+      title: sectionAlertTitle ?? S.of(context).linksSectionAlertTitle,
+      message: sectionAlertDescription,
+      hintText: S.of(context).linksSectionUrl,
       keyboardType: TextInputType.url,
       autoFocus: true,
       maxLines: 4,
@@ -38,16 +48,18 @@ class LinksSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        SectionTitle(
-          title: S.of(context).addPostOptionalInfoLinksTitle,
-          description: S.of(context).addPostOptionalInfoLinksDescription,
-          onAdd: () async {
-            String link = await onLink(context);
-            if (link != null && link.isNotEmpty) {
-              onAddLink(link.trim());
-            }
-          },
-        ),
+        if (isSectionTitle) ...[
+          SectionTitle(
+            title: sectionTitle ?? S.of(context).linksSectionTitle,
+            description: sectionDescription,
+            onAdd: () async {
+              String link = await onLink(context);
+              if (link != null && link.isNotEmpty) {
+                onAddLink(link.trim());
+              }
+            },
+          ),
+        ],
         if (links != null && links.isNotEmpty) ...[
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -56,7 +68,8 @@ class LinksSection extends StatelessWidget {
                 .entries
                 .map(
                   (link) => Container(
-                    margin: EdgeInsets.only(bottom: link.key < links.length - 1 ? 8 : 0),
+                    margin: EdgeInsets.only(
+                        bottom: link.key < links.length - 1 ? 8 : 0),
                     child: buildLinkItem(
                       context,
                       link.value,
@@ -91,21 +104,25 @@ class LinksSection extends StatelessWidget {
         ),
         Row(
           children: <Widget>[
-            IconButton(
-              onPressed: () async {
-                String resultLink = await onLink(context, link);
-                if (resultLink != null && resultLink.isNotEmpty) {
-                  onEditLink(index, resultLink.trim());
-                }
-              },
-              icon: Icon(OMIcons.edit),
-              color: Theme.of(context).accentColor,
-            ),
-            IconButton(
-              onPressed: () => onDeleteLink(index),
-              icon: Icon(Icons.clear),
-              color: Theme.of(context).accentColor,
-            ),
+            if (onEditLink != null) ...[
+              IconButton(
+                onPressed: () async {
+                  String resultLink = await onLink(context, link);
+                  if (resultLink != null && resultLink.isNotEmpty) {
+                    onEditLink(index, resultLink.trim());
+                  }
+                },
+                icon: Icon(OMIcons.edit),
+                color: Theme.of(context).accentColor,
+              ),
+            ],
+            if (onDeleteLink != null) ...[
+              IconButton(
+                onPressed: () => onDeleteLink(index),
+                icon: Icon(Icons.clear),
+                color: Theme.of(context).accentColor,
+              ),
+            ],
           ],
         ),
       ],

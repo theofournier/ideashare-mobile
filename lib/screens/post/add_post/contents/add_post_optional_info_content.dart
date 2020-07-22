@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:ideashare/common_widgets/custom_text_form_field.dart';
 import 'package:ideashare/common_widgets/images_section.dart';
 import 'package:ideashare/common_widgets/language_section.dart';
+import 'package:ideashare/common_widgets/links_section.dart';
 import 'package:ideashare/common_widgets/section_title.dart';
 import 'package:ideashare/generated/l10n.dart';
 import 'package:ideashare/screens/post/add_post/add_post_view_model.dart';
-import 'package:ideashare/screens/post/add_post/contents/optional_info/links_section.dart';
 import 'package:ideashare/utils/extensions/list.dart';
 
 class AddPostOptionalInfoContent extends StatefulWidget {
@@ -100,6 +100,7 @@ class _AddPostOptionalInfoContentState
           images: viewModel.images..rearrangeByIndex(index)),
       isSectionTitle: true,
       sectionDescription: S.of(context).addPostOptionalInfoImagesDescription,
+      displayFirst: true,
     );
   }
 

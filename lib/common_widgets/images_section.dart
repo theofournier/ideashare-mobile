@@ -9,7 +9,7 @@ import 'package:image_picker/image_picker.dart';
 
 class ImagesSection extends StatelessWidget {
   ImagesSection({
-    @required this.images,
+    this.images,
     this.onAddImage,
     this.onDeleteImage,
     this.onTapImage,
@@ -18,6 +18,7 @@ class ImagesSection extends StatelessWidget {
     this.isSectionTitle = false,
     this.sectionTitle,
     this.sectionDescription,
+    this.displayFirst = false,
   });
 
   final List<File> images;
@@ -29,6 +30,7 @@ class ImagesSection extends StatelessWidget {
   final bool isSectionTitle;
   final String sectionTitle;
   final String sectionDescription;
+  final bool displayFirst;
 
   Future<void> pickPicture(ImageSource imageSource) async {
     final File croppedPicture = await Helpers.pickPicture(
@@ -80,7 +82,7 @@ class ImagesSection extends StatelessWidget {
                               ? () => onDeleteImage(image.key)
                               : null,
                           onTap: () => onTap(image.key),
-                          isFirst: image.key == 0,
+                          isFirst: displayFirst && image.key == 0,
                         ),
                       ))
                   .toList(),
