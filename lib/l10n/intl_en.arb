@@ -111,5 +111,6 @@
   "shareOptionsNews": "News",
   "shareOptionsStatus": "Status",
   "addPostShareOptionsAppBarButton": "Reset",
-  "imagesSectionTitle": "Images"
+  "imagesSectionTitle": "Images",
+  "languageSectionTitle": "Language"
 }

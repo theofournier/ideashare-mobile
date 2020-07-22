@@ -86,6 +86,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "forgotPasswordScreenText" : MessageLookupByLibrary.simpleMessage("We\'ll send you an email to reset your password."),
     "imagesSectionTitle" : MessageLookupByLibrary.simpleMessage("Images"),
     "invalidUrl" : MessageLookupByLibrary.simpleMessage("Invalid URL"),
+    "languageSectionTitle" : MessageLookupByLibrary.simpleMessage("Language"),
     "noImage" : MessageLookupByLibrary.simpleMessage("No image"),
     "ok" : MessageLookupByLibrary.simpleMessage("OK"),
     "save" : MessageLookupByLibrary.simpleMessage("Save"),

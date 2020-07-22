@@ -2,10 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ideashare/common_widgets/custom_text_form_field.dart';
 import 'package:ideashare/common_widgets/images_section.dart';
+import 'package:ideashare/common_widgets/language_section.dart';
 import 'package:ideashare/common_widgets/section_title.dart';
 import 'package:ideashare/generated/l10n.dart';
 import 'package:ideashare/screens/post/add_post/add_post_view_model.dart';
-import 'package:ideashare/screens/post/add_post/contents/optional_info/language_section.dart';
 import 'package:ideashare/screens/post/add_post/contents/optional_info/links_section.dart';
 import 'package:ideashare/utils/extensions/list.dart';
 
@@ -79,6 +79,7 @@ class _AddPostOptionalInfoContentState
 
   Widget _buildLanguage() {
     return LanguageSection(
+      descriptionTitle: S.of(context).addPostOptionalInfoLanguageDescription,
       currentLanguageKey: viewModel.post.info.language,
       languages: viewModel.languages,
       popularLanguageCodes: viewModel.popularLanguageCodes,

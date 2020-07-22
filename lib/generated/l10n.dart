@@ -1162,6 +1162,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Language`
+  String get languageSectionTitle {
+    return Intl.message(
+      'Language',
+      name: 'languageSectionTitle',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -8,12 +8,16 @@ import 'package:outline_material_icons/outline_material_icons.dart';
 
 class LanguageSection extends StatelessWidget {
   LanguageSection({
+    this.sectionTitle,
+    this.descriptionTitle,
     this.currentLanguageKey,
     this.languages,
     this.popularLanguageCodes,
     this.onSave,
   });
 
+  final String sectionTitle;
+  final String descriptionTitle;
   final String currentLanguageKey;
   final List<MapEntry<String, String>> languages;
   final List<String> popularLanguageCodes;
@@ -36,8 +40,8 @@ class LanguageSection extends StatelessWidget {
             right: 40,
           ),
           child: SectionTitle(
-            title: S.of(context).addPostOptionalInfoLanguageTitle,
-            description: S.of(context).addPostOptionalInfoLanguageDescription,
+            title: sectionTitle ?? S.of(context).languageSectionTitle,
+            description: descriptionTitle,
           ),
         ),
         Expanded(
