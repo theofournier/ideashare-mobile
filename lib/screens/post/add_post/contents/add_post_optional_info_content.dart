@@ -106,6 +106,10 @@ class _AddPostOptionalInfoContentState
 
   Widget _buildLinks() {
     return LinksSection(
+        isSectionTitle: true,
+        sectionDescription: S.of(context).addPostOptionalInfoLinksDescription,
+        sectionAlertDescription:
+            S.of(context).addPostOptionalInfoLinksDescription,
         links: viewModel.post.info.urlLinks,
         spaceTitle: _spaceTitle,
         onAddLink: (String link) => viewModel.updateWith(
