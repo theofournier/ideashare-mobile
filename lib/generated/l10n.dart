@@ -1172,7 +1172,27 @@ class S {
       args: [],
     );
   }
+
+  /// `Idea`
+  String get postTypeIdea {
+    return Intl.message(
+      'Idea',
+      name: 'postTypeIdea',
       desc: '',
+      args: [],
+    );
+  }
+
+  /// `Issue`
+  String get postTypeIssue {
+    return Intl.message(
+      'Issue',
+      name: 'postTypeIssue',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Link`
   String get linksSectionAlertTitle {
     return Intl.message(

@@ -92,6 +92,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "linksSectionUrl" : MessageLookupByLibrary.simpleMessage("URL"),
     "noImage" : MessageLookupByLibrary.simpleMessage("No image"),
     "ok" : MessageLookupByLibrary.simpleMessage("OK"),
+    "postTypeIdea" : MessageLookupByLibrary.simpleMessage("Idea"),
+    "postTypeIssue" : MessageLookupByLibrary.simpleMessage("Issue"),
     "save" : MessageLookupByLibrary.simpleMessage("Save"),
     "selectPictureScreenAppBarTitle" : MessageLookupByLibrary.simpleMessage("Picture"),
     "selectPictureScreenFromDefaultButton" : MessageLookupByLibrary.simpleMessage("Select from default"),

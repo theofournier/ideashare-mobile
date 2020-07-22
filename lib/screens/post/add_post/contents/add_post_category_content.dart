@@ -4,25 +4,8 @@ import 'package:ideashare/constants/constants.dart';
 import 'package:ideashare/generated/l10n.dart';
 import 'package:ideashare/resources/theme.dart';
 import 'package:ideashare/screens/post/add_post/add_post_view_model.dart';
-import 'package:ideashare/services/models/post/post/post.dart';
-import 'package:ideashare/services/models/post/post/post_share_options.dart';
+import 'package:ideashare/utils/category_utils.dart';
 import 'package:ideashare/utils/extensions/text_style.dart';
-
-class CategoryData {
-  CategoryData({
-    this.category,
-    this.title,
-    this.description,
-    this.color,
-    this.textColor,
-  });
-
-  final PostType category;
-  final String title;
-  final String description;
-  final Color color;
-  final Color textColor;
-}
 
 class AddPostCategoryContent extends StatelessWidget {
   AddPostCategoryContent({
@@ -30,21 +13,6 @@ class AddPostCategoryContent extends StatelessWidget {
   });
 
   final AddPostViewModel viewModel;
-
-  List<CategoryData> categories(BuildContext context) => [
-        CategoryData(
-          category: PostType.idea,
-          title: S.of(context).addPostCategoryIdeaTitle,
-          description: "Description",
-          color: AppColors.ideaColor,
-        ),
-        CategoryData(
-          category: PostType.issue,
-          title: S.of(context).addPostCategoryIssueTitle,
-          description: "Description",
-          color: AppColors.issueColor,
-        ),
-      ];
 
   void onTap(PostType category) {
     viewModel.updateWith(post: viewModel.post..category = category);
@@ -60,7 +28,7 @@ class AddPostCategoryContent extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.center,
-        children: categories(context)
+        children: CategoryUtils.categories(context)
             .map(
               (category) => CategoryItem(
                 title: category.title,

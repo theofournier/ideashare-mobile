@@ -112,7 +112,9 @@
   "shareOptionsStatus": "Status",
   "addPostShareOptionsAppBarButton": "Reset",
   "imagesSectionTitle": "Images",
-  "languageSectionTitle": "Language"
+  "languageSectionTitle": "Language",
+  "postTypeIdea": "Idea",
+  "postTypeIssue": "Issue",
   "linksSectionAlertTitle": "Link",
   "linksSectionUrl": "URL",
   "linksSectionTitle": "Links"
