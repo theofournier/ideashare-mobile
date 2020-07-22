@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ideashare/common_widgets/share_options_widget.dart';
 import 'package:ideashare/screens/post/add_post/add_post_view_model.dart';
+import 'package:ideashare/services/models/common/share_options_data.dart';
 import 'package:ideashare/utils/share_options_utils.dart';
 
 class AddPostShareOptionsContent extends StatelessWidget {
@@ -15,7 +16,7 @@ class AddPostShareOptionsContent extends StatelessWidget {
         child: CircularProgressIndicator(),
       );
     }
-    viewModel.shareOptions = ShareOptionsUtils.getShareOptions(
+    List<ShareOptionsData> shareOptionsData= ShareOptionsUtils.getShareOptions(
       context: context,
       category: viewModel.post.category,
       postShareOptions: viewModel.post.shareOptions,
@@ -23,7 +24,7 @@ class AddPostShareOptionsContent extends StatelessWidget {
     );
 
     return ShareOptionsWidget(
-      shareOptions: viewModel.shareOptions,
+      shareOptions: shareOptionsData,
     );
   }
 }

@@ -7,21 +7,10 @@ import 'package:ideashare/common_widgets/line.dart';
 import 'package:ideashare/common_widgets/section_title.dart';
 import 'package:ideashare/constants/constants.dart';
 import 'package:ideashare/services/models/common/share_option.dart';
+import 'package:ideashare/services/models/common/share_options_data.dart';
 import 'package:ideashare/utils/enum_string.dart';
 import 'package:ideashare/utils/share_options_utils.dart';
 import 'package:ideashare/utils/extensions/text_style.dart';
-
-class ShareOptionsData {
-  ShareOptionsData({
-    this.title,
-    this.description,
-    this.shareOptions,
-  });
-
-  final String title;
-  final String description;
-  final List<ShareOption> shareOptions;
-}
 
 class ShareOptionsWidget extends StatelessWidget {
   const ShareOptionsWidget({
@@ -82,15 +71,15 @@ class ShareOptionsWidget extends StatelessWidget {
             .asMap()
             .entries
             .map(
-              (seeOption) => Container(
+              (shareOption) => Container(
                 margin: EdgeInsets.only(
                     bottom:
-                        seeOption.key < shareOptionData.shareOptions.length - 1
+                    shareOption.key < shareOptionData.shareOptions.length - 1
                             ? 8
                             : 0),
                 child: buildOption(
                   context: context,
-                  shareOption: seeOption.value,
+                  shareOption: shareOption.value,
                 ),
               ),
             )

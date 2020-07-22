@@ -6,6 +6,7 @@ import 'package:ideashare/constants/constants.dart';
 import 'package:ideashare/screens/post/add_post/add_post_step_data.dart';
 import 'package:ideashare/services/database/label_database.dart';
 import 'package:ideashare/services/database/profile_database.dart';
+import 'package:ideashare/services/models/common/share_options_data.dart';
 import 'package:ideashare/services/models/label/label.dart';
 import 'package:ideashare/services/models/post/post/post.dart';
 import 'package:ideashare/services/models/post/post/post_info.dart';
@@ -28,13 +29,32 @@ class AddPostViewModel with ChangeNotifier {
   final LabelDatabase labelDatabase;
   final ProfileDatabase profileDatabase;
 
-  AddPostStep currentStep = AddPostStep.shareOptions;
+  AddPostStep currentStep = AddPostStep.resume;
 
-  Post post = Post(category: PostType.idea);
-  PostNote postNote = PostNote();
-  List<File> images = [];
+  Post post = Post(
+    category: PostType.idea,
+    info: PostInfo(
+      title: "Title",
+      resume: "Resume\nResume",
+      description: "Description\nDescription\nDescription\nDescription",
+      language: "en",
+      urlLinks: ["https://facebook.com", "https://google.com"],
+      linkedIssue: "issue1",
+    ),
+    labels: [
+      PostLabel(id: "app", title: "App"),
+      PostLabel(id: "mobile", title: "Mobile"),
+      PostLabel(id: "web", title: "Web"),
+    ],
+  );
+  PostNote postNote = PostNote(text: "Note\nNote");
+  List<File> images = [
+    File(
+        "/data/user/0/com.theofournier.ideashare.dev/cache/image_cropper_1595437779487.jpg"),
+    File(
+        "/data/user/0/com.theofournier.ideashare.dev/cache/image_cropper_1595437807491.jpg"),
+  ];
   Post linkedIssue;
-  List<ShareOptionsData> shareOptions;
 
   List<MapEntry<String, String>> languages =
       CustomLocales.localeNamesSortedByName(
@@ -75,14 +95,16 @@ class AddPostViewModel with ChangeNotifier {
   }
 
   int totalStep() {
-    if(post.category == null || post.category == PostType.issue){
+    if (post.category == null || post.category == PostType.issue) {
       return AddPostStep.values.length - 1;
     }
     return AddPostStep.values.length;
   }
 
   int currentStepIndex() {
-    if(post.category == null || (post.category == PostType.issue && currentStep.index >= AddPostStep.linkedIssue.index)){
+    if (post.category == null ||
+        (post.category == PostType.issue &&
+            currentStep.index >= AddPostStep.linkedIssue.index)) {
       return currentStep.index - 1;
     }
     return currentStep.index;
@@ -91,7 +113,9 @@ class AddPostViewModel with ChangeNotifier {
   void nextStep() {
     if (this.currentStep.index < AddPostStep.values.length - 1) {
       int nextIndex = this.currentStep.index + 1;
-      if(post.category == null || (post.category == PostType.issue && currentStep.index == (AddPostStep.linkedIssue.index - 1))){
+      if (post.category == null ||
+          (post.category == PostType.issue &&
+              currentStep.index == (AddPostStep.linkedIssue.index - 1))) {
         nextIndex += 1;
       }
       goToStep(AddPostStep.values[nextIndex]);
@@ -101,7 +125,9 @@ class AddPostViewModel with ChangeNotifier {
   void previousStep() {
     if (this.currentStep.index > 0) {
       int previousIndex = this.currentStep.index - 1;
-      if(post.category == null || (post.category == PostType.issue && currentStep.index == (AddPostStep.linkedIssue.index + 1))){
+      if (post.category == null ||
+          (post.category == PostType.issue &&
+              currentStep.index == (AddPostStep.linkedIssue.index + 1))) {
         previousIndex -= 1;
       }
       goToStep(AddPostStep.values[previousIndex]);
@@ -143,8 +169,9 @@ class AddPostViewModel with ChangeNotifier {
     updateWith(isLoadingShareOptions: true);
     UserSettings userSettings = await profileDatabase.getUserSettings();
     updateWith(
-        isLoadingShareOptions: false,
-        defaultShareOptions: userSettings.defaultShareOptions);
+      isLoadingShareOptions: false,
+      defaultShareOptions: userSettings.defaultShareOptions,
+    );
     if (post.shareOptions == null) {
       resetShareOptions();
     }

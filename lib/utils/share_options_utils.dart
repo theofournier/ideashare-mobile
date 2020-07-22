@@ -3,6 +3,7 @@ import 'package:ideashare/common_widgets/share_options_widget.dart';
 import 'package:ideashare/constants/constants.dart';
 import 'package:ideashare/generated/l10n.dart';
 import 'package:ideashare/services/models/common/share_option.dart';
+import 'package:ideashare/services/models/common/share_options_data.dart';
 import 'package:ideashare/services/models/post/post/post_share_options.dart';
 
 class ShareOptionsUtils {
