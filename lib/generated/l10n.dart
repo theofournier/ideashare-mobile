@@ -1152,6 +1152,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Images`
+  String get imagesSectionTitle {
+    return Intl.message(
+      'Images',
+      name: 'imagesSectionTitle',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

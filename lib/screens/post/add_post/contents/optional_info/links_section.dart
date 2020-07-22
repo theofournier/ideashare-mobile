@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ideashare/common_widgets/alert_dialog_text_field.dart';
+import 'package:ideashare/common_widgets/section_title.dart';
 import 'package:ideashare/generated/l10n.dart';
-import 'package:ideashare/screens/post/add_post/common/add_post_section_title.dart';
 import 'package:ideashare/utils/extensions/text_style.dart';
 import 'package:ideashare/utils/helpers.dart';
 import 'package:outline_material_icons/outline_material_icons.dart';
@@ -38,7 +38,7 @@ class LinksSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        AddPostSectionTitle(
+        SectionTitle(
           title: S.of(context).addPostOptionalInfoLinksTitle,
           description: S.of(context).addPostOptionalInfoLinksDescription,
           onAdd: () async {

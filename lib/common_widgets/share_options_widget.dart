@@ -4,8 +4,8 @@ import 'package:ideashare/common_widgets/custom_dropdown_button.dart';
 import 'package:ideashare/common_widgets/custom_flat_button.dart';
 import 'package:ideashare/common_widgets/custom_raised_button.dart';
 import 'package:ideashare/common_widgets/line.dart';
+import 'package:ideashare/common_widgets/section_title.dart';
 import 'package:ideashare/constants/constants.dart';
-import 'package:ideashare/screens/post/add_post/common/add_post_section_title.dart';
 import 'package:ideashare/services/models/common/share_option.dart';
 import 'package:ideashare/utils/enum_string.dart';
 import 'package:ideashare/utils/share_options_utils.dart';
@@ -134,7 +134,7 @@ class SwitchOption extends StatelessWidget {
       child: Row(
         children: <Widget>[
           Expanded(
-            child: AddPostSectionTitle(
+            child: SectionTitle(
               title: shareOption.title,
               description: shareOption.description,
             ),
@@ -162,7 +162,7 @@ class ButtonOption extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        AddPostSectionTitle(
+        SectionTitle(
           title: shareOption.title,
           description: shareOption.description,
         ),
@@ -235,7 +235,7 @@ class DropdownOption extends StatelessWidget {
       children: <Widget>[
         Expanded(
           flex: 3,
-          child: AddPostSectionTitle(
+          child: SectionTitle(
             title: shareOption.title,
             description: shareOption.description,
           ),

@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:ideashare/resources/theme.dart';
 import 'package:ideashare/utils/extensions/text_style.dart';
 
-class AddPostSectionTitle extends StatelessWidget {
-  AddPostSectionTitle({
+class SectionTitle extends StatelessWidget {
+  SectionTitle({
     this.title = "",
     this.description,
     this.onAdd,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ideashare/common_widgets/custom_raised_button.dart';
+import 'package:ideashare/common_widgets/section_title.dart';
 import 'package:ideashare/generated/l10n.dart';
-import 'package:ideashare/screens/post/add_post/common/add_post_section_title.dart';
 import 'package:ideashare/utils/custom_locales.dart';
 import 'package:ideashare/utils/extensions/text_style.dart';
 import 'package:outline_material_icons/outline_material_icons.dart';
@@ -35,7 +35,7 @@ class LanguageSection extends StatelessWidget {
           margin: const EdgeInsets.only(
             right: 40,
           ),
-          child: AddPostSectionTitle(
+          child: SectionTitle(
             title: S.of(context).addPostOptionalInfoLanguageTitle,
             description: S.of(context).addPostOptionalInfoLanguageDescription,
           ),

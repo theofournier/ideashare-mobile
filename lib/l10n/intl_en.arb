@@ -110,5 +110,6 @@
   "shareOptionsSee": "Who see what?",
   "shareOptionsNews": "News",
   "shareOptionsStatus": "Status",
-  "addPostShareOptionsAppBarButton": "Reset"
+  "addPostShareOptionsAppBarButton": "Reset",
+  "imagesSectionTitle": "Images"
 }

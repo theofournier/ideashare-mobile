@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ideashare/common_widgets/custom_text_form_field.dart';
+import 'package:ideashare/common_widgets/images_section.dart';
+import 'package:ideashare/common_widgets/section_title.dart';
 import 'package:ideashare/generated/l10n.dart';
 import 'package:ideashare/screens/post/add_post/add_post_view_model.dart';
-import 'package:ideashare/screens/post/add_post/common/add_post_section_title.dart';
-import 'package:ideashare/screens/post/add_post/contents/optional_info/images_section.dart';
 import 'package:ideashare/screens/post/add_post/contents/optional_info/language_section.dart';
 import 'package:ideashare/screens/post/add_post/contents/optional_info/links_section.dart';
 import 'package:ideashare/utils/extensions/list.dart';
@@ -29,8 +29,9 @@ class _AddPostOptionalInfoContentState
   final TextEditingController _noteController = TextEditingController();
 
   void _initLanguage() {
-    if(viewModel.post.info.language == null){
-      viewModel.post.info.language = Localizations.localeOf(context).languageCode;
+    if (viewModel.post.info.language == null) {
+      viewModel.post.info.language =
+          Localizations.localeOf(context).languageCode;
     }
   }
 
@@ -90,9 +91,14 @@ class _AddPostOptionalInfoContentState
   Widget _buildImages() {
     return ImagesSection(
       images: viewModel.images,
-      onAddImage: (image) => viewModel.updateWith(images: viewModel.images..add(image)),
-      onDeleteImage: (index) => viewModel.updateWith(images: viewModel.images..removeAt(index)),
-      onTapImage: (index) => viewModel.updateWith(images: viewModel.images..rearrangeByIndex(index)),
+      onAddImage: (image) =>
+          viewModel.updateWith(images: viewModel.images..add(image)),
+      onDeleteImage: (index) =>
+          viewModel.updateWith(images: viewModel.images..removeAt(index)),
+      onTapImage: (index) => viewModel.updateWith(
+          images: viewModel.images..rearrangeByIndex(index)),
+      isSectionTitle: true,
+      sectionDescription: S.of(context).addPostOptionalInfoImagesDescription,
     );
   }
 
@@ -116,7 +122,7 @@ class _AddPostOptionalInfoContentState
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        AddPostSectionTitle(
+        SectionTitle(
           title: S.of(context).addPostOptionalInfoNoteTitle,
           description: S.of(context).addPostOptionalInfoNoteDescription,
         ),

@@ -84,6 +84,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "forgotPasswordScreenSuccessContent" : MessageLookupByLibrary.simpleMessage("An email has been sent. Follow the instruction to reset your password."),
     "forgotPasswordScreenSuccessTitle" : MessageLookupByLibrary.simpleMessage("Email sent successfully"),
     "forgotPasswordScreenText" : MessageLookupByLibrary.simpleMessage("We\'ll send you an email to reset your password."),
+    "imagesSectionTitle" : MessageLookupByLibrary.simpleMessage("Images"),
     "invalidUrl" : MessageLookupByLibrary.simpleMessage("Invalid URL"),
     "noImage" : MessageLookupByLibrary.simpleMessage("No image"),
     "ok" : MessageLookupByLibrary.simpleMessage("OK"),
