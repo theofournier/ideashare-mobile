@@ -1222,6 +1222,66 @@ class S {
       args: [],
     );
   }
+
+  /// `Delete`
+  String get addPostDelete {
+    return Intl.message(
+      'Delete',
+      name: 'addPostDelete',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you want really want erase it?`
+  String get addPostDeleteMessage {
+    return Intl.message(
+      'Do you want really want erase it?',
+      name: 'addPostDeleteMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you want save this post?`
+  String get addPostSaveMessage {
+    return Intl.message(
+      'Do you want save this post?',
+      name: 'addPostSaveMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete`
+  String get delete {
+    return Intl.message(
+      'Delete',
+      name: 'delete',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete post`
+  String get addPostDeleteTitle {
+    return Intl.message(
+      'Delete post',
+      name: 'addPostDeleteTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save post`
+  String get addPostSaveTitle {
+    return Intl.message(
+      'Save post',
+      name: 'addPostSaveTitle',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

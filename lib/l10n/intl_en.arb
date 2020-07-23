@@ -117,5 +117,11 @@
   "postTypeIssue": "Issue",
   "linksSectionAlertTitle": "Link",
   "linksSectionUrl": "URL",
-  "linksSectionTitle": "Links"
+  "linksSectionTitle": "Links",
+  "addPostDelete": "Delete",
+  "addPostDeleteMessage": "Do you want really want erase it?",
+  "addPostSaveMessage": "Do you want save this post?",
+  "delete": "Delete",
+  "addPostDeleteTitle": "Delete post",
+  "addPostSaveTitle": "Save post"
 }

@@ -1,8 +1,10 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:ideashare/common_widgets/platform_alert_dialog.dart';
 import 'package:ideashare/constants/constants.dart';
 import 'package:ideashare/constants/data_example.dart';
+import 'package:ideashare/generated/l10n.dart';
 import 'package:ideashare/screens/post/add_post/add_post_step_data.dart';
 import 'package:ideashare/services/database/label_database.dart';
 import 'package:ideashare/services/database/profile_database.dart';
@@ -42,6 +44,8 @@ class AddPostViewModel with ChangeNotifier {
 
   bool isLoadingLabels = false;
   bool isLoadingShareOptions = false;
+  bool isLoadingSave = false;
+
   List<Label> labels = [];
   UserSettingsDefaultShareOptions defaultShareOptions;
 
@@ -57,6 +61,7 @@ class AddPostViewModel with ChangeNotifier {
     UserSettingsDefaultShareOptions defaultShareOptions,
     bool isLoadingLabels,
     bool isLoadingShareOptions,
+    bool isLoadingSave,
   }) {
     this.currentStep = currentStep ?? this.currentStep;
     this.post = post ?? this.post;
@@ -70,6 +75,7 @@ class AddPostViewModel with ChangeNotifier {
     this.isLoadingLabels = isLoadingLabels ?? this.isLoadingLabels;
     this.isLoadingShareOptions =
         isLoadingShareOptions ?? this.isLoadingShareOptions;
+    this.isLoadingSave = isLoadingSave ?? this.isLoadingSave;
     notifyListeners();
   }
 
@@ -117,12 +123,31 @@ class AddPostViewModel with ChangeNotifier {
     updateWith(currentStep: step);
   }
 
-  void reset(BuildContext context) {
-    Navigator.of(context).popUntil((route) => route.isFirst);
+  void reset(BuildContext context) async {
+    bool result = await PlatformAlertDialog(
+      defaultActionText: S.of(context).delete,
+      title: S.of(context).addPostDeleteTitle,
+      cancelActionText: S.of(context).cancel,
+      content: S.of(context).addPostDeleteMessage,
+    ).show(context);
+    if (result != null && result) {
+      Navigator.of(context).popUntil((route) => route.isFirst);
+    }
   }
 
-  void save() {
-    print("SAVE");
+  void save(BuildContext context) async {
+    bool result = await PlatformAlertDialog(
+      defaultActionText: S.of(context).save,
+      title: S.of(context).addPostSaveTitle,
+      cancelActionText: S.of(context).cancel,
+      content: S.of(context).addPostSaveMessage,
+    ).show(context);
+    if (result != null && result) {
+      updateWith(isLoadingSave: true);
+      //TODO: save
+      await Future.delayed(Duration(seconds: 3));
+      updateWith(isLoadingSave: false);
+    }
   }
 
   Future<void> fetchLabels() async {
