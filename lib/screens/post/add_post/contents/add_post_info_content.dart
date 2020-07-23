@@ -20,25 +20,27 @@ class _AddPostInfoContentState extends State<AddPostInfoContent> {
   final TextEditingController _resumeController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
 
-  void _save() {
-    viewModel.post.info.title = _titleController.text;
-    viewModel.post.info.resume = _resumeController.text;
-    viewModel.post.info.description = _descriptionController.text;
-  }
-
   @override
   void initState() {
     _titleController.text = viewModel.post.info.title;
     _resumeController.text = viewModel.post.info.resume;
     _descriptionController.text = viewModel.post.info.description;
 
+    _titleController.addListener(() {
+      viewModel.updateWith(postInfo: viewModel.post.info..title = _titleController.text);
+    });
+    _resumeController.addListener(() {
+      viewModel.updateWith(postInfo: viewModel.post.info..resume = _resumeController.text);
+    });
+    _descriptionController.addListener(() {
+      viewModel.updateWith(postInfo: viewModel.post.info..description = _descriptionController.text);
+    });
+
     super.initState();
   }
 
   @override
   void dispose() {
-    _save();
-
     _node.dispose();
     _titleController.dispose();
     _resumeController.dispose();
