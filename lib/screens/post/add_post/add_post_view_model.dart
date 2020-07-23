@@ -1,13 +1,11 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:ideashare/common_widgets/share_options_widget.dart';
 import 'package:ideashare/constants/constants.dart';
 import 'package:ideashare/constants/data_example.dart';
 import 'package:ideashare/screens/post/add_post/add_post_step_data.dart';
 import 'package:ideashare/services/database/label_database.dart';
 import 'package:ideashare/services/database/profile_database.dart';
-import 'package:ideashare/services/models/common/share_options_data.dart';
 import 'package:ideashare/services/models/label/label.dart';
 import 'package:ideashare/services/models/post/post/post.dart';
 import 'package:ideashare/services/models/post/post/post_info.dart';
@@ -30,7 +28,7 @@ class AddPostViewModel with ChangeNotifier {
   final LabelDatabase labelDatabase;
   final ProfileDatabase profileDatabase;
 
-  AddPostStep currentStep = AddPostStep.resume;
+  AddPostStep currentStep = AddPostStep.category;
 
   Post post = postExample;
   PostNote postNote = postNoteExample;
@@ -119,12 +117,8 @@ class AddPostViewModel with ChangeNotifier {
     updateWith(currentStep: step);
   }
 
-  void reset() {
-    currentStep = null;
-    post = Post();
-    postNote = PostNote();
-    images = [];
-    notifyListeners();
+  void reset(BuildContext context) {
+    Navigator.of(context).popUntil((route) => route.isFirst);
   }
 
   void save() {

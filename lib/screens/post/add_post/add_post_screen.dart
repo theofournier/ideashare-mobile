@@ -14,7 +14,6 @@ import 'package:ideashare/screens/post/add_post/contents/add_post_linked_issue_c
 import 'package:ideashare/screens/post/add_post/contents/add_post_optional_info_content.dart';
 import 'package:ideashare/screens/post/add_post/contents/add_post_resume_content.dart';
 import 'package:ideashare/screens/post/add_post/contents/add_post_share_options_content.dart';
-import 'package:ideashare/screens/post/add_post/contents/add_post_start_content.dart';
 import 'package:ideashare/services/database/label_database.dart';
 import 'package:ideashare/services/database/profile_database.dart';
 import 'package:provider/provider.dart';
@@ -163,20 +162,19 @@ class AddPostContent extends StatelessWidget {
     return CustomAppBar(
       title: title(context),
       titleSpacing: 24,
-      actions: viewModel.currentStep == null
-          ? []
-          : [
-              if (currentStepData(context).appBarButton != null) ...[
-                CustomAppBarButton(
-                  text: currentStepData(context).appBarButton,
-                  onPressed: currentStepData(context).onPressedAppBarButton,
-                ),
-              ],
-              CustomAppBarButton(
-                icon: Icons.delete,
-                onPressed: viewModel.reset,
-              ),
-            ],
+      automaticallyImplyLeading: false,
+      actions: [
+        if (currentStepData(context).appBarButton != null) ...[
+          CustomAppBarButton(
+            text: currentStepData(context).appBarButton,
+            onPressed: currentStepData(context).onPressedAppBarButton,
+          ),
+        ],
+        CustomAppBarButton(
+          icon: Icons.clear,
+          onPressed: () => viewModel.reset(context),
+        ),
+      ],
     );
   }
 
@@ -198,28 +196,20 @@ class AddPostContent extends StatelessWidget {
   }
 
   Widget buildBody(BuildContext context) {
-    if (viewModel.currentStep != null) {
-      return ListView(
-        padding: ConstantWidgets.addPostPadding,
-        children: <Widget>[
-          if (description(context) != null) ...[
-            Text(
-              description(context),
-              style: Theme.of(context).textTheme.bodyText2,
-            ),
-            SizedBox(
-              height: 24,
-            ),
-          ],
-          content(context),
-        ],
-      );
-    }
-    return Padding(
+    return ListView(
       padding: ConstantWidgets.addPostPadding,
-      child: AddPostStartContent(
-        viewModel: viewModel,
-      ),
+      children: <Widget>[
+        if (description(context) != null) ...[
+          Text(
+            description(context),
+            style: Theme.of(context).textTheme.bodyText2,
+          ),
+          SizedBox(
+            height: 24,
+          ),
+        ],
+        content(context),
+      ],
     );
   }
 }
