@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:ideashare/common_widgets/share_options_widget.dart';
 import 'package:ideashare/constants/constants.dart';
+import 'package:ideashare/constants/data_example.dart';
 import 'package:ideashare/screens/post/add_post/add_post_step_data.dart';
 import 'package:ideashare/services/database/label_database.dart';
 import 'package:ideashare/services/database/profile_database.dart';
@@ -31,29 +32,9 @@ class AddPostViewModel with ChangeNotifier {
 
   AddPostStep currentStep = AddPostStep.resume;
 
-  Post post = Post(
-    category: PostType.idea,
-    info: PostInfo(
-      title: "Title",
-      resume: "Resume\nResume",
-      description: "Description\nDescription\nDescription\nDescription",
-      language: "en",
-      urlLinks: ["https://facebook.com", "https://google.com"],
-      linkedIssue: "issue1",
-    ),
-    labels: [
-      PostLabel(id: "app", title: "App"),
-      PostLabel(id: "mobile", title: "Mobile"),
-      PostLabel(id: "web", title: "Web"),
-    ],
-  );
-  PostNote postNote = PostNote(text: "Note\nNote");
-  List<File> images = [
-    File(
-        "/data/user/0/com.theofournier.ideashare.dev/cache/image_cropper_1595437779487.jpg"),
-    File(
-        "/data/user/0/com.theofournier.ideashare.dev/cache/image_cropper_1595437807491.jpg"),
-  ];
+  Post post = postExample;
+  PostNote postNote = postNoteExample;
+  List<File> images = imagesExample;
   Post linkedIssue;
 
   List<MapEntry<String, String>> languages =

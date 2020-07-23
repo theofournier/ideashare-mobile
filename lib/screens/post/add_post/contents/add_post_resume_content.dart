@@ -4,6 +4,8 @@ import 'package:ideashare/common_widgets/label_chip.dart';
 import 'package:ideashare/common_widgets/line.dart';
 import 'package:ideashare/common_widgets/links_section.dart';
 import 'package:ideashare/common_widgets/share_options_widget.dart';
+import 'package:ideashare/generated/l10n.dart';
+import 'package:ideashare/screens/post/add_post/add_post_step_data.dart';
 import 'package:ideashare/screens/post/add_post/add_post_view_model.dart';
 import 'package:ideashare/services/models/common/share_option.dart';
 import 'package:ideashare/services/models/common/share_options_data.dart';
@@ -56,46 +58,91 @@ class AddPostResumeContent extends StatelessWidget {
     );
   }
 
-
-  //region Category
-  Widget buildCategory(BuildContext context){
-    TextStyle categoryStyle =
-    Theme.of(context).textTheme.headline4.toSemiBold();
-    return Text(
-      viewModel.post.category != null
-          ? CategoryUtils.getCategoryTitle(context)[viewModel.post.category]
-          : "",
-      style: viewModel.post.category != null
-          ? categoryStyle.toColor(CategoryUtils.getCategoryColor(
-          context)[viewModel.post.category])
-          : categoryStyle,
+  Widget buildSectionTitle({
+    BuildContext context,
+    String title,
+    VoidCallback onTap,
+  }) {
+    return InkWell(
+      onTap: onTap,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Row(
+            children: <Widget>[
+              Expanded(
+                child: Text(
+                  title,
+                  style: Theme.of(context).textTheme.headline5,
+                ),
+              ),
+              Icon(
+                Icons.arrow_right,
+                color: Theme.of(context).accentColor,
+                size: 30,
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 4,
+          ),
+          Line(),
+        ],
+      ),
     );
   }
-  //endregion
 
+  //region Category
+  Widget buildCategory(BuildContext context) {
+    TextStyle categoryStyle =
+        Theme.of(context).textTheme.headline3.toSemiBold();
+    return InkWell(
+      onTap: () => viewModel.goToStep(AddPostStep.category),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          Text(
+            viewModel.post.category != null
+                ? CategoryUtils.getCategoryTitle(context)[viewModel.post.category]
+                : "",
+            style: viewModel.post.category != null
+                ? categoryStyle.toColor(
+                    CategoryUtils.getCategoryColor(context)[viewModel.post.category])
+                : categoryStyle,
+          ),
+        ],
+      ),
+    );
+  }
+
+  //endregion
 
   //region Info
   Widget buildInfo(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Text(
-          viewModel.post.info.title ?? "",
-          style: Theme.of(context).textTheme.headline5.toMedium().toSize(28),
-        ),
-        SizedBox(
-          height: 16,
-        ),
-        Text(viewModel.post.info.resume ?? "",
-            style: Theme.of(context).textTheme.bodyText1.toSize(20)),
-        SizedBox(
-          height: 8,
-        ),
-        Text(viewModel.post.info.description ?? "",
-            style: Theme.of(context).textTheme.bodyText1),
-      ],
+    return InkWell(
+      onTap: () => viewModel.goToStep(AddPostStep.info),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          Text(
+            viewModel.post.info.title ?? "",
+            style: Theme.of(context).textTheme.headline5.toMedium().toSize(28),
+          ),
+          SizedBox(
+            height: 16,
+          ),
+          Text(viewModel.post.info.resume ?? "",
+              style: Theme.of(context).textTheme.bodyText1.toSize(20)),
+          SizedBox(
+            height: 8,
+          ),
+          Text(viewModel.post.info.description ?? "",
+              style: Theme.of(context).textTheme.bodyText1),
+        ],
+      ),
     );
   }
+
   //endregion
 
   //region Optional Info
@@ -105,6 +152,14 @@ class AddPostResumeContent extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
+        buildSectionTitle(
+          context: context,
+          title: S.of(context).addPostTitleOptionalInfo,
+          onTap: () => viewModel.goToStep(AddPostStep.optionalInfo),
+        ),
+        SizedBox(
+          height: 16,
+        ),
         Row(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
@@ -147,47 +202,76 @@ class AddPostResumeContent extends StatelessWidget {
           ),
         ],
         Container(
-          padding: const EdgeInsets.all(8),
+          padding: const EdgeInsets.symmetric(
+            vertical: 8,
+            horizontal: 16,
+          ),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(6),
             color: Theme.of(context).accentColor.withOpacity(0.05),
           ),
           child: Text(
             viewModel.postNote.text,
-            style: Theme.of(context).textTheme.bodyText1,
+            style: Theme.of(context).textTheme.bodyText1.toSize(18),
           ),
         ),
       ],
     );
   }
-  //endregion
 
+  //endregion
 
   //region Labels
   Widget buildLabels(BuildContext context) {
-    return Wrap(
-      direction: Axis.horizontal,
-      spacing: 16,
-      runSpacing: 8,
-      children: viewModel.post.labels
-          .map((label) => LabelChip(
-                key: Key(label.id),
-                title: label.title,
-                textSize: 18,
-              ))
-          .toList(),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        buildSectionTitle(
+          context: context,
+          title: S.of(context).addPostTitleLabels,
+          onTap: () => viewModel.goToStep(AddPostStep.labels),
+        ),
+        SizedBox(
+          height: 16,
+        ),
+        Wrap(
+          direction: Axis.horizontal,
+          spacing: 16,
+          runSpacing: 8,
+          children: viewModel.post.labels
+              .map((label) => LabelChip(
+                    key: Key(label.id),
+                    title: label.title,
+                    textSize: 18,
+                  ))
+              .toList(),
+        ),
+      ],
     );
   }
-  //endregion
 
+  //endregion
 
   //region Linked issue
   Widget buildLinkedIssue(BuildContext context) {
     //TODO: display linked issue item
-    return Text("LINKED ISSUE");
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        buildSectionTitle(
+          context: context,
+          title: S.of(context).addPostTitleLinkedIssue,
+          onTap: () => viewModel.goToStep(AddPostStep.linkedIssue),
+        ),
+        SizedBox(
+          height: 16,
+        ),
+        Text("LINKED ISSUE"),
+      ],
+    );
   }
-  //endregion
 
+  //endregion
 
   //region Share options
   Widget buildShareOptions(BuildContext context) {
@@ -199,19 +283,30 @@ class AddPostResumeContent extends StatelessWidget {
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: shareOptionsData
-          .asMap()
-          .entries
-          .map((shareOption) => Container(
-                margin: EdgeInsets.only(
-                    bottom:
-                        shareOption.key < shareOptionsData.length - 1 ? 24 : 0),
-                child: shareOptionItem(
-                  context: context,
-                  shareOptionData: shareOption.value,
-                ),
-              ))
-          .toList(),
+      children: [
+        buildSectionTitle(
+          context: context,
+          title: S.of(context).addPostTitleShareOptions,
+          onTap: () => viewModel.goToStep(AddPostStep.shareOptions),
+        ),
+        SizedBox(
+          height: 16,
+        ),
+        ...shareOptionsData
+            .asMap()
+            .entries
+            .map((shareOption) => Container(
+                  margin: EdgeInsets.only(
+                      bottom: shareOption.key < shareOptionsData.length - 1
+                          ? 24
+                          : 0),
+                  child: shareOptionItem(
+                    context: context,
+                    shareOptionData: shareOption.value,
+                  ),
+                ))
+            .toList(),
+      ],
     );
   }
 
@@ -225,7 +320,7 @@ class AddPostResumeContent extends StatelessWidget {
         if (shareOptionData.title != null) ...[
           Text(
             shareOptionData.title,
-            style: Theme.of(context).textTheme.headline5.toMedium(),
+            style: Theme.of(context).textTheme.headline6.toSize(16),
           ),
           SizedBox(
             height: 8,
@@ -282,7 +377,8 @@ class AddPostResumeContent extends StatelessWidget {
           flex: 2,
           child: Text(
             shareOption.title,
-            style: Theme.of(context).textTheme.bodyText1.toSemiBold().toSize(18),
+            style:
+                Theme.of(context).textTheme.bodyText1.toSemiBold().toSize(18),
           ),
         ),
         if (shareOption.boolValue ?? false) ...[
@@ -312,7 +408,8 @@ class AddPostResumeContent extends StatelessWidget {
           flex: 2,
           child: Text(
             shareOption.title,
-            style: Theme.of(context).textTheme.bodyText1.toSemiBold().toSize(18),
+            style:
+                Theme.of(context).textTheme.bodyText1.toSemiBold().toSize(18),
           ),
         ),
         Expanded(
@@ -327,5 +424,5 @@ class AddPostResumeContent extends StatelessWidget {
       ],
     );
   }
-  //endregion
+//endregion
 }
