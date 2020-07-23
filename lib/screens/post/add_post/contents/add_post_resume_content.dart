@@ -19,30 +19,36 @@ class AddPostResumeContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double space = 32;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
+        buildCategory(context),
+        SizedBox(
+          height: space,
+        ),
         buildInfo(context),
         SizedBox(
-          height: 32,
+          height: space,
         ),
         buildOptionalInfo(context),
         if (viewModel.post.labels != null &&
             viewModel.post.labels.isNotEmpty) ...[
           SizedBox(
-            height: 32,
+            height: space,
           ),
           buildLabels(context),
         ],
         if (viewModel.linkedIssue != null) ...[
           SizedBox(
-            height: 32,
+            height: space,
           ),
           buildLinkedIssue(context),
         ],
         if (viewModel.post.shareOptions != null) ...[
           SizedBox(
-            height: 32,
+            height: space,
           ),
           buildShareOptions(context),
         ],
@@ -50,24 +56,29 @@ class AddPostResumeContent extends StatelessWidget {
     );
   }
 
-  Widget buildInfo(BuildContext context) {
+
+  //region Category
+  Widget buildCategory(BuildContext context){
     TextStyle categoryStyle =
-        Theme.of(context).textTheme.headline4.toSemiBold();
+    Theme.of(context).textTheme.headline4.toSemiBold();
+    return Text(
+      viewModel.post.category != null
+          ? CategoryUtils.getCategoryTitle(context)[viewModel.post.category]
+          : "",
+      style: viewModel.post.category != null
+          ? categoryStyle.toColor(CategoryUtils.getCategoryColor(
+          context)[viewModel.post.category])
+          : categoryStyle,
+    );
+  }
+  //endregion
+
+
+  //region Info
+  Widget buildInfo(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Text(
-          viewModel.post.category != null
-              ? CategoryUtils.getCategoryTitle(context)[viewModel.post.category]
-              : "",
-          style: viewModel.post.category != null
-              ? categoryStyle.toColor(CategoryUtils.getCategoryColor(
-                  context)[viewModel.post.category])
-              : categoryStyle,
-        ),
-        SizedBox(
-          height: 24,
-        ),
         Text(
           viewModel.post.info.title ?? "",
           style: Theme.of(context).textTheme.headline5.toMedium().toSize(28),
@@ -85,7 +96,9 @@ class AddPostResumeContent extends StatelessWidget {
       ],
     );
   }
+  //endregion
 
+  //region Optional Info
   Widget buildOptionalInfo(BuildContext context) {
     double space = 16;
 
@@ -147,7 +160,10 @@ class AddPostResumeContent extends StatelessWidget {
       ],
     );
   }
+  //endregion
 
+
+  //region Labels
   Widget buildLabels(BuildContext context) {
     return Wrap(
       direction: Axis.horizontal,
@@ -162,12 +178,18 @@ class AddPostResumeContent extends StatelessWidget {
           .toList(),
     );
   }
+  //endregion
 
+
+  //region Linked issue
   Widget buildLinkedIssue(BuildContext context) {
     //TODO: display linked issue item
     return Text("LINKED ISSUE");
   }
+  //endregion
 
+
+  //region Share options
   Widget buildShareOptions(BuildContext context) {
     List<ShareOptionsData> shareOptionsData = ShareOptionsUtils.getShareOptions(
       context: context,
@@ -305,4 +327,5 @@ class AddPostResumeContent extends StatelessWidget {
       ],
     );
   }
+  //endregion
 }
