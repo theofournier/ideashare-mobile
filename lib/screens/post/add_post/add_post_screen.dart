@@ -123,10 +123,7 @@ class AddPostContent extends StatelessWidget {
       };
 
   AddPostStepData currentStepData(BuildContext context) {
-    if (viewModel.currentStep != null) {
-      return stepData(context)[viewModel.currentStep];
-    }
-    return null;
+    return stepData(context)[viewModel.currentStep];
   }
 
   String title(BuildContext context) {
@@ -179,20 +176,17 @@ class AddPostContent extends StatelessWidget {
   }
 
   Widget buildBottomAppBar(BuildContext context) {
-    if (viewModel.currentStep != null) {
-      return AddPostBottomAppBar(
-        currentStep: viewModel.currentStepIndex(),
-        totalStep: viewModel.totalStep(),
-        onNext: viewModel.currentStep != AddPostStep.resume
-            ? viewModel.nextStep
-            : viewModel.save,
-        onPrevious: viewModel.currentStep != AddPostStep.category
-            ? viewModel.previousStep
-            : null,
-        saveButton: viewModel.currentStep == AddPostStep.resume,
-      );
-    }
-    return null;
+    return AddPostBottomAppBar(
+      currentStep: viewModel.currentStepIndex(),
+      totalStep: viewModel.totalStep(),
+      onNext: viewModel.currentStep != AddPostStep.resume
+          ? viewModel.nextStep
+          : viewModel.save,
+      onPrevious: viewModel.currentStep != AddPostStep.category
+          ? viewModel.previousStep
+          : null,
+      saveButton: viewModel.currentStep == AddPostStep.resume,
+    );
   }
 
   Widget buildBody(BuildContext context) {
