@@ -176,26 +176,27 @@ class AddPostResumeContent extends StatelessWidget {
               CustomLocales.getLocaleName(viewModel.post.info.language,
                       CustomLocales.nativeLocaleNames) ??
                   "",
-              style: Theme.of(context).textTheme.bodyText1.toSize(20).toMedium(),
+              style:
+                  Theme.of(context).textTheme.bodyText1.toSize(20).toMedium(),
             ),
           ],
         ),
-        SizedBox(
-          height: space,
-        ),
         if (viewModel.images != null && viewModel.images.isNotEmpty) ...[
+          SizedBox(
+            height: space,
+          ),
           ImagesSection(
             images: viewModel.images,
             displayImage: true,
             imageSize: 170,
             displayFirst: true,
           ),
-          SizedBox(
-            height: space,
-          ),
         ],
         if (viewModel.post.info.urlLinks != null &&
             viewModel.post.info.urlLinks.isNotEmpty) ...[
+          SizedBox(
+            height: space,
+          ),
           Row(
             children: <Widget>[
               Icon(
@@ -212,35 +213,39 @@ class AddPostResumeContent extends StatelessWidget {
               ),
             ],
           ),
+        ],
+        if (viewModel.postNote != null &&
+            viewModel.postNote.text != null &&
+            viewModel.postNote.text.isNotEmpty) ...[
           SizedBox(
             height: space,
           ),
-        ],
-        Container(
-          padding: const EdgeInsets.all(8),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(6),
-            color: Theme.of(context).accentColor.withOpacity(0.05),
-          ),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Icon(
-                OMIcons.note,
-                color: Theme.of(context).primaryColor,
-              ),
-              SizedBox(
-                width: 8,
-              ),
-              Expanded(
-                child: SelectableText(
-                  viewModel.postNote.text,
-                  style: Theme.of(context).textTheme.bodyText1,
+          Container(
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(6),
+              color: Theme.of(context).accentColor.withOpacity(0.05),
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Icon(
+                  OMIcons.note,
+                  color: Theme.of(context).primaryColor,
                 ),
-              ),
-            ],
+                SizedBox(
+                  width: 8,
+                ),
+                Expanded(
+                  child: SelectableText(
+                    viewModel.postNote.text,
+                    style: Theme.of(context).textTheme.bodyText1,
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
+        ],
       ],
     );
   }
