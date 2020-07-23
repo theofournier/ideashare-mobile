@@ -27,6 +27,7 @@ dependencies:
   url_launcher: ^5.5.0
   outline_material_icons: ^0.1.1
   flutter_localized_locales: ^1.1.1
+  photo_view: ^0.9.2
 
   cupertino_icons: ^0.1.2
 

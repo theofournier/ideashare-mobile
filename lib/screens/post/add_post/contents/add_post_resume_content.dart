@@ -13,6 +13,7 @@ import 'package:ideashare/utils/category_utils.dart';
 import 'package:ideashare/utils/custom_locales.dart';
 import 'package:ideashare/utils/extensions/text_style.dart';
 import 'package:ideashare/utils/share_options_utils.dart';
+import 'package:outline_material_icons/outline_material_icons.dart';
 
 class AddPostResumeContent extends StatelessWidget {
   AddPostResumeContent({this.viewModel});
@@ -103,11 +104,12 @@ class AddPostResumeContent extends StatelessWidget {
         children: <Widget>[
           Text(
             viewModel.post.category != null
-                ? CategoryUtils.getCategoryTitle(context)[viewModel.post.category]
+                ? CategoryUtils.getCategoryTitle(
+                    context)[viewModel.post.category]
                 : "",
             style: viewModel.post.category != null
-                ? categoryStyle.toColor(
-                    CategoryUtils.getCategoryColor(context)[viewModel.post.category])
+                ? categoryStyle.toColor(CategoryUtils.getCategoryColor(
+                    context)[viewModel.post.category])
                 : categoryStyle,
           ),
         ],
@@ -124,19 +126,19 @@ class AddPostResumeContent extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          Text(
+          SelectableText(
             viewModel.post.info.title ?? "",
             style: Theme.of(context).textTheme.headline5.toMedium().toSize(28),
           ),
           SizedBox(
             height: 16,
           ),
-          Text(viewModel.post.info.resume ?? "",
-              style: Theme.of(context).textTheme.bodyText1.toSize(20)),
+          SelectableText(viewModel.post.info.resume ?? "",
+              style: Theme.of(context).textTheme.bodyText1.toSize(18)),
           SizedBox(
-            height: 8,
+            height: 16,
           ),
-          Text(viewModel.post.info.description ?? "",
+          SelectableText(viewModel.post.info.description ?? "",
               style: Theme.of(context).textTheme.bodyText1),
         ],
       ),
@@ -194,25 +196,54 @@ class AddPostResumeContent extends StatelessWidget {
         ],
         if (viewModel.post.info.urlLinks != null &&
             viewModel.post.info.urlLinks.isNotEmpty) ...[
-          LinksSection(
-            links: viewModel.post.info.urlLinks,
+          Row(
+            children: <Widget>[
+              Icon(
+                Icons.link,
+                color: Theme.of(context).primaryColor,
+              ),
+              SizedBox(
+                width: 8,
+              ),
+              Expanded(
+                child: LinksSection(
+                  links: viewModel.post.info.urlLinks,
+                ),
+              ),
+            ],
           ),
           SizedBox(
             height: space,
           ),
         ],
         Container(
-          padding: const EdgeInsets.symmetric(
-            vertical: 8,
-            horizontal: 16,
+          padding: const EdgeInsets.only(
+            top: 8,
+            bottom: 8,
+            right: 16,
+            left: 8,
           ),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(6),
             color: Theme.of(context).accentColor.withOpacity(0.05),
           ),
-          child: Text(
-            viewModel.postNote.text,
-            style: Theme.of(context).textTheme.bodyText1.toSize(18),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Icon(
+                OMIcons.note,
+                color: Theme.of(context).primaryColor,
+              ),
+              SizedBox(
+                width: 8,
+              ),
+              Expanded(
+                child: SelectableText(
+                  viewModel.postNote.text,
+                  style: Theme.of(context).textTheme.bodyText1,
+                ),
+              ),
+            ],
           ),
         ),
       ],

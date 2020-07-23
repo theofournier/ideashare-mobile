@@ -96,11 +96,12 @@ class _AddPostOptionalInfoContentState
           viewModel.updateWith(images: viewModel.images..add(image)),
       onDeleteImage: (index) =>
           viewModel.updateWith(images: viewModel.images..removeAt(index)),
-      onTapImage: (index) => viewModel.updateWith(
+      onDoubleTapImage: (index) => viewModel.updateWith(
           images: viewModel.images..rearrangeByIndex(index)),
       isSectionTitle: true,
       sectionDescription: S.of(context).addPostOptionalInfoImagesDescription,
       displayFirst: true,
+      displayImage: true,
     );
   }
 
