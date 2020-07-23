@@ -83,9 +83,9 @@ class AddPostViewModel with ChangeNotifier {
   }
 
   int currentStepIndex() {
-    if (post.category == null ||
-        (post.category == PostType.issue &&
-            currentStep.index >= AddPostStep.linkedIssue.index)) {
+    if (post.category != null &&
+        post.category == PostType.issue &&
+        currentStep.index >= AddPostStep.linkedIssue.index) {
       return currentStep.index - 1;
     }
     return currentStep.index;
@@ -94,9 +94,9 @@ class AddPostViewModel with ChangeNotifier {
   void nextStep() {
     if (this.currentStep.index < AddPostStep.values.length - 1) {
       int nextIndex = this.currentStep.index + 1;
-      if (post.category == null ||
-          (post.category == PostType.issue &&
-              currentStep.index == (AddPostStep.linkedIssue.index - 1))) {
+      if (post.category != null &&
+          post.category == PostType.issue &&
+          currentStep.index == (AddPostStep.linkedIssue.index - 1)) {
         nextIndex += 1;
       }
       goToStep(AddPostStep.values[nextIndex]);
@@ -106,9 +106,9 @@ class AddPostViewModel with ChangeNotifier {
   void previousStep() {
     if (this.currentStep.index > 0) {
       int previousIndex = this.currentStep.index - 1;
-      if (post.category == null ||
-          (post.category == PostType.issue &&
-              currentStep.index == (AddPostStep.linkedIssue.index + 1))) {
+      if (post.category != null &&
+          post.category == PostType.issue &&
+          currentStep.index == (AddPostStep.linkedIssue.index + 1)) {
         previousIndex -= 1;
       }
       goToStep(AddPostStep.values[previousIndex]);
