@@ -217,12 +217,7 @@ class AddPostResumeContent extends StatelessWidget {
           ),
         ],
         Container(
-          padding: const EdgeInsets.only(
-            top: 8,
-            bottom: 8,
-            right: 16,
-            left: 8,
-          ),
+          padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(6),
             color: Theme.of(context).accentColor.withOpacity(0.05),
