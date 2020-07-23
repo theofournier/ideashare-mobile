@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ideashare/common_widgets/constant_widgets.dart';
 import 'package:ideashare/common_widgets/custom_app_bar.dart';
 import 'package:ideashare/common_widgets/custom_app_bar_button.dart';
+import 'package:ideashare/constants/constants.dart';
 import 'package:ideashare/generated/l10n.dart';
 import 'package:ideashare/resources/router.dart';
 import 'package:ideashare/screens/post/add_post/add_post_bottom_app_bar.dart';
@@ -170,10 +171,12 @@ class AddPostContent extends StatelessWidget {
             onPressed: currentStepData(context).onPressedAppBarButton,
           ),
         ],
-        CustomAppBarButton(
-          icon: Icons.clear,
-          onPressed: () => viewModel.reset(context),
-        ),
+        if (!viewModel.isLoadingSave) ...[
+          CustomAppBarButton(
+            icon: Icons.clear,
+            onPressed: () => viewModel.reset(context),
+          ),
+        ],
       ],
     );
   }
@@ -189,10 +192,18 @@ class AddPostContent extends StatelessWidget {
           ? viewModel.previousStep
           : null,
       saveButton: viewModel.currentStep == AddPostStep.resume,
+      isLoadingSave: viewModel.isLoadingSave,
     );
   }
 
   Widget buildBody(BuildContext context) {
+    if (viewModel.isLoadingSave) {
+      return Center(
+        child: Image.asset(
+          ImageName.addPostSaveLoading,
+        ),
+      );
+    }
     return ListView(
       padding: ConstantWidgets.addPostPadding,
       children: <Widget>[

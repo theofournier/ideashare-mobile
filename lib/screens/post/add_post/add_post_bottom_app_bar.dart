@@ -9,6 +9,7 @@ class AddPostBottomAppBar extends StatelessWidget {
     this.totalStep,
     this.currentStep,
     this.saveButton = false,
+    this.isLoadingSave = false,
   });
 
   final VoidCallback onPrevious;
@@ -16,6 +17,7 @@ class AddPostBottomAppBar extends StatelessWidget {
   final int totalStep;
   final int currentStep;
   final bool saveButton;
+  final bool isLoadingSave;
 
   double getProgressValue() {
     double progressPercent =
@@ -34,29 +36,37 @@ class AddPostBottomAppBar extends StatelessWidget {
           children: <Widget>[
             buildButton(
               context: context,
-              onTap: onPrevious,
+              onTap: isLoadingSave ? null : onPrevious,
               icon: Icons.arrow_back_ios,
             ),
             SizedBox(
               height: 80,
               width: 80,
-              child: StepperCircularProgress(
-                foregroundColor: Theme.of(context).accentColor,
-                backgroundColor: Theme.of(context).accentColor.withOpacity(0.1),
-                value: getProgressValue(),
-                title: Text(
-                  "${currentStep + 1} ${S.of(context).addPostBottomProgressOf} $totalStep",
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ),
+              child: isLoadingSave
+                  ? Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: CircularProgressIndicator(
+                        strokeWidth: 7,
+                      ),
+                    )
+                  : StepperCircularProgress(
+                      foregroundColor: Theme.of(context).accentColor,
+                      backgroundColor:
+                          Theme.of(context).accentColor.withOpacity(0.1),
+                      value: getProgressValue(),
+                      title: Text(
+                        "${currentStep + 1} ${S.of(context).addPostBottomProgressOf} $totalStep",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
             ),
             buildButton(
               context: context,
-              onTap: onNext,
+              onTap: isLoadingSave ? null : onNext,
               icon: saveButton ? Icons.check : Icons.arrow_forward_ios,
-                  color: saveButton ? Theme.of(context).accentColor : null,
+              color: saveButton ? Theme.of(context).accentColor : null,
               iconColor: saveButton ? Colors.white : null,
             ),
           ],
@@ -72,8 +82,10 @@ class AddPostBottomAppBar extends StatelessWidget {
     Color iconColor,
     Color color,
   }) {
-    if(onTap == null){
-      return SizedBox(width: 53,);
+    if (onTap == null) {
+      return SizedBox(
+        width: 53,
+      );
     }
     return Material(
         type: MaterialType.transparency,

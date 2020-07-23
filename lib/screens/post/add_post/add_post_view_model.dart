@@ -124,6 +124,9 @@ class AddPostViewModel with ChangeNotifier {
   }
 
   Future<bool> showDeleteAlertDialog(BuildContext context) async {
+    if(isLoadingSave){
+      return false;
+    }
     return await PlatformAlertDialog(
       defaultActionText: S.of(context).delete,
       title: S.of(context).addPostDeleteTitle,

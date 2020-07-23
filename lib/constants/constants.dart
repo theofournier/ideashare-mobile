@@ -13,6 +13,7 @@ class ImageName {
   static final addPostStart = dir + "add_post_start.png";
   static final addPostLinkedIssue = dir + "add_post_linked_issue.png";
   static final addPostLabels = dir + "add_post_labels.png";
+  static final addPostSaveLoading = dir + "add_post_save_loading.png";
 }
 
 class StorageKeys {
