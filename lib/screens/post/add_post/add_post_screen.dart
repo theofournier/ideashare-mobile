@@ -147,10 +147,13 @@ class AddPostContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return ConstantWidgets.unfocusGestureDetector(
       context: context,
-      child: Scaffold(
-        appBar: buildAppBar(context),
-        bottomNavigationBar: buildBottomAppBar(context),
-        body: buildBody(context),
+      child: WillPopScope(
+        onWillPop: () => viewModel.showDeleteAlertDialog(context),
+        child: Scaffold(
+          appBar: buildAppBar(context),
+          bottomNavigationBar: buildBottomAppBar(context),
+          body: buildBody(context),
+        ),
       ),
     );
   }

@@ -123,13 +123,17 @@ class AddPostViewModel with ChangeNotifier {
     updateWith(currentStep: step);
   }
 
-  void reset(BuildContext context) async {
-    bool result = await PlatformAlertDialog(
+  Future<bool> showDeleteAlertDialog(BuildContext context) async {
+    return await PlatformAlertDialog(
       defaultActionText: S.of(context).delete,
       title: S.of(context).addPostDeleteTitle,
       cancelActionText: S.of(context).cancel,
       content: S.of(context).addPostDeleteMessage,
     ).show(context);
+  }
+
+  void reset(BuildContext context) async {
+    bool result = await showDeleteAlertDialog(context);
     if (result != null && result) {
       Navigator.of(context).popUntil((route) => route.isFirst);
     }
