@@ -6,7 +6,9 @@ import 'package:ideashare/common_widgets/language_section.dart';
 import 'package:ideashare/common_widgets/links_section.dart';
 import 'package:ideashare/common_widgets/section_title.dart';
 import 'package:ideashare/generated/l10n.dart';
+import 'package:ideashare/screens/post/add_post/add_post_step_data.dart';
 import 'package:ideashare/screens/post/add_post/add_post_view_model.dart';
+import 'package:ideashare/utils/enum_string.dart';
 import 'package:ideashare/utils/extensions/list.dart';
 
 class AddPostOptionalInfoContent extends StatefulWidget {
@@ -91,6 +93,7 @@ class _AddPostOptionalInfoContentState
 
   Widget _buildImages() {
     return ImagesSection(
+      id: EnumString.string(AddPostStep.optionalInfo),
       images: viewModel.images,
       onAddImage: (image) =>
           viewModel.updateWith(images: viewModel.images..add(image)),

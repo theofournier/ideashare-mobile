@@ -3,7 +3,7 @@ import 'package:ideashare/generated/l10n.dart';
 import 'package:ideashare/screens/home/home_screen.dart';
 import 'package:ideashare/screens/main/tab_item_data.dart';
 import 'package:ideashare/screens/notifications/notifications_screen.dart';
-import 'package:ideashare/screens/post/add_post/add_post_screen.dart';
+import 'package:ideashare/screens/post/add_post/add_post_start_screen.dart';
 import 'package:ideashare/screens/profile/profile_screen.dart';
 import 'package:ideashare/screens/search/search_screen.dart';
 import 'package:outline_material_icons/outline_material_icons.dart';
@@ -25,7 +25,7 @@ class MainViewModel with ChangeNotifier {
   final List<Widget> pages = [
     HomeScreen(),
     SearchScreen(),
-    AddPostScreen(),
+    AddPostStartScreen(),
     NotificationsScreen(),
     ProfileScreen()
   ];

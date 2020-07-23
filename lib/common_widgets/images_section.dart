@@ -10,6 +10,7 @@ import 'package:image_picker/image_picker.dart';
 
 class ImagesSection extends StatelessWidget {
   ImagesSection({
+    this.id,
     this.images,
     this.onAddImage,
     this.onDeleteImage,
@@ -22,6 +23,7 @@ class ImagesSection extends StatelessWidget {
     this.displayFirst = false,
   });
 
+  final String id;
   final List<File> images;
   final Function(File image) onAddImage;
   final Function(int index) onDeleteImage;
@@ -43,19 +45,19 @@ class ImagesSection extends StatelessWidget {
   }
 
   void onTap(BuildContext context, int index) {
-      List<ImageViewerItem> items = images
-          .asMap()
-          .entries
-          .map((e) => ImageViewerItem(
-                id: e.key.toString(),
-                resource: Image.file(e.value).image,
-              ))
-          .toList();
-      ImageViewer.show(
-        context: context,
-        index: index,
-        items: items,
-      );
+    List<ImageViewerItem> items = images
+        .asMap()
+        .entries
+        .map((e) => ImageViewerItem(
+              id: id + e.key.toString(),
+              resource: Image.file(e.value).image,
+            ))
+        .toList();
+    ImageViewer.show(
+      context: context,
+      index: index,
+      items: items,
+    );
   }
 
   @override
@@ -83,13 +85,17 @@ class ImagesSection extends StatelessWidget {
                             right: image.key < images.length - 1 ? 8 : 0),
                         child: buildImageItem(
                           context: context,
-                          id: image.key.toString(),
+                          id: id + image.key.toString(),
                           image: image.value,
                           onDelete: onDeleteImage != null
                               ? () => onDeleteImage(image.key)
                               : null,
-                          onTap: displayImage ? () => onTap(context, image.key) : null,
-                          onDoubleTap: onDoubleTapImage != null ? () => onDoubleTapImage(image.key) : null,
+                          onTap: displayImage
+                              ? () => onTap(context, image.key)
+                              : null,
+                          onDoubleTap: onDoubleTapImage != null
+                              ? () => onDoubleTapImage(image.key)
+                              : null,
                           isFirst: displayFirst && image.key == 0,
                         ),
                       ))

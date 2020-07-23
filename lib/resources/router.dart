@@ -6,6 +6,7 @@ import 'package:ideashare/screens/home/home_screen.dart';
 import 'package:ideashare/screens/landing/landing_screen.dart';
 import 'package:ideashare/screens/notifications/notifications_screen.dart';
 import 'package:ideashare/screens/post/add_post/add_post_screen.dart';
+import 'package:ideashare/screens/post/add_post/add_post_start_screen.dart';
 import 'package:ideashare/screens/profile/profile_screen.dart';
 import 'package:ideashare/screens/search/search_screen.dart';
 import 'package:ideashare/screens/select_picture/default_picture/default_picture_screen.dart';
@@ -24,6 +25,7 @@ class Routes {
   static const profileScreen = "/profile";
   static const notificationsScreen = "/notifications";
   static const addPostScreen = "/add-post";
+  static const addPostStartScreen = "/add-post-start";
 }
 
 class Router {
@@ -87,6 +89,11 @@ class Router {
       case Routes.addPostScreen:
         return MaterialPageRoute<dynamic>(
           builder: (_) => AddPostScreen(),
+          settings: settings,
+        );
+      case Routes.addPostStartScreen:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => AddPostStartScreen(),
           settings: settings,
         );
       default:

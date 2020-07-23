@@ -11,6 +11,7 @@ import 'package:ideashare/services/models/common/share_option.dart';
 import 'package:ideashare/services/models/common/share_options_data.dart';
 import 'package:ideashare/utils/category_utils.dart';
 import 'package:ideashare/utils/custom_locales.dart';
+import 'package:ideashare/utils/enum_string.dart';
 import 'package:ideashare/utils/extensions/text_style.dart';
 import 'package:ideashare/utils/share_options_utils.dart';
 import 'package:outline_material_icons/outline_material_icons.dart';
@@ -186,6 +187,7 @@ class AddPostResumeContent extends StatelessWidget {
             height: space,
           ),
           ImagesSection(
+            id: EnumString.string(AddPostStep.resume),
             images: viewModel.images,
             displayImage: true,
             imageSize: 170,
