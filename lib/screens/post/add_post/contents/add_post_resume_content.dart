@@ -176,7 +176,7 @@ class AddPostResumeContent extends StatelessWidget {
               CustomLocales.getLocaleName(viewModel.post.info.language,
                       CustomLocales.nativeLocaleNames) ??
                   "",
-              style: Theme.of(context).textTheme.bodyText1.toSize(18),
+              style: Theme.of(context).textTheme.bodyText1.toSize(20).toMedium(),
             ),
           ],
         ),
