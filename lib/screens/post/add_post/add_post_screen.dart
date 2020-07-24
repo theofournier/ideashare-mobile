@@ -197,13 +197,6 @@ class AddPostContent extends StatelessWidget {
   }
 
   Widget buildBody(BuildContext context) {
-    if (viewModel.isLoadingSave) {
-      return Center(
-        child: Image.asset(
-          ImageName.addPostSaveLoading,
-        ),
-      );
-    }
     return ListView(
       padding: ConstantWidgets.addPostPadding,
       children: <Widget>[

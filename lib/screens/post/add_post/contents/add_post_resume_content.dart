@@ -3,7 +3,6 @@ import 'package:ideashare/common_widgets/images_section.dart';
 import 'package:ideashare/common_widgets/label_chip.dart';
 import 'package:ideashare/common_widgets/line.dart';
 import 'package:ideashare/common_widgets/links_section.dart';
-import 'package:ideashare/common_widgets/share_options_widget.dart';
 import 'package:ideashare/generated/l10n.dart';
 import 'package:ideashare/screens/post/add_post/add_post_step_data.dart';
 import 'package:ideashare/screens/post/add_post/add_post_view_model.dart';
@@ -21,42 +20,51 @@ class AddPostResumeContent extends StatelessWidget {
 
   final AddPostViewModel viewModel;
 
+  void onTap(AddPostStep addPostStep) {
+    if (!viewModel.isLoadingSave) {
+      viewModel.goToStep(addPostStep);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     double space = 32;
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        buildCategory(context),
-        SizedBox(
-          height: space,
-        ),
-        buildInfo(context),
-        SizedBox(
-          height: space,
-        ),
-        buildOptionalInfo(context),
-        if (viewModel.post.labels != null &&
-            viewModel.post.labels.isNotEmpty) ...[
+    return IgnorePointer(
+      ignoring: viewModel.isLoadingSave,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          buildCategory(context),
           SizedBox(
             height: space,
           ),
-          buildLabels(context),
-        ],
-        if (viewModel.linkedIssue != null) ...[
+          buildInfo(context),
           SizedBox(
             height: space,
           ),
-          buildLinkedIssue(context),
+          buildOptionalInfo(context),
+          if (viewModel.post.labels != null &&
+              viewModel.post.labels.isNotEmpty) ...[
+            SizedBox(
+              height: space,
+            ),
+            buildLabels(context),
+          ],
+          if (viewModel.linkedIssue != null) ...[
+            SizedBox(
+              height: space,
+            ),
+            buildLinkedIssue(context),
+          ],
+          if (viewModel.post.shareOptions != null) ...[
+            SizedBox(
+              height: space,
+            ),
+            buildShareOptions(context),
+          ],
         ],
-        if (viewModel.post.shareOptions != null) ...[
-          SizedBox(
-            height: space,
-          ),
-          buildShareOptions(context),
-        ],
-      ],
+      ),
     );
   }
 
@@ -99,7 +107,7 @@ class AddPostResumeContent extends StatelessWidget {
     TextStyle categoryStyle =
         Theme.of(context).textTheme.headline3.toSemiBold();
     return InkWell(
-      onTap: () => viewModel.goToStep(AddPostStep.category),
+      onTap: () => onTap(AddPostStep.category),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
@@ -123,7 +131,7 @@ class AddPostResumeContent extends StatelessWidget {
   //region Info
   Widget buildInfo(BuildContext context) {
     return InkWell(
-      onTap: () => viewModel.goToStep(AddPostStep.info),
+      onTap: () => onTap(AddPostStep.info),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
@@ -158,7 +166,7 @@ class AddPostResumeContent extends StatelessWidget {
         buildSectionTitle(
           context: context,
           title: S.of(context).addPostTitleOptionalInfo,
-          onTap: () => viewModel.goToStep(AddPostStep.optionalInfo),
+          onTap: () => onTap(AddPostStep.optionalInfo),
         ),
         SizedBox(
           height: 16,
@@ -262,7 +270,7 @@ class AddPostResumeContent extends StatelessWidget {
         buildSectionTitle(
           context: context,
           title: S.of(context).addPostTitleLabels,
-          onTap: () => viewModel.goToStep(AddPostStep.labels),
+          onTap: () => onTap(AddPostStep.labels),
         ),
         SizedBox(
           height: 16,
@@ -294,7 +302,7 @@ class AddPostResumeContent extends StatelessWidget {
         buildSectionTitle(
           context: context,
           title: S.of(context).addPostTitleLinkedIssue,
-          onTap: () => viewModel.goToStep(AddPostStep.linkedIssue),
+          onTap: () => onTap(AddPostStep.linkedIssue),
         ),
         SizedBox(
           height: 16,
@@ -320,7 +328,7 @@ class AddPostResumeContent extends StatelessWidget {
         buildSectionTitle(
           context: context,
           title: S.of(context).addPostTitleShareOptions,
-          onTap: () => viewModel.goToStep(AddPostStep.shareOptions),
+          onTap: () => onTap(AddPostStep.shareOptions),
         ),
         SizedBox(
           height: 16,

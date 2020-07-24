@@ -152,7 +152,7 @@ class AddPostViewModel with ChangeNotifier {
     if (result != null && result) {
       updateWith(isLoadingSave: true);
       //TODO: save
-      await Future.delayed(Duration(seconds: 3));
+      await Future.delayed(Duration(seconds: 5));
       updateWith(isLoadingSave: false);
     }
   }
