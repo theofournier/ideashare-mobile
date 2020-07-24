@@ -1282,6 +1282,16 @@ class S {
       args: [],
     );
   }
+
+  /// `is required`
+  String get isRequired {
+    return Intl.message(
+      'is required',
+      name: 'isRequired',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

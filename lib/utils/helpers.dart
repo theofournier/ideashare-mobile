@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:ideashare/generated/l10n.dart';
+import 'package:ideashare/utils/flushbar_utils.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -12,19 +13,11 @@ class Helpers {
     if (await canLaunch(url)) {
       await launch(url);
     } else {
-      Flushbar(
-        borderRadius: 8,
+      FlushbarUtils(
+        context,
+        type: FlushbarType.error,
         message: S.of(context).invalidUrl,
-        margin: const EdgeInsets.all(8),
-        icon: Icon(
-          Icons.error_outline,
-          color: Colors.white,
-        ),
-        backgroundColor: Theme.of(context).errorColor,
-        duration: Duration(seconds: 3),
-        dismissDirection: FlushbarDismissDirection.HORIZONTAL,
-        shouldIconPulse: false,
-      ).show(context);
+      ).show();
     }
   }
 

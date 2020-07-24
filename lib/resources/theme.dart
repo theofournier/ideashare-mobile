@@ -49,6 +49,8 @@ class AppColors {
     900: const Color(0xFF141E30)
   };
 
+  static const Color success = Color(0xFF64a36f);
+
   static const Color greyBackground = Color(0xFFF9F9F9);
   static const Color greyLight = const Color(0xFFDCDCDC);
   static const Color greyMedium = const Color(0xFFBBBBBB);

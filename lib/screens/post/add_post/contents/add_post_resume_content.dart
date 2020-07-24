@@ -142,13 +142,19 @@ class AddPostResumeContent extends StatelessWidget {
           SizedBox(
             height: 16,
           ),
-          SelectableText(viewModel.post.info.resume ?? "",
-              style: Theme.of(context).textTheme.bodyText1.toSize(18)),
-          SizedBox(
-            height: 16,
+          SelectableText(
+            viewModel.post.info.resume ?? "",
+            style: Theme.of(context).textTheme.bodyText1.toSize(18),
           ),
-          SelectableText(viewModel.post.info.description ?? "",
-              style: Theme.of(context).textTheme.bodyText1),
+          if (viewModel.post.info.description != null) ...[
+            SizedBox(
+              height: 16,
+            ),
+            SelectableText(
+              viewModel.post.info.description,
+              style: Theme.of(context).textTheme.bodyText1,
+            ),
+          ],
         ],
       ),
     );

@@ -123,5 +123,6 @@
   "addPostSaveMessage": "Do you want save this post?",
   "delete": "Delete",
   "addPostDeleteTitle": "Delete post",
-  "addPostSaveTitle": "Save post"
+  "addPostSaveTitle": "Save post",
+  "isRequired": "is required"
 }

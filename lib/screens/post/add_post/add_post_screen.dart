@@ -186,7 +186,7 @@ class AddPostContent extends StatelessWidget {
       currentStep: viewModel.currentStepIndex(),
       totalStep: viewModel.totalStep(),
       onNext: viewModel.currentStep != AddPostStep.resume
-          ? viewModel.nextStep
+          ? () => viewModel.nextStep(context)
           : () => viewModel.save(context),
       onPrevious: viewModel.currentStep != AddPostStep.category
           ? viewModel.previousStep

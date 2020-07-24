@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:ideashare/common_widgets/platform_alert_dialog.dart';
 import 'package:ideashare/constants/constants.dart';
@@ -17,6 +18,8 @@ import 'package:ideashare/services/models/post/post_note/post_note.dart';
 import 'package:ideashare/services/models/user_settings/default_share_options/user_settings_default_share_options.dart';
 import 'package:ideashare/services/models/user_settings/user_settings.dart';
 import 'package:ideashare/utils/custom_locales.dart';
+import 'package:ideashare/utils/extensions/string.dart';
+import 'package:ideashare/utils/flushbar_utils.dart';
 
 class AddPostViewModel with ChangeNotifier {
   AddPostViewModel({
@@ -32,7 +35,7 @@ class AddPostViewModel with ChangeNotifier {
 
   AddPostStep currentStep = AddPostStep.category;
 
-  Post post = postExample;
+  Post post = Post();
   PostNote postNote = postNoteExample;
   List<File> images = imagesExample;
   Post linkedIssue;
@@ -79,6 +82,50 @@ class AddPostViewModel with ChangeNotifier {
     notifyListeners();
   }
 
+  Map<AddPostStep, String Function()> validators(BuildContext context) => {
+        AddPostStep.category: () => post.category == null
+            ? S.of(context).addPostTitleCategory.capitalize() +
+                " " +
+                S.of(context).isRequired
+            : null,
+        AddPostStep.info: () {
+          List<String> fields = [];
+          if (post.info.title == null || post.info.title.isEmpty) {
+            fields.add(S.of(context).addPostInfoInputTitle);
+          }
+          if (post.info.resume == null || post.info.resume.isEmpty) {
+            fields.add(S.of(context).addPostInfoInputResume);
+          }
+          if (fields.isNotEmpty) {
+            return fields
+                .map((e) => e.capitalize() + " " + S.of(context).isRequired)
+                .toList()
+                .join("\n");
+          }
+          return null;
+        }
+      };
+
+  bool validate(BuildContext context, {AddPostStep addPostStep}) {
+    AddPostStep step = addPostStep;
+    if (step == null) {
+      step = this.currentStep;
+    }
+    if (validators(context)[step] != null) {
+      String text = validators(context)[step]();
+      if (text != null) {
+        FlushbarUtils(
+          context,
+          type: FlushbarType.error,
+          message: text,
+          duration: Duration(seconds: 7),
+        ).show();
+        return false;
+      }
+    }
+    return true;
+  }
+
   int totalStep() {
     if (post.category == null || post.category == PostType.issue) {
       return AddPostStep.values.length - 1;
@@ -95,15 +142,17 @@ class AddPostViewModel with ChangeNotifier {
     return currentStep.index;
   }
 
-  void nextStep() {
-    if (this.currentStep.index < AddPostStep.values.length - 1) {
-      int nextIndex = this.currentStep.index + 1;
-      if (post.category != null &&
-          post.category == PostType.issue &&
-          currentStep.index == (AddPostStep.linkedIssue.index - 1)) {
-        nextIndex += 1;
+  void nextStep(BuildContext context) {
+    if (validate(context)) {
+      if (this.currentStep.index < AddPostStep.values.length - 1) {
+        int nextIndex = this.currentStep.index + 1;
+        if (post.category != null &&
+            post.category == PostType.issue &&
+            currentStep.index == (AddPostStep.linkedIssue.index - 1)) {
+          nextIndex += 1;
+        }
+        goToStep(AddPostStep.values[nextIndex]);
       }
-      goToStep(AddPostStep.values[nextIndex]);
     }
   }
 
@@ -124,7 +173,7 @@ class AddPostViewModel with ChangeNotifier {
   }
 
   Future<bool> showDeleteAlertDialog(BuildContext context) async {
-    if(isLoadingSave){
+    if (isLoadingSave) {
       return false;
     }
     return await PlatformAlertDialog(

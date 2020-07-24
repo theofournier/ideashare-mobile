@@ -2,6 +2,7 @@ import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:ideashare/resources/theme.dart';
 import 'package:ideashare/utils/extensions/text_style.dart';
+import 'package:ideashare/utils/flushbar_utils.dart';
 
 class SectionTitle extends StatelessWidget {
   SectionTitle({
@@ -15,16 +16,11 @@ class SectionTitle extends StatelessWidget {
   final VoidCallback onAdd;
 
   void showDescription(BuildContext context) {
-    Flushbar(
-      borderRadius: 8,
+    FlushbarUtils(
+      context,
       message: description,
-      margin: const EdgeInsets.all(8),
-      icon: Icon(Icons.info_outline, color: Colors.white,),
-      backgroundColor: Theme.of(context).accentColor,
       duration: Duration(seconds: 5),
-      dismissDirection: FlushbarDismissDirection.HORIZONTAL,
-      shouldIconPulse: false,
-    )..show(context);
+    )..show();
   }
 
   @override
