@@ -33,6 +33,26 @@ class FirebaseStorageService {
     return null;
   }
 
+  Future<List<FirebaseStorageResult>> uploadMultipleFiles({
+    @required List<File> files,
+    @required String uid,
+    @required String path,
+  }) async {
+    List<FirebaseStorageResult> results = [];
+
+    await Future.wait(files.map((file) async {
+      FirebaseStorageResult result = await uploadFile(
+        fileToUpload: file,
+        title: uid,
+        path: path,
+      );
+      if (result != null) {
+        results.add(result);
+      }
+    }));
+    return results;
+  }
+
   Future deleteFile(String path) async {
     final StorageReference firebaseStorageRef =
         FirebaseStorage.instance.ref().child(path);

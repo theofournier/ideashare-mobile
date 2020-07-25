@@ -16,7 +16,10 @@ import 'package:ideashare/screens/post/add_post/contents/add_post_optional_info_
 import 'package:ideashare/screens/post/add_post/contents/add_post_resume_content.dart';
 import 'package:ideashare/screens/post/add_post/contents/add_post_share_options_content.dart';
 import 'package:ideashare/services/database/label_database.dart';
+import 'package:ideashare/services/database/post_database.dart';
 import 'package:ideashare/services/database/profile_database.dart';
+import 'package:ideashare/services/models/user/user.dart';
+import 'package:ideashare/services/storage/firebase_storage_service.dart';
 import 'package:provider/provider.dart';
 
 class AddPostScreen extends StatefulWidget {
@@ -44,11 +47,19 @@ class _AddPostScreenState extends State<AddPostScreen>
         Provider.of<LabelDatabase>(context, listen: false);
     final ProfileDatabase profileDatabase =
         Provider.of<ProfileDatabase>(context, listen: false);
+    final PostDatabase postDatabase =
+    Provider.of<PostDatabase>(context, listen: false);
+    final FirebaseStorageService firebaseStorageService =
+        Provider.of<FirebaseStorageService>(context, listen: false);
+    final User currentUser = Provider.of<User>(context);
 
     return ChangeNotifierProvider<AddPostViewModel>(
       create: (_) => AddPostViewModel(
         labelDatabase: labelDatabase,
         profileDatabase: profileDatabase,
+        postDatabase: postDatabase,
+        firebaseStorageService: firebaseStorageService,
+        currentUser: currentUser,
       ),
       child: Consumer<AddPostViewModel>(
         builder: (_, viewModel, __) => AddPostContent(

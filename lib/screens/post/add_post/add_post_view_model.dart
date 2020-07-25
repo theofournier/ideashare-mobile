@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:ideashare/common_widgets/platform_alert_dialog.dart';
 import 'package:ideashare/constants/constants.dart';
@@ -8,15 +7,23 @@ import 'package:ideashare/constants/data_example.dart';
 import 'package:ideashare/generated/l10n.dart';
 import 'package:ideashare/screens/post/add_post/add_post_step_data.dart';
 import 'package:ideashare/services/database/label_database.dart';
+import 'package:ideashare/services/database/post_database.dart';
 import 'package:ideashare/services/database/profile_database.dart';
+import 'package:ideashare/services/models/common/doc_time.dart';
+import 'package:ideashare/services/models/common/owner_info.dart';
 import 'package:ideashare/services/models/label/label.dart';
 import 'package:ideashare/services/models/post/post/post.dart';
 import 'package:ideashare/services/models/post/post/post_info.dart';
+import 'package:ideashare/services/models/post/post/post_info_image.dart';
 import 'package:ideashare/services/models/post/post/post_labels.dart';
 import 'package:ideashare/services/models/post/post/post_share_options.dart';
 import 'package:ideashare/services/models/post/post_note/post_note.dart';
+import 'package:ideashare/services/models/post/post_status/post_status.dart';
+import 'package:ideashare/services/models/user/user.dart';
 import 'package:ideashare/services/models/user_settings/default_share_options/user_settings_default_share_options.dart';
 import 'package:ideashare/services/models/user_settings/user_settings.dart';
+import 'package:ideashare/services/storage/firebase_storage_result.dart';
+import 'package:ideashare/services/storage/firebase_storage_service.dart';
 import 'package:ideashare/utils/custom_locales.dart';
 import 'package:ideashare/utils/extensions/string.dart';
 import 'package:ideashare/utils/flushbar_utils.dart';
@@ -25,6 +32,9 @@ class AddPostViewModel with ChangeNotifier {
   AddPostViewModel({
     @required this.labelDatabase,
     @required this.profileDatabase,
+    @required this.postDatabase,
+    @required this.firebaseStorageService,
+    @required this.currentUser,
   }) {
     this.fetchLabels();
     this.fetchDefaultShareOptions();
@@ -32,10 +42,13 @@ class AddPostViewModel with ChangeNotifier {
 
   final LabelDatabase labelDatabase;
   final ProfileDatabase profileDatabase;
+  final PostDatabase postDatabase;
+  final FirebaseStorageService firebaseStorageService;
+  final User currentUser;
 
   AddPostStep currentStep = AddPostStep.category;
 
-  Post post = Post();
+  Post post = postExample;
   PostNote postNote = postNoteExample;
   List<File> images = imagesExample;
   Post linkedIssue;
@@ -191,7 +204,7 @@ class AddPostViewModel with ChangeNotifier {
     }
   }
 
-  void save(BuildContext context) async {
+  Future<bool> save(BuildContext context) async {
     bool result = await PlatformAlertDialog(
       defaultActionText: S.of(context).save,
       title: S.of(context).addPostSaveTitle,
@@ -200,10 +213,64 @@ class AddPostViewModel with ChangeNotifier {
     ).show(context);
     if (result != null && result) {
       updateWith(isLoadingSave: true);
-      //TODO: save
-      await Future.delayed(Duration(seconds: 5));
-      updateWith(isLoadingSave: false);
+
+      try {
+        //COPY POST
+        Post finalPost = Post.fromMap(null, post.toMap());
+
+        //STORAGE
+        List<FirebaseStorageResult> storageResults;
+        if (images != null && images.isNotEmpty) {
+          storageResults = await firebaseStorageService.uploadMultipleFiles(
+            files: images,
+            uid: finalPost.id,
+            path: StorageKeys.postImages,
+          );
+        }
+
+        //POST IMAGES
+        if (storageResults != null) {
+          storageResults.asMap().forEach((key, value) {
+            finalPost.info.images.add(PostInfoImage(
+              id: value.fileName,
+              order: key,
+              imageUrl: value.fileUrl,
+            ));
+          });
+        }
+
+        //INIT POST
+        finalPost.ownerInfo = OwnerInfo.fromUser(currentUser);
+        finalPost.status = PostStatusType.open;
+        finalPost.docTime = DocTime.init();
+
+        //SAVE POST
+        await postDatabase.setPost(finalPost);
+
+        //SAVE POST NOTE
+        if (postNote != null &&
+            postNote.text != null &&
+            postNote.text.isNotEmpty) {
+          PostNote finalPostNote = PostNote.fromMap(null, postNote.toMap());
+          finalPostNote.userId = currentUser.id;
+          finalPostNote.docTime = DocTime.init();
+
+          await postDatabase.addPostNote(finalPost.id, finalPostNote);
+        }
+
+        //SAVE POST STATUS
+        PostStatus postStatus = PostStatus.init();
+        await postDatabase.setPostStatus(finalPost.id, postStatus);
+
+        updateWith(isLoadingSave: false);
+        return true;
+      } catch (e) {
+        print(e);
+        updateWith(isLoadingSave: false);
+        return false;
+      }
     }
+    return false;
   }
 
   Future<void> fetchLabels() async {
