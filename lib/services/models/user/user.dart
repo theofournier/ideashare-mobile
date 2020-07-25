@@ -35,25 +35,32 @@ class User {
   final UserRole userRole;
   final DocTime docTime;
 
-  factory User.fromMap(String id, Map<String, dynamic> json) => json == null
-      ? null
-      : User(
-          id: id,
-          info: UserInfo.fromMap(json["info"]),
-          privacy: EnumString.fromString(Privacy.values, json['privacy']),
-          followed: EnumString.fromString(Visibleness.values, json['followed']),
-          counts: UserCounts.fromMap(json["counts"]),
-          labels: json['labels'] == null ||
-                  (json['labels'] as Map<String, dynamic>).length == 0
-              ? []
-              : (json['labels'] as Map<String, dynamic>)?.entries?.map(
-                    (e) => UserLabel.fromMap(
-                        e.key, e.value as Map<String, dynamic>),
-                  )?.toList(),
-          premium: UserPremium.fromMap(json['premium']),
-          userRole: EnumString.fromString(UserRole.values, json['userRole']),
-          docTime: DocTime.fromMap(json["docTime"]),
-        );
+  factory User.fromMap(String id, Map<String, dynamic> json) {
+    print("Current user : $json");
+    return json == null
+        ? null
+        : User(
+            id: id,
+            info: UserInfo.fromMap(json["info"]),
+            privacy: EnumString.fromString(Privacy.values, json['privacy']),
+            followed:
+                EnumString.fromString(Visibleness.values, json['followed']),
+            counts: UserCounts.fromMap(json["counts"]),
+            labels: json['labels'] == null ||
+                    (json['labels'] as Map<String, dynamic>).length == 0
+                ? []
+                : (json['labels'] as Map<String, dynamic>)
+                    ?.entries
+                    ?.map(
+                      (e) => UserLabel.fromMap(
+                          e.key, e.value as Map<String, dynamic>),
+                    )
+                    ?.toList(),
+            premium: UserPremium.fromMap(json['premium']),
+            userRole: EnumString.fromString(UserRole.values, json['userRole']),
+            docTime: DocTime.fromMap(json["docTime"]),
+          );
+  }
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         "info": info == null ? null : info.toMap(),

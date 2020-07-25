@@ -46,9 +46,7 @@ class ProfileDatabase {
         : null;
   }
 
-  Future<UserSettings> getUserSettings() =>
-      _service.getDocument<UserSettings>(
-          path: FirestorePath.userSettings(uid),
-          builder: (data, documentId) =>
-              UserSettings.fromMap(documentId, data));
+  Future<UserSettings> getUserSettings() => _service.getDocument<UserSettings>(
+      path: FirestorePath.userSettings(uid),
+      builder: (data, documentId) => UserSettings.fromMap(documentId, data));
 }
