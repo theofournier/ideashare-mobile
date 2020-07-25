@@ -33,7 +33,7 @@ class PostInfo {
               ? []
               : (json['images'] as Map<String, dynamic>)?.entries?.map(
                     (e) => PostInfoImage.fromMap(e.key, e.value),
-                  ),
+                  )?.toList(),
           urlLinks: json["urlLinks"] == null ||
                   (json["urlLinks"] as List<String>).length == 0
               ? []

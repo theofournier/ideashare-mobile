@@ -49,7 +49,7 @@ class User {
               : (json['labels'] as Map<String, dynamic>)?.entries?.map(
                     (e) => UserLabel.fromMap(
                         e.key, e.value as Map<String, dynamic>),
-                  ),
+                  )?.toList(),
           premium: UserPremium.fromMap(json['premium']),
           userRole: EnumString.fromString(UserRole.values, json['userRole']),
           docTime: DocTime.fromMap(json["docTime"]),

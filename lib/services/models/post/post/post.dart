@@ -52,7 +52,7 @@ class Post {
                   (e) => e.value == null
                       ? null
                       : PostLabel(id: e.key, title: e.value),
-                ),
+                )?.toList(),
         status: EnumString.fromString(PostStatusType.values, json["status"]),
         shareOptions: PostShareOptions.fromMap(json["shareOptions"]),
         counts: PostCounts.fromMap(json["counts"]),
