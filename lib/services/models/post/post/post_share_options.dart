@@ -34,7 +34,7 @@ class PostShareOptions {
   Visibleness contact;
   Visibleness status;
 
-  factory PostShareOptions.fromMap(Map<String, dynamic> json) =>
+  factory PostShareOptions.fromMap(Map<String, dynamic> json) => json == null ? null :
       PostShareOptions(
         privacy: EnumString.fromString(Privacy.values, json["privacy"]),
         anonymous: json["anonymous"],

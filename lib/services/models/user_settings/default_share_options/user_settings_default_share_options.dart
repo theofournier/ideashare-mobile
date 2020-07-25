@@ -9,13 +9,16 @@ class UserSettingsDefaultShareOptions {
   final PostShareOptions idea;
   final PostShareOptions issue;
 
-  factory UserSettingsDefaultShareOptions.fromMap(Map<String, dynamic> json) => UserSettingsDefaultShareOptions(
-    idea: PostShareOptions.fromMap(json["idea"]),
-    issue: PostShareOptions.fromMap(json["issue"]),
-  );
+  factory UserSettingsDefaultShareOptions.fromMap(Map<String, dynamic> json) =>
+      json == null
+          ? null
+          : UserSettingsDefaultShareOptions(
+              idea: PostShareOptions.fromMap(json["idea"]),
+              issue: PostShareOptions.fromMap(json["issue"]),
+            );
 
   Map<String, dynamic> toMap() => {
-    "idea": idea.toMap(),
-    "issue": issue.toMap(),
-  };
+        "idea": idea == null ? null : idea.toMap(),
+        "issue": issue == null ? null : issue.toMap(),
+      };
 }

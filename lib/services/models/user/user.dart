@@ -35,40 +35,37 @@ class User {
   final UserRole userRole;
   final DocTime docTime;
 
-  factory User.fromMap(String id, Map<String, dynamic> json) {
-    return json == null
-        ? null
-        : User(
-            id: id,
-            info: UserInfo.fromMap(json["info"]),
-            privacy: EnumString.fromString(Privacy.values, json['privacy']),
-            followed:
-                EnumString.fromString(Visibleness.values, json['followed']),
-            counts: UserCounts.fromMap(json["counts"]),
-            labels: (json['labels'] as Map<String, dynamic>) == null ||
-                    (json['labels'] as Map<String, dynamic>).length == 0
-                ? []
-                : (json['labels'] as Map<String, dynamic>)?.entries?.map(
-                      (e) => e.value == null
-                          ? null
-                          : UserLabel.fromMap(
-                              e.key, e.value as Map<String, dynamic>),
-                    ),
-            premium: UserPremium.fromMap(json['premium']),
-            userRole: EnumString.fromString(UserRole.values, json['userRole']),
-            docTime: DocTime.fromMap(json["docTime"]),
-          );
-  }
+  factory User.fromMap(String id, Map<String, dynamic> json) => json == null
+      ? null
+      : User(
+          id: id,
+          info: UserInfo.fromMap(json["info"]),
+          privacy: EnumString.fromString(Privacy.values, json['privacy']),
+          followed: EnumString.fromString(Visibleness.values, json['followed']),
+          counts: UserCounts.fromMap(json["counts"]),
+          labels: json['labels'] == null ||
+                  (json['labels'] as Map<String, dynamic>).length == 0
+              ? []
+              : (json['labels'] as Map<String, dynamic>)?.entries?.map(
+                    (e) => UserLabel.fromMap(
+                        e.key, e.value as Map<String, dynamic>),
+                  ),
+          premium: UserPremium.fromMap(json['premium']),
+          userRole: EnumString.fromString(UserRole.values, json['userRole']),
+          docTime: DocTime.fromMap(json["docTime"]),
+        );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-        "info": info.toMap(),
+        "info": info == null ? null : info.toMap(),
         'privacy': EnumString.string(this.privacy),
         'followed': EnumString.string(this.followed),
-        "counts": counts.toMap(),
-        'labels': {for (UserLabel label in labels) label.id: label.toMap()},
-        'premium': this.premium.toMap(),
+        "counts": counts == null ? null : counts.toMap(),
+        'labels': labels == null
+            ? null
+            : {for (UserLabel label in labels) label.id: label.toMap()},
+        'premium': premium == null ? null : this.premium.toMap(),
         'userRole': EnumString.string(this.userRole),
-        'deleted': this.docTime.toMap(),
+        'docTime': docTime == null ? null : this.docTime.toMap(),
       };
 
   factory User.initUser({
@@ -104,12 +101,7 @@ class User {
         expiresAt: null,
       ),
       userRole: UserRole.user,
-      docTime: DocTime(
-        deleted: false,
-        createdAt: Timestamp.now().toDate(),
-        updatedAt: Timestamp.now().toDate(),
-        deletedAt: null,
-      ),
+      docTime: DocTime.init(),
     );
   }
 }

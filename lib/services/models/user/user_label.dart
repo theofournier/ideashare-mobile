@@ -9,16 +9,17 @@ class UserLabel {
   final String title;
   final int postCount;
 
-  factory UserLabel.fromMap(String id, Map<String, dynamic> json) {
-    return UserLabel(
-      id: id,
-      title: json['title'] as String,
-      postCount: json['postCount'] as int,
-    );
-  }
+  factory UserLabel.fromMap(String id, Map<String, dynamic> json) =>
+      json == null
+          ? null
+          : UserLabel(
+              id: id,
+              title: json['title'] as String,
+              postCount: json['postCount'] as int,
+            );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-    'title': this.title,
-    'postCount': this.postCount,
-  };
+        'title': this.title,
+        'postCount': this.postCount,
+      };
 }

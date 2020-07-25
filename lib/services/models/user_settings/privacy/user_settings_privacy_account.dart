@@ -12,15 +12,20 @@ class UserSettingsPrivacyAccount {
   final Visibleness contacted;
   final Visibleness followed;
 
-  factory UserSettingsPrivacyAccount.fromMap(Map<String, dynamic> json) => UserSettingsPrivacyAccount(
-    privacy: EnumString.fromString(Privacy.values, json["privacy"]),
-    contacted: EnumString.fromString(Visibleness.values, json["contacted"]),
-    followed: EnumString.fromString(Visibleness.values, json["followed"]),
-  );
+  factory UserSettingsPrivacyAccount.fromMap(Map<String, dynamic> json) =>
+      json == null
+          ? null
+          : UserSettingsPrivacyAccount(
+              privacy: EnumString.fromString(Privacy.values, json["privacy"]),
+              contacted:
+                  EnumString.fromString(Visibleness.values, json["contacted"]),
+              followed:
+                  EnumString.fromString(Visibleness.values, json["followed"]),
+            );
 
   Map<String, dynamic> toMap() => {
-    "privacy": EnumString.string(privacy),
-    "contacted": EnumString.string(contacted),
-    "followed": EnumString.string(followed),
-  };
+        "privacy": EnumString.string(privacy),
+        "contacted": EnumString.string(contacted),
+        "followed": EnumString.string(followed),
+      };
 }

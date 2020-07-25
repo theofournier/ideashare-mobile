@@ -11,17 +11,19 @@ class UserInfo {
   final String photoUrl;
   final String email;
 
-  factory UserInfo.fromMap(Map<String, dynamic> json) => UserInfo(
-    firstName: json["firstName"],
-    lastName: json["lastName"],
-    photoUrl: json["photoUrl"],
-    email: json["email"],
-  );
+  factory UserInfo.fromMap(Map<String, dynamic> json) => json == null
+      ? null
+      : UserInfo(
+          firstName: json["firstName"],
+          lastName: json["lastName"],
+          photoUrl: json["photoUrl"],
+          email: json["email"],
+        );
 
   Map<String, dynamic> toMap() => {
-    "firstName": firstName,
-    "lastName": lastName,
-    "photoUrl": photoUrl,
-    "email": email,
-  };
+        "firstName": firstName,
+        "lastName": lastName,
+        "photoUrl": photoUrl,
+        "email": email,
+      };
 }

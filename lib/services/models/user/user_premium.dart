@@ -11,15 +11,17 @@ class UserPremium {
   final DateTime expiresAt;
   final DateTime createdAt;
 
-  factory UserPremium.fromMap(Map<String, dynamic> json) => UserPremium(
-        premium: json["premium"],
-        expiresAt: json["expiresAt"] == null
-            ? null
-            : (json["expiresAt"] as Timestamp).toDate(),
-        createdAt: json["createdAt"] == null
-            ? null
-            : (json["createdAt"] as Timestamp).toDate(),
-      );
+  factory UserPremium.fromMap(Map<String, dynamic> json) => json == null
+      ? null
+      : UserPremium(
+          premium: json["premium"],
+          expiresAt: json["expiresAt"] == null
+              ? null
+              : (json["expiresAt"] as Timestamp).toDate(),
+          createdAt: json["createdAt"] == null
+              ? null
+              : (json["createdAt"] as Timestamp).toDate(),
+        );
 
   Map<String, dynamic> toMap() => {
         "premium": premium,

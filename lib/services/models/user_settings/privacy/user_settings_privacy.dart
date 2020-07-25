@@ -13,15 +13,17 @@ class UserSettingsPrivacy {
   final UserSettingsPrivacyPosts posts;
   final UserSettingsPrivacyUsers users;
 
-  factory UserSettingsPrivacy.fromMap(Map<String, dynamic> json) => UserSettingsPrivacy(
-    account: UserSettingsPrivacyAccount.fromMap(json["account"]),
-    posts: UserSettingsPrivacyPosts.fromMap(json["posts"]),
-    users: UserSettingsPrivacyUsers.fromMap(json["users"]),
-  );
+  factory UserSettingsPrivacy.fromMap(Map<String, dynamic> json) => json == null
+      ? null
+      : UserSettingsPrivacy(
+          account: UserSettingsPrivacyAccount.fromMap(json["account"]),
+          posts: UserSettingsPrivacyPosts.fromMap(json["posts"]),
+          users: UserSettingsPrivacyUsers.fromMap(json["users"]),
+        );
 
   Map<String, dynamic> toMap() => {
-    "account": account.toMap(),
-    "posts": posts.toMap(),
-    "users": users.toMap(),
-  };
+        "account": account == null ? null : account.toMap(),
+        "posts": posts == null ? null : posts.toMap(),
+        "users": users == null ? null : users.toMap(),
+      };
 }

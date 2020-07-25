@@ -17,23 +17,25 @@ class UserCounts {
   final int postWorkers;
   final int followers;
 
-  factory UserCounts.fromMap(Map<String, dynamic> json) => UserCounts(
-    ideas: json["ideas"],
-    issues: json["issues"],
-    postViews: json["postViews"],
-    postLikes: json["postLikes"],
-    postFollowers: json["postFollowers"],
-    postWorkers: json["postWorkers"],
-    followers: json["followers"],
-  );
+  factory UserCounts.fromMap(Map<String, dynamic> json) => json == null
+      ? null
+      : UserCounts(
+          ideas: json["ideas"],
+          issues: json["issues"],
+          postViews: json["postViews"],
+          postLikes: json["postLikes"],
+          postFollowers: json["postFollowers"],
+          postWorkers: json["postWorkers"],
+          followers: json["followers"],
+        );
 
   Map<String, dynamic> toMap() => {
-    "ideas": ideas,
-    "issues": issues,
-    "postViews": postViews,
-    "postLikes": postLikes,
-    "postFollowers": postFollowers,
-    "postWorkers": postWorkers,
-    "followers": followers,
-  };
+        "ideas": ideas,
+        "issues": issues,
+        "postViews": postViews,
+        "postLikes": postLikes,
+        "postFollowers": postFollowers,
+        "postWorkers": postWorkers,
+        "followers": followers,
+      };
 }

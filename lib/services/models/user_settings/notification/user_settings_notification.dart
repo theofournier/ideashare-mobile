@@ -17,19 +17,23 @@ class UserSettingsNotification {
   final UserSettingsNotificationFollowedPosts followedPosts;
   final UserSettingsNotificationProfile profile;
 
-  factory UserSettingsNotification.fromMap(Map<String, dynamic> json) => UserSettingsNotification(
-    push: json["push"],
-    email: json["email"],
-    posts: UserSettingsNotificationPosts.fromMap(json["myPosts"]),
-    followedPosts: UserSettingsNotificationFollowedPosts.fromMap(json["followedPosts"]),
-    profile: UserSettingsNotificationProfile.fromMap(json["profile"]),
-  );
+  factory UserSettingsNotification.fromMap(Map<String, dynamic> json) =>
+      json == null
+          ? null
+          : UserSettingsNotification(
+              push: json["push"],
+              email: json["email"],
+              posts: UserSettingsNotificationPosts.fromMap(json["myPosts"]),
+              followedPosts: UserSettingsNotificationFollowedPosts.fromMap(
+                  json["followedPosts"]),
+              profile: UserSettingsNotificationProfile.fromMap(json["profile"]),
+            );
 
   Map<String, dynamic> toMap() => {
-    "push": push,
-    "email": email,
-    "myPosts": posts.toMap(),
-    "followedPosts": followedPosts.toMap(),
-    "profile": profile.toMap(),
-  };
+        "push": push,
+        "email": email,
+        "myPosts": posts == null ? null : posts.toMap(),
+        "followedPosts": followedPosts == null ? null : followedPosts.toMap(),
+        "profile": profile == null ? null : profile.toMap(),
+      };
 }

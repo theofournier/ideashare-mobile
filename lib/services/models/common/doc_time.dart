@@ -13,18 +13,20 @@ class DocTime {
   final DateTime updatedAt;
   final DateTime deletedAt;
 
-  factory DocTime.fromMap(Map<String, dynamic> json) => DocTime(
-        deleted: json["deleted"],
-        createdAt: json["createdAt"] == null
-            ? null
-            : (json["createdAt"] as Timestamp).toDate(),
-        updatedAt: json["updatedAt"] == null
-            ? null
-            : (json["updatedAt"] as Timestamp).toDate(),
-        deletedAt: json["deletedAt"] == null
-            ? null
-            : (json["deletedAt"] as Timestamp).toDate(),
-      );
+  factory DocTime.fromMap(Map<String, dynamic> json) => json == null
+      ? null
+      : DocTime(
+          deleted: json["deleted"],
+          createdAt: json["createdAt"] == null
+              ? null
+              : (json["createdAt"] as Timestamp).toDate(),
+          updatedAt: json["updatedAt"] == null
+              ? null
+              : (json["updatedAt"] as Timestamp).toDate(),
+          deletedAt: json["deletedAt"] == null
+              ? null
+              : (json["deletedAt"] as Timestamp).toDate(),
+        );
 
   Map<String, dynamic> toMap() => {
         "deleted": deleted,
@@ -35,4 +37,11 @@ class DocTime {
         "deletedAt":
             this.deletedAt != null ? Timestamp.fromDate(this.deletedAt) : null,
       };
+
+  factory DocTime.init() => DocTime(
+        deleted: false,
+        createdAt: Timestamp.now().toDate(),
+        updatedAt: Timestamp.now().toDate(),
+        deletedAt: null,
+      );
 }

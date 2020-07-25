@@ -29,21 +29,25 @@ class UserSettings {
   final String language;
 
   factory UserSettings.fromMap(String uid, Map<String, dynamic> json) =>
-      UserSettings(
-        uid: uid,
-        defaultShareOptions: UserSettingsDefaultShareOptions.fromMap(
-            json["defaultShareOptions"]),
-        security: UserSettingsSecurity.fromMap(json["security"]),
-        privacy: UserSettingsPrivacy.fromMap(json["privacy"]),
-        notification: UserSettingsNotification.fromMap(json["notification"]),
-        language: json["language"],
-      );
+      json == null
+          ? null
+          : UserSettings(
+              uid: uid,
+              defaultShareOptions: UserSettingsDefaultShareOptions.fromMap(
+                  json["defaultShareOptions"]),
+              security: UserSettingsSecurity.fromMap(json["security"]),
+              privacy: UserSettingsPrivacy.fromMap(json["privacy"]),
+              notification:
+                  UserSettingsNotification.fromMap(json["notification"]),
+              language: json["language"],
+            );
 
   Map<String, dynamic> toMap() => {
-        "defaultShareOptions": defaultShareOptions.toMap(),
-        "security": security.toMap(),
-        "privacy": privacy.toMap(),
-        "notification": notification.toMap(),
+        "defaultShareOptions":
+            defaultShareOptions == null ? null : defaultShareOptions.toMap(),
+        "security": security == null ? null : security.toMap(),
+        "privacy": privacy == null ? null : privacy.toMap(),
+        "notification": notification == null ? null : notification.toMap(),
         "language": language,
       };
 

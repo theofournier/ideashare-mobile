@@ -8,11 +8,14 @@ class UserSettingsPrivacyUsers {
 
   final Visibleness follow;
 
-  factory UserSettingsPrivacyUsers.fromMap(Map<String, dynamic> json) => UserSettingsPrivacyUsers(
-    follow: EnumString.fromString(Visibleness.values, json["follow"]),
-  );
+  factory UserSettingsPrivacyUsers.fromMap(Map<String, dynamic> json) =>
+      json == null
+          ? null
+          : UserSettingsPrivacyUsers(
+              follow: EnumString.fromString(Visibleness.values, json["follow"]),
+            );
 
   Map<String, dynamic> toMap() => {
-    "follow": EnumString.string(follow),
-  };
+        "follow": EnumString.string(follow),
+      };
 }
