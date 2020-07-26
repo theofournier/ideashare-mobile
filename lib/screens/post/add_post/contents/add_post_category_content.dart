@@ -16,9 +16,6 @@ class AddPostCategoryContent extends StatelessWidget {
 
   void onTap(PostType category) {
     viewModel.updateWith(post: viewModel.post..category = category);
-    if (viewModel.post.shareOptions == null) {
-      viewModel.resetShareOptions();
-    }
   }
 
   @override

@@ -393,23 +393,20 @@ class AddPostViewModel with ChangeNotifier {
       isLoadingShareOptions: false,
       defaultShareOptions: userSettings.defaultShareOptions,
     );
-    if (post.shareOptions == null) {
-      resetShareOptions();
-    }
   }
 
   void resetShareOptions() {
+    PostShareOptions postShareOptions = PostShareOptions();
     if (defaultShareOptions != null) {
-      PostShareOptions postShareOptions = PostShareOptions();
       if (post.category == PostType.idea) {
         postShareOptions = defaultShareOptions.idea;
       }
       if (post.category == PostType.issue) {
         postShareOptions = defaultShareOptions.issue;
       }
-      PostShareOptions copyPostShareOptions =
-          PostShareOptions.fromMap(postShareOptions.toMap());
-      updateWith(postShareOptions: copyPostShareOptions);
     }
+    PostShareOptions copyPostShareOptions =
+        PostShareOptions.fromMap(postShareOptions.toMap());
+    updateWith(postShareOptions: copyPostShareOptions);
   }
 }

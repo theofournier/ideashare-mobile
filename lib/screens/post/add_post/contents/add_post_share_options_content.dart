@@ -11,6 +11,9 @@ class AddPostShareOptionsContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (viewModel.post.shareOptions == null) {
+      viewModel.resetShareOptions();
+    }
     if (viewModel.isLoadingShareOptions) {
       return Center(
         child: CircularProgressIndicator(),
