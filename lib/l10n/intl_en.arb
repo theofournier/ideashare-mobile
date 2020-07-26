@@ -135,5 +135,7 @@
   "addPostFailTitle": "Error!",
   "addPostFailMessage": "Something went wrong, your post has not been uploaded.",
   "tryAgain": "Try again",
-  "addPostFailEdit": "Edit post"
+  "addPostFailEdit": "Edit post",
+  "imageSectionCameraTitle": "Take a picture",
+  "imageSectionGalleryTitle": "Import from gallery"
 }

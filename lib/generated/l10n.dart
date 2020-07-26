@@ -1402,6 +1402,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Take a picture`
+  String get imageSectionCameraTitle {
+    return Intl.message(
+      'Take a picture',
+      name: 'imageSectionCameraTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Import from gallery`
+  String get imageSectionGalleryTitle {
+    return Intl.message(
+      'Import from gallery',
+      name: 'imageSectionGalleryTitle',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

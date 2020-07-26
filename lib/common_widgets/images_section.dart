@@ -1,12 +1,14 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:ideashare/common_widgets/alert_dialog_list_tile.dart';
 import 'package:ideashare/common_widgets/image_viewer.dart';
 import 'package:ideashare/common_widgets/section_title.dart';
 import 'package:ideashare/generated/l10n.dart';
 import 'package:ideashare/resources/theme.dart';
 import 'package:ideashare/utils/helpers.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:outline_material_icons/outline_material_icons.dart';
 
 class ImagesSection extends StatelessWidget {
   ImagesSection({
@@ -35,12 +37,28 @@ class ImagesSection extends StatelessWidget {
   final String sectionDescription;
   final bool displayFirst;
 
-  Future<void> pickPicture(ImageSource imageSource) async {
-    final File croppedPicture = await Helpers.pickPicture(
-      imageSource: imageSource,
-    );
-    if (croppedPicture != null) {
-      onAddImage(croppedPicture);
+  Future<void> pickPicture(BuildContext context) async {
+    ImageSource imageSource = await AlertDialogListTile(
+      listTiles: [
+        AlertDialogListTileData<ImageSource>(
+          title: S.of(context).imageSectionCameraTitle,
+          icon: OMIcons.photoCamera,
+          value: ImageSource.camera,
+        ),
+        AlertDialogListTileData<ImageSource>(
+          title: S.of(context).imageSectionGalleryTitle,
+          icon: OMIcons.collections,
+          value: ImageSource.gallery,
+        ),
+      ],
+    ).show<ImageSource>(context);
+    if (imageSource != null) {
+      final File pickedPicture = await Helpers.pickPicture(
+        imageSource: imageSource,
+      );
+      if (pickedPicture != null) {
+        onAddImage(pickedPicture);
+      }
     }
   }
 
@@ -69,7 +87,7 @@ class ImagesSection extends StatelessWidget {
           SectionTitle(
             title: sectionTitle ?? S.of(context).imagesSectionTitle,
             description: sectionDescription,
-            onAdd: () => pickPicture(ImageSource.gallery),
+            onAdd: () => pickPicture(context),
           ),
         ],
         if (images != null && images.isNotEmpty) ...[
