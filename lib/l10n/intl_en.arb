@@ -124,5 +124,16 @@
   "delete": "Delete",
   "addPostDeleteTitle": "Delete post",
   "addPostSaveTitle": "Save post",
-  "isRequired": "is required"
+  "isRequired": "is required",
+  "addPostLoadingTitle": "Your post is being uploaded",
+  "addPostLoadingImages": "Uploading images",
+  "addPostLoadingPost": "Completing post",
+  "addPostSuccessTitle": "Success!",
+  "addPostSuccessMessage": "Your post has been upload!",
+  "addPostSuccessAnother": "Add another post",
+  "close": "Close",
+  "addPostFailTitle": "Error!",
+  "addPostFailMessage": "Something went wrong, your post has not been uploaded.",
+  "tryAgain": "Try again",
+  "addPostFailEdit": "Edit post"
 }

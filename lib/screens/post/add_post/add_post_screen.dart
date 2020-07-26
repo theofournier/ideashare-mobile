@@ -12,6 +12,7 @@ import 'package:ideashare/screens/post/add_post/contents/add_post_category_conte
 import 'package:ideashare/screens/post/add_post/contents/add_post_info_content.dart';
 import 'package:ideashare/screens/post/add_post/contents/add_post_labels_content.dart';
 import 'package:ideashare/screens/post/add_post/contents/add_post_linked_issue_content.dart';
+import 'package:ideashare/screens/post/add_post/contents/add_post_loading_content.dart';
 import 'package:ideashare/screens/post/add_post/contents/add_post_optional_info_content.dart';
 import 'package:ideashare/screens/post/add_post/contents/add_post_resume_content.dart';
 import 'package:ideashare/screens/post/add_post/contents/add_post_share_options_content.dart';
@@ -48,7 +49,7 @@ class _AddPostScreenState extends State<AddPostScreen>
     final ProfileDatabase profileDatabase =
         Provider.of<ProfileDatabase>(context, listen: false);
     final PostDatabase postDatabase =
-    Provider.of<PostDatabase>(context, listen: false);
+        Provider.of<PostDatabase>(context, listen: false);
     final FirebaseStorageService firebaseStorageService =
         Provider.of<FirebaseStorageService>(context, listen: false);
     final User currentUser = Provider.of<User>(context);
@@ -161,11 +162,15 @@ class AddPostContent extends StatelessWidget {
       context: context,
       child: WillPopScope(
         onWillPop: () => viewModel.showDeleteAlertDialog(context),
-        child: Scaffold(
-          appBar: buildAppBar(context),
-          bottomNavigationBar: buildBottomAppBar(context),
-          body: buildBody(context),
-        ),
+        child: viewModel.isLoadingSave || viewModel.success || viewModel.fail
+            ? AddPostLoadingContent(
+                viewModel: viewModel,
+              )
+            : Scaffold(
+                appBar: buildAppBar(context),
+                bottomNavigationBar: buildBottomAppBar(context),
+                body: buildBody(context),
+              ),
       ),
     );
   }
@@ -182,12 +187,10 @@ class AddPostContent extends StatelessWidget {
             onPressed: currentStepData(context).onPressedAppBarButton,
           ),
         ],
-        if (!viewModel.isLoadingSave) ...[
-          CustomAppBarButton(
-            icon: Icons.clear,
-            onPressed: () => viewModel.reset(context),
-          ),
-        ],
+        CustomAppBarButton(
+          icon: Icons.clear,
+          onPressed: () => viewModel.reset(context),
+        ),
       ],
     );
   }
@@ -203,7 +206,6 @@ class AddPostContent extends StatelessWidget {
           ? viewModel.previousStep
           : null,
       saveButton: viewModel.currentStep == AddPostStep.resume,
-      isLoadingSave: viewModel.isLoadingSave,
     );
   }
 

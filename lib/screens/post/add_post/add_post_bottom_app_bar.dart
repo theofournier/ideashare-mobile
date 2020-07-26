@@ -9,7 +9,6 @@ class AddPostBottomAppBar extends StatelessWidget {
     this.totalStep,
     this.currentStep,
     this.saveButton = false,
-    this.isLoadingSave = false,
   });
 
   final VoidCallback onPrevious;
@@ -17,7 +16,6 @@ class AddPostBottomAppBar extends StatelessWidget {
   final int totalStep;
   final int currentStep;
   final bool saveButton;
-  final bool isLoadingSave;
 
   double getProgressValue() {
     double progressPercent =
@@ -36,20 +34,13 @@ class AddPostBottomAppBar extends StatelessWidget {
           children: <Widget>[
             buildButton(
               context: context,
-              onTap: isLoadingSave ? null : onPrevious,
+              onTap: onPrevious,
               icon: Icons.arrow_back_ios,
             ),
             SizedBox(
               height: 80,
               width: 80,
-              child: isLoadingSave
-                  ? Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: CircularProgressIndicator(
-                        strokeWidth: 7,
-                      ),
-                    )
-                  : StepperCircularProgress(
+              child: StepperCircularProgress(
                       foregroundColor: Theme.of(context).accentColor,
                       backgroundColor:
                           Theme.of(context).accentColor.withOpacity(0.1),
@@ -64,7 +55,7 @@ class AddPostBottomAppBar extends StatelessWidget {
             ),
             buildButton(
               context: context,
-              onTap: isLoadingSave ? null : onNext,
+              onTap: onNext,
               icon: saveButton ? Icons.check : Icons.arrow_forward_ios,
               color: saveButton ? Theme.of(context).accentColor : null,
               iconColor: saveButton ? Colors.white : null,

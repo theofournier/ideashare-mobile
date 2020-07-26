@@ -48,9 +48,9 @@ class AddPostViewModel with ChangeNotifier {
 
   AddPostStep currentStep = AddPostStep.category;
 
-  Post post = postExample;
-  PostNote postNote = postNoteExample;
-  List<File> images = imagesExample;
+  Post post = Post();
+  PostNote postNote = PostNote();
+  List<File> images = [];
   Post linkedIssue;
 
   List<MapEntry<String, String>> languages =
@@ -60,7 +60,14 @@ class AddPostViewModel with ChangeNotifier {
 
   bool isLoadingLabels = false;
   bool isLoadingShareOptions = false;
+
   bool isLoadingSave = false;
+  bool isLoadingUploadImages = false;
+  bool isLoadingSavePost = false;
+  bool isLoadingSavePostNote = false;
+  bool isLoadingSavePostStatus = false;
+  bool success = false;
+  bool fail = false;
 
   List<Label> labels = [];
   UserSettingsDefaultShareOptions defaultShareOptions;
@@ -78,6 +85,12 @@ class AddPostViewModel with ChangeNotifier {
     bool isLoadingLabels,
     bool isLoadingShareOptions,
     bool isLoadingSave,
+    bool isLoadingUploadImages,
+    bool isLoadingSavePost,
+    bool isLoadingSavePostNote,
+    bool isLoadingSavePostStatus,
+    bool success,
+    bool fail,
   }) {
     this.currentStep = currentStep ?? this.currentStep;
     this.post = post ?? this.post;
@@ -92,6 +105,15 @@ class AddPostViewModel with ChangeNotifier {
     this.isLoadingShareOptions =
         isLoadingShareOptions ?? this.isLoadingShareOptions;
     this.isLoadingSave = isLoadingSave ?? this.isLoadingSave;
+    this.isLoadingUploadImages =
+        isLoadingUploadImages ?? this.isLoadingUploadImages;
+    this.isLoadingSavePost = isLoadingSavePost ?? this.isLoadingSavePost;
+    this.isLoadingSavePostNote =
+        isLoadingSavePostNote ?? this.isLoadingSavePostNote;
+    this.isLoadingSavePostStatus =
+        isLoadingSavePostStatus ?? this.isLoadingSavePostStatus;
+    this.success = success ?? this.success;
+    this.fail = fail ?? this.fail;
     notifyListeners();
   }
 
@@ -197,11 +219,61 @@ class AddPostViewModel with ChangeNotifier {
     ).show(context);
   }
 
-  void reset(BuildContext context) async {
-    bool result = await showDeleteAlertDialog(context);
+  void reset(
+    BuildContext context, {
+    bool showDialog = true,
+    bool close = true,
+  }) async {
+    bool result = showDialog ? await showDeleteAlertDialog(context) : true;
     if (result != null && result) {
-      Navigator.of(context).popUntil((route) => route.isFirst);
+      updateWith(
+        currentStep: AddPostStep.category,
+        images: [],
+        post: Post(),
+        postNote: PostNote(),
+        isLoadingSave: false,
+        isLoadingUploadImages: false,
+        isLoadingSavePost: false,
+        isLoadingSavePostNote: false,
+        isLoadingSavePostStatus: false,
+        success: false,
+        fail: false,
+      );
+      if (close) {
+        Navigator.of(context).popUntil((route) => route.isFirst);
+      }
     }
+  }
+
+  Future<bool> saveTest() async {
+    updateWith(
+      isLoadingSave: true,
+      success: false,
+      fail: false,
+    );
+
+    updateWith(isLoadingUploadImages: true);
+    await Future.delayed(Duration(seconds: 3));
+    updateWith(isLoadingUploadImages: false);
+
+    updateWith(isLoadingSavePost: true);
+    await Future.delayed(Duration(seconds: 2));
+    updateWith(isLoadingSavePost: false);
+
+    updateWith(isLoadingSavePostNote: true);
+    await Future.delayed(Duration(seconds: 1));
+    updateWith(isLoadingSavePostNote: false);
+
+    updateWith(isLoadingSavePostStatus: true);
+    await Future.delayed(Duration(seconds: 1));
+    updateWith(isLoadingSavePostStatus: false);
+
+    updateWith(
+      isLoadingSave: false,
+      success: false,
+      fail: true,
+    );
+    return false;
   }
 
   Future<bool> save(BuildContext context) async {
@@ -212,7 +284,11 @@ class AddPostViewModel with ChangeNotifier {
       content: S.of(context).addPostSaveMessage,
     ).show(context);
     if (result != null && result) {
-      updateWith(isLoadingSave: true);
+      updateWith(
+        isLoadingSave: true,
+        success: false,
+        fail: false,
+      );
 
       try {
         //COPY POST
@@ -221,14 +297,17 @@ class AddPostViewModel with ChangeNotifier {
         //STORAGE
         List<FirebaseStorageResult> storageResults;
         if (images != null && images.isNotEmpty) {
+          updateWith(isLoadingUploadImages: true);
           storageResults = await firebaseStorageService.uploadMultipleFiles(
             files: images,
             uid: finalPost.id,
             path: StorageKeys.postImages,
           );
+          updateWith(isLoadingUploadImages: false);
         }
 
         //POST IMAGES
+        updateWith(isLoadingSavePost: true);
         if (storageResults != null) {
           storageResults.asMap().forEach((key, value) {
             finalPost.info.images.add(PostInfoImage(
@@ -246,27 +325,46 @@ class AddPostViewModel with ChangeNotifier {
 
         //SAVE POST
         await postDatabase.setPost(finalPost);
+        updateWith(isLoadingSavePost: false);
 
         //SAVE POST NOTE
         if (postNote != null &&
             postNote.text != null &&
             postNote.text.isNotEmpty) {
+          updateWith(isLoadingSavePostNote: true);
+
           PostNote finalPostNote = PostNote.fromMap(null, postNote.toMap());
           finalPostNote.userId = currentUser.id;
           finalPostNote.docTime = DocTime.init();
 
           await postDatabase.addPostNote(finalPost.id, finalPostNote);
+
+          updateWith(isLoadingSavePostNote: false);
         }
 
         //SAVE POST STATUS
+        updateWith(isLoadingSavePostStatus: true);
         PostStatus postStatus = PostStatus.init();
         await postDatabase.setPostStatus(finalPost.id, postStatus);
+        updateWith(isLoadingSavePostStatus: false);
 
-        updateWith(isLoadingSave: false);
+        updateWith(
+          isLoadingSave: false,
+          success: true,
+          fail: false,
+        );
         return true;
       } catch (e) {
         print(e);
-        updateWith(isLoadingSave: false);
+        updateWith(
+          isLoadingSave: false,
+          isLoadingUploadImages: false,
+          isLoadingSavePost: false,
+          isLoadingSavePostNote: false,
+          isLoadingSavePostStatus: false,
+          success: false,
+          fail: true,
+        );
         return false;
       }
     }

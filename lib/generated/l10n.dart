@@ -1292,6 +1292,116 @@ class S {
       args: [],
     );
   }
+
+  /// `Your post is being uploaded`
+  String get addPostLoadingTitle {
+    return Intl.message(
+      'Your post is being uploaded',
+      name: 'addPostLoadingTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Uploading images`
+  String get addPostLoadingImages {
+    return Intl.message(
+      'Uploading images',
+      name: 'addPostLoadingImages',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Completing post`
+  String get addPostLoadingPost {
+    return Intl.message(
+      'Completing post',
+      name: 'addPostLoadingPost',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Success!`
+  String get addPostSuccessTitle {
+    return Intl.message(
+      'Success!',
+      name: 'addPostSuccessTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your post has been upload!`
+  String get addPostSuccessMessage {
+    return Intl.message(
+      'Your post has been upload!',
+      name: 'addPostSuccessMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add another post`
+  String get addPostSuccessAnother {
+    return Intl.message(
+      'Add another post',
+      name: 'addPostSuccessAnother',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Close`
+  String get close {
+    return Intl.message(
+      'Close',
+      name: 'close',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error!`
+  String get addPostFailTitle {
+    return Intl.message(
+      'Error!',
+      name: 'addPostFailTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Something went wrong, your post has not been uploaded.`
+  String get addPostFailMessage {
+    return Intl.message(
+      'Something went wrong, your post has not been uploaded.',
+      name: 'addPostFailMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Try again`
+  String get tryAgain {
+    return Intl.message(
+      'Try again',
+      name: 'tryAgain',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit post`
+  String get addPostFailEdit {
+    return Intl.message(
+      'Edit post',
+      name: 'addPostFailEdit',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

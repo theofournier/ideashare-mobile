@@ -21,50 +21,45 @@ class AddPostResumeContent extends StatelessWidget {
   final AddPostViewModel viewModel;
 
   void onTap(AddPostStep addPostStep) {
-    if (!viewModel.isLoadingSave) {
-      viewModel.goToStep(addPostStep);
-    }
+    viewModel.goToStep(addPostStep);
   }
 
   @override
   Widget build(BuildContext context) {
     double space = 32;
 
-    return IgnorePointer(
-      ignoring: viewModel.isLoadingSave,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          buildCategory(context),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        buildCategory(context),
+        SizedBox(
+          height: space,
+        ),
+        buildInfo(context),
+        SizedBox(
+          height: space,
+        ),
+        buildOptionalInfo(context),
+        if (viewModel.post.labels != null &&
+            viewModel.post.labels.isNotEmpty) ...[
           SizedBox(
             height: space,
           ),
-          buildInfo(context),
-          SizedBox(
-            height: space,
-          ),
-          buildOptionalInfo(context),
-          if (viewModel.post.labels != null &&
-              viewModel.post.labels.isNotEmpty) ...[
-            SizedBox(
-              height: space,
-            ),
-            buildLabels(context),
-          ],
-          if (viewModel.linkedIssue != null) ...[
-            SizedBox(
-              height: space,
-            ),
-            buildLinkedIssue(context),
-          ],
-          if (viewModel.post.shareOptions != null) ...[
-            SizedBox(
-              height: space,
-            ),
-            buildShareOptions(context),
-          ],
+          buildLabels(context),
         ],
-      ),
+        if (viewModel.linkedIssue != null) ...[
+          SizedBox(
+            height: space,
+          ),
+          buildLinkedIssue(context),
+        ],
+        if (viewModel.post.shareOptions != null) ...[
+          SizedBox(
+            height: space,
+          ),
+          buildShareOptions(context),
+        ],
+      ],
     );
   }
 
