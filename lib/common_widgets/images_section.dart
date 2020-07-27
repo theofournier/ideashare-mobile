@@ -93,31 +93,24 @@ class ImagesSection extends StatelessWidget {
         if (images != null && images.isNotEmpty) ...[
           Container(
             height: imageSize,
-            child: ListView(
+            child: ListView.separated(
               scrollDirection: Axis.horizontal,
-              children: images
-                  .asMap()
-                  .entries
-                  .map((image) => Container(
-                        margin: EdgeInsets.only(
-                            right: image.key < images.length - 1 ? 8 : 0),
-                        child: buildImageItem(
-                          context: context,
-                          id: id + image.key.toString(),
-                          image: image.value,
-                          onDelete: onDeleteImage != null
-                              ? () => onDeleteImage(image.key)
-                              : null,
-                          onTap: displayImage
-                              ? () => onTap(context, image.key)
-                              : null,
-                          onDoubleTap: onDoubleTapImage != null
-                              ? () => onDoubleTapImage(image.key)
-                              : null,
-                          isFirst: displayFirst && image.key == 0,
-                        ),
-                      ))
-                  .toList(),
+              separatorBuilder: (context, index) => SizedBox(
+                width: 8,
+              ),
+              itemCount: images.length,
+              itemBuilder: (context, index) => buildImageItem(
+                context: context,
+                id: id + index.toString(),
+                image: images[index],
+                onDelete:
+                    onDeleteImage != null ? () => onDeleteImage(index) : null,
+                onTap: displayImage ? () => onTap(context, index) : null,
+                onDoubleTap: onDoubleTapImage != null
+                    ? () => onDoubleTapImage(index)
+                    : null,
+                isFirst: displayFirst && index == 0,
+              ),
             ),
           ),
         ],
