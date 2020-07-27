@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
+import 'package:ideashare/utils/extensions/text_style.dart';
 
 class ImageViewerItem {
   ImageViewerItem({
@@ -36,7 +37,7 @@ class ImageViewer extends StatefulWidget {
 
   ImageViewer({
     this.backgroundColor,
-    this.initialIndex,
+    this.initialIndex = 0,
     @required this.galleryItems,
     this.scrollDirection = Axis.horizontal,
   }) : pageController = PageController(initialPage: initialIndex) {
@@ -55,7 +56,7 @@ class ImageViewer extends StatefulWidget {
 
 class _ImageViewerState extends State<ImageViewer> {
   int currentIndex;
-  bool showAppBar = true;
+  bool showInfo = true;
 
   @override
   void initState() {
@@ -80,7 +81,7 @@ class _ImageViewerState extends State<ImageViewer> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: showAppBar
+      appBar: showInfo
           ? AppBar(
               backgroundColor: Colors.transparent,
               elevation: 0,
@@ -101,36 +102,54 @@ class _ImageViewerState extends State<ImageViewer> {
       extendBodyBehindAppBar: true,
       body: GestureDetector(
         onTap: () => setState(() {
-          this.showAppBar = !this.showAppBar;
+          this.showInfo = !this.showInfo;
         }),
-        child: Container(
-          constraints: BoxConstraints.expand(
-            height: MediaQuery.of(context).size.height,
-          ),
-          child: PhotoViewGallery.builder(
-            scrollPhysics: const AlwaysScrollableScrollPhysics(),
-            builder: _buildItem,
-            itemCount: widget.galleryItems.length,
-            loadingBuilder: (context, event) {
-              if (event == null) {
-                return Container(
+        child: Stack(
+          children: <Widget>[
+            Container(
+              constraints: BoxConstraints.expand(
+                height: MediaQuery.of(context).size.height,
+              ),
+              child: PhotoViewGallery.builder(
+                scrollPhysics: const AlwaysScrollableScrollPhysics(),
+                builder: _buildItem,
+                itemCount: widget.galleryItems.length,
+                loadingBuilder: (context, event) {
+                  if (event == null) {
+                    return Container(
+                      color: widget.backgroundColor,
+                      child: const Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    );
+                  }
+                  return Container(
+                    color: widget.backgroundColor,
+                  );
+                },
+                backgroundDecoration: BoxDecoration(
                   color: widget.backgroundColor,
-                  child: const Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                );
-              }
-              return Container(
-                color: widget.backgroundColor,
-              );
-            },
-            backgroundDecoration: BoxDecoration(
-              color: widget.backgroundColor,
+                ),
+                pageController: widget.pageController,
+                onPageChanged: onPageChanged,
+                scrollDirection: widget.scrollDirection,
+              ),
             ),
-            pageController: widget.pageController,
-            onPageChanged: onPageChanged,
-            scrollDirection: widget.scrollDirection,
-          ),
+            if (showInfo) ...[
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Container(
+                  margin: const EdgeInsets.only(
+                    bottom: 16,
+                  ),
+                  child: Text(
+                    "${currentIndex + 1} / ${widget.galleryItems.length}",
+                    style: Theme.of(context).textTheme.bodyText1.toWhite(),
+                  ),
+                ),
+              )
+            ],
+          ],
         ),
       ),
     );
