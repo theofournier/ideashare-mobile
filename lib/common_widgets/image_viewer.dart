@@ -35,7 +35,6 @@ class ImageViewer extends StatefulWidget {
   }
 
   ImageViewer({
-    this.loadingBuilder,
     this.backgroundColor,
     this.initialIndex,
     @required this.galleryItems,
@@ -44,7 +43,6 @@ class ImageViewer extends StatefulWidget {
     this.backgroundColor = this.backgroundColor ?? Colors.black;
   }
 
-  final LoadingBuilder loadingBuilder;
   Color backgroundColor;
   final int initialIndex;
   final PageController pageController;
@@ -113,7 +111,19 @@ class _ImageViewerState extends State<ImageViewer> {
             scrollPhysics: const AlwaysScrollableScrollPhysics(),
             builder: _buildItem,
             itemCount: widget.galleryItems.length,
-            loadingBuilder: widget.loadingBuilder,
+            loadingBuilder: (context, event) {
+              if (event == null) {
+                return Container(
+                  color: widget.backgroundColor,
+                  child: const Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                );
+              }
+              return Container(
+                color: widget.backgroundColor,
+              );
+            },
             backgroundDecoration: BoxDecoration(
               color: widget.backgroundColor,
             ),
