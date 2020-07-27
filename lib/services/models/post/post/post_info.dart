@@ -35,7 +35,7 @@ class PostInfo {
                     (e) => PostInfoImage.fromMap(e.key, e.value),
                   )?.toList(),
           urlLinks: json["urlLinks"] == null ||
-                  (json["urlLinks"] as List<String>).length == 0
+                  (json["urlLinks"] as List<dynamic>).length == 0
               ? []
               : List<String>.from(json["urlLinks"].map((x) => x)),
           linkedIssue: json["linkedIssue"],
