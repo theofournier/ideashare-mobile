@@ -73,4 +73,12 @@ class MainViewModel with ChangeNotifier {
   void onPageChanged(TabItem tabItem) {
     updateWith(currentTab: tabItem);
   }
+
+  Future<bool> onWillPop() async {
+    if (currentTab == TabItem.home) {
+      return true;
+    }
+    selectTab(TabItem.home);
+    return false;
+  }
 }

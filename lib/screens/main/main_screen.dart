@@ -48,16 +48,19 @@ class MainContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: PageView(
-        children: viewModel.pages,
-        controller: viewModel.pageController,
-        onPageChanged: (index) => viewModel.onPageChanged(TabItem.values[index]),
-      ),
-      bottomNavigationBar: CustomBottomNavigationBar(
-        currentIndex: viewModel.currentTab.index,
-        onTap: (index) => viewModel.selectTab(TabItem.values[index]),
-        tabItemData: viewModel.tabItemData(context),
+    return WillPopScope(
+      onWillPop: viewModel.onWillPop,
+      child: Scaffold(
+        body: PageView(
+          children: viewModel.pages,
+          controller: viewModel.pageController,
+          onPageChanged: (index) => viewModel.onPageChanged(TabItem.values[index]),
+        ),
+        bottomNavigationBar: CustomBottomNavigationBar(
+          currentIndex: viewModel.currentTab.index,
+          onTap: (index) => viewModel.selectTab(TabItem.values[index]),
+          tabItemData: viewModel.tabItemData(context),
+        ),
       ),
     );
   }
