@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ideashare/common_widgets/images_section.dart';
-import 'package:ideashare/common_widgets/label_chip.dart';
 import 'package:ideashare/common_widgets/line.dart';
 import 'package:ideashare/common_widgets/links_section.dart';
+import 'package:ideashare/common_widgets/text_chip.dart';
 import 'package:ideashare/generated/l10n.dart';
 import 'package:ideashare/screens/post/add_post/add_post_step_data.dart';
 import 'package:ideashare/screens/post/add_post/add_post_view_model.dart';
@@ -281,7 +281,7 @@ class AddPostResumeContent extends StatelessWidget {
           spacing: 16,
           runSpacing: 8,
           children: viewModel.post.labels
-              .map((label) => LabelChip(
+              .map((label) => TextChip(
                     key: Key(label.id),
                     title: label.title,
                     textSize: 18,
