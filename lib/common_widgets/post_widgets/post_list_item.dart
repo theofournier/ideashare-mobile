@@ -1,11 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ideashare/common_widgets/common_widgets.dart';
-import 'package:ideashare/common_widgets/custom_cached_network_image.dart';
-import 'package:ideashare/common_widgets/image_viewer.dart';
-import 'package:ideashare/common_widgets/text_chip.dart';
-import 'package:ideashare/common_widgets/user_avatar_name.dart';
+import 'package:ideashare/common_widgets/custom_widgets/custom_cached_network_image.dart';
+import 'package:ideashare/common_widgets/user_widgets/user_avatar_name.dart';
+import 'package:ideashare/common_widgets/util_widgets/image_viewer.dart';
+import 'package:ideashare/common_widgets/util_widgets/text_chip.dart';
 import 'package:ideashare/constants/constants.dart';
 import 'package:ideashare/resources/theme.dart';
 import 'package:ideashare/services/models/post/post/post.dart';

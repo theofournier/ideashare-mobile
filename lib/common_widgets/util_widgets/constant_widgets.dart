@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ideashare/common_widgets/gradient_icon.dart';
-import 'package:ideashare/resources/theme.dart';
 
 class ConstantWidgets {
   static BoxDecoration gradientBoxDecoration(BuildContext context) =>

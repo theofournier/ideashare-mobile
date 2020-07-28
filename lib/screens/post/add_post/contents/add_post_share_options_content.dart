@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ideashare/common_widgets/share_options_widget.dart';
+import 'package:ideashare/common_widgets/post_widgets/share_options_widget.dart';
 import 'package:ideashare/screens/post/add_post/add_post_view_model.dart';
 import 'package:ideashare/services/models/common/share_options_data.dart';
 import 'package:ideashare/utils/share_options_utils.dart';

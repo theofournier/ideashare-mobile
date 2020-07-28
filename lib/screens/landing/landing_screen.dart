@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ideashare/common_widgets/constant_widgets.dart';
+import 'package:ideashare/common_widgets/util_widgets/constant_widgets.dart';
 import 'package:ideashare/screens/auth/auth_screen.dart';
 import 'package:ideashare/screens/main/main_screen.dart';
 import 'package:ideashare/services/auth/auth_service.dart';

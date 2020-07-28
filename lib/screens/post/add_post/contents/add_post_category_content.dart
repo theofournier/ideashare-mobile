@@ -1,8 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ideashare/constants/constants.dart';
-import 'package:ideashare/generated/l10n.dart';
-import 'package:ideashare/resources/theme.dart';
 import 'package:ideashare/screens/post/add_post/add_post_view_model.dart';
 import 'package:ideashare/utils/category_utils.dart';
 import 'package:ideashare/utils/extensions/text_style.dart';

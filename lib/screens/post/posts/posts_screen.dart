@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ideashare/common_widgets/custom_app_bar.dart';
-import 'package:ideashare/common_widgets/post_list_item.dart';
+import 'package:ideashare/common_widgets/custom_widgets/custom_app_bar.dart';
+import 'package:ideashare/common_widgets/post_widgets/post_list_item.dart';
 import 'package:ideashare/resources/router.dart';
 import 'package:ideashare/resources/theme.dart';
 import 'package:ideashare/screens/post/posts/posts_view_model.dart';

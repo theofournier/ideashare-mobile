@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ideashare/common_widgets/alert_dialog_button.dart';
-import 'package:ideashare/common_widgets/custom_text_form_field.dart';
+import 'package:ideashare/common_widgets/alert_dialogs/alert_dialog_button.dart';
+import 'package:ideashare/common_widgets/custom_widgets/custom_text_form_field.dart';
 import 'package:ideashare/generated/l10n.dart';
 
 class AlertDialogTextField extends StatefulWidget {

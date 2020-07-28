@@ -1,10 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ideashare/common_widgets/custom_dropdown_button.dart';
-import 'package:ideashare/common_widgets/custom_flat_button.dart';
-import 'package:ideashare/common_widgets/custom_raised_button.dart';
-import 'package:ideashare/common_widgets/line.dart';
-import 'package:ideashare/common_widgets/section_title.dart';
+import 'package:ideashare/common_widgets/custom_widgets/custom_dropdown_button.dart';
+import 'package:ideashare/common_widgets/custom_widgets/custom_flat_button.dart';
+import 'package:ideashare/common_widgets/custom_widgets/custom_raised_button.dart';
+import 'package:ideashare/common_widgets/post_widgets/section_title.dart';
+import 'package:ideashare/common_widgets/util_widgets/line.dart';
 import 'package:ideashare/constants/constants.dart';
 import 'package:ideashare/services/models/common/share_option.dart';
 import 'package:ideashare/services/models/common/share_options_data.dart';

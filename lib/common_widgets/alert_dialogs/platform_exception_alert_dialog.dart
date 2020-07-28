@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:ideashare/common_widgets/platform_alert_dialog.dart';
 import 'package:flutter/services.dart';
+import 'package:ideashare/common_widgets/alert_dialogs/platform_alert_dialog.dart';
 import 'package:ideashare/constants/error_keys.dart';
 import 'package:ideashare/generated/l10n.dart';
 

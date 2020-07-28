@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ideashare/common_widgets/social_buttons.dart';
+import 'package:ideashare/common_widgets/util_widgets/social_buttons.dart';
 import 'package:ideashare/generated/l10n.dart';
 
 class SocialFooter extends StatelessWidget {

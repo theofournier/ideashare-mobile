@@ -1,9 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:ideashare/common_widgets/platform_alert_dialog.dart';
+import 'package:ideashare/common_widgets/alert_dialogs/platform_alert_dialog.dart';
 import 'package:ideashare/constants/constants.dart';
-import 'package:ideashare/constants/data_example.dart';
 import 'package:ideashare/generated/l10n.dart';
 import 'package:ideashare/screens/post/add_post/add_post_step_data.dart';
 import 'package:ideashare/services/database/label_database.dart';

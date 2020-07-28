@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ideashare/common_widgets/alert_dialog_text_field.dart';
-import 'package:ideashare/common_widgets/section_title.dart';
+import 'package:ideashare/common_widgets/alert_dialogs/alert_dialog_text_field.dart';
+import 'package:ideashare/common_widgets/post_widgets/section_title.dart';
 import 'package:ideashare/generated/l10n.dart';
 import 'package:ideashare/utils/extensions/text_style.dart';
 import 'package:ideashare/utils/helpers.dart';

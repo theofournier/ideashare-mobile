@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:ideashare/common_widgets/constant_widgets.dart';
-import 'package:ideashare/common_widgets/custom_app_bar.dart';
-import 'package:ideashare/common_widgets/custom_app_bar_button.dart';
-import 'package:ideashare/common_widgets/platform_alert_dialog.dart';
+import 'package:ideashare/common_widgets/alert_dialogs/platform_alert_dialog.dart';
+import 'package:ideashare/common_widgets/custom_widgets/custom_app_bar.dart';
+import 'package:ideashare/common_widgets/custom_widgets/custom_app_bar_button.dart';
+import 'package:ideashare/common_widgets/util_widgets/constant_widgets.dart';
 import 'package:ideashare/generated/l10n.dart';
 import 'package:ideashare/resources/router.dart';
 import 'package:ideashare/screens/select_picture/default_picture/default_picture_item.dart';

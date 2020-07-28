@@ -1,10 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ideashare/common_widgets/custom_text_form_field.dart';
-import 'package:ideashare/common_widgets/images_section.dart';
-import 'package:ideashare/common_widgets/language_section.dart';
-import 'package:ideashare/common_widgets/links_section.dart';
-import 'package:ideashare/common_widgets/section_title.dart';
+import 'package:ideashare/common_widgets/custom_widgets/custom_text_form_field.dart';
+import 'package:ideashare/common_widgets/post_widgets/images_section.dart';
+import 'package:ideashare/common_widgets/post_widgets/language_section.dart';
+import 'package:ideashare/common_widgets/post_widgets/links_section.dart';
+import 'package:ideashare/common_widgets/post_widgets/section_title.dart';
 import 'package:ideashare/generated/l10n.dart';
 import 'package:ideashare/screens/post/add_post/add_post_step_data.dart';
 import 'package:ideashare/screens/post/add_post/add_post_view_model.dart';

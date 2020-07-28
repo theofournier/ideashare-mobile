@@ -1,9 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:ideashare/common_widgets/alert_dialog_list_tile.dart';
-import 'package:ideashare/common_widgets/image_viewer.dart';
-import 'package:ideashare/common_widgets/section_title.dart';
+import 'package:ideashare/common_widgets/alert_dialogs/alert_dialog_list_tile.dart';
+import 'package:ideashare/common_widgets/post_widgets/section_title.dart';
+import 'package:ideashare/common_widgets/util_widgets/image_viewer.dart';
 import 'package:ideashare/generated/l10n.dart';
 import 'package:ideashare/resources/theme.dart';
 import 'package:ideashare/utils/helpers.dart';

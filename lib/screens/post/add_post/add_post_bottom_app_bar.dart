@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ideashare/common_widgets/stepper_circular_progress.dart';
+import 'package:ideashare/common_widgets/util_widgets/stepper_circular_progress.dart';
 import 'package:ideashare/generated/l10n.dart';
 
 class AddPostBottomAppBar extends StatelessWidget {

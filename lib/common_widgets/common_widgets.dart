@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ideashare/common_widgets/gradient_icon.dart';
+import 'package:ideashare/common_widgets/util_widgets/gradient_icon.dart';
 import 'package:ideashare/resources/theme.dart';
 
 class PremiumIcon extends StatelessWidget {

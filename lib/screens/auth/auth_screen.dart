@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:ideashare/common_widgets/constant_widgets.dart';
+import 'package:ideashare/common_widgets/custom_widgets/custom_flat_button.dart';
+import 'package:ideashare/common_widgets/custom_widgets/custom_outline_button.dart';
+import 'package:ideashare/common_widgets/util_widgets/constant_widgets.dart';
 import 'package:ideashare/constants/constants.dart';
 import 'package:ideashare/generated/l10n.dart';
 import 'package:ideashare/screens/auth/sign_in/sign_in_screen.dart';
 import 'package:ideashare/screens/auth/sign_up/sign_up_screen.dart';
-import 'package:ideashare/common_widgets/custom_outline_button.dart';
-import 'package:ideashare/common_widgets/custom_flat_button.dart';
 import 'package:ideashare/utils/extensions/text_style.dart';
 
 class AuthScreen extends StatelessWidget {

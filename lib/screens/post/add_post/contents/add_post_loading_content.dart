@@ -1,9 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ideashare/common_widgets/constant_widgets.dart';
-import 'package:ideashare/common_widgets/custom_circular_progress.dart';
-import 'package:ideashare/common_widgets/custom_outline_button.dart';
-import 'package:ideashare/common_widgets/custom_raised_button.dart';
+import 'package:ideashare/common_widgets/custom_widgets/custom_circular_progress.dart';
+import 'package:ideashare/common_widgets/custom_widgets/custom_outline_button.dart';
+import 'package:ideashare/common_widgets/custom_widgets/custom_raised_button.dart';
+import 'package:ideashare/common_widgets/util_widgets/constant_widgets.dart';
 import 'package:ideashare/generated/l10n.dart';
 import 'package:ideashare/resources/theme.dart';
 import 'package:ideashare/screens/post/add_post/add_post_view_model.dart';

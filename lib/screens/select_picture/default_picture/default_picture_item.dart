@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ideashare/common_widgets/custom_cached_network_image.dart';
+import 'package:ideashare/common_widgets/custom_widgets/custom_cached_network_image.dart';
 
 class DefaultPictureItem extends StatelessWidget {
   DefaultPictureItem({

@@ -1,5 +1,4 @@
-import 'package:flutter/cupertino.dart';
-import 'package:ideashare/common_widgets/share_options_widget.dart';
+import 'package:flutter/material.dart';
 import 'package:ideashare/constants/constants.dart';
 import 'package:ideashare/generated/l10n.dart';
 import 'package:ideashare/services/models/common/share_option.dart';
