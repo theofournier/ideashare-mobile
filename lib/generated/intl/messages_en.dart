@@ -19,6 +19,18 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
+  static m0(day) => "${Intl.plural(day, one: '1 day', other: '${day} days')}";
+
+  static m1(hour) => "${Intl.plural(hour, one: '1 hr', other: '${hour} hrs')}";
+
+  static m2(minute) => "${Intl.plural(minute, one: '1 min', other: '${minute} mins')}";
+
+  static m3(month) => "${Intl.plural(month, one: '1 mo', other: '${month} mos')}";
+
+  static m4(second) => "${Intl.plural(second, one: '1 sec', other: '${second} secs')}";
+
+  static m5(week) => "${Intl.plural(week, one: '1 week', other: '${week} weeks')}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
     "addPostBottomProgressOf" : MessageLookupByLibrary.simpleMessage("of"),
@@ -117,6 +129,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "postTypeIdea" : MessageLookupByLibrary.simpleMessage("Idea"),
     "postTypeIssue" : MessageLookupByLibrary.simpleMessage("Issue"),
     "save" : MessageLookupByLibrary.simpleMessage("Save"),
+    "seeMore" : MessageLookupByLibrary.simpleMessage("See More"),
     "selectPictureScreenAppBarTitle" : MessageLookupByLibrary.simpleMessage("Picture"),
     "selectPictureScreenFromDefaultButton" : MessageLookupByLibrary.simpleMessage("Select from default"),
     "selectPictureScreenImportButton" : MessageLookupByLibrary.simpleMessage("Import picture"),
@@ -157,6 +170,17 @@ class MessageLookup extends MessageLookupByLibrary {
     "tabTitleNotifications" : MessageLookupByLibrary.simpleMessage("Notifications"),
     "tabTitleProfile" : MessageLookupByLibrary.simpleMessage("Profile"),
     "tabTitleSearch" : MessageLookupByLibrary.simpleMessage("Search"),
+    "timeAgoAt" : MessageLookupByLibrary.simpleMessage("at"),
+    "timeAgoDay" : m0,
+    "timeAgoHr" : m1,
+    "timeAgoJustNow" : MessageLookupByLibrary.simpleMessage("Just now"),
+    "timeAgoLastMonth" : MessageLookupByLibrary.simpleMessage("Last month"),
+    "timeAgoLastWeek" : MessageLookupByLibrary.simpleMessage("Last week"),
+    "timeAgoMin" : m2,
+    "timeAgoMo" : m3,
+    "timeAgoSec" : m4,
+    "timeAgoWeek" : m5,
+    "timeAgoYesterday" : MessageLookupByLibrary.simpleMessage("Yesterday"),
     "tryAgain" : MessageLookupByLibrary.simpleMessage("Try again"),
     "visiblenessApproval" : MessageLookupByLibrary.simpleMessage("Approval"),
     "visiblenessEveryone" : MessageLookupByLibrary.simpleMessage("Everyone"),

@@ -1,16 +1,19 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:ideashare/common_widgets/common_widgets.dart';
 import 'package:ideashare/common_widgets/custom_widgets/custom_cached_network_image.dart';
+import 'package:ideashare/common_widgets/custom_widgets/custom_flat_button.dart';
 import 'package:ideashare/common_widgets/user_widgets/user_avatar_name.dart';
 import 'package:ideashare/common_widgets/util_widgets/image_viewer.dart';
 import 'package:ideashare/common_widgets/util_widgets/text_chip.dart';
 import 'package:ideashare/constants/constants.dart';
+import 'package:ideashare/generated/l10n.dart';
 import 'package:ideashare/resources/theme.dart';
 import 'package:ideashare/services/models/post/post/post.dart';
 import 'package:ideashare/services/models/post/post/post_info_image.dart';
 import 'package:ideashare/utils/extensions/text_style.dart';
-import 'package:ideashare/utils/extensions/date_time.dart';
+import 'package:ideashare/utils/helpers.dart';
 
 class PostListItem extends StatefulWidget {
   PostListItem({
@@ -60,7 +63,7 @@ class _PostListItemState extends State<PostListItem> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => print("TAP"),
+      onTap: () => print("TAP ITEM"),
       child: Card(
         color: Colors.white,
         elevation: 0.7,
@@ -77,9 +80,6 @@ class _PostListItemState extends State<PostListItem> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   buildHeader(context),
-                  SizedBox(
-                    height: 8,
-                  ),
                   buildInfo(context),
                 ],
               ),
@@ -127,25 +127,24 @@ class _PostListItemState extends State<PostListItem> {
                   post.status,
                 ),
               ],
+              if (post.premium) ...[
+                PremiumIcon(),
+              ],
             ],
           ),
         ),
-        Wrap(
-          direction: Axis.horizontal,
-          spacing: 4,
-          runSpacing: 4,
-          children: <Widget>[
-            Icon(
-              post.shareOptions.privacy == Privacy.public
-                  ? Icons.public
-                  : Icons.lock_outline,
-              color: Theme.of(context).accentColor,
-            ),
-            if (post.premium) ...[
-              PremiumIcon(),
-            ],
-          ],
-        )
+        CustomFlatButton(
+          text: S.of(context).seeMore,
+          textColor: Theme.of(context).accentColor,
+          upperCase: false,
+          fontWeight: FontWeight.normal,
+          icon: Icons.arrow_forward,
+          iconPosition: IconPosition.right,
+          iconColor: Theme.of(context).accentColor,
+          iconSize: 14,
+          iconSpace: 2,
+          onPressed: () => print("TAP SEE MORE"),
+        ),
       ],
     );
   }
@@ -184,7 +183,8 @@ class _PostListItemState extends State<PostListItem> {
       spacing: 8,
       runSpacing: 4,
       children: post.labels
-          .getRange(0, post.labels.length >= maxLabels ? maxLabels : post.labels.length)
+          .getRange(0,
+              post.labels.length >= maxLabels ? maxLabels : post.labels.length)
           .map(
             (e) => TextChip(
               padding: const EdgeInsets.symmetric(
@@ -211,11 +211,11 @@ class _PostListItemState extends State<PostListItem> {
           child: ConstrainedBox(
             constraints: BoxConstraints(
               minHeight: 200,
-              maxHeight: 400,
+              maxHeight: 350,
             ),
             child: Image(
               image: imageProvider,
-              fit: BoxFit.fitHeight,
+              fit: BoxFit.fitWidth,
             ),
           ),
         ),
@@ -231,19 +231,45 @@ class _PostListItemState extends State<PostListItem> {
       spacing: 8,
       runSpacing: 4,
       children: <Widget>[
-        UserAvatarName(
-          displayName: post.ownerInfo.displayName,
-          photoUrl: post.ownerInfo.photoUrl,
-          photoSize: 15,
-          textSize: 14,
+        InkWell(
+          onTap: () => print("TAP USER"),
+          child: UserAvatarName(
+            displayName: post.ownerInfo.displayName,
+            photoUrl: post.ownerInfo.photoUrl,
+            photoSize: 15,
+            textSize: 14,
+          ),
         ),
         CountIconWidget(
           icon: Icons.visibility,
           count: post.counts.views,
         ),
-        Text(
-          post.docTime.createdAt.formatyMdhm() ?? "",
-          style: Theme.of(context).textTheme.caption,
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Text(
+              Helpers.timeAgoSinceDate(
+                post.docTime.createdAt,
+              ),
+              style: Theme.of(context).textTheme.caption.toGrey(),
+            ),
+            SizedBox(
+              width: 2,
+            ),
+            Circle(
+              size: 3,
+            ),
+            SizedBox(
+              width: 2,
+            ),
+            Icon(
+              post.shareOptions.privacy == Privacy.public
+                  ? Icons.public
+                  : Icons.lock_outline,
+              color: AppColors.greyDark,
+              size: 16,
+            ),
+          ],
         ),
       ],
     );

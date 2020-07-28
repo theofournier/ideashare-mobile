@@ -49,7 +49,9 @@ class CountIconWidget extends StatelessWidget {
           color: Theme.of(context).accentColor,
           size: iconSize,
         ),
-        SizedBox(width: 4,),
+        SizedBox(
+          width: 4,
+        ),
         Text(
           "$count",
           style: TextStyle(
@@ -59,6 +61,28 @@ class CountIconWidget extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class Circle extends StatelessWidget {
+  Circle({
+    this.size = 20,
+    this.color = AppColors.greyDark,
+  });
+
+  final double size;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: size,
+      height: size,
+      decoration: new BoxDecoration(
+        color: color,
+        shape: BoxShape.circle,
+      ),
     );
   }
 }

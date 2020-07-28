@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-
-enum IconPosition {
-  left,
-  right,
-}
+import 'package:ideashare/constants/constants.dart';
 
 class CustomRaisedButton extends StatelessWidget {
   CustomRaisedButton({

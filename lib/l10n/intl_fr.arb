@@ -140,5 +140,17 @@
   "imageSectionGalleryTitle": "Import from gallery",
   "postStatusTypeOpen": "Open",
   "postStatusTypeOngoing": "Ongoing",
-  "postStatusTypeCompleted": "Completed"
+  "postStatusTypeCompleted": "Completed",
+  "seeMore": "See More",
+  "timeAgoJustNow": "Just now",
+  "timeAgoSec": "{second, plural, one{1 sec} other{{second} secs}}",
+  "timeAgoMin": "{minute, plural, one{1 min} other{{minute} mins}}",
+  "timeAgoHr": "{hour, plural, one{1 h} other{{hour} hs}}",
+  "timeAgoDay": "{day, plural, one{1 jr} other{{day} jrs}}",
+  "timeAgoWeek": "{week, plural, one{1 week} other{{week} weeks}}",
+  "timeAgoMo": "{month, plural, one{1 mo} other{{month} mos}}",
+  "timeAgoYesterday": "Yesterday",
+  "timeAgoLastWeek": "Last week",
+  "timeAgoLastMonth": "Last month",
+  "timeAgoAt": "at"
 }

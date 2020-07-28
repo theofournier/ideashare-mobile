@@ -1452,6 +1452,138 @@ class S {
       args: [],
     );
   }
+
+  /// `See More`
+  String get seeMore {
+    return Intl.message(
+      'See More',
+      name: 'seeMore',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Just now`
+  String get timeAgoJustNow {
+    return Intl.message(
+      'Just now',
+      name: 'timeAgoJustNow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `{second, plural, one{1 sec} other{{second} secs}}`
+  String timeAgoSec(num second) {
+    return Intl.plural(
+      second,
+      one: '1 sec',
+      other: '$second secs',
+      name: 'timeAgoSec',
+      desc: '',
+      args: [second],
+    );
+  }
+
+  /// `{minute, plural, one{1 min} other{{minute} mins}}`
+  String timeAgoMin(num minute) {
+    return Intl.plural(
+      minute,
+      one: '1 min',
+      other: '$minute mins',
+      name: 'timeAgoMin',
+      desc: '',
+      args: [minute],
+    );
+  }
+
+  /// `{hour, plural, one{1 hr} other{{hour} hrs}}`
+  String timeAgoHr(num hour) {
+    return Intl.plural(
+      hour,
+      one: '1 hr',
+      other: '$hour hrs',
+      name: 'timeAgoHr',
+      desc: '',
+      args: [hour],
+    );
+  }
+
+  /// `{day, plural, one{1 day} other{{day} days}}`
+  String timeAgoDay(num day) {
+    return Intl.plural(
+      day,
+      one: '1 day',
+      other: '$day days',
+      name: 'timeAgoDay',
+      desc: '',
+      args: [day],
+    );
+  }
+
+  /// `{week, plural, one{1 week} other{{week} weeks}}`
+  String timeAgoWeek(num week) {
+    return Intl.plural(
+      week,
+      one: '1 week',
+      other: '$week weeks',
+      name: 'timeAgoWeek',
+      desc: '',
+      args: [week],
+    );
+  }
+
+  /// `{month, plural, one{1 mo} other{{month} mos}}`
+  String timeAgoMo(num month) {
+    return Intl.plural(
+      month,
+      one: '1 mo',
+      other: '$month mos',
+      name: 'timeAgoMo',
+      desc: '',
+      args: [month],
+    );
+  }
+
+  /// `Yesterday`
+  String get timeAgoYesterday {
+    return Intl.message(
+      'Yesterday',
+      name: 'timeAgoYesterday',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last week`
+  String get timeAgoLastWeek {
+    return Intl.message(
+      'Last week',
+      name: 'timeAgoLastWeek',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last month`
+  String get timeAgoLastMonth {
+    return Intl.message(
+      'Last month',
+      name: 'timeAgoLastMonth',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `at`
+  String get timeAgoAt {
+    return Intl.message(
+      'at',
+      name: 'timeAgoAt',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

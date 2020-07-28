@@ -16,4 +16,21 @@ extension DateTimeExtensions on DateTime {
   String formatyMdhm() {
     return format(DateFormat.yMd().add_jm());
   }
+
+  String formatDayMonthTime() {
+    return format(DateFormat.MMMd().addPattern("jm", " - "));
+  }
+  String formatDayMonthYearTime() {
+    return format(DateFormat.yMMMd().addPattern("jm", " - "));
+  }
+
+  String formatDayMonth() {
+    return format(DateFormat.MMMd());
+  }
+  String formatDayMonthYear() {
+    return format(DateFormat.yMMMd());
+  }
+  String formatTime() {
+    return format(DateFormat.jm());
+  }
 }

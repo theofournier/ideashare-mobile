@@ -92,3 +92,8 @@ enum PostStatusType {
   ongoing,
   completed,
 }
+
+enum IconPosition {
+  left,
+  right,
+}
