@@ -13,8 +13,7 @@ class PostDatabase {
 
   final _service = FirestoreService.instance;
 
-  Future<void> setPost(Post post) =>
-      _service.setData(
+  Future<void> setPost(Post post) => _service.setData(
         path: FirestorePath.post(post.id),
         data: post.toMap(),
         merge: true,
@@ -31,5 +30,11 @@ class PostDatabase {
         path: FirestorePath.postStatus(postId),
         data: postStatus.toMap(),
         merge: true,
+      );
+
+  Future<List<Post>> getPosts() => _service.getCollection(
+        path: FirestorePath.posts(),
+        queryBuilder: (query) => query.orderBy("docTime.createdAt", descending: true),
+        builder: (data, documentId) => Post.fromMap(documentId, data),
       );
 }

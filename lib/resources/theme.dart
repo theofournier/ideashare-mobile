@@ -49,15 +49,20 @@ class AppColors {
     900: const Color(0xFF141E30)
   };
 
-  static const Color success = Color(0xFF64a36f);
+  static const Color success = const Color(0xFF64A36F);
 
-  static const Color greyBackground = Color(0xFFF9F9F9);
+  static const Color greyBackground = const Color(0xFFe7e8ea);
+  static const Color greyExtraLight = const Color(0xFFF5F5F5);
   static const Color greyLight = const Color(0xFFDCDCDC);
   static const Color greyMedium = const Color(0xFFBBBBBB);
   static const Color greyDark = const Color(0xFF707070);
 
   static const Color ideaColor = const Color(0xFFFFD31D);
   static const Color issueColor = const Color(0xFFF79071);
+
+  static const Color statusOpenColor = const Color(0xFFDCDCDC);
+  static const Color statusOngoingColor = const Color(0xFF1B6CA8);
+  static const Color statusCompletedColor = const Color(0xFF64A36F);
 
   static const Color premiumFirstColor = const Color(0xFFFEC107);
   static const Color premiumSecondColor = const Color(0xFFDEA807);

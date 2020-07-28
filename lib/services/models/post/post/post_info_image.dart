@@ -1,4 +1,4 @@
-class PostInfoImage {
+class PostInfoImage implements Comparable<PostInfoImage> {
   PostInfoImage({
     this.id,
     this.order,
@@ -22,4 +22,9 @@ class PostInfoImage {
         "order": this.order,
         "imageUrl": this.imageUrl,
       };
+
+  @override
+  int compareTo(PostInfoImage other) {
+    return order.compareTo(other.order);
+  }
 }

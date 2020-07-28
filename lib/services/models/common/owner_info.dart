@@ -8,6 +8,17 @@ class OwnerInfo {
     this.photoUrl,
   });
 
+  String get displayName {
+    List<String> names = [];
+    if (firstName != null && firstName.isNotEmpty) {
+      names.add(firstName);
+    }
+    if (lastName != null && lastName.isNotEmpty) {
+      names.add(lastName);
+    }
+    return names.isNotEmpty ? names.join(" ") : "";
+  }
+
   String userId;
   String firstName;
   String lastName;

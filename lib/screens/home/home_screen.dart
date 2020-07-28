@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ideashare/resources/router.dart';
 import 'package:ideashare/screens/home/home_view_model.dart';
+import 'package:ideashare/screens/post/posts/posts_screen.dart';
 import 'package:ideashare/services/auth/auth_service.dart';
 import 'package:provider/provider.dart';
 
@@ -47,9 +48,22 @@ class HomeContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: RaisedButton(
-          onPressed: () => Provider.of<AuthService>(context, listen: false).signOut(),
-          child: Text("SIGN OUT"),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            RaisedButton(
+              onPressed: () =>
+                  Provider.of<AuthService>(context, listen: false).signOut(),
+              child: Text("SIGN OUT"),
+            ),
+            SizedBox(
+              height: 40,
+            ),
+            RaisedButton(
+              onPressed: () => PostsScreen.show(context),
+              child: Text("POSTS"),
+            ),
+          ],
         ),
       ),
     );

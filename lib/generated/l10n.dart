@@ -1422,6 +1422,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Open`
+  String get postStatusTypeOpen {
+    return Intl.message(
+      'Open',
+      name: 'postStatusTypeOpen',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ongoing`
+  String get postStatusTypeOngoing {
+    return Intl.message(
+      'Ongoing',
+      name: 'postStatusTypeOngoing',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Completed`
+  String get postStatusTypeCompleted {
+    return Intl.message(
+      'Completed',
+      name: 'postStatusTypeCompleted',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

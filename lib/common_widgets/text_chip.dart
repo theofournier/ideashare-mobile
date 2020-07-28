@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ideashare/constants/constants.dart';
-import 'package:ideashare/resources/theme.dart';
 import 'package:ideashare/utils/category_utils.dart';
+import 'package:ideashare/utils/status_utils.dart';
 
 class TextChip extends StatelessWidget {
   const TextChip({
@@ -44,21 +44,29 @@ class TextChip extends StatelessWidget {
   }
 
   factory TextChip.category(BuildContext context, PostType category) {
-    Color color = AppColors.greyLight;
-    if (category == PostType.idea) {
-      color = AppColors.ideaColor;
-    } else if (category == PostType.issue) {
-      color = AppColors.issueColor;
-    }
     return TextChip(
       title: CategoryUtils.getCategoryTitle(context)[category],
-      color: color,
+      color: CategoryUtils.getCategoryColor(context)[category],
       textSize: 16,
       padding: const EdgeInsets.symmetric(
         horizontal: 16,
-        vertical: 4,
+        vertical: 2,
       ),
       textColor: Theme.of(context).primaryColor,
+      fontWeight: FontWeight.w600,
+    );
+  }
+
+  factory TextChip.status(BuildContext context, PostStatusType status) {
+    return TextChip(
+      title: StatusUtils.getStatusTitle(context)[status],
+      color: StatusUtils.getStatusColor(context)[status],
+      textSize: 16,
+      padding: const EdgeInsets.symmetric(
+        horizontal: 16,
+        vertical: 2,
+      ),
+      textColor: StatusUtils.getStatusTextColor(context)[status],
       fontWeight: FontWeight.w600,
     );
   }

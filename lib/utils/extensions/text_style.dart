@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:ideashare/resources/theme.dart';
 
 extension TextStyleExtensions on TextStyle {
   TextStyle toWhite() {
     return this.merge(
       TextStyle(
         color: Colors.white,
+      ),
+    );
+  }
+
+  TextStyle toGrey() {
+    return this.merge(
+      TextStyle(
+        color: AppColors.greyDark,
       ),
     );
   }

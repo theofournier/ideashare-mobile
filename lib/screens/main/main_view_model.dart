@@ -20,7 +20,7 @@ class MainViewModel with ChangeNotifier {
   MainViewModel({@required this.pageController});
 
   PageController pageController;
-  TabItem currentTab = TabItem.addPost;
+  TabItem currentTab = TabItem.home;
 
   final List<Widget> pages = [
     HomeScreen(),
@@ -31,32 +31,38 @@ class MainViewModel with ChangeNotifier {
   ];
 
   List<TabItemData> tabItemData(BuildContext context) => [
-    TabItemData(
-      tabItem: TabItem.home,
-      title: S.of(context).tabTitleHome,
-      icon: currentTab == TabItem.home ? Icons.home : OMIcons.home,
-    ),
-    TabItemData(
-      tabItem: TabItem.search,
-      title: S.of(context).tabTitleSearch,
-      icon: Icons.search,
-    ),
-    TabItemData(
-      tabItem: TabItem.addPost,
-      title: S.of(context).tabTitleAddPost,
-      icon: currentTab == TabItem.addPost ? Icons.add_circle : Icons.add_circle_outline,
-    ),
-    TabItemData(
-      tabItem: TabItem.notifications,
-      title: S.of(context).tabTitleNotifications,
-      icon: currentTab == TabItem.notifications ? Icons.notifications : Icons.notifications_none,
-    ),
-    TabItemData(
-      tabItem: TabItem.profile,
-      title: S.of(context).tabTitleProfile,
-      icon: currentTab == TabItem.profile ? Icons.person : Icons.person_outline,
-    ),
-  ];
+        TabItemData(
+          tabItem: TabItem.home,
+          title: S.of(context).tabTitleHome,
+          icon: currentTab == TabItem.home ? Icons.home : OMIcons.home,
+        ),
+        TabItemData(
+          tabItem: TabItem.search,
+          title: S.of(context).tabTitleSearch,
+          icon: Icons.search,
+        ),
+        TabItemData(
+          tabItem: TabItem.addPost,
+          title: S.of(context).tabTitleAddPost,
+          icon: currentTab == TabItem.addPost
+              ? Icons.add_circle
+              : Icons.add_circle_outline,
+        ),
+        TabItemData(
+          tabItem: TabItem.notifications,
+          title: S.of(context).tabTitleNotifications,
+          icon: currentTab == TabItem.notifications
+              ? Icons.notifications
+              : Icons.notifications_none,
+        ),
+        TabItemData(
+          tabItem: TabItem.profile,
+          title: S.of(context).tabTitleProfile,
+          icon: currentTab == TabItem.profile
+              ? Icons.person
+              : Icons.person_outline,
+        ),
+      ];
 
   void updateWith({
     TabItem currentTab,
