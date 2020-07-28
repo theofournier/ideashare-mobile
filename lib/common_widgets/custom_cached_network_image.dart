@@ -6,18 +6,24 @@ class CustomCachedNetworkImage extends StatelessWidget {
   CustomCachedNetworkImage({
     @required this.imageUrl,
     this.imageBuilder,
+    this.errorWidget,
+    this.loadingSize = 30,
+    this.showLoading = true,
   });
 
   final String imageUrl;
   final Function(BuildContext context, ImageProvider imageProvider)
       imageBuilder;
+  final Function(BuildContext context, String url, dynamic error) errorWidget;
+  final double loadingSize;
+  final bool showLoading;
 
   @override
   Widget build(BuildContext context) {
     return CachedNetworkImage(
       imageUrl: imageUrl,
       progressIndicatorBuilder: _buildProgressIndicator,
-      errorWidget: _buildErrorWidget,
+      errorWidget: errorWidget ?? _buildErrorWidget,
       imageBuilder: imageBuilder,
     );
   }
@@ -43,8 +49,14 @@ class CustomCachedNetworkImage extends StatelessWidget {
 
   Widget _buildProgressIndicator(
       BuildContext context, String url, downloadProgress) {
-    return CircularProgressIndicator(
-      value: downloadProgress.progress,
+    return Center(
+      child: Container(
+        height: loadingSize,
+        width: loadingSize,
+        child: showLoading ? CircularProgressIndicator(
+          value: downloadProgress.progress,
+        ) : null,
+      ),
     );
   }
 }
