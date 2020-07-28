@@ -178,26 +178,30 @@ class _PostListItemState extends State<PostListItem> {
   Widget buildLabels(BuildContext context) {
     int maxLabels = 10;
 
-    return Wrap(
-      direction: Axis.horizontal,
-      spacing: 8,
-      runSpacing: 4,
-      children: post.labels
-          .getRange(0,
-              post.labels.length >= maxLabels ? maxLabels : post.labels.length)
-          .map(
-            (e) => TextChip(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 12,
-                vertical: 2,
-              ),
-              title: e.title,
-              textSize: 14,
-              color: AppColors.greyLight,
-              textColor: Theme.of(context).primaryColor,
-            ),
-          )
-          .toList(),
+    return Row(
+      children: <Widget>[
+        Wrap(
+          direction: Axis.horizontal,
+          spacing: 8,
+          runSpacing: 4,
+          children: post.labels
+              .getRange(0,
+                  post.labels.length >= maxLabels ? maxLabels : post.labels.length)
+              .map(
+                (e) => TextChip(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 2,
+                  ),
+                  title: e.title,
+                  textSize: 14,
+                  color: AppColors.greyLight,
+                  textColor: Theme.of(context).primaryColor,
+                ),
+              )
+              .toList(),
+        ),
+      ],
     );
   }
 
@@ -240,36 +244,43 @@ class _PostListItemState extends State<PostListItem> {
             textSize: 14,
           ),
         ),
-        CountIconWidget(
-          icon: Icons.visibility,
-          count: post.counts.views,
+        buildDatePrivacy(context),
+      ],
+    );
+  }
+
+  Widget buildSeeCount(BuildContext context) {
+    return CountIconWidget(
+      icon: Icons.visibility,
+      count: post.counts.views,
+    );
+  }
+
+  Widget buildDatePrivacy(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        Text(
+          Helpers.timeAgoSinceDate(
+            post.docTime.createdAt,
+          ),
+          style: Theme.of(context).textTheme.caption.toGrey(),
         ),
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Text(
-              Helpers.timeAgoSinceDate(
-                post.docTime.createdAt,
-              ),
-              style: Theme.of(context).textTheme.caption.toGrey(),
-            ),
-            SizedBox(
-              width: 2,
-            ),
-            Circle(
-              size: 3,
-            ),
-            SizedBox(
-              width: 2,
-            ),
-            Icon(
-              post.shareOptions.privacy == Privacy.public
-                  ? Icons.public
-                  : Icons.lock_outline,
-              color: AppColors.greyDark,
-              size: 16,
-            ),
-          ],
+        SizedBox(
+          width: 3,
+        ),
+        Circle(
+          size: 2.5,
+        ),
+        SizedBox(
+          width: 3,
+        ),
+        Icon(
+          post.shareOptions.privacy == Privacy.public
+              ? Icons.public
+              : Icons.lock_outline,
+          color: AppColors.greyDark,
+          size: 14,
         ),
       ],
     );
