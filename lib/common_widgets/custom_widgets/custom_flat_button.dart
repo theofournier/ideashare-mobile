@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ideashare/constants/constants.dart';
 
@@ -19,6 +18,8 @@ class CustomFlatButton extends StatelessWidget {
     this.iconColor = Colors.white,
     this.iconPosition = IconPosition.left,
     this.iconSpace = 8,
+    this.padding,
+    this.shrinkWrap = false,
   });
 
   final String text;
@@ -35,6 +36,8 @@ class CustomFlatButton extends StatelessWidget {
   final Color iconColor;
   final IconPosition iconPosition;
   final double iconSpace;
+  final EdgeInsets padding;
+  final bool shrinkWrap;
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +46,8 @@ class CustomFlatButton extends StatelessWidget {
       height: height,
       child: FlatButton(
         onPressed: onPressed,
+        padding: padding,
+        materialTapTargetSize: shrinkWrap ? MaterialTapTargetSize.shrinkWrap : null,
         child: buildChild(context),
       ),
     );

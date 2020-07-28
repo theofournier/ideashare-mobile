@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:ideashare/common_widgets/util_widgets/gradient_icon.dart';
 import 'package:ideashare/resources/theme.dart';
+import 'package:ideashare/utils/extensions/num.dart';
 
 class PremiumIcon extends StatelessWidget {
   PremiumIcon({
@@ -53,7 +55,7 @@ class CountIconWidget extends StatelessWidget {
           width: 4,
         ),
         Text(
-          "$count",
+          "${count.format()}",
           style: TextStyle(
             color: Theme.of(context).accentColor,
             fontSize: textSize,

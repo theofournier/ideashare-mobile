@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ideashare/common_widgets/post_widgets/post_actions.dart';
 import 'package:intl/intl.dart';
 import 'package:ideashare/common_widgets/common_widgets.dart';
 import 'package:ideashare/common_widgets/custom_widgets/custom_cached_network_image.dart';
@@ -102,6 +104,7 @@ class _PostListItemState extends State<PostListItem> {
                 ],
               ),
             ),
+            buildActions(context),
           ],
         ),
       ),
@@ -185,8 +188,11 @@ class _PostListItemState extends State<PostListItem> {
           spacing: 8,
           runSpacing: 4,
           children: post.labels
-              .getRange(0,
-                  post.labels.length >= maxLabels ? maxLabels : post.labels.length)
+              .getRange(
+                  0,
+                  post.labels.length >= maxLabels
+                      ? maxLabels
+                      : post.labels.length)
               .map(
                 (e) => TextChip(
                   padding: const EdgeInsets.symmetric(
@@ -244,15 +250,14 @@ class _PostListItemState extends State<PostListItem> {
             textSize: 14,
           ),
         ),
-        buildDatePrivacy(context),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: <Widget>[
+            buildSeeCount(context),
+            buildDatePrivacy(context),
+          ],
+        ),
       ],
-    );
-  }
-
-  Widget buildSeeCount(BuildContext context) {
-    return CountIconWidget(
-      icon: Icons.visibility,
-      count: post.counts.views,
     );
   }
 
@@ -283,6 +288,25 @@ class _PostListItemState extends State<PostListItem> {
           size: 14,
         ),
       ],
+    );
+  }
+
+  Widget buildSeeCount(BuildContext context) {
+    return CountIconWidget(
+      icon: Icons.visibility,
+      count: post.counts.views,
+    );
+  }
+
+  Widget buildActions(BuildContext context) {
+    return PostActions(
+      liked: true,
+      likeCount: post.counts.likes,
+      followed: false,
+      followCount: post.counts.followers,
+      worked: false,
+      workCount: post.counts.workers,
+      lineHorizontalSpace: 12,
     );
   }
 }
