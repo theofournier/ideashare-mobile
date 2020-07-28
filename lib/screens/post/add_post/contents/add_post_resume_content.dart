@@ -108,12 +108,10 @@ class AddPostResumeContent extends StatelessWidget {
         children: <Widget>[
           Text(
             viewModel.post.category != null
-                ? CategoryUtils.getCategoryTitle(
-                    context)[viewModel.post.category]
+                ? CategoryUtils.getCategoryTitle[viewModel.post.category]
                 : "",
             style: viewModel.post.category != null
-                ? categoryStyle.toColor(CategoryUtils.getCategoryColor(
-                    context)[viewModel.post.category])
+                ? categoryStyle.toColor(CategoryUtils.getCategoryColor[viewModel.post.category])
                 : categoryStyle,
           ),
         ],
@@ -318,7 +316,6 @@ class AddPostResumeContent extends StatelessWidget {
   //region Share options
   Widget buildShareOptions(BuildContext context) {
     List<ShareOptionsData> shareOptionsData = ShareOptionsUtils.getShareOptions(
-      context: context,
       postShareOptions: viewModel.post.shareOptions,
       category: viewModel.post.category,
     );
@@ -457,8 +454,7 @@ class AddPostResumeContent extends StatelessWidget {
         Expanded(
           flex: 3,
           child: Text(
-            ShareOptionsUtils.getVisiblenessTitle(
-                    context)[shareOption.visiblenessValue] ??
+            ShareOptionsUtils.getVisiblenessTitle[shareOption.visiblenessValue] ??
                 "",
             style: Theme.of(context).textTheme.bodyText1,
           ),

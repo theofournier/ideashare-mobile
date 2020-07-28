@@ -116,23 +116,23 @@ class AddPostViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  Map<AddPostStep, String Function()> validators(BuildContext context) => {
+  Map<AddPostStep, String Function()> validators() => {
         AddPostStep.category: () => post.category == null
-            ? S.of(context).addPostTitleCategory.capitalize() +
+            ? S.current.addPostTitleCategory.capitalize() +
                 " " +
-                S.of(context).isRequired
+                S.current.isRequired
             : null,
         AddPostStep.info: () {
           List<String> fields = [];
           if (post.info.title == null || post.info.title.isEmpty) {
-            fields.add(S.of(context).addPostInfoInputTitle);
+            fields.add(S.current.addPostInfoInputTitle);
           }
           if (post.info.resume == null || post.info.resume.isEmpty) {
-            fields.add(S.of(context).addPostInfoInputResume);
+            fields.add(S.current.addPostInfoInputResume);
           }
           if (fields.isNotEmpty) {
             return fields
-                .map((e) => e.capitalize() + " " + S.of(context).isRequired)
+                .map((e) => e.capitalize() + " " + S.current.isRequired)
                 .toList()
                 .join("\n");
           }
@@ -145,8 +145,8 @@ class AddPostViewModel with ChangeNotifier {
     if (step == null) {
       step = this.currentStep;
     }
-    if (validators(context)[step] != null) {
-      String text = validators(context)[step]();
+    if (validators()[step] != null) {
+      String text = validators()[step]();
       if (text != null) {
         FlushbarUtils(
           context,

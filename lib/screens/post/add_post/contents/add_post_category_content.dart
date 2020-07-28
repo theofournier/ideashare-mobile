@@ -22,7 +22,7 @@ class AddPostCategoryContent extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.center,
-        children: CategoryUtils.categories(context)
+        children: CategoryUtils.categories
             .map(
               (category) => CategoryItem(
                 title: category.title,

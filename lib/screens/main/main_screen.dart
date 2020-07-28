@@ -59,7 +59,7 @@ class MainContent extends StatelessWidget {
         bottomNavigationBar: CustomBottomNavigationBar(
           currentIndex: viewModel.currentTab.index,
           onTap: (index) => viewModel.selectTab(TabItem.values[index]),
-          tabItemData: viewModel.tabItemData(context),
+          tabItemData: viewModel.tabItemData(),
         ),
       ),
     );

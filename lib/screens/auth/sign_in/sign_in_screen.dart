@@ -75,7 +75,6 @@ class _SignInContentState extends State<SignInContent> {
 
   void _showSignInError(PlatformException exception) {
     PlatformExceptionAlertDialog(
-      context: context,
       title: S.of(context).signInScreenFailed,
       exception: exception,
     ).show(context);
@@ -175,7 +174,7 @@ class _SignInContentState extends State<SignInContent> {
               initialValue: viewModel.email,
               enabled: !viewModel.isLoading,
               onSaved: viewModel.onSaveEmail,
-              validator: (value) => Validators.emailValidator(context, value),
+              validator: (value) => Validators.emailValidator(value),
               onFieldSubmitted: (_) => _node.nextFocus(),
             ),
             SizedBox(
@@ -193,7 +192,7 @@ class _SignInContentState extends State<SignInContent> {
               initialValue: viewModel.password,
               onSaved: viewModel.onSavePassword,
               validator: (value) =>
-                  Validators.passwordValidator(context, value),
+                  Validators.passwordValidator(value),
               onFieldSubmitted: (_) => _submit(),
             ),
             SizedBox(

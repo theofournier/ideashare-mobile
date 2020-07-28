@@ -78,80 +78,78 @@ class AddPostContent extends StatelessWidget {
 
   final AddPostViewModel viewModel;
 
-  Map<AddPostStep, AddPostStepData> stepData(
-    BuildContext context,
-  ) =>
+  Map<AddPostStep, AddPostStepData> stepData() =>
       {
         AddPostStep.category: AddPostStepData(
           content: AddPostCategoryContent(
             viewModel: viewModel,
           ),
-          title: S.of(context).addPostTitleCategory,
+          title: S.current.addPostTitleCategory,
           description: "Category description",
         ),
         AddPostStep.info: AddPostStepData(
           content: AddPostInfoContent(
             viewModel: viewModel,
           ),
-          title: S.of(context).addPostTitleInfo,
+          title: S.current.addPostTitleInfo,
           description: "Info description",
         ),
         AddPostStep.optionalInfo: AddPostStepData(
           content: AddPostOptionalInfoContent(
             viewModel: viewModel,
           ),
-          title: S.of(context).addPostTitleOptionalInfo,
+          title: S.current.addPostTitleOptionalInfo,
           description: "Optional Info description",
         ),
         AddPostStep.linkedIssue: AddPostStepData(
           content: AddPostLinkedIssueContent(
             viewModel: viewModel,
           ),
-          title: S.of(context).addPostTitleLinkedIssue,
+          title: S.current.addPostTitleLinkedIssue,
           description: "Linked Issue description",
         ),
         AddPostStep.labels: AddPostStepData(
           content: AddPostLabelsContent(
             viewModel: viewModel,
           ),
-          title: S.of(context).addPostTitleLabels,
+          title: S.current.addPostTitleLabels,
           description: "Labels description",
         ),
         AddPostStep.shareOptions: AddPostStepData(
           content: AddPostShareOptionsContent(
             viewModel: viewModel,
           ),
-          title: S.of(context).addPostTitleShareOptions,
+          title: S.current.addPostTitleShareOptions,
           description: "Share options description",
-          appBarButton: S.of(context).addPostShareOptionsAppBarButton,
+          appBarButton: S.current.addPostShareOptionsAppBarButton,
           onPressedAppBarButton: viewModel.resetShareOptions,
         ),
         AddPostStep.resume: AddPostStepData(
           content: AddPostResumeContent(
             viewModel: viewModel,
           ),
-          title: S.of(context).addPostTitleResume,
+          title: S.current.addPostTitleResume,
         ),
       };
 
-  AddPostStepData currentStepData(BuildContext context) {
-    return stepData(context)[viewModel.currentStep];
+  AddPostStepData currentStepData() {
+    return stepData()[viewModel.currentStep];
   }
 
-  String title(BuildContext context) {
-    AddPostStepData currentStepData = this.currentStepData(context);
+  String title() {
+    AddPostStepData currentStepData = this.currentStepData();
     return currentStepData != null
         ? currentStepData.title
-        : S.of(context).addPostTitleAddPost;
+        : S.current.addPostTitleAddPost;
   }
 
-  String description(BuildContext context) {
-    AddPostStepData currentStepData = this.currentStepData(context);
+  String description() {
+    AddPostStepData currentStepData = this.currentStepData();
     return currentStepData != null ? currentStepData.description : null;
   }
 
-  Widget content(BuildContext context) {
-    AddPostStepData currentStepData = this.currentStepData(context);
+  Widget content() {
+    AddPostStepData currentStepData = this.currentStepData();
     return currentStepData != null ? currentStepData.content : null;
   }
 
@@ -176,14 +174,14 @@ class AddPostContent extends StatelessWidget {
 
   Widget buildAppBar(BuildContext context) {
     return CustomAppBar(
-      title: title(context),
+      title: title(),
       titleSpacing: 24,
       automaticallyImplyLeading: false,
       actions: [
-        if (currentStepData(context).appBarButton != null) ...[
+        if (currentStepData().appBarButton != null) ...[
           CustomAppBarButton(
-            text: currentStepData(context).appBarButton,
-            onPressed: currentStepData(context).onPressedAppBarButton,
+            text: currentStepData().appBarButton,
+            onPressed: currentStepData().onPressedAppBarButton,
           ),
         ],
         CustomAppBarButton(
@@ -212,16 +210,16 @@ class AddPostContent extends StatelessWidget {
     return ListView(
       padding: ConstantWidgets.addPostPadding,
       children: <Widget>[
-        if (description(context) != null) ...[
+        if (description() != null) ...[
           Text(
-            description(context),
+            description(),
             style: Theme.of(context).textTheme.bodyText2,
           ),
           SizedBox(
             height: 24,
           ),
         ],
-        content(context),
+        content(),
       ],
     );
   }

@@ -45,8 +45,8 @@ class TextChip extends StatelessWidget {
 
   factory TextChip.category(BuildContext context, PostType category) {
     return TextChip(
-      title: CategoryUtils.getCategoryTitle(context)[category],
-      color: CategoryUtils.getCategoryColor(context)[category],
+      title: CategoryUtils.getCategoryTitle[category],
+      color: CategoryUtils.getCategoryColor[category],
       textSize: 16,
       padding: const EdgeInsets.symmetric(
         horizontal: 16,
@@ -59,8 +59,8 @@ class TextChip extends StatelessWidget {
 
   factory TextChip.status(BuildContext context, PostStatusType status) {
     return TextChip(
-      title: StatusUtils.getStatusTitle(context)[status],
-      color: StatusUtils.getStatusColor(context)[status],
+      title: StatusUtils.getStatusTitle[status],
+      color: StatusUtils.getStatusColor[status],
       textSize: 16,
       padding: const EdgeInsets.symmetric(
         horizontal: 16,

@@ -30,34 +30,34 @@ class MainViewModel with ChangeNotifier {
     ProfileScreen()
   ];
 
-  List<TabItemData> tabItemData(BuildContext context) => [
+  List<TabItemData> tabItemData() => [
         TabItemData(
           tabItem: TabItem.home,
-          title: S.of(context).tabTitleHome,
+          title: S.current.tabTitleHome,
           icon: currentTab == TabItem.home ? Icons.home : OMIcons.home,
         ),
         TabItemData(
           tabItem: TabItem.search,
-          title: S.of(context).tabTitleSearch,
+          title: S.current.tabTitleSearch,
           icon: Icons.search,
         ),
         TabItemData(
           tabItem: TabItem.addPost,
-          title: S.of(context).tabTitleAddPost,
+          title: S.current.tabTitleAddPost,
           icon: currentTab == TabItem.addPost
               ? Icons.add_circle
               : Icons.add_circle_outline,
         ),
         TabItemData(
           tabItem: TabItem.notifications,
-          title: S.of(context).tabTitleNotifications,
+          title: S.current.tabTitleNotifications,
           icon: currentTab == TabItem.notifications
               ? Icons.notifications
               : Icons.notifications_none,
         ),
         TabItemData(
           tabItem: TabItem.profile,
-          title: S.of(context).tabTitleProfile,
+          title: S.current.tabTitleProfile,
           icon: currentTab == TabItem.profile
               ? Icons.person
               : Icons.person_outline,

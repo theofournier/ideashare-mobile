@@ -6,16 +6,15 @@ import 'package:ideashare/services/models/common/share_options_data.dart';
 import 'package:ideashare/services/models/post/post/post_share_options.dart';
 
 class ShareOptionsUtils {
-  static Map<Visibleness, String> getVisiblenessTitle(BuildContext context) => {
-        Visibleness.everyone: S.of(context).visiblenessEveryone,
-        Visibleness.approval: S.of(context).visiblenessApproval,
-        Visibleness.follow: S.of(context).visiblenessFollow,
-        Visibleness.work: S.of(context).visiblenessWork,
-        Visibleness.none: S.of(context).visiblenessNone,
+  static Map<Visibleness, String> getVisiblenessTitle = {
+        Visibleness.everyone: S.current.visiblenessEveryone,
+        Visibleness.approval: S.current.visiblenessApproval,
+        Visibleness.follow: S.current.visiblenessFollow,
+        Visibleness.work: S.current.visiblenessWork,
+        Visibleness.none: S.current.visiblenessNone,
       };
 
   static List<ShareOptionsData> getShareOptions({
-    BuildContext context,
     PostShareOptions postShareOptions,
     VoidCallback onUpdate,
     PostType category,
@@ -25,7 +24,7 @@ class ShareOptionsUtils {
           shareOptions: [
             ShareOption<bool>(
               id: "private",
-              title: S.of(context).shareOptionPrivate,
+              title: S.current.shareOptionPrivate,
               description: "Description",
               boolValue: postShareOptions.privacy != null &&
                   postShareOptions.privacy == Privacy.private,
@@ -37,7 +36,7 @@ class ShareOptionsUtils {
             ),
             ShareOption<bool>(
               id: "anonymous",
-              title: S.of(context).shareOptionsAnonymous,
+              title: S.current.shareOptionsAnonymous,
               description: "Description",
               boolValue: postShareOptions.anonymous != null &&
                   postShareOptions.anonymous,
@@ -49,12 +48,12 @@ class ShareOptionsUtils {
           ],
         ),
         ShareOptionsData(
-          title: S.of(context).shareOptionsAllowActions,
+          title: S.current.shareOptionsAllowActions,
           description: "Description",
           shareOptions: [
             ShareOption<Visibleness>(
               id: "like",
-              title: S.of(context).shareOptionsLike,
+              title: S.current.shareOptionsLike,
               description: "Description",
               visiblenessValue: postShareOptions.like,
               visiblenessOptions: [
@@ -68,7 +67,7 @@ class ShareOptionsUtils {
             ),
             ShareOption<Visibleness>(
               id: "follow",
-              title: S.of(context).shareOptionsFollow,
+              title: S.current.shareOptionsFollow,
               description: "Description",
               visiblenessValue: postShareOptions.follow,
               visiblenessOptions: [
@@ -82,7 +81,7 @@ class ShareOptionsUtils {
             ),
             ShareOption<Visibleness>(
               id: "work",
-              title: S.of(context).shareOptionsWork,
+              title: S.current.shareOptionsWork,
               description: "Description",
               visiblenessValue: postShareOptions.work,
               visiblenessOptions: [
@@ -97,7 +96,7 @@ class ShareOptionsUtils {
             ),
             ShareOption<Visibleness>(
               id: "contact",
-              title: S.of(context).shareOptionsContact,
+              title: S.current.shareOptionsContact,
               description: "Description",
               visiblenessValue: postShareOptions.contact,
               visiblenessOptions: [
@@ -112,7 +111,7 @@ class ShareOptionsUtils {
             ),
             ShareOption<Visibleness>(
               id: "createComment",
-              title: S.of(context).shareOptionsComment,
+              title: S.current.shareOptionsComment,
               description: "Description",
               visiblenessValue: postShareOptions.createComment,
               visiblenessOptions: [
@@ -127,7 +126,7 @@ class ShareOptionsUtils {
             ),
             ShareOption<Visibleness>(
               id: "createHelp",
-              title: S.of(context).shareOptionsHelp,
+              title: S.current.shareOptionsHelp,
               description: "Description",
               visiblenessValue: postShareOptions.createHelp,
               visiblenessOptions: [
@@ -144,7 +143,7 @@ class ShareOptionsUtils {
             if (category != null && category == PostType.issue) ...[
               ShareOption<Visibleness>(
                 id: "createLinkedPost",
-                title: S.of(context).shareOptionsLinkedPost,
+                title: S.current.shareOptionsLinkedPost,
                 description: "Description",
                 visiblenessValue: postShareOptions.createLinkedPost,
                 visiblenessOptions: [
@@ -162,12 +161,12 @@ class ShareOptionsUtils {
           ],
         ),
         ShareOptionsData(
-          title: S.of(context).shareOptionsSee,
+          title: S.current.shareOptionsSee,
           description: "Description",
           shareOptions: [
             ShareOption<Visibleness>(
               id: "comment",
-              title: S.of(context).shareOptionsComment,
+              title: S.current.shareOptionsComment,
               description: "Description",
               visiblenessValue: postShareOptions.comment,
               visiblenessOptions: [
@@ -183,7 +182,7 @@ class ShareOptionsUtils {
             ),
             ShareOption<Visibleness>(
               id: "help",
-              title: S.of(context).shareOptionsHelp,
+              title: S.current.shareOptionsHelp,
               description: "Description",
               visiblenessValue: postShareOptions.help,
               visiblenessOptions: [
@@ -199,7 +198,7 @@ class ShareOptionsUtils {
             ),
             ShareOption<Visibleness>(
               id: "news",
-              title: S.of(context).shareOptionsNews,
+              title: S.current.shareOptionsNews,
               description: "Description",
               visiblenessValue: postShareOptions.news,
               visiblenessOptions: [
@@ -216,7 +215,7 @@ class ShareOptionsUtils {
             if (category != null && category == PostType.issue) ...[
               ShareOption<Visibleness>(
                 id: "linkedPosts",
-                title: S.of(context).shareOptionsLinkedPost,
+                title: S.current.shareOptionsLinkedPost,
                 description: "Description",
                 visiblenessValue: postShareOptions.linkedPosts,
                 visiblenessOptions: [
@@ -233,7 +232,7 @@ class ShareOptionsUtils {
             ],
             ShareOption<Visibleness>(
               id: "status",
-              title: S.of(context).shareOptionsStatus,
+              title: S.current.shareOptionsStatus,
               description: "Description",
               visiblenessValue: postShareOptions.status,
               visiblenessOptions: [

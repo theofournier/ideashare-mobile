@@ -4,13 +4,13 @@ import 'package:ideashare/generated/l10n.dart';
 import 'package:ideashare/resources/theme.dart';
 
 class StatusUtils {
-  static Map<PostStatusType, String> getStatusTitle(BuildContext context) => {
-    PostStatusType.open: S.of(context).postStatusTypeOpen,
-    PostStatusType.ongoing: S.of(context).postStatusTypeOngoing,
-    PostStatusType.completed: S.of(context).postStatusTypeCompleted,
+  static Map<PostStatusType, String> getStatusTitle = {
+    PostStatusType.open: S.current.postStatusTypeOpen,
+    PostStatusType.ongoing: S.current.postStatusTypeOngoing,
+    PostStatusType.completed: S.current.postStatusTypeCompleted,
   };
 
-  static Map<PostStatusType, Color> getStatusColor(BuildContext context) => {
+  static Map<PostStatusType, Color> getStatusColor = {
     PostStatusType.open: AppColors.statusOpenColor,
     PostStatusType.ongoing: AppColors.statusOngoingColor,
     PostStatusType.completed: AppColors.statusCompletedColor,

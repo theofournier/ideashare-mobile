@@ -22,25 +22,25 @@ class Validators {
     return true;
   }
 
-  static String firstNameValidator(BuildContext context, String value) {
-    if (value.isEmpty) return S.of(context).errorRequired;
+  static String firstNameValidator(String value) {
+    if (value.isEmpty) return S.current.errorRequired;
     return null;
   }
 
-  static String lastNameValidator(BuildContext context, String value) {
-    if (value.isEmpty) return S.of(context).errorRequired;
+  static String lastNameValidator(String value) {
+    if (value.isEmpty) return S.current.errorRequired;
     return null;
   }
 
-  static String emailValidator(BuildContext context, String value) {
-    if (value.isEmpty) return S.of(context).errorRequired;
-    if (!isEmail(value)) return S.of(context).errorEmailnvalid;
+  static String emailValidator(String value) {
+    if (value.isEmpty) return S.current.errorRequired;
+    if (!isEmail(value)) return S.current.errorEmailnvalid;
     return null;
   }
 
-  static String passwordValidator(BuildContext context, String value) {
-    if (value.isEmpty) return S.of(context).errorRequired;
-    if (!validPassword(value)) return S.of(context).errorPasswordInvalid;
+  static String passwordValidator(String value) {
+    if (value.isEmpty) return S.current.errorRequired;
+    if (!validPassword(value)) return S.current.errorPasswordInvalid;
     return null;
   }
 }

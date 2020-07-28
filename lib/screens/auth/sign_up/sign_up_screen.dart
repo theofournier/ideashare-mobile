@@ -73,7 +73,6 @@ class _SignUpContentState extends State<SignUpContent> {
 
   void _showSignUpError(PlatformException exception) {
     PlatformExceptionAlertDialog(
-      context: context,
       title: S.of(context).signUpScreenFailed,
       exception: exception,
     ).show(context);
@@ -172,7 +171,7 @@ class _SignUpContentState extends State<SignUpContent> {
                     initialValue: viewModel.firstName,
                     enabled: !viewModel.isLoading,
                     onSaved: viewModel.onSaveFirstName,
-                    validator: (value) => Validators.firstNameValidator(context, value),
+                    validator: (value) => Validators.firstNameValidator(value),
                     onFieldSubmitted: (_) => _node.nextFocus(),
                   ),
                 ),
@@ -188,7 +187,7 @@ class _SignUpContentState extends State<SignUpContent> {
                     initialValue: viewModel.lastName,
                     onSaved: viewModel.onSaveLastName,
                     validator: (value) =>
-                        Validators.lastNameValidator(context, value),
+                        Validators.lastNameValidator(value),
                     onFieldSubmitted: (_) => _node.nextFocus(),
                   ),
                 ),
@@ -202,7 +201,7 @@ class _SignUpContentState extends State<SignUpContent> {
               initialValue: viewModel.email,
               enabled: !viewModel.isLoading,
               onSaved: viewModel.onSaveEmail,
-              validator: (value) => Validators.emailValidator(context, value),
+              validator: (value) => Validators.emailValidator(value),
               onFieldSubmitted: (_) => _node.nextFocus(),
             ),
             SizedBox(
@@ -220,7 +219,7 @@ class _SignUpContentState extends State<SignUpContent> {
               initialValue: viewModel.password,
               onSaved: viewModel.onSavePassword,
               validator: (value) =>
-                  Validators.passwordValidator(context, value),
+                  Validators.passwordValidator(value),
               onFieldSubmitted: (_) => _submit(),
             ),
             SizedBox(

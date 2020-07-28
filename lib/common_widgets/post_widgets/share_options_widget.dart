@@ -177,7 +177,7 @@ class ButtonOption extends StatelessWidget {
   }) {
     if (visibleness == shareOption.visiblenessValue) {
       return CustomRaisedButton(
-        text: ShareOptionsUtils.getVisiblenessTitle(context)[visibleness],
+        text: ShareOptionsUtils.getVisiblenessTitle[visibleness],
         icon: Icons.check,
         iconSize: 30,
         iconPosition: IconPosition.right,
@@ -188,7 +188,7 @@ class ButtonOption extends StatelessWidget {
       );
     }
     return CustomFlatButton(
-      text: ShareOptionsUtils.getVisiblenessTitle(context)[visibleness],
+      text: ShareOptionsUtils.getVisiblenessTitle[visibleness],
       upperCase: false,
       onPressed: () => shareOption.onTap(visibleness),
       textColor: Theme.of(context).accentColor,
@@ -210,8 +210,7 @@ class DropdownOption extends StatelessWidget {
     List<CustomDropdownData> items = shareOption.visiblenessOptions
         .map((visiblenessOption) => CustomDropdownData(
               id: EnumString.string(visiblenessOption),
-              text: ShareOptionsUtils.getVisiblenessTitle(
-                  context)[visiblenessOption],
+              text: ShareOptionsUtils.getVisiblenessTitle[visiblenessOption],
             ))
         .toList();
     CustomDropdownData value = shareOption.visiblenessValue != null

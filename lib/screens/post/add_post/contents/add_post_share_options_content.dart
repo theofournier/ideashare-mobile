@@ -20,7 +20,6 @@ class AddPostShareOptionsContent extends StatelessWidget {
       );
     }
     List<ShareOptionsData> shareOptionsData= ShareOptionsUtils.getShareOptions(
-      context: context,
       category: viewModel.post.category,
       postShareOptions: viewModel.post.shareOptions,
       onUpdate: viewModel.notifyListeners,

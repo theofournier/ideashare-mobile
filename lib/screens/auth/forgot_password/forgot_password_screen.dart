@@ -63,7 +63,6 @@ class _ForgotPasswordContentState extends State<ForgotPasswordContent> {
 
   void _showForgotPasswordError(PlatformException exception) {
     PlatformExceptionAlertDialog(
-      context: context,
       title: S.of(context).forgotPasswordScreenFailed,
       exception: exception,
     ).show(context);
@@ -158,7 +157,7 @@ class _ForgotPasswordContentState extends State<ForgotPasswordContent> {
               initialValue: viewModel.email,
               enabled: !viewModel.isLoading,
               onSaved: viewModel.onSaveEmail,
-              validator: (value) => Validators.emailValidator(context, value),
+              validator: (value) => Validators.emailValidator(value),
               onFieldSubmitted: (_) => _submit(),
             ),
             SizedBox(
