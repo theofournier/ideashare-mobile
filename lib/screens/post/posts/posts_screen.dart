@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:ideashare/common_widgets/custom_widgets/custom_sliver_app_bar.dart';
-import 'package:ideashare/common_widgets/custom_widgets/custom_sliver_list.dart';
 import 'package:ideashare/common_widgets/post_widgets/post_list_item.dart';
 import 'package:ideashare/resources/router.dart';
 import 'package:ideashare/resources/theme.dart';
@@ -88,15 +87,6 @@ class _PostsContentState extends State<PostsContent> {
         ),
       ),
     );
-  }
-
-  Widget buildBody(BuildContext context) {
-    if (widget.viewModel.isLoading) {
-      return Center(
-        child: CircularProgressIndicator(),
-      );
-    }
-    return buildList(context);
   }
 
   Widget buildList(BuildContext context) {
