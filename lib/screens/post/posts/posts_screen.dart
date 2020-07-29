@@ -58,6 +58,7 @@ class PostsContent extends StatelessWidget {
     return Scaffold(
       appBar: CustomAppBar(
         title: "Posts",
+        elevation: 2,
       ),
       backgroundColor: AppColors.greyBackground,
       body: buildBody(context),
