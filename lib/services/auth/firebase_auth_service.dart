@@ -39,8 +39,9 @@ class FirebaseAuthService implements AuthService {
   @override
   Future<UserAuth> createUserWithEmailAndPassword(
       String email, String password) async {
-    List<String> methods = await _firebaseAuth.fetchSignInMethodsForEmail(email: email);
-    if(methods.length > 0){
+    List<String> methods =
+        await _firebaseAuth.fetchSignInMethodsForEmail(email: email);
+    if (methods.length > 0) {
       throw PlatformException(
           code: ErrorKeys.errorAccountExistsWithDifferentCredential,
           message: methods.join("|"));

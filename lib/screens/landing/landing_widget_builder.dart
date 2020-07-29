@@ -10,15 +10,15 @@ class LandingWidgetBuilder extends StatelessWidget {
   const LandingWidgetBuilder({Key key, @required this.builder})
       : super(key: key);
 
-  final Widget Function(BuildContext, AsyncSnapshot<UserAuth>) builder;
+  final Widget Function(AsyncSnapshot<UserAuth> userAuthSnapshot, AsyncSnapshot<User> userSnapshot) builder;
 
   @override
   Widget build(BuildContext context) {
     final authService = Provider.of<AuthService>(context, listen: false);
     return StreamBuilder<UserAuth>(
       stream: authService.onAuthStateChanged,
-      builder: (BuildContext context, AsyncSnapshot<UserAuth> snapshot) {
-        final UserAuth user = snapshot.data;
+      builder: (BuildContext context, AsyncSnapshot<UserAuth> userAuthSnapshot) {
+        final UserAuth user = userAuthSnapshot.data;
         if (user != null) {
           return MultiProvider(
             providers: [
@@ -34,11 +34,11 @@ class LandingWidgetBuilder extends StatelessWidget {
               Provider<UserAuth>.value(value: user),
             ],
             child: UserStreamBuilder(
-              child: builder(context, snapshot),
+              builder: (userSnapshot) => builder(userAuthSnapshot, userSnapshot),
             ),
           );
         }
-        return builder(context, snapshot);
+        return builder(userAuthSnapshot, AsyncSnapshot<User>.nothing());
       },
     );
   }
@@ -47,10 +47,10 @@ class LandingWidgetBuilder extends StatelessWidget {
 class UserStreamBuilder extends StatelessWidget {
   UserStreamBuilder({
     Key key,
-    this.child,
+    this.builder,
   }) : super(key: key);
 
-  final Widget child;
+  final Widget Function(AsyncSnapshot<User>)builder;
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +61,7 @@ class UserStreamBuilder extends StatelessWidget {
         final User user = snapshot.data;
         return Provider<User>.value(
           value: user,
-          child: child,
+          child: builder(snapshot),
         );
       },
     );

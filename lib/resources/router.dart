@@ -37,7 +37,7 @@ class Router {
       case Routes.landingScreen:
         return MaterialPageRoute<dynamic>(
           builder: (_) => LandingScreen(
-            userSnapshot: args,
+            userAuthSnapshot: args,
           ),
           settings: settings,
         );
