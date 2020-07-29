@@ -12,6 +12,8 @@ class CustomSliverAppBar extends StatelessWidget {
     this.floating = true,
     this.forceElevated = true,
     this.primary = true,
+    this.snap = false,
+    this.pinned = false,
   }) : super(key: key);
 
   final bool automaticallyImplyLeading;
@@ -23,6 +25,8 @@ class CustomSliverAppBar extends StatelessWidget {
   final bool floating;
   final bool forceElevated;
   final bool primary;
+  final bool snap;
+  final bool pinned;
 
   @override
   Widget build(BuildContext context) {
@@ -44,9 +48,11 @@ class CustomSliverAppBar extends StatelessWidget {
         color: Theme.of(context).accentColor,
       ),
       actions: actions,
-      floating: true,
-      forceElevated: true,
-      primary: true,
+      floating: floating,
+      forceElevated: forceElevated,
+      primary: primary,
+      snap: snap,
+      pinned: pinned,
     );
   }
 }

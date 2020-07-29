@@ -45,8 +45,8 @@ class _PostsScreenState extends State<PostsScreen>
   }
 }
 
-class PostsContent extends StatelessWidget {
-  const PostsContent({
+class PostsContent extends StatefulWidget {
+  PostsContent({
     Key key,
     @required this.viewModel,
   }) : super(key: key);
@@ -54,41 +54,62 @@ class PostsContent extends StatelessWidget {
   final PostsViewModel viewModel;
 
   @override
+  _PostsContentState createState() => _PostsContentState();
+}
+
+class _PostsContentState extends State<PostsContent> {
+  final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
+      new GlobalKey<RefreshIndicatorState>();
+
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((Duration duration) {
+      this._refreshIndicatorKey.currentState.show();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.greyBackground,
-      body: CustomScrollView(
-        slivers: <Widget>[
+      body: NestedScrollView(
+        headerSliverBuilder: (context, innerBoxScrolled) => [
           CustomSliverAppBar(
-            title: "Post",
             elevation: 2,
+            snap: true,
           ),
-          buildBody(context),
         ],
+        body: RefreshIndicator(
+          key: _refreshIndicatorKey,
+          onRefresh: widget.viewModel.fetchPosts,
+          child: buildList(context),
+        ),
       ),
     );
   }
 
   Widget buildBody(BuildContext context) {
-    if (viewModel.isLoading) {
-      return SliverToBoxAdapter(
-        child: Center(
-          child: CircularProgressIndicator(),
-        ),
+    if (widget.viewModel.isLoading) {
+      return Center(
+        child: CircularProgressIndicator(),
       );
     }
     return buildList(context);
   }
 
   Widget buildList(BuildContext context) {
-    return CustomSliverList(
+    return ListView.separated(
       padding: const EdgeInsets.symmetric(vertical: 8),
-      itemCount: viewModel.posts.length,
-      itemBuilder: (context, index) => PostListItem(
-        key: Key(viewModel.posts[index].id),
-        post: viewModel.posts[index],
+      separatorBuilder: (context, index) => SizedBox(
+        height: 8,
       ),
-      separated: true,
+      itemCount: widget.viewModel.posts.length,
+      itemBuilder: (context, index) => PostListItem(
+        key: Key(widget.viewModel.posts[index].id),
+        post: widget.viewModel.posts[index],
+      ),
     );
   }
 }
