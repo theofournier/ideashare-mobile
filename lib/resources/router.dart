@@ -7,6 +7,7 @@ import 'package:ideashare/screens/landing/landing_screen.dart';
 import 'package:ideashare/screens/notifications/notifications_screen.dart';
 import 'package:ideashare/screens/post/add_post/add_post_screen.dart';
 import 'package:ideashare/screens/post/add_post/add_post_start_screen.dart';
+import 'package:ideashare/screens/post/post/post_screen.dart';
 import 'package:ideashare/screens/post/posts/posts_screen.dart';
 import 'package:ideashare/screens/profile/profile_screen.dart';
 import 'package:ideashare/screens/search/search_screen.dart';
@@ -28,6 +29,7 @@ class Routes {
   static const addPostScreen = "/add-post";
   static const addPostStartScreen = "/add-post-start";
   static const postsScreen = "/posts";
+  static const postScreen = "/post";
 }
 
 class Router {
@@ -101,6 +103,15 @@ class Router {
       case Routes.postsScreen:
         return MaterialPageRoute<dynamic>(
           builder: (_) => PostsScreen(),
+          settings: settings,
+        );
+      case Routes.postScreen:
+        final PostScreenArguments postScreenArguments = args;
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => PostScreen(
+            postId: postScreenArguments.postId,
+            initialPost: postScreenArguments.initialPost,
+          ),
           settings: settings,
         );
       default:

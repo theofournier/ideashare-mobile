@@ -37,4 +37,9 @@ class PostDatabase {
         queryBuilder: (query) => query.orderBy("docTime.createdAt", descending: true),
         builder: (data, documentId) => Post.fromMap(documentId, data),
       );
+
+  Future<Post> getPost(String postId) => _service.getDocument(
+    path: FirestorePath.post(postId),
+    builder: (data, documentId) => Post.fromMap(documentId, data),
+  );
 }

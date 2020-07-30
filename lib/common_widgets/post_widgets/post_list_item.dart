@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ideashare/common_widgets/post_widgets/post_actions.dart';
-import 'package:intl/intl.dart';
+import 'package:ideashare/screens/post/post/post_screen.dart';
 import 'package:ideashare/common_widgets/common_widgets.dart';
 import 'package:ideashare/common_widgets/custom_widgets/custom_cached_network_image.dart';
 import 'package:ideashare/common_widgets/custom_widgets/custom_flat_button.dart';
@@ -62,10 +62,13 @@ class _PostListItemState extends State<PostListItem> {
     );
   }
 
+  void onTapPost(BuildContext context) =>
+      PostScreen.show(context, initialPost: post);
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => print("TAP ITEM"),
+      onTap: () => onTapPost(context),
       child: Card(
         color: Colors.white,
         elevation: 0.7,
@@ -146,7 +149,7 @@ class _PostListItemState extends State<PostListItem> {
           iconColor: Theme.of(context).accentColor,
           iconSize: 14,
           iconSpace: 2,
-          onPressed: () => print("TAP SEE MORE"),
+          onPressed: () => onTapPost(context),
         ),
       ],
     );
