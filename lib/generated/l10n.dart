@@ -1584,6 +1584,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Posts not found`
+  String get postsNotFound {
+    return Intl.message(
+      'Posts not found',
+      name: 'postsNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Posts`
+  String get postsAppBarTitle {
+    return Intl.message(
+      'Posts',
+      name: 'postsAppBarTitle',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -128,6 +128,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "postStatusTypeOpen" : MessageLookupByLibrary.simpleMessage("Open"),
     "postTypeIdea" : MessageLookupByLibrary.simpleMessage("Idea"),
     "postTypeIssue" : MessageLookupByLibrary.simpleMessage("Issue"),
+    "postsAppBarTitle" : MessageLookupByLibrary.simpleMessage("Posts"),
+    "postsNotFound" : MessageLookupByLibrary.simpleMessage("Posts not found"),
     "save" : MessageLookupByLibrary.simpleMessage("Save"),
     "seeMore" : MessageLookupByLibrary.simpleMessage("See More"),
     "selectPictureScreenAppBarTitle" : MessageLookupByLibrary.simpleMessage("Picture"),

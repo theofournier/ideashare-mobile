@@ -152,5 +152,7 @@
   "timeAgoYesterday": "Yesterday",
   "timeAgoLastWeek": "Last week",
   "timeAgoLastMonth": "Last month",
-  "timeAgoAt": "at"
+  "timeAgoAt": "at",
+  "postsNotFound": "Posts not found",
+  "postsAppBarTitle": "Posts"
 }
