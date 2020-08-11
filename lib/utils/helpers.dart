@@ -79,11 +79,11 @@ class Helpers {
     } else if ((difference.inDays / 7).floor() < 2 && !numericDates) {
       return s.timeAgoLastWeek;
     } else if ((difference.inDays / 30).floor() < 1) {
-      int week = (difference.inDays / 30).floor();
+      int week = (difference.inDays / 7).floor();
       return s.timeAgoWeek(week);
     } else if ((difference.inDays / 30).floor() < 2) {
       int month = (difference.inDays / 30).floor();
-      return (numericDates)
+      return numericDates
           ? s.timeAgoMo(month)
           : s.timeAgoLastMonth;
     } else if (date.year == currentDate.year) {
