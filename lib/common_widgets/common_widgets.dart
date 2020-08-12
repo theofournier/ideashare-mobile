@@ -121,10 +121,12 @@ class DatePrivacyWidget extends StatelessWidget {
     Key key,
     this.date,
     this.privacy,
+    this.completeDate = false,
   }) : super(key: key);
 
   final DateTime date;
   final Privacy privacy;
+  final bool completeDate;
 
   @override
   Widget build(BuildContext context) {
@@ -133,6 +135,7 @@ class DatePrivacyWidget extends StatelessWidget {
       children: <Widget>[
         TextDateAgo(
           date: date,
+          completeDate: completeDate,
         ),
         SizedBox(
           width: 3,

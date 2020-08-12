@@ -142,6 +142,7 @@ class _PostHeaderState extends State<PostHeader> {
         DatePrivacyWidget(
           date: post.docTime.createdAt,
           privacy: post.shareOptions.privacy,
+          completeDate: true,
         ),
       ],
     );
