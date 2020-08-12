@@ -1604,6 +1604,76 @@ class S {
       args: [],
     );
   }
+
+  /// `Edit post`
+  String get postEditPost {
+    return Intl.message(
+      'Edit post',
+      name: 'postEditPost',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Info`
+  String get postTabBarInfo {
+    return Intl.message(
+      'Info',
+      name: 'postTabBarInfo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Comments`
+  String get postTabBarComments {
+    return Intl.message(
+      'Comments',
+      name: 'postTabBarComments',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Helps`
+  String get postTabBarHelps {
+    return Intl.message(
+      'Helps',
+      name: 'postTabBarHelps',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `News`
+  String get postTabBarNews {
+    return Intl.message(
+      'News',
+      name: 'postTabBarNews',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Linked`
+  String get postTabBarLinked {
+    return Intl.message(
+      'Linked',
+      name: 'postTabBarLinked',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Notes`
+  String get postTabBarNotes {
+    return Intl.message(
+      'Notes',
+      name: 'postTabBarNotes',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

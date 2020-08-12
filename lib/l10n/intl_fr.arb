@@ -154,5 +154,12 @@
   "timeAgoLastMonth": "Last month",
   "timeAgoAt": "at",
   "postsNotFound": "Posts not found",
-  "postsAppBarTitle": "Posts"
+  "postsAppBarTitle": "Posts",
+  "postEditPost": "Edit post",
+  "postTabBarInfo": "Info",
+  "postTabBarComments": "Comments",
+  "postTabBarHelps": "Helps",
+  "postTabBarNews": "News",
+  "postTabBarLinked": "Linked",
+  "postTabBarNotes": "Notes"
 }

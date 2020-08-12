@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ideashare/common_widgets/post_widgets/images_section.dart';
+import 'package:ideashare/common_widgets/post_widgets/language_widget.dart';
 import 'package:ideashare/common_widgets/post_widgets/links_section.dart';
 import 'package:ideashare/common_widgets/util_widgets/line.dart';
 import 'package:ideashare/common_widgets/util_widgets/text_chip.dart';
@@ -111,7 +112,8 @@ class AddPostResumeContent extends StatelessWidget {
                 ? CategoryUtils.getCategoryTitle[viewModel.post.category]
                 : "",
             style: viewModel.post.category != null
-                ? categoryStyle.toColor(CategoryUtils.getCategoryColor[viewModel.post.category])
+                ? categoryStyle.toColor(
+                    CategoryUtils.getCategoryColor[viewModel.post.category])
                 : categoryStyle,
           ),
         ],
@@ -170,24 +172,8 @@ class AddPostResumeContent extends StatelessWidget {
         SizedBox(
           height: 16,
         ),
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Icon(
-              Icons.language,
-              color: Theme.of(context).primaryColor,
-            ),
-            SizedBox(
-              width: 8,
-            ),
-            Text(
-              CustomLocales.getLocaleName(viewModel.post.info.language,
-                      CustomLocales.nativeLocaleNames) ??
-                  "",
-              style:
-                  Theme.of(context).textTheme.bodyText1.toSize(20).toMedium(),
-            ),
-          ],
+        LanguageWidget(
+          languageCode: viewModel.post.info.language,
         ),
         if (viewModel.images != null && viewModel.images.isNotEmpty) ...[
           SizedBox(
@@ -454,7 +440,8 @@ class AddPostResumeContent extends StatelessWidget {
         Expanded(
           flex: 3,
           child: Text(
-            ShareOptionsUtils.getVisiblenessTitle[shareOption.visiblenessValue] ??
+            ShareOptionsUtils
+                    .getVisiblenessTitle[shareOption.visiblenessValue] ??
                 "",
             style: Theme.of(context).textTheme.bodyText1,
           ),

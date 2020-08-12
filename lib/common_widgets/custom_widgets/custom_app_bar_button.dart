@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class CustomAppBarButton extends StatelessWidget {
   CustomAppBarButton({
     Key key,
-    this.text = "",
+    this.text,
     this.icon,
     this.textColor,
     this.textSize = 16,
@@ -28,7 +28,7 @@ class CustomAppBarButton extends StatelessWidget {
             onPressed: onPressed,
             shape: CircleBorder(side: BorderSide(color: Colors.transparent)),
             child: Text(
-              text.toUpperCase(),
+              (text ?? "").toUpperCase(),
               style: Theme.of(context).textTheme.button.merge(
                     TextStyle(
                       fontSize: textSize,

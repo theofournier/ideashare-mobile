@@ -265,32 +265,9 @@ class _PostListItemState extends State<PostListItem> {
   }
 
   Widget buildDatePrivacy(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        Text(
-          Helpers.timeAgoSinceDate(
-            post.docTime.createdAt,
-          ),
-          style: Theme.of(context).textTheme.caption.toGrey(),
-        ),
-        SizedBox(
-          width: 3,
-        ),
-        Circle(
-          size: 2.5,
-        ),
-        SizedBox(
-          width: 3,
-        ),
-        Icon(
-          post.shareOptions.privacy == Privacy.public
-              ? Icons.public
-              : Icons.lock_outline,
-          color: AppColors.greyDark,
-          size: 14,
-        ),
-      ],
+    return DatePrivacyWidget(
+      date: post.docTime.createdAt,
+      privacy: post.shareOptions.privacy,
     );
   }
 

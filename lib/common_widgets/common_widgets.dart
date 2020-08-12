@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'package:ideashare/constants/constants.dart';
+import 'package:ideashare/utils/helpers.dart';
 import 'package:ideashare/common_widgets/util_widgets/gradient_icon.dart';
 import 'package:ideashare/resources/theme.dart';
 import 'package:ideashare/utils/extensions/num.dart';
+import 'package:ideashare/utils/extensions/text_style.dart';
 
 class PremiumIcon extends StatelessWidget {
   PremiumIcon({
@@ -85,6 +87,70 @@ class Circle extends StatelessWidget {
         color: color,
         shape: BoxShape.circle,
       ),
+    );
+  }
+}
+
+class TextDateAgo extends StatelessWidget {
+  const TextDateAgo({
+    Key key,
+    this.date,
+    this.completeDate = false,
+    this.numericDates = false,
+  }) : super(key: key);
+
+  final DateTime date;
+  final bool completeDate;
+  final bool numericDates;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      Helpers.timeAgoSinceDate(
+        date,
+        completeDate: completeDate,
+        numericDates: numericDates,
+      ),
+      style: Theme.of(context).textTheme.caption.toGrey(),
+    );
+  }
+}
+
+class DatePrivacyWidget extends StatelessWidget {
+  const DatePrivacyWidget({
+    Key key,
+    this.date,
+    this.privacy,
+  }) : super(key: key);
+
+  final DateTime date;
+  final Privacy privacy;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        TextDateAgo(
+          date: date,
+        ),
+        SizedBox(
+          width: 3,
+        ),
+        Circle(
+          size: 2.5,
+        ),
+        SizedBox(
+          width: 3,
+        ),
+        Icon(
+          privacy == Privacy.public
+              ? Icons.public
+              : Icons.lock_outline,
+          color: AppColors.greyDark,
+          size: 14,
+        ),
+      ],
     );
   }
 }

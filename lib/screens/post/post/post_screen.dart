@@ -1,9 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:ideashare/common_widgets/custom_widgets/custom_app_bar.dart';
+import 'package:ideashare/common_widgets/common_widgets.dart';
+import 'package:ideashare/common_widgets/custom_widgets/custom_app_bar_button.dart';
+import 'package:ideashare/common_widgets/custom_widgets/custom_sliver_app_bar.dart';
+import 'package:ideashare/common_widgets/custom_widgets/custom_sliver_tab_bar_screen.dart';
+import 'package:ideashare/common_widgets/custom_widgets/custom_tab_bar.dart';
+import 'package:ideashare/generated/l10n.dart';
 import 'package:ideashare/resources/router.dart';
+import 'package:ideashare/screens/post/post/contents/post_comments_content.dart';
+import 'package:ideashare/screens/post/post/contents/post_helps_content.dart';
+import 'package:ideashare/screens/post/post/contents/post_info_content.dart';
+import 'package:ideashare/screens/post/post/contents/post_linked_content.dart';
+import 'package:ideashare/screens/post/post/contents/post_news_content.dart';
+import 'package:ideashare/screens/post/post/contents/post_notes_content.dart';
+import 'package:ideashare/screens/post/post/post_header.dart';
 import 'package:ideashare/screens/post/post/post_view_model.dart';
 import 'package:ideashare/services/database/post_database.dart';
 import 'package:ideashare/services/models/post/post/post.dart';
+import 'package:outline_material_icons/outline_material_icons.dart';
 import 'package:provider/provider.dart';
 
 class PostScreenArguments {
@@ -61,22 +74,77 @@ class PostScreen extends StatelessWidget {
 }
 
 class PostContent extends StatelessWidget {
-  const PostContent({
+  PostContent({
     Key key,
     @required this.viewModel,
   }) : super(key: key);
 
   final PostViewModel viewModel;
 
+  final List<TabBarItemData> tabBarItems = [
+    TabBarItemData(
+      text: S.current.postTabBarInfo,
+    ),
+    TabBarItemData(
+      text: S.current.postTabBarComments,
+    ),
+    TabBarItemData(
+      text: S.current.postTabBarHelps,
+    ),
+    TabBarItemData(
+      text: S.current.postTabBarNews,
+    ),
+    TabBarItemData(
+      text: S.current.postTabBarLinked,
+    ),
+    TabBarItemData(
+      text: S.current.postTabBarNotes,
+    ),
+  ];
+
+  List<Widget> tabViews() => [
+        PostInfoContent(
+          viewModel: viewModel,
+        ),
+        PostCommentsContent(
+          viewModel: viewModel,
+        ),
+        PostHelpsContent(
+          viewModel: viewModel,
+        ),
+        PostNewsContent(
+          viewModel: viewModel,
+        ),
+        PostLinkedContent(
+          viewModel: viewModel,
+        ),
+        PostNotesContent(
+          viewModel: viewModel,
+        ),
+      ];
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomAppBar(
-        actions: <Widget>[],
+    return CustomSliverTabBarScreen(
+      appBar: CustomSliverAppBar(
+        pinned: true,
+        actions: <Widget>[
+          if (viewModel.post.premium) ...[
+            PremiumIcon(),
+          ],
+          CustomAppBarButton(
+            icon: OMIcons.edit,
+            text: S.of(context).postEditPost,
+            onPressed: () => print("EDIT POST"),
+          ),
+        ],
       ),
-      body: Center(
-        child: viewModel.isLoadingPost ? CircularProgressIndicator() : Text("Post ${viewModel.post.info.title}"),
+      headerChild: PostHeader(
+        viewModel: viewModel,
       ),
+      tabIsScrollable: true,
+      tabItems: tabBarItems,
+      tabBarViewItems: tabViews(),
     );
   }
 }

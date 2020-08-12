@@ -56,6 +56,7 @@ class Helpers {
   static String timeAgoSinceDate(
     DateTime date, {
     bool numericDates = false,
+    bool completeDate = false,
   }) {
     if (date == null) return "";
 
@@ -64,36 +65,32 @@ class Helpers {
     final currentDate = DateTime.now();
     final difference = currentDate.difference(date);
 
-    if (difference.inSeconds < 3) {
-      return s.timeAgoJustNow;
-    } else if (difference.inMinutes < 1) {
-      return s.timeAgoSec(difference.inSeconds);
-    } else if (difference.inHours < 1) {
-      return s.timeAgoMin(difference.inMinutes);
-    } else if (difference.inDays < 1) {
-      return s.timeAgoHr(difference.inHours);
-    } else if (difference.inDays < 2 && !numericDates) {
-      return s.timeAgoYesterday;
-    } else if (difference.inDays < 7) {
-      return s.timeAgoDay(difference.inDays);
-    } else if ((difference.inDays / 7).floor() < 2 && !numericDates) {
-      return s.timeAgoLastWeek;
-    } else if ((difference.inDays / 30).floor() < 1) {
-      int week = (difference.inDays / 7).floor();
-      return s.timeAgoWeek(week);
-    } else if ((difference.inDays / 30).floor() < 2) {
-      int month = (difference.inDays / 30).floor();
-      return numericDates
-          ? s.timeAgoMo(month)
-          : s.timeAgoLastMonth;
-    } else if (date.year == currentDate.year) {
-      return date.formatDayMonth() +
-          " ${s.timeAgoAt} " +
-          date.formatTime();
-    } else {
-      return date.formatDayMonthYear() +
-          " ${s.timeAgoAt} " +
-          date.formatTime();
+    if (!completeDate) {
+      if (difference.inSeconds < 3) {
+        return s.timeAgoJustNow;
+      } else if (difference.inMinutes < 1) {
+        return s.timeAgoSec(difference.inSeconds);
+      } else if (difference.inHours < 1) {
+        return s.timeAgoMin(difference.inMinutes);
+      } else if (difference.inDays < 1) {
+        return s.timeAgoHr(difference.inHours);
+      } else if (difference.inDays < 2 && !numericDates) {
+        return s.timeAgoYesterday;
+      } else if (difference.inDays < 7) {
+        return s.timeAgoDay(difference.inDays);
+      } else if ((difference.inDays / 7).floor() < 2 && !numericDates) {
+        return s.timeAgoLastWeek;
+      } else if ((difference.inDays / 30).floor() < 1) {
+        int week = (difference.inDays / 7).floor();
+        return s.timeAgoWeek(week);
+      } else if ((difference.inDays / 30).floor() < 2) {
+        int month = (difference.inDays / 30).floor();
+        return numericDates ? s.timeAgoMo(month) : s.timeAgoLastMonth;
+      }
     }
+    if (date.year == currentDate.year) {
+      return date.formatDayMonthAtTime();
+    }
+    return date.formatDayMonthYearAtTime();
   }
 }

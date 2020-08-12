@@ -6,8 +6,10 @@ class CustomSliverAppBar extends StatelessWidget {
     this.automaticallyImplyLeading = true,
     this.title,
     this.titleSpacing = NavigationToolbar.kMiddleSpacing,
-    this.backgroundColor = const Color(0xFFFFFFFF),
+    this.backgroundColor = Colors.white,
     this.actions,
+    this.bottom,
+    this.flexibleSpace,
     this.elevation = 0,
     this.floating = true,
     this.forceElevated = true,
@@ -21,12 +23,14 @@ class CustomSliverAppBar extends StatelessWidget {
   final double titleSpacing;
   final Color backgroundColor;
   final List<Widget> actions;
+  final PreferredSizeWidget bottom;
   final double elevation;
   final bool floating;
   final bool forceElevated;
   final bool primary;
   final bool snap;
   final bool pinned;
+  final Widget flexibleSpace;
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +52,8 @@ class CustomSliverAppBar extends StatelessWidget {
         color: Theme.of(context).accentColor,
       ),
       actions: actions,
+      bottom: bottom,
+      flexibleSpace: flexibleSpace,
       floating: floating,
       forceElevated: forceElevated,
       primary: primary,
