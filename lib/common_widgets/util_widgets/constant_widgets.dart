@@ -18,6 +18,12 @@ class ConstantWidgets {
   static const EdgeInsetsGeometry addPostPadding =
       const EdgeInsets.symmetric(vertical: 16, horizontal: 24);
 
+  static const EdgeInsetsGeometry postVerticalPadding =
+      const EdgeInsets.symmetric(vertical: 24);
+  static const EdgeInsetsGeometry postHorizontalPadding =
+      const EdgeInsets.symmetric(horizontal: 16);
+  static EdgeInsetsGeometry postPadding = postVerticalPadding.add(postHorizontalPadding);
+
   static GestureDetector unfocusGestureDetector({
     BuildContext context,
     Widget child,

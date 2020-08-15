@@ -5,7 +5,7 @@ import 'package:ideashare/generated/l10n.dart';
 class CustomCachedNetworkImage extends StatelessWidget {
   CustomCachedNetworkImage({
     @required this.imageUrl,
-    this.imageBuilder,
+    @required this.imageBuilder,
     this.errorWidget,
     this.loadingSize = 30,
     this.showLoading = true,

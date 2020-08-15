@@ -1,7 +1,9 @@
 import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:ideashare/common_widgets/alert_dialogs/alert_dialog_list_tile.dart';
+import 'package:ideashare/common_widgets/custom_widgets/custom_cached_network_image.dart';
 import 'package:ideashare/common_widgets/post_widgets/section_title.dart';
 import 'package:ideashare/common_widgets/util_widgets/image_viewer.dart';
 import 'package:ideashare/generated/l10n.dart';
@@ -14,6 +16,8 @@ class ImagesSection extends StatelessWidget {
   ImagesSection({
     this.id,
     this.images,
+    this.urlImages,
+    this.listPadding,
     this.onAddImage,
     this.onDeleteImage,
     this.onDoubleTapImage,
@@ -27,6 +31,8 @@ class ImagesSection extends StatelessWidget {
 
   final String id;
   final List<File> images;
+  final List<String> urlImages;
+  final EdgeInsets listPadding;
   final Function(File image) onAddImage;
   final Function(int index) onDeleteImage;
   final Function(int index) onDoubleTapImage;
@@ -36,6 +42,12 @@ class ImagesSection extends StatelessWidget {
   final String sectionTitle;
   final String sectionDescription;
   final bool displayFirst;
+
+  int get itemCount {
+    if (images != null && images.isNotEmpty) return images.length;
+    if (urlImages != null && urlImages.isNotEmpty) return urlImages.length;
+    return 0;
+  }
 
   Future<void> pickPicture(BuildContext context) async {
     ImageSource imageSource = await AlertDialogListTile(
@@ -63,14 +75,26 @@ class ImagesSection extends StatelessWidget {
   }
 
   void onTap(BuildContext context, int index) {
-    List<ImageViewerItem> items = images
-        .asMap()
-        .entries
-        .map((e) => ImageViewerItem(
-              id: id + e.key.toString(),
-              resource: Image.file(e.value).image,
-            ))
-        .toList();
+    List<ImageViewerItem> items = [];
+    if (images != null && images.isNotEmpty) {
+      items = images
+          .asMap()
+          .entries
+          .map((e) => ImageViewerItem(
+                id: id + e.key.toString(),
+                resource: Image.file(e.value).image,
+              ))
+          .toList();
+    } else if (urlImages != null && urlImages.isNotEmpty) {
+      items = urlImages
+          .asMap()
+          .entries
+          .map((e) => ImageViewerItem(
+                id: id + e.key.toString(),
+                resource: CachedNetworkImageProvider(e.value),
+              ))
+          .toList();
+    }
     ImageViewer.show(
       context: context,
       index: index,
@@ -90,19 +114,24 @@ class ImagesSection extends StatelessWidget {
             onAdd: () => pickPicture(context),
           ),
         ],
-        if (images != null && images.isNotEmpty) ...[
+        if (itemCount > 0) ...[
           Container(
             height: imageSize,
             child: ListView.separated(
+              padding: listPadding,
               scrollDirection: Axis.horizontal,
               separatorBuilder: (context, index) => SizedBox(
                 width: 8,
               ),
-              itemCount: images.length,
+              itemCount: itemCount,
               itemBuilder: (context, index) => buildImageItem(
                 context: context,
                 id: id + index.toString(),
-                image: images[index],
+                image:
+                    images != null && images.isNotEmpty ? images[index] : null,
+                urlImage: urlImages != null && urlImages.isNotEmpty
+                    ? urlImages[index]
+                    : null,
                 onDelete:
                     onDeleteImage != null ? () => onDeleteImage(index) : null,
                 onTap: displayImage ? () => onTap(context, index) : null,
@@ -122,12 +151,29 @@ class ImagesSection extends StatelessWidget {
     BuildContext context,
     String id,
     File image,
+    String urlImage,
     Function onDelete,
     Function onTap,
     Function onDoubleTap,
     bool isFirst,
   }) {
     double radius = 8;
+
+    Widget child;
+    if (image != null) {
+      child = Image.file(
+        image,
+        fit: BoxFit.cover,
+      );
+    } else if (urlImage != null) {
+      child = CustomCachedNetworkImage(
+        imageUrl: urlImage,
+        imageBuilder: (_, imageProvider) => Image(
+          image: imageProvider,
+          fit: BoxFit.cover,
+        ),
+      );
+    }
 
     return GestureDetector(
       onTap: onTap,
@@ -146,12 +192,14 @@ class ImagesSection extends StatelessWidget {
                   height: imageSize,
                   width: imageSize,
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(radius),
-                    child: Image.file(
-                      image,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
+                      borderRadius: BorderRadius.circular(radius),
+                      child: child ??
+                          Center(
+                            child: Icon(
+                              Icons.error_outline,
+                              color: Theme.of(context).errorColor,
+                            ),
+                          )),
                 ),
               ),
               if (isFirst) ...[
