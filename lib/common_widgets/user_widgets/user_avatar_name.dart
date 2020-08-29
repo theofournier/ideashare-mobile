@@ -5,7 +5,7 @@ import 'package:ideashare/resources/theme.dart';
 class UserAvatarName extends StatelessWidget {
   UserAvatarName({
     Key key,
-    this.photoUrl,
+    this.photoUrl = "",
     this.photoSize = 24,
     @required this.displayName,
     this.textSize = 16,
@@ -26,7 +26,7 @@ class UserAvatarName extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         CustomCachedNetworkImage(
-          imageUrl: photoUrl,
+          imageUrl: photoUrl ?? "",
           imageBuilder: (context, imageProvider) => CircleAvatar(
             backgroundImage: imageProvider,
             maxRadius: photoSize,
