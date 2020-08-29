@@ -26,13 +26,13 @@ class PostInfoContent extends StatelessWidget {
             child: buildDescription(context),
           ),
         ],
-        if (viewModel.post.info.images != null) ...[
+        if (viewModel.post.info.images != null && viewModel.post.info.images.isNotEmpty) ...[
           SizedBox(
             height: space,
           ),
           buildImages(context),
         ],
-        if (viewModel.post.info.urlLinks != null) ...[
+        if (viewModel.post.info.urlLinks != null && viewModel.post.info.urlLinks.isNotEmpty) ...[
           SizedBox(
             height: space,
           ),
@@ -41,7 +41,7 @@ class PostInfoContent extends StatelessWidget {
             child: buildLinks(context),
           ),
         ],
-        if (viewModel.post.labels != null) ...[
+        if (viewModel.post.labels != null && viewModel.post.labels.isNotEmpty) ...[
           SizedBox(
             height: space + 8,
           ),
