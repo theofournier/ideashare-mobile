@@ -3,6 +3,7 @@ import 'package:ideashare/resources/router.dart';
 import 'package:ideashare/screens/home/home_view_model.dart';
 import 'package:ideashare/screens/post/posts/posts_screen.dart';
 import 'package:ideashare/services/auth/auth_service.dart';
+import 'package:ideashare/services/models/user/user.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -46,11 +47,16 @@ class HomeContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final User currentUser = Provider.of<User>(context);
+
     return Scaffold(
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Text(
+              currentUser.toMap().toString(),
+            ),
             RaisedButton(
               onPressed: () =>
                   Provider.of<AuthService>(context, listen: false).signOut(),

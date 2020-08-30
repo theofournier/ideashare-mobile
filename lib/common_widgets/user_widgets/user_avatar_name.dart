@@ -41,7 +41,7 @@ class UserAvatarName extends StatelessWidget {
             errorWidget: (context, url, error) => Icon(
               Icons.account_circle,
               color: textColor,
-              size: photoSize * 1.5,
+              size: photoSize * 2,
             ),
             loadingSize: photoSize,
             showLoading: false,

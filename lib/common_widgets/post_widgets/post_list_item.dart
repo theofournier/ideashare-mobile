@@ -248,7 +248,7 @@ class _PostListItemState extends State<PostListItem> {
           userId: post.ownerInfo.userId,
           displayName: post.ownerInfo.displayName,
           photoUrl: post.ownerInfo.photoUrl,
-          photoSize: 15,
+          photoSize: 14,
           textSize: 14,
         ),
         Column(

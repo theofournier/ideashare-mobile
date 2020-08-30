@@ -73,8 +73,9 @@ class _CommentListItemState extends State<CommentListItem> {
                     enableTap: !_isLoadingDelete,
                     userId: widget.comment.ownerInfo.userId,
                     displayName: widget.comment.ownerInfo.displayName,
+                    photoUrl: widget.comment.ownerInfo.photoUrl,
                     textSize: 14,
-                    photoSize: 16,
+                    photoSize: 14,
                   ),
                 ),
                 Row(
