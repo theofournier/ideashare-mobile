@@ -1,5 +1,6 @@
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
+import 'package:ideashare/common_widgets/custom_widgets/custom_flat_button.dart';
 import 'package:ideashare/resources/theme.dart';
 
 enum FlushbarType {
@@ -25,6 +26,8 @@ class FlushbarUtils {
     this.backgroundColor,
     this.flushbarDismissDirection = FlushbarDismissDirection.HORIZONTAL,
     this.shouldIconPulse = false,
+    this.onPressedMainButton,
+    this.buttonText,
   }) {
     IconData icon;
     Color iconColor;
@@ -66,9 +69,13 @@ class FlushbarUtils {
   Color backgroundColor;
   final FlushbarDismissDirection flushbarDismissDirection;
   final bool shouldIconPulse;
+  final VoidCallback onPressedMainButton;
+  final String buttonText;
+
+  Flushbar flushbar;
 
   void show() {
-    Flushbar(
+    this. flushbar = Flushbar(
       titleText: title != null
           ? Text(
               title,
@@ -97,6 +104,18 @@ class FlushbarUtils {
       backgroundColor: backgroundColor,
       dismissDirection: flushbarDismissDirection,
       shouldIconPulse: shouldIconPulse,
-    ).show(context);
+      mainButton: buttonText == null ? null : CustomFlatButton(
+        onPressed: onPressedMainButton,
+        text: buttonText,
+        fontWeight: FontWeight.bold,
+        textSize: titleSize,
+      ),
+    )..show(context);
+  }
+
+  void dismiss() {
+    if(flushbar != null){
+      flushbar.dismiss();
+    }
   }
 }

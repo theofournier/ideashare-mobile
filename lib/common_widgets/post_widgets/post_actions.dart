@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ideashare/common_widgets/custom_widgets/custom_flat_button.dart';
+import 'package:ideashare/common_widgets/util_widgets/action_button.dart';
 import 'package:ideashare/common_widgets/util_widgets/line.dart';
 import 'package:ideashare/resources/theme.dart';
 import 'package:ideashare/utils/extensions/num.dart';
@@ -50,28 +51,25 @@ class PostActions extends StatelessWidget {
         Row(
           children: <Widget>[
             buildButton(
-              context: context,
-              text: "${likeCount.format()}",
-              icon: OMIcons.thumbUp,
-              iconSelected: Icons.thumb_up,
-              selected: liked,
-              onPressed: onLike ?? () {},
+              actionButton: ActionButton.like(
+                text: "${likeCount.format()}",
+                selected: liked,
+                onPressed: onLike ?? () {},
+              ),
             ),
             buildButton(
-              context: context,
-              text: "${followCount.format()}",
-              icon: OMIcons.personAdd,
-              iconSelected: Icons.person_add,
-              selected: followed,
-              onPressed: onFollow ?? () {},
+              actionButton: ActionButton.follow(
+                text: "${followCount.format()}",
+                selected: followed,
+                onPressed: onFollow ?? () {},
+              ),
             ),
             buildButton(
-              context: context,
-              text: "${workCount.format()}",
-              icon: OMIcons.workOutline,
-              iconSelected: Icons.work,
-              selected: worked,
-              onPressed: onWork ?? () {},
+              actionButton: ActionButton.work(
+                text: "${workCount.format()}",
+                selected: worked,
+                onPressed: onWork ?? () {},
+              ),
             ),
           ],
         ),
@@ -80,31 +78,10 @@ class PostActions extends StatelessWidget {
   }
 
   Widget buildButton({
-    BuildContext context,
-    String text,
-    IconData icon,
-    IconData iconSelected,
-    bool selected,
-    VoidCallback onPressed,
+    ActionButton actionButton,
   }) {
     return Expanded(
-      child: CustomFlatButton(
-        icon: selected ? iconSelected : icon,
-        iconSize: 24,
-        iconColor:
-            selected ? Theme.of(context).accentColor : AppColors.greyDark,
-        textColor:
-            selected ? Theme.of(context).accentColor : AppColors.greyDark,
-        text: text,
-        fontWeight: selected ? FontWeight.w600 : FontWeight.normal,
-        upperCase: false,
-        textSize: 16,
-        padding: const EdgeInsets.symmetric(
-          vertical: 12,
-        ),
-        shrinkWrap: true,
-        onPressed: onPressed,
-      ),
+      child: actionButton,
     );
   }
 }

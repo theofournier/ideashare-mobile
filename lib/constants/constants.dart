@@ -14,6 +14,7 @@ class ImageName {
   static final addPostLinkedIssue = dir + "add_post_linked_issue.png";
   static final addPostLabels = dir + "add_post_labels.png";
   static final postsNotFound = dir + "posts_not_found.png";
+  static final postCommentsNotFound = dir + "post_comments_not_found.png";
 }
 
 class StorageKeys {

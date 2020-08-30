@@ -4,6 +4,7 @@ import 'package:ideashare/common_widgets/custom_widgets/custom_app_bar_button.da
 import 'package:ideashare/common_widgets/custom_widgets/custom_sliver_app_bar.dart';
 import 'package:ideashare/common_widgets/custom_widgets/custom_sliver_tab_bar_screen.dart';
 import 'package:ideashare/common_widgets/custom_widgets/custom_tab_bar.dart';
+import 'package:ideashare/common_widgets/util_widgets/constant_widgets.dart';
 import 'package:ideashare/generated/l10n.dart';
 import 'package:ideashare/resources/router.dart';
 import 'package:ideashare/screens/post/post/contents/post_comments_content.dart';
@@ -16,6 +17,7 @@ import 'package:ideashare/screens/post/post/post_header.dart';
 import 'package:ideashare/screens/post/post/post_view_model.dart';
 import 'package:ideashare/services/database/post_database.dart';
 import 'package:ideashare/services/models/post/post/post.dart';
+import 'package:ideashare/services/models/user/user.dart';
 import 'package:outline_material_icons/outline_material_icons.dart';
 import 'package:provider/provider.dart';
 
@@ -57,10 +59,12 @@ class PostScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final PostDatabase postDatabase =
         Provider.of<PostDatabase>(context, listen: false);
+    final User currentUser = Provider.of<User>(context);
 
     return ChangeNotifierProvider<PostViewModel>(
       create: (_) => PostViewModel(
         postDatabase: postDatabase,
+        currentUser: currentUser,
         postId: postId,
         initialPost: initialPost,
       ),
@@ -125,26 +129,29 @@ class PostContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomSliverTabBarScreen(
-      appBar: CustomSliverAppBar(
-        pinned: true,
-        actions: <Widget>[
-          if (viewModel.post.premium) ...[
-            PremiumIcon(),
+    return ConstantWidgets.unfocusGestureDetector(
+      context: context,
+      child: CustomSliverTabBarScreen(
+        appBar: CustomSliverAppBar(
+          pinned: true,
+          actions: <Widget>[
+            if (viewModel.post.premium) ...[
+              PremiumIcon(),
+            ],
+            CustomAppBarButton(
+              icon: OMIcons.edit,
+              text: S.of(context).postEditPost,
+              onPressed: () => print("EDIT POST"),
+            ),
           ],
-          CustomAppBarButton(
-            icon: OMIcons.edit,
-            text: S.of(context).postEditPost,
-            onPressed: () => print("EDIT POST"),
-          ),
-        ],
+        ),
+        headerChild: PostHeader(
+          viewModel: viewModel,
+        ),
+        tabIsScrollable: true,
+        tabItems: tabBarItems,
+        tabBarViewItems: tabViews(),
       ),
-      headerChild: PostHeader(
-        viewModel: viewModel,
-      ),
-      tabIsScrollable: true,
-      tabItems: tabBarItems,
-      tabBarViewItems: tabViews(),
     );
   }
 }

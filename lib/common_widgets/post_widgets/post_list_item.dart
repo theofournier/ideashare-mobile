@@ -244,14 +244,12 @@ class _PostListItemState extends State<PostListItem> {
       spacing: 8,
       runSpacing: 4,
       children: <Widget>[
-        InkWell(
-          onTap: () => print("TAP USER"),
-          child: UserAvatarName(
-            displayName: post.ownerInfo.displayName,
-            photoUrl: post.ownerInfo.photoUrl,
-            photoSize: 15,
-            textSize: 14,
-          ),
+        UserAvatarName(
+          userId: post.ownerInfo.userId,
+          displayName: post.ownerInfo.displayName,
+          photoUrl: post.ownerInfo.photoUrl,
+          photoSize: 15,
+          textSize: 14,
         ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.end,

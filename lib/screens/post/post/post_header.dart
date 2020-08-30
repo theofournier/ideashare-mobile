@@ -130,14 +130,12 @@ class _PostHeaderState extends State<PostHeader> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        InkWell(
-          onTap: () => print("TAP USER"),
-          child: UserAvatarName(
-            displayName: post.ownerInfo.displayName,
-            photoUrl: post.ownerInfo.photoUrl,
-            photoSize: 15,
-            textSize: 14,
-          ),
+        UserAvatarName(
+          userId: post.ownerInfo.userId,
+          displayName: post.ownerInfo.displayName,
+          photoUrl: post.ownerInfo.photoUrl,
+          photoSize: 16,
+          textSize: 14,
         ),
         DatePrivacyWidget(
           date: post.docTime.createdAt,

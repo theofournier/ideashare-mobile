@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ideashare/services/database/firestore_path.dart';
 import 'package:ideashare/services/database/firestore_service.dart';
+import 'package:ideashare/services/models/comment/comment.dart';
 import 'package:ideashare/services/models/post/post/post.dart';
 import 'package:ideashare/services/models/post/post_note/post_note.dart';
 import 'package:ideashare/services/models/post/post_status/post_status.dart';
@@ -34,12 +35,38 @@ class PostDatabase {
 
   Future<List<Post>> getPosts() => _service.getCollection(
         path: FirestorePath.posts(),
-        queryBuilder: (query) => query.orderBy("docTime.createdAt", descending: true),
+        queryBuilder: (query) =>
+            query.orderBy("docTime.createdAt", descending: true),
         builder: (data, documentId) => Post.fromMap(documentId, data),
       );
 
   Future<Post> getPost(String postId) => _service.getDocument(
-    path: FirestorePath.post(postId),
-    builder: (data, documentId) => Post.fromMap(documentId, data),
-  );
+        path: FirestorePath.post(postId),
+        builder: (data, documentId) => Post.fromMap(documentId, data),
+      );
+
+  Future<String> addPostComment(String postId, Comment comment) =>
+      _service.addData(
+        collectionPath: FirestorePath.postComments(postId),
+        data: comment.toMap(),
+      );
+
+  Future<void> setPostComment(String postId, Comment comment) =>
+      _service.setData(
+        path: FirestorePath.postComment(postId, comment.id),
+        data: comment.toMap(),
+        merge: true
+      );
+
+  Future<void> deletePostComment(String postId, String commentId) => _service.deleteData(
+        path: FirestorePath.postComment(postId, commentId),
+      );
+
+  Future<List<Comment>> getPostComments(String postId) =>
+      _service.getCollection(
+        path: FirestorePath.postComments(postId),
+        queryBuilder: (query) =>
+            query.orderBy("docTime.createdAt", descending: true),
+        builder: (data, documentId) => Comment.fromMap(documentId, data),
+      );
 }

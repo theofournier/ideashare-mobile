@@ -1674,6 +1674,56 @@ class S {
       args: [],
     );
   }
+
+  /// `No comments`
+  String get postCommentsNotFoundTitle {
+    return Intl.message(
+      'No comments',
+      name: 'postCommentsNotFoundTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Be the first to leave a comment!`
+  String get postCommentsNotFoundDescription {
+    return Intl.message(
+      'Be the first to leave a comment!',
+      name: 'postCommentsNotFoundDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New comment`
+  String get newComment {
+    return Intl.message(
+      'New comment',
+      name: 'newComment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Comment successfully deleted`
+  String get postCommentDeletedSuccess {
+    return Intl.message(
+      'Comment successfully deleted',
+      name: 'postCommentDeletedSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Undo`
+  String get undo {
+    return Intl.message(
+      'Undo',
+      name: 'undo',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

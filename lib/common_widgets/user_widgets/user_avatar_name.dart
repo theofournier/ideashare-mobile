@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:ideashare/common_widgets/custom_widgets/custom_cached_network_image.dart';
+import 'package:ideashare/constants/constants.dart';
 import 'package:ideashare/resources/theme.dart';
 
 class UserAvatarName extends StatelessWidget {
   UserAvatarName({
     Key key,
+    this.userId,
+    this.enableTap = true,
     this.photoUrl = "",
     this.photoSize = 24,
     @required this.displayName,
@@ -13,6 +16,8 @@ class UserAvatarName extends StatelessWidget {
     this.textColor = AppColors.greyDark,
   }) : super(key: key);
 
+  final String userId;
+  final bool enableTap;
   final String photoUrl;
   final double photoSize;
   final String displayName;
@@ -22,35 +27,38 @@ class UserAvatarName extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        CustomCachedNetworkImage(
-          imageUrl: photoUrl ?? "",
-          imageBuilder: (context, imageProvider) => CircleAvatar(
-            backgroundImage: imageProvider,
-            maxRadius: photoSize,
+    return InkWell(
+      onTap: enableTap ? () => print("USER TAP : $userId") : null,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          CustomCachedNetworkImage(
+            imageUrl: photoUrl ?? "",
+            imageBuilder: (context, imageProvider) => CircleAvatar(
+              backgroundImage: imageProvider,
+              maxRadius: photoSize,
+            ),
+            errorWidget: (context, url, error) => Icon(
+              Icons.account_circle,
+              color: textColor,
+              size: photoSize * 1.5,
+            ),
+            loadingSize: photoSize,
+            showLoading: false,
           ),
-          errorWidget: (context, url, error) => Icon(
-            Icons.account_circle,
-            color: textColor,
-            size: photoSize * 1.5,
+          SizedBox(
+            width: 8,
           ),
-          loadingSize: photoSize,
-          showLoading: false,
-        ),
-        SizedBox(
-          width: 8,
-        ),
-        Text(
-          displayName,
-          style: TextStyle(
-            color: textColor,
-            fontSize: textSize,
-            fontWeight: fontWeight,
+          Text(
+            displayName,
+            style: TextStyle(
+              color: textColor,
+              fontSize: textSize,
+              fontWeight: fontWeight,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
