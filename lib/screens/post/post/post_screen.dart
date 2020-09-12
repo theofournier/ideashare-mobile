@@ -85,31 +85,40 @@ class PostContent extends StatelessWidget {
 
   final PostViewModel viewModel;
 
-  final List<TabBarItemData> tabBarItems = [
-    TabBarItemData(
-      text: S.current.postTabBarInfo,
-    ),
-    TabBarItemData(
-      text: S.current.postTabBarComments,
-    ),
-    TabBarItemData(
-      text: S.current.postTabBarHelps,
-    ),
-    TabBarItemData(
-      text: S.current.postTabBarNews,
-    ),
-    TabBarItemData(
-      text: S.current.postTabBarLinked,
-    ),
-    TabBarItemData(
-      text: S.current.postTabBarNotes,
-    ),
-  ];
+  List<TabBarItemData> tabBarItems() => [
+        TabBarItemData(
+          text: S.current.postTabBarInfo,
+        ),
+        if (viewModel.currentUser.id == viewModel.post?.ownerInfo?.userId ??
+            false) ...[
+          TabBarItemData(
+            text: S.current.postTabBarNotes,
+          ),
+        ],
+        TabBarItemData(
+          text: S.current.postTabBarComments,
+        ),
+        TabBarItemData(
+          text: S.current.postTabBarHelps,
+        ),
+        TabBarItemData(
+          text: S.current.postTabBarNews,
+        ),
+        TabBarItemData(
+          text: S.current.postTabBarLinked,
+        ),
+      ];
 
   List<Widget> tabViews() => [
         PostInfoContent(
           viewModel: viewModel,
         ),
+        if (viewModel.currentUser.id == viewModel.post?.ownerInfo?.userId ??
+            false) ...[
+          PostNotesContent(
+            viewModel: viewModel,
+          ),
+        ],
         PostCommentsContent(
           viewModel: viewModel,
         ),
@@ -120,9 +129,6 @@ class PostContent extends StatelessWidget {
           viewModel: viewModel,
         ),
         PostLinkedContent(
-          viewModel: viewModel,
-        ),
-        PostNotesContent(
           viewModel: viewModel,
         ),
       ];
@@ -149,7 +155,7 @@ class PostContent extends StatelessWidget {
           viewModel: viewModel,
         ),
         tabIsScrollable: true,
-        tabItems: tabBarItems,
+        tabItems: tabBarItems(),
         tabBarViewItems: tabViews(),
       ),
     );
