@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:ideashare/common_widgets/post_widgets/note_list_item.dart';
 import 'package:ideashare/resources/theme.dart';
+import 'package:ideashare/screens/post/note/note_screen.dart';
+import 'package:ideashare/screens/post/note/note_view_model.dart';
 import 'package:ideashare/screens/post/post/post_view_model.dart';
+import 'package:ideashare/services/models/post/post_note/post_note.dart';
 
 class PostNotesContent extends StatelessWidget {
   const PostNotesContent({
@@ -48,6 +51,24 @@ class PostNotesContent extends StatelessWidget {
                   false,
               onDelete: () =>
                   viewModel.deleteNote(context, viewModel.notes[index].id),
+              onTap: () async {
+                NoteAction result = await NoteScreen.show(
+                  context,
+                  postId: viewModel.getPostId,
+                  initialNote: viewModel.notes[index],
+                );
+                if (result != null) {
+                  if(result == NoteAction.delete) {
+                    viewModel.flushbarUndoDeleteNote(
+                      context: context,
+                      index: index,
+                      note: viewModel.notes[index],
+                    );
+                  }
+                  viewModel.updateWith(isLoadingPostNotes: true);
+                  viewModel.fetchPostNotes();
+                }
+              },
             ),
           ),
         ),
@@ -56,7 +77,16 @@ class PostNotesContent extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: FloatingActionButton(
-              onPressed: () => print("NEW"),
+              onPressed: () async {
+                NoteAction result = await NoteScreen.show(
+                  context,
+                  postId: viewModel.getPostId,
+                );
+                if (result != null) {
+                  viewModel.updateWith(isLoadingPostNotes: true);
+                  viewModel.fetchPostNotes();
+                }
+              },
               child: Icon(Icons.add),
             ),
           ),

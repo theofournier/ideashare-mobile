@@ -7,6 +7,8 @@ import 'package:ideashare/screens/landing/landing_screen.dart';
 import 'package:ideashare/screens/notifications/notifications_screen.dart';
 import 'package:ideashare/screens/post/add_post/add_post_screen.dart';
 import 'package:ideashare/screens/post/add_post/add_post_start_screen.dart';
+import 'package:ideashare/screens/post/note/note_screen.dart';
+import 'package:ideashare/screens/post/note/note_view_model.dart';
 import 'package:ideashare/screens/post/post/post_screen.dart';
 import 'package:ideashare/screens/post/posts/posts_screen.dart';
 import 'package:ideashare/screens/profile/profile_screen.dart';
@@ -30,6 +32,7 @@ class Routes {
   static const addPostStartScreen = "/add-post-start";
   static const postsScreen = "/posts";
   static const postScreen = "/post";
+  static const noteScreen = "/note";
 }
 
 class Router {
@@ -111,6 +114,16 @@ class Router {
           builder: (_) => PostScreen(
             postId: postScreenArguments.postId,
             initialPost: postScreenArguments.initialPost,
+          ),
+          settings: settings,
+        );
+      case Routes.noteScreen:
+        final NoteScreenArguments noteScreenArguments = args;
+        return MaterialPageRoute<NoteAction>(
+          builder: (_) => NoteScreen(
+            postId: noteScreenArguments.postId,
+            noteId: noteScreenArguments.noteId,
+            initialNote: noteScreenArguments.initialNote,
           ),
           settings: settings,
         );

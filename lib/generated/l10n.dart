@@ -1734,6 +1734,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Note`
+  String get noteScreenPlaceholder {
+    return Intl.message(
+      'Note',
+      name: 'noteScreenPlaceholder',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

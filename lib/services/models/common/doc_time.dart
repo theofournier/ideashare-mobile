@@ -10,7 +10,7 @@ class DocTime {
 
   final bool deleted;
   final DateTime createdAt;
-  final DateTime updatedAt;
+  DateTime updatedAt;
   final DateTime deletedAt;
 
   factory DocTime.fromMap(Map<String, dynamic> json) => json == null

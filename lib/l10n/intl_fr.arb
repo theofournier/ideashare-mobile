@@ -166,5 +166,6 @@
   "newComment": "New comment",
   "postCommentDeletedSuccess": "Comment successfully deleted",
   "undo": "Undo",
-  "postNoteDeletedSuccess": "Note successfully deleted"
+  "postNoteDeletedSuccess": "Note successfully deleted",
+  "noteScreenPlaceholder": "Note"
 }

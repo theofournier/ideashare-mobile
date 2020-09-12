@@ -41,7 +41,7 @@ class PostDatabase {
       _service.getCollection(
         path: FirestorePath.postNotes(postId),
         queryBuilder: (query) =>
-            query.orderBy("docTime.createdAt", descending: true),
+            query.orderBy("docTime.updatedAt", descending: true),
         builder: (data, documentId) => PostNote.fromMap(documentId, data),
       );
 

@@ -123,6 +123,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "linksSectionUrl" : MessageLookupByLibrary.simpleMessage("URL"),
     "newComment" : MessageLookupByLibrary.simpleMessage("New comment"),
     "noImage" : MessageLookupByLibrary.simpleMessage("No image"),
+    "noteScreenPlaceholder" : MessageLookupByLibrary.simpleMessage("Note"),
     "ok" : MessageLookupByLibrary.simpleMessage("OK"),
     "postCommentDeletedSuccess" : MessageLookupByLibrary.simpleMessage("Comment successfully deleted"),
     "postCommentsNotFoundTitle" : MessageLookupByLibrary.simpleMessage("No comments"),

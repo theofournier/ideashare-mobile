@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:ideashare/common_widgets/common_widgets.dart';
 import 'package:ideashare/services/models/post/post_note/post_note.dart';
@@ -8,11 +10,13 @@ class NoteListItem extends StatefulWidget {
     this.isOwner,
     this.note,
     this.onDelete,
+    this.onTap,
   }) : super(key: key);
 
   final bool isOwner;
   final PostNote note;
   final Future<bool> Function() onDelete;
+  final VoidCallback onTap;
 
   @override
   _NoteListItemState createState() => _NoteListItemState();
@@ -36,7 +40,7 @@ class _NoteListItemState extends State<NoteListItem> {
     return IgnorePointer(
       ignoring: _isLoadingDelete,
       child: GestureDetector(
-        onTap: () => print("TAP"),
+        onTap: widget.onTap,
         child: Card(
           clipBehavior: Clip.hardEdge,
           key: widget.key,
@@ -66,7 +70,8 @@ class _NoteListItemState extends State<NoteListItem> {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 12.0),
                       child: TextDateAgo(
-                        date: widget.note.docTime.createdAt,
+                        date: widget.note.docTime.updatedAt ??
+                            widget.note.docTime.createdAt,
                         completeDate: true,
                       ),
                     ),

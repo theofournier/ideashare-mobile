@@ -75,7 +75,7 @@ class FlushbarUtils {
   Flushbar flushbar;
 
   void show() {
-    this. flushbar = Flushbar(
+    this.flushbar = Flushbar(
       titleText: title != null
           ? Text(
               title,
