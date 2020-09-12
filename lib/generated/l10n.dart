@@ -1724,6 +1724,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Note successfully deleted`
+  String get postNoteDeletedSuccess {
+    return Intl.message(
+      'Note successfully deleted',
+      name: 'postNoteDeletedSuccess',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

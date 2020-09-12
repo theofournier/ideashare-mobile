@@ -65,7 +65,7 @@ class Helpers {
     final currentDate = DateTime.now();
     final difference = currentDate.difference(date);
 
-    if (!completeDate) {
+    if (!completeDate && difference.inSeconds >= 0) {
       if (difference.inSeconds < 3) {
         return s.timeAgoJustNow;
       } else if (difference.inMinutes < 1) {

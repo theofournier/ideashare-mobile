@@ -26,6 +26,25 @@ class PostDatabase {
         data: postNote.toMap(),
       );
 
+  Future<void> setPostNote(String postId, PostNote postNote) =>
+      _service.setData(
+          path: FirestorePath.postNote(postId, postNote.id),
+          data: postNote.toMap(),
+          merge: true
+      );
+
+  Future<void> deletePostNote(String postId, String noteId) => _service.deleteData(
+    path: FirestorePath.postNote(postId, noteId),
+  );
+
+  Future<List<PostNote>> getPostNotes(String postId) =>
+      _service.getCollection(
+        path: FirestorePath.postNotes(postId),
+        queryBuilder: (query) =>
+            query.orderBy("docTime.createdAt", descending: true),
+        builder: (data, documentId) => PostNote.fromMap(documentId, data),
+      );
+
   Future<void> setPostStatus(String postId, PostStatus postStatus) =>
       _service.setData(
         path: FirestorePath.postStatus(postId),

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ideashare/generated/l10n.dart';
 import 'package:ideashare/services/database/post_database.dart';
@@ -5,6 +6,7 @@ import 'package:ideashare/services/models/comment/comment.dart';
 import 'package:ideashare/services/models/common/doc_time.dart';
 import 'package:ideashare/services/models/common/owner_info.dart';
 import 'package:ideashare/services/models/post/post/post.dart';
+import 'package:ideashare/services/models/post/post_note/post_note.dart';
 import 'package:ideashare/services/models/user/user.dart';
 import 'package:ideashare/utils/flushbar_utils.dart';
 
@@ -20,6 +22,9 @@ class PostViewModel with ChangeNotifier {
 
     this.updateWith(isLoadingPostComments: true);
     this.fetchPostComments();
+
+    this.updateWith(isLoadingPostNotes: true);
+    this.fetchPostNotes();
   }
 
   final PostDatabase postDatabase;
@@ -28,27 +33,33 @@ class PostViewModel with ChangeNotifier {
   final String postId;
   Post post;
   List<Comment> comments = [];
+  List<PostNote> notes = [];
 
   String get getPostId => this.post != null ? this.post.id : this.postId;
 
   bool isLoadingPost = false;
   bool isLoadingPostComments = false;
   bool isLoadingSendComment = false;
+  bool isLoadingPostNotes = false;
 
   void updateWith({
     Post post,
     List<Comment> comments,
+    List<PostNote> notes,
     bool isLoadingPost,
     bool isLoadingPostComments,
     bool isLoadingSendComment,
+    bool isLoadingPostNotes,
   }) {
     this.post = post ?? this.post;
     this.comments = comments ?? this.comments;
+    this.notes = notes ?? this.notes;
     this.isLoadingPost = isLoadingPost ?? this.isLoadingPost;
     this.isLoadingPostComments =
         isLoadingPostComments ?? this.isLoadingPostComments;
     this.isLoadingSendComment =
         isLoadingSendComment ?? this.isLoadingSendComment;
+    this.isLoadingPostNotes = isLoadingPostNotes ?? this.isLoadingPostNotes;
     notifyListeners();
   }
 
@@ -108,11 +119,13 @@ class PostViewModel with ChangeNotifier {
       int index = comments.indexWhere((element) => element.id == commentId);
       Comment comment = comments[index];
       await postDatabase.deletePostComment(getPostId, commentId);
-      updateWith(
-          comments: this.comments
-            ..remove(comment));
+      updateWith(comments: this.comments..remove(comment));
       fetchPostComments();
-      flushbarUndoDeleteComment(context, index, comment);
+      flushbarUndoDeleteComment(
+        context: context,
+        index: index,
+        comment: comment,
+      );
       return true;
     } catch (e) {
       print("ERROR DELETE COMMENT: ${e}");
@@ -120,22 +133,84 @@ class PostViewModel with ChangeNotifier {
     }
   }
 
+  Future<void> fetchPostNotes() async {
+    try {
+      List<PostNote> notes = await postDatabase.getPostNotes(getPostId);
+      updateWith(notes: notes, isLoadingPostNotes: false);
+    } catch (e) {
+      print("ERROR POST NOTES: ${e}");
+      updateWith(isLoadingPostNotes: false);
+    }
+  }
+  
+  Future<bool> deleteNote(BuildContext context, String noteId) async {
+    try {
+      int index = notes.indexWhere((element) => element.id == noteId);
+      PostNote note = notes[index];
+      await postDatabase.deletePostNote(getPostId, noteId);
+      updateWith(notes: this.notes..remove(note));
+      fetchPostNotes();
+      flushbarUndoDeleteNote(
+        context: context,
+        index: index,
+        note: note,
+      );
+      return true;
+    } catch (e) {
+      print("ERROR DELETE NOTE: ${e}");
+      return false;
+    }
+  }
+  
+  
   FlushbarUtils flushbarUtils;
-  void flushbarUndoDeleteComment(BuildContext context, int index, Comment comment){
+  void flushbarUndo({
+    BuildContext context,
+    String message,
+    AsyncCallback undo,
+  }) {
     this.flushbarUtils = FlushbarUtils(
-        context,
-        type: FlushbarType.success,
-        duration: Duration(seconds: 5),
-        message: S.of(context).postCommentDeletedSuccess,
-        buttonText: S.of(context).undo,
-        onPressedMainButton: () async {
-          await postDatabase.setPostComment(getPostId, comment);
-          updateWith(
-              comments: this.comments
-                ..insert(index, comment));
-          fetchPostComments();
-          flushbarUtils.dismiss();
-        }
+      context,
+      type: FlushbarType.success,
+      duration: Duration(seconds: 5),
+      message: message,
+      buttonText: S.of(context).undo,
+      onPressedMainButton: () async {
+        await undo();
+        flushbarUtils.dismiss();
+      },
     )..show();
+  }
+
+  void flushbarUndoDeleteComment({
+    BuildContext context,
+    int index,
+    Comment comment,
+  }) {
+    flushbarUndo(
+      context: context,
+      message: S.of(context).postCommentDeletedSuccess,
+      undo: () async {
+        await postDatabase.setPostComment(getPostId, comment);
+        updateWith(comments: this.comments..insert(index, comment));
+        fetchPostComments();
+      },
+    );
+  }
+
+  void flushbarUndoDeleteNote({
+    BuildContext context,
+    int index,
+    PostNote note,
+  }) {
+    flushbarUndo(
+      context: context,
+      message: S.of(context).postNoteDeletedSuccess,
+      undo: () async {
+        await postDatabase.setPostNote(getPostId, note);
+        updateWith(notes: this.notes..insert(index, note));
+        fetchPostNotes();
+      },
+    );
   }
 }

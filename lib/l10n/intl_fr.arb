@@ -165,5 +165,6 @@
   "postCommentsNotFoundTitle": "No comments",
   "newComment": "New comment",
   "postCommentDeletedSuccess": "Comment successfully deleted",
-  "undo": "Undo"
+  "undo": "Undo",
+  "postNoteDeletedSuccess": "Note successfully deleted"
 }

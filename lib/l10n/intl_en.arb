@@ -166,5 +166,6 @@
   "postCommentsNotFoundDescription": "Be the first to leave a comment!",
   "newComment": "New comment",
   "postCommentDeletedSuccess": "Comment successfully deleted",
-  "undo": "Undo"
+  "undo": "Undo",
+  "postNoteDeletedSuccess": "Note successfully deleted"
 }

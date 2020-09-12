@@ -127,6 +127,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "postCommentDeletedSuccess" : MessageLookupByLibrary.simpleMessage("Comment successfully deleted"),
     "postCommentsNotFoundTitle" : MessageLookupByLibrary.simpleMessage("No comments"),
     "postEditPost" : MessageLookupByLibrary.simpleMessage("Edit post"),
+    "postNoteDeletedSuccess" : MessageLookupByLibrary.simpleMessage("Note successfully deleted"),
     "postStatusTypeCompleted" : MessageLookupByLibrary.simpleMessage("Completed"),
     "postStatusTypeOngoing" : MessageLookupByLibrary.simpleMessage("Ongoing"),
     "postStatusTypeOpen" : MessageLookupByLibrary.simpleMessage("Open"),
