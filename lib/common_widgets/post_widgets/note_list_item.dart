@@ -45,10 +45,10 @@ class _NoteListItemState extends State<NoteListItem> {
           clipBehavior: Clip.hardEdge,
           key: widget.key,
           color: Colors.white,
-          elevation: 3,
+          elevation: 1.5,
           margin: const EdgeInsets.all(0),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(8),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
