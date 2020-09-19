@@ -75,9 +75,10 @@ class PostViewModel with ChangeNotifier {
     }
     try {
       Post post = await postDatabase.getPost(getPostId);
-      updateWith(post: post, isLoadingPost: false);
+      updateWith(post: post);
     } catch (e) {
       print("ERROR POST: ${e}");
+    } finally {
       updateWith(isLoadingPost: false);
     }
   }
@@ -85,9 +86,10 @@ class PostViewModel with ChangeNotifier {
   Future<void> fetchPostComments() async {
     try {
       List<Comment> comments = await postDatabase.getPostComments(getPostId);
-      updateWith(comments: comments, isLoadingPostComments: false);
+      updateWith(comments: comments);
     } catch (e) {
       print("ERROR POST COMMENTS: ${e}");
+    } finally {
       updateWith(isLoadingPostComments: false);
     }
   }
@@ -102,15 +104,14 @@ class PostViewModel with ChangeNotifier {
       );
       String commentId = await postDatabase.addPostComment(getPostId, comment);
       comment.id = commentId;
-      updateWith(
-          isLoadingSendComment: false,
-          comments: this.comments..insert(0, comment));
+      updateWith(comments: this.comments..insert(0, comment));
       fetchPostComments();
       return true;
     } catch (e) {
       print("ERROR SEND COMMENT: ${e}");
-      updateWith(isLoadingSendComment: false);
       return false;
+    } finally {
+      updateWith(isLoadingSendComment: false);
     }
   }
 
@@ -136,13 +137,14 @@ class PostViewModel with ChangeNotifier {
   Future<void> fetchPostNotes() async {
     try {
       List<PostNote> notes = await postDatabase.getPostNotes(getPostId);
-      updateWith(notes: notes, isLoadingPostNotes: false);
+      updateWith(notes: notes);
     } catch (e) {
       print("ERROR POST NOTES: ${e}");
+    } finally {
       updateWith(isLoadingPostNotes: false);
     }
   }
-  
+
   Future<bool> deleteNote(BuildContext context, String noteId) async {
     try {
       int index = notes.indexWhere((element) => element.id == noteId);
