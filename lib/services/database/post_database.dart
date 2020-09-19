@@ -3,6 +3,7 @@ import 'package:ideashare/services/database/firestore_path.dart';
 import 'package:ideashare/services/database/firestore_service.dart';
 import 'package:ideashare/services/models/comment/comment.dart';
 import 'package:ideashare/services/models/post/post/post.dart';
+import 'package:ideashare/services/models/post/post_help/post_help.dart';
 import 'package:ideashare/services/models/post/post_note/post_note.dart';
 import 'package:ideashare/services/models/post/post_status/post_status.dart';
 
@@ -87,5 +88,30 @@ class PostDatabase {
         queryBuilder: (query) =>
             query.orderBy("docTime.createdAt", descending: true),
         builder: (data, documentId) => Comment.fromMap(documentId, data),
+      );
+
+  Future<String> addPostHelp(String postId, PostHelp postHelp) =>
+      _service.addData(
+        collectionPath: FirestorePath.postHelps(postId),
+        data: postHelp.toMap(),
+      );
+
+  Future<void> setPostHelp(String postId, PostHelp postHelp) =>
+      _service.setData(
+          path: FirestorePath.postHelp(postId, postHelp.id),
+          data: postHelp.toMap(),
+          merge: true
+      );
+
+  Future<void> deletePostHelp(String postId, String helpId) => _service.deleteData(
+    path: FirestorePath.postHelp(postId, helpId),
+  );
+
+  Future<List<PostHelp>> getPostHelps(String postId) =>
+      _service.getCollection(
+        path: FirestorePath.postHelps(postId),
+        queryBuilder: (query) =>
+            query.orderBy("docTime.createdAt", descending: true),
+        builder: (data, documentId) => PostHelp.fromMap(documentId, data),
       );
 }

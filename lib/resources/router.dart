@@ -7,6 +7,8 @@ import 'package:ideashare/screens/landing/landing_screen.dart';
 import 'package:ideashare/screens/notifications/notifications_screen.dart';
 import 'package:ideashare/screens/post/add_post/add_post_screen.dart';
 import 'package:ideashare/screens/post/add_post/add_post_start_screen.dart';
+import 'package:ideashare/screens/post/help/help_screen.dart';
+import 'package:ideashare/screens/post/help/help_view_model.dart';
 import 'package:ideashare/screens/post/note/note_screen.dart';
 import 'package:ideashare/screens/post/note/note_view_model.dart';
 import 'package:ideashare/screens/post/post/post_screen.dart';
@@ -33,6 +35,7 @@ class Routes {
   static const postsScreen = "/posts";
   static const postScreen = "/post";
   static const noteScreen = "/note";
+  static const helpScreen = "/help";
 }
 
 class Router {
@@ -124,6 +127,16 @@ class Router {
             postId: noteScreenArguments.postId,
             noteId: noteScreenArguments.noteId,
             initialNote: noteScreenArguments.initialNote,
+          ),
+          settings: settings,
+        );
+      case Routes.helpScreen:
+        final HelpScreenArguments helpScreenArguments = args;
+        return MaterialPageRoute<HelpAction>(
+          builder: (_) => HelpScreen(
+            postId: helpScreenArguments.postId,
+            helpId: helpScreenArguments.helpId,
+            initialHelp: helpScreenArguments.initialHelp,
           ),
           settings: settings,
         );

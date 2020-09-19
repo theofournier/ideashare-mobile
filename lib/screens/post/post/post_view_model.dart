@@ -6,6 +6,7 @@ import 'package:ideashare/services/models/comment/comment.dart';
 import 'package:ideashare/services/models/common/doc_time.dart';
 import 'package:ideashare/services/models/common/owner_info.dart';
 import 'package:ideashare/services/models/post/post/post.dart';
+import 'package:ideashare/services/models/post/post_help/post_help.dart';
 import 'package:ideashare/services/models/post/post_note/post_note.dart';
 import 'package:ideashare/services/models/user/user.dart';
 import 'package:ideashare/utils/flushbar_utils.dart';
@@ -34,6 +35,7 @@ class PostViewModel with ChangeNotifier {
   Post post;
   List<Comment> comments = [];
   List<PostNote> notes = [];
+  List<PostHelp> helps = [];
 
   String get getPostId => this.post != null ? this.post.id : this.postId;
 
@@ -41,25 +43,30 @@ class PostViewModel with ChangeNotifier {
   bool isLoadingPostComments = false;
   bool isLoadingSendComment = false;
   bool isLoadingPostNotes = false;
+  bool isLoadingPostHelps = false;
 
   void updateWith({
     Post post,
     List<Comment> comments,
     List<PostNote> notes,
+    List<PostHelp> helps,
     bool isLoadingPost,
     bool isLoadingPostComments,
     bool isLoadingSendComment,
     bool isLoadingPostNotes,
+    bool isLoadingPostHelps,
   }) {
     this.post = post ?? this.post;
     this.comments = comments ?? this.comments;
     this.notes = notes ?? this.notes;
+    this.helps = helps ?? this.helps;
     this.isLoadingPost = isLoadingPost ?? this.isLoadingPost;
     this.isLoadingPostComments =
         isLoadingPostComments ?? this.isLoadingPostComments;
     this.isLoadingSendComment =
         isLoadingSendComment ?? this.isLoadingSendComment;
     this.isLoadingPostNotes = isLoadingPostNotes ?? this.isLoadingPostNotes;
+    this.isLoadingPostHelps = isLoadingPostHelps ?? this.isLoadingPostHelps;
     notifyListeners();
   }
 
@@ -163,9 +170,20 @@ class PostViewModel with ChangeNotifier {
       return false;
     }
   }
-  
-  
+
+  Future<void> fetchPostHelps() async {
+    try {
+      List<PostHelp> helps = await postDatabase.getPostHelps(getPostId);
+      updateWith(helps: helps);
+    } catch (e) {
+      print("ERROR POST HELPS: ${e}");
+    } finally {
+      updateWith(isLoadingPostHelps: false);
+    }
+  }
+
   FlushbarUtils flushbarUtils;
+
   void flushbarUndo({
     BuildContext context,
     String message,
