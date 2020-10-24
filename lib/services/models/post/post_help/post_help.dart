@@ -4,6 +4,7 @@ import 'package:ideashare/services/models/common/owner_info.dart';
 import 'package:ideashare/services/models/common/promote.dart';
 import 'package:ideashare/services/models/post/post_help/post_help_counts.dart';
 import 'package:ideashare/services/models/post/post_help/post_help_info.dart';
+import 'package:uuid/uuid.dart';
 
 class PostHelp {
   PostHelp({
@@ -16,14 +17,15 @@ class PostHelp {
     this.anonymous = false,
     this.docTime,
   }) {
+    this.id = this.id ?? Uuid().v4();
     this.ownerInfo = this.ownerInfo ?? OwnerInfo();
     this.info = this.info ?? PostHelpInfo();
     this.counts = this.counts ?? PostHelpCounts();
     this.promote = this.promote ?? Promote();
-    this.approval = this.approval ?? Approval();
+    //this.approval = this.approval ?? Approval();
   }
 
-  final String id;
+  String id;
   OwnerInfo ownerInfo;
   PostHelpInfo info;
   PostHelpCounts counts;

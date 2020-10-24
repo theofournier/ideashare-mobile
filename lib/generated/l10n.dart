@@ -1744,6 +1744,86 @@ class S {
       args: [],
     );
   }
+
+  /// `The language of your help.`
+  String get helpLanguageDescription {
+    return Intl.message(
+      'The language of your help.',
+      name: 'helpLanguageDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add images that helps describe your help. Double click on an image to make it the first one.`
+  String get helpImageDescription {
+    return Intl.message(
+      'Add images that helps describe your help. Double click on an image to make it the first one.',
+      name: 'helpImageDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Title`
+  String get helpTitlePlaceholder {
+    return Intl.message(
+      'Title',
+      name: 'helpTitlePlaceholder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Description`
+  String get helpDescription {
+    return Intl.message(
+      'Description',
+      name: 'helpDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add help`
+  String get helpAlertTitle {
+    return Intl.message(
+      'Add help',
+      name: 'helpAlertTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you want send this new help?`
+  String get helpAlertMessage {
+    return Intl.message(
+      'Do you want send this new help?',
+      name: 'helpAlertMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete help`
+  String get helpDeleteAlertTitle {
+    return Intl.message(
+      'Delete help',
+      name: 'helpDeleteAlertTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you want delete this help?`
+  String get helpAlertDeleteMessage {
+    return Intl.message(
+      'Do you want delete this help?',
+      name: 'helpAlertDeleteMessage',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -102,6 +102,7 @@ class PostViewModel with ChangeNotifier {
   }
 
   Future<bool> sendComment(String text) async {
+    bool success = false;
     updateWith(isLoadingSendComment: true);
     try {
       Comment comment = Comment(
@@ -113,16 +114,17 @@ class PostViewModel with ChangeNotifier {
       comment.id = commentId;
       updateWith(comments: this.comments..insert(0, comment));
       fetchPostComments();
-      return true;
+      success = true;
     } catch (e) {
       print("ERROR SEND COMMENT: ${e}");
-      return false;
     } finally {
       updateWith(isLoadingSendComment: false);
     }
+    return success;
   }
 
   Future<bool> deleteComment(BuildContext context, String commentId) async {
+    bool success = false;
     try {
       int index = comments.indexWhere((element) => element.id == commentId);
       Comment comment = comments[index];
@@ -134,11 +136,11 @@ class PostViewModel with ChangeNotifier {
         index: index,
         comment: comment,
       );
-      return true;
+      success = true;
     } catch (e) {
       print("ERROR DELETE COMMENT: ${e}");
-      return false;
     }
+    return success;
   }
 
   Future<void> fetchPostNotes() async {
@@ -153,6 +155,7 @@ class PostViewModel with ChangeNotifier {
   }
 
   Future<bool> deleteNote(BuildContext context, String noteId) async {
+    bool success = false;
     try {
       int index = notes.indexWhere((element) => element.id == noteId);
       PostNote note = notes[index];
@@ -164,11 +167,11 @@ class PostViewModel with ChangeNotifier {
         index: index,
         note: note,
       );
-      return true;
+      success = true;
     } catch (e) {
       print("ERROR DELETE NOTE: ${e}");
-      return false;
     }
+    return success;
   }
 
   Future<void> fetchPostHelps() async {

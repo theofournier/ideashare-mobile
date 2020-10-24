@@ -21,6 +21,7 @@ class StorageKeys {
   static final defaultPictures = "default-pictures";
   static final userPictures = "user-pictures";
   static final postImages = "post-images";
+  static final helpImages = "help-images";
 }
 
 class AlertKeys {

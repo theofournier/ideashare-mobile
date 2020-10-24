@@ -7,9 +7,7 @@ class Approval {
     this.required = false,
     this.approved = false,
     this.approvedDate,
-  }) {
-    this.approvalId = this.approvalId ?? Uuid().v4();
-  }
+  });
 
   String approvalId;
   bool required;

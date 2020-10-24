@@ -147,21 +147,21 @@ class _NoteContentState extends State<NoteContent> {
   }
 
   Widget buildBody(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 24,
-      ),
-      child: Column(
-        children: [
-          if (viewModel.isLoading) ...[
-            SizedBox(
-              height: 1.5,
-              child: LinearProgressIndicator(
-                backgroundColor: Colors.transparent,
-              ),
+    return Column(
+      children: [
+        if (viewModel.isLoading) ...[
+          SizedBox(
+            height: 1.5,
+            child: LinearProgressIndicator(
+              backgroundColor: Colors.transparent,
             ),
-          ],
-          Expanded(
+          ),
+        ],
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 24,
+            ),
             child: CustomTextFormField(
               hintText: S.of(context).noteScreenPlaceholder,
               autoFocus: viewModel.note?.text?.isEmpty ?? true,
@@ -170,8 +170,8 @@ class _NoteContentState extends State<NoteContent> {
               controller: _controller,
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

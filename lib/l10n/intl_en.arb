@@ -168,5 +168,13 @@
   "postCommentDeletedSuccess": "Comment successfully deleted",
   "undo": "Undo",
   "postNoteDeletedSuccess": "Note successfully deleted",
-  "noteScreenPlaceholder": "Note"
+  "noteScreenPlaceholder": "Note",
+  "helpLanguageDescription": "The language of your help.",
+  "helpImageDescription": "Add images that helps describe your help. Double click on an image to make it the first one.",
+  "helpTitlePlaceholder": "Title",
+  "helpDescription": "Description",
+  "helpAlertTitle": "Add help",
+  "helpAlertMessage": "Do you want send this new help?",
+  "helpDeleteAlertTitle": "Delete help",
+  "helpAlertDeleteMessage": "Do you want delete this help?"
 }

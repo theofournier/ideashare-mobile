@@ -22,6 +22,11 @@ class Validators {
     return true;
   }
 
+  static String requiredValidator(String value) {
+    if (value.isEmpty) return S.current.errorRequired;
+    return null;
+  }
+
   static String firstNameValidator(String value) {
     if (value.isEmpty) return S.current.errorRequired;
     return null;
