@@ -26,6 +26,9 @@ class PostViewModel with ChangeNotifier {
 
     this.updateWith(isLoadingPostNotes: true);
     this.fetchPostNotes();
+
+    this.updateWith(isLoadingPostHelps: true);
+    this.fetchPostHelps();
   }
 
   final PostDatabase postDatabase;

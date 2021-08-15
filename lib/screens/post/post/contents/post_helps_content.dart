@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ideashare/common_widgets/post_widgets/help_list_item.dart';
 import 'package:ideashare/resources/theme.dart';
 import 'package:ideashare/screens/post/help/help_screen.dart';
 import 'package:ideashare/screens/post/help/help_view_model.dart';
@@ -26,9 +27,16 @@ class PostHelpsContent extends StatelessWidget {
   Widget buildList(BuildContext context) {
     return Stack(
       children: [
-        Container(
-          color: AppColors.greyBackground,
-          child: Center(child: Text("HELPS"),)
+        ListView.separated(
+          padding: const EdgeInsets.symmetric(vertical: 12),
+          separatorBuilder: (context, index) => SizedBox(
+            height: 8,
+          ),
+          itemCount: viewModel.helps.length,
+          itemBuilder: (context, index) => HelpListItem(
+            key: Key(viewModel.helps[index].id),
+            help: viewModel.helps[index],
+          ),
         ),
         Align(
           alignment: Alignment.bottomRight,
